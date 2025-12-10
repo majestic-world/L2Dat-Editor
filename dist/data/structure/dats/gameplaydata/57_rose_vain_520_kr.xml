@@ -1,0 +1,353 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<list>
+	<file pattern="rose_vain_520_kr" isSafePackage="true">
+		<for name="gameplaydata" size="1" hidden="false">
+			<write name="\r\n"/>
+			<node name="raid_teleport_cost" reader="UINT"/>
+			<write name="\r\n"/>
+			<node name="raid_teleport_max_free_count" reader="UINT"/>
+			<write name="\r\n"/>
+			<node name="random_craft_item_lock_costs" reader="CNTR"/>
+			<for name="random_craft_item_lock_costs" size="#random_craft_item_lock_costs">
+				<node name="random_craft_item_lock_costs_param1" reader="UINT"/>
+				<node name="random_craft_item_lock_costs_param2" reader="UINT"/>
+			</for>
+			<write name="\r\n"/>
+			<node name="random_craft_item_making_costs" reader="CNTR"/>
+			<for name="random_craft_item_making_costs" size="#random_craft_item_making_costs">
+				<node name="random_craft_item_making_costs_param1" reader="UINT"/>
+				<node name="random_craft_item_making_costs_param2" reader="UINT"/>
+			</for>
+			<write name="\r\n"/>
+			<node name="random_craft_reset_costs" reader="CNTR"/>
+			<for name="random_craft_reset_costs" size="#random_craft_reset_costs">
+				<node name="random_craft_reset_costs_param1" reader="UINT"/>
+				<node name="random_craft_reset_costs_param2" reader="UINT"/>
+			</for>
+			<write name="\r\n"/>
+			<node name="random_craft_reward_items" reader="CNTR"/>
+			<for name="random_craft_reward_items" size="#random_craft_reward_items">
+				<node name="random_craft_reward_items_param1" reader="UINT"/>
+				<node name="random_craft_reward_items_param2" reader="UINT"/>
+			</for>
+			<write name="\r\n"/>
+			<node name="random_craft_max_gauge_value" reader="UINT"/>
+			<write name="\r\n"/>
+			<node name="random_craft_max_item_point" reader="UCHAR"/>
+			<write name="\r\n"/>
+			<node name="random_craft_max_slot_lock_count" reader="UCHAR"/>
+			<write name="\r\n"/>
+			<node name="random_craft_max_item_lock_count" reader="UCHAR"/>
+			<write name="\r\n"/>
+			<node name="random_craft_slot_success_rate" reader="CNTR"/>
+			<for name="random_craft_slot_success_rate" size="#random_craft_slot_success_rate">
+				<node name="random_craft_slot_success_rate_param" reader="UCHAR"/>
+			</for>
+			<write name="\r\n"/>
+			<node name="random_craft_announce_items" reader="UINT"/>
+			<for name="random_craft_announce_items" size="#random_craft_announce_items">
+				<node name="random_craft_announce_items_param_1" reader="UINT"/>
+				<node name="random_craft_announce_items_param_2" reader="UINT"/>
+			</for>
+			<write name="\r\n"/>
+			<node name="shared_position_sharing_cost_lcoin" reader="UINT"/>
+			<write name="\r\n"/>
+			<node name="shared_position_using_cost_lcoin" reader="UINT"/>
+			<write name="\r\n"/>
+			<node name="shared_position_using_max_count" reader="UINT"/>
+			<write name="\r\n"/>
+			<node name="max_elixir" reader="CNTR"/>
+			<for name="max_elixir" size="#max_elixir">
+				<node name="max_elixir_min_level" reader="UCHAR"/>
+				<node name="max_elixir_count" reader="UCHAR"/>
+			</for>
+			
+			<write name="\r\n"/>
+			<node name="max_elixir_by_skill" reader="CNTR"/>
+			<for name="max_elixir_by_skill" size="#max_elixir_by_skill">
+				<node name="max_elixir_by_skill_id" reader="UINT"/>
+				<node name="max_elixir_by_skill_level" reader="UCHAR"/>
+				<node name="max_elixir_by_skill_count" reader="UCHAR"/>
+			</for>
+			
+			<write name="\r\n"/>
+			<node name="PenaltyDropFakeItemDeleteTime" reader="UINT"/>
+			<write name="\r\n"/>
+			<node name="Magic_Lamp_Max_Charge" reader="CNTR"/>
+			<for name="Magic_Lamp_Max_Charge" size="#Magic_Lamp_Max_Charge">
+				<node name="param_magic_lamp_max_charge_1" reader="UINT"/>
+				<node name="param_magic_lamp_max_charge_2" reader="UINT"/>
+				<node name="param_magic_lamp_max_charge_3" reader="UINT"/>
+			</for>
+			<write name="\r\n"/>
+
+			<node name="Magic_Lamp_Normal_ResultItems" reader="CNTR"/>
+			<for name="Magic_Lamp_Normal_ResultItems" size="#Magic_Lamp_Normal_ResultItems">
+				<node name="magic_lamp_normal_result_item" reader="UINT"/>
+				<node name="magic_lamp_normal_result_exp" reader="UINT"/>
+				<node name="magic_lamp_normal_result_sP" reader="UINT"/>
+				<node name="magic_lamp_normal_result_prob" reader="FLOAT"/>
+			</for>
+			<write name="\r\n"/>
+			
+			<node name="Magic_Lamp_Advanced_ResultItems" reader="CNTR"/>
+			<for name="Magic_Lamp_Advanced_ResultItems" size="#Magic_Lamp_Advanced_ResultItems">
+				<node name="magic_lamp_advanced_result_item" reader="UINT"/>
+				<node name="magic_lamp_advanced_result_exp" reader="UINT"/>
+				<node name="magic_lamp_advanced_result_sp" reader="UINT"/>
+				<node name="magic_lamp_advanced_result_prob" reader="FLOAT"/>
+			</for>
+			<write name="\r\n"/>
+			<node name="PledgeDonation" reader="CNTR"/>
+			<for name="PledgeDonation" size="#PledgeDonation">
+				<node name="PledgeDonationType" reader="UINT"/>
+				<node name="PersonalRewards" reader="CNTR"/>
+				<for name="PersonalRewards" size="#PersonalRewards">
+					<node name="PersonalRewardsItemId" reader="UINT"/>
+					<node name="PersonalRewardsItemCount" reader="UINT"/>
+				</for>
+				<node name="PledgeRewards" reader="CNTR"/>
+				<for name="PledgeRewards" size="#PledgeRewards">
+					<node name="PledgeRewardsItemId" reader="UINT"/>
+					<node name="PledgeRewardsItemCount" reader="UINT"/>
+				</for>
+				<node name="DonationItemId" reader="UINT"/>
+				<node name="DonationItemAmount" reader="LONG"/>
+			</for>
+			<write name="\r\n"/>
+			<wrapper name="pledge_enemy_delete_cost_lcoin">
+				<node name="pledge_enemy_delete_cost_lcoin_1" reader="UINT"/>
+				<node name="pledge_enemy_delete_cost_lcoin_2" reader="UINT"/>
+			</wrapper>
+			<write name="\r\n"/>
+			<node name="Dethrone_ConnectCost" reader="CNTR"/>
+			<for name="Dethrone_ConnectCost" size="#Dethrone_ConnectCost">
+				<node name="Dethrone_ConnectCost_itemID" reader="UINT"/>
+				<node name="Dethrone_ConnectCost_itemCount" reader="UINT"/>
+			</for>
+			<write name="\r\n"/>
+			
+			<node name="Dethrone_ChangeNameCost" reader="CNTR"/>
+			<for name="Dethrone_ChangeNameCost" size="#Dethrone_ChangeNameCost">
+				<node name="Dethrone_ChangeNameCost_itemID" reader="UINT"/>
+				<node name="Dethrone_ChangeNameCost_itemCount" reader="UINT"/>
+			</for>
+			<write name="\r\n"/>
+			
+			<node name="NickNameIcon" reader="UINT"/>
+			<for name="NickNameIcon" size="#NickNameIcon">
+				<node name="NickNameIcon_texture" reader="MAP_INT"/>
+			</for>
+			<write name="\r\n"/>
+			
+			<node name="balrogwar_level" reader="UINT"/>
+			<write name="\r\n"/>
+			<node name="balrogwar_min_player_pt" reader="UINT"/>
+			<write name="\r\n"/>
+			<node name="balrogwar_event_begin_pt" reader="UINT"/>
+			<write name="\r\n"/>
+			<node name="balrogwar_normal_1st_midboss_pt" reader="UINT"/>
+			<write name="\r\n"/>
+			<node name="balrogwar_normal_2nd_midboss_pt" reader="UINT"/>
+			<write name="\r\n"/>
+			<node name="balrogwar_normal_final_boss_pt" reader="UINT"/>
+			<write name="\r\n"/>
+			<node name="balrogwar_specail_final_boss_pt" reader="UINT"/>
+			<write name="\r\n"/>
+			
+			<node name="world_exchange_regi_fee" reader="UINT"/>
+			<write name="\r\n"/>
+			
+			<node name="world_exchange_max_sell_fee" reader="UINT"/>
+			<write name="\r\n"/>
+			
+			<node name="world_exchange_sell_fee" reader="UBYTE"/>
+			<write name="\r\n"/>
+			
+			<node name="world_exchange_useable_level" reader="UINT"/>
+			<write name="\r\n"/>
+			
+			<node name="world_exchange_server_id" reader="CNTR"/>
+			<for name="world_exchange_server_id" size="#world_exchange_server_id">
+				<node name="world_exchange_server_id_param" reader="UINT"/>
+			</for>
+			<write name="\r\n"/>
+			
+			<node name="enchant_bless_matching_set" reader="CNTR"/>
+			<for name="enchant_bless_matching_set" size="#enchant_bless_matching_set">
+				<node name="enchant_bless_matching_set_itemId" reader="UINT"/>
+				
+				<node name="enchant_bless_matching_groupIds" reader="CNTR"/>
+				<for name="enchant_bless_matching_groupIds" size="#enchant_bless_matching_groupIds">
+					<node name="enchant_bless_matching_set_groupId" reader="UINT"/>
+				</for>
+			</for>
+			<write name="\r\n"/>
+			
+			<node name="SiegePointAlarm" reader="CNTR"/>
+			<for name="SiegePointAlarm" size="#SiegePointAlarm">
+				<node name="SiegePointAlarm_Time" reader="UINT"/>
+			</for>
+			<write name="\r\n"/>
+			
+			<node name="SiegePointPreAlarm" reader="CNTR"/>
+			<for name="SiegePointPreAlarm" size="#SiegePointPreAlarm">
+				<node name="SiegePointPreAlarm_Time" reader="UINT"/>
+			</for>
+			<write name="\r\n"/>
+			
+			<node name="dis_slot_type" reader="LONG"/>
+			<write name="\r\n"/>
+			
+			<node name="Attendance_Follow_Item_Id" reader="UINT"/>
+			<write name="\r\n"/>
+			
+			<node name="Attendance_Period" reader="ASCF"/>
+			<write name="\r\n"/>
+			
+			<node name="Attendance_Follow_Cost" reader="UINT"/>
+			<for name="Attendance_Follow_Cost" size="#Attendance_Follow_Cost">
+				<node name="Attendance_Follow_Cost_ItemAmount" reader="UINT"/>
+			</for>
+			<write name="\r\n"/>
+			
+			<node name="relics_summon_effect_grade" reader="UCHAR"/>
+			<write name="\r\n"/>
+			<node name="relics_change_grade" reader="UCHAR"/>
+			<write name="\r\n"/>
+			<node name="relics_not_possible_combination" reader="UCHAR"/>
+			<write name="\r\n"/>
+			<node name="relics_summon_category" reader="CNTR"/>
+			<for name="relics_summon_category" size="#relics_summon_category">
+				<node name="relics_summon_category_Index" reader="UCHAR"/>
+				<node name="relics_summon_category_NPCStringID" reader="UINT"/>
+				<node name="relics_summon_category_TextureName" reader="ASCF"/>
+				<node name="relics_summon_category_server_group" reader="CNTR"/>
+				<for name="relics_summon_category_server_group" size="#relics_summon_category_server_group">
+					<node name="relics_summon_category_server_group_id" reader="UINT"/>
+				</for>
+			</for>
+			<write name="\r\n"/>
+			
+			<node name="killLog_time" reader="UCHAR"/>
+			<write name="\r\n"/>
+			<node name="killLog_max" reader="UCHAR"/>
+			<write name="\r\n"/>
+			<node name="multiKillLog_time" reader="UCHAR"/>
+			<write name="\r\n"/>
+			<node name="multiKillLog_kills" reader="CNTR"/>
+			<for name="multiKillLog_kills" size="#multiKillLog_kills">
+				<node name="multiKillLog_kills_param" reader="UCHAR"/>
+			</for>
+			<write name="\r\n"/>
+			
+			<node name="serverwar_enemy_name_color" reader="RGBA"/>
+			<write name="\r\n"/>
+			<node name="serverwar_reward_min_point" reader="UINT"/>
+			<write name="\r\n"/>
+			<node name="serverwar_reward_item" reader="CNTR"/>
+			<for name="serverwar_reward_item" size="#serverwar_reward_item">
+				<node name="serverwar_reward_item_id" reader="UINT"/>
+				<node name="serverwar_reward_item_count" reader="UINT"/>
+			</for>
+			<write name="\r\n"/>
+			<node name="serverwar_ranking_reward_prob" reader="CNTR"/>
+			<for name="serverwar_ranking_reward_prob" size="#serverwar_ranking_reward_prob">
+				<node name="serverwar_ranking_reward_prob_param" reader="UINT"/>
+			</for>
+			<write name="\r\n"/>
+			
+			<node name="chat_Background_Texture" reader="UINT"/>
+			<for name="chat_Background_Texture" size="#chat_Background_Texture">
+				<node name="chat_Background_Texture_param" reader="MAP_INT"/>
+			</for>
+			<write name="\r\n"/>
+			
+			<node name="MaximumSkillPoint" reader="LONG"/>
+			<write name="\r\n"/>
+			
+			<node name="eva_server_list" reader="CNTR"/>
+			<for name="eva_server_list" size="#eva_server_list">
+				<node name="eva_server_list_id" reader="UINT"/>
+			</for>
+			<write name="\r\n"/>
+				
+			<wrapper name="Collectionduration_reset_time">
+				<node name="Collectionduration_reset_time_day" reader="UCHAR"/>
+				<node name="Collectionduration_reset_time_hour" reader="UCHAR"/>
+				<node name="Collectionduration_reset_time_min" reader="UCHAR"/>
+			</wrapper>
+			<write name="\r\n"/>
+			
+			<node name="item_score_color_match" reader="CNTR"/>
+			<for name="item_score_color_match" size="#item_score_color_match">
+				<node name="item_score_color_match_index" reader="UBYTE"/>
+				<wrapper name="item_score_color_match_range">
+					<node name="item_score_color_match_min" reader="UINT"/>
+					<node name="item_score_color_match_max" reader="UINT"/>
+				</wrapper>
+			</for>
+			<write name="\r\n"/>
+			
+			<node name="equipment_break_restore_item" reader="CNTR"/>
+			<for name="equipment_break_restore_item" size="#equipment_break_restore_item">
+				<node name="equipment_break_restore_item_restoreCountMin" reader="UINT"/>
+				<node name="equipment_break_restore_item_restoreCountMax" reader="UINT"/>
+				<node name="equipment_break_restore_item_itemId" reader="UINT"/>
+				<node name="equipment_break_restore_item_itemCount" reader="UINT"/>
+			</for>
+			<write name="\r\n"/>
+			
+			<wrapper name="mythic_extract_reward">
+				<node name="mythic_extract_reward_itemId" reader="UINT"/>
+				<node name="mythic_extract_reward_itemCount" reader="UINT"/>
+			</wrapper>
+			<write name="\r\n"/>
+			
+			<wrapper name="legendary_extract_reward">
+				<node name="legendary_extract_reward_itemId" reader="UINT"/>
+				<node name="legendary_extract_reward_itemCount" reader="UINT"/>
+			</wrapper>
+			<write name="\r\n"/>
+			
+			<node name="mythic_extract_fee" reader="CNTR"/>
+			<for name="mythic_extract_fee" size="#mythic_extract_fee">
+				<node name="mythic_extract_fee_itemId" reader="UINT"/>
+				<node name="mythic_extract_fee_itemCount" reader="UINT"/>
+			</for>
+			<write name="\r\n"/>
+			
+			<node name="legendary_extract_fee" reader="CNTR"/>
+			<for name="legendary_extract_fee" size="#legendary_extract_fee">
+				<node name="legendary_extract_fee_itemId" reader="UINT"/>
+				<node name="legendary_extract_fee_itemCount" reader="UINT"/>
+			</for>
+			<write name="\r\n"/>
+			
+			<node name="RaidDropFakeItemDeleteTime" reader="UINT"/>
+			<write name="\r\n"/>
+			
+			<node name="post_fee_setting" reader="CNTR"/>
+			<for name="post_fee_setting" size="#post_fee_setting">
+				<node name="post_fee_setting_ServerGroupID" reader="UINT"/>
+				<node name="post_fee_setting_BaseFee" reader="UINT"/>
+				<node name="post_fee_setting_SlotPerFee" reader="UINT"/>
+				<node name="post_fee_setting_MinBilling" reader="UINT"/>
+				<node name="post_fee_setting_MaxBilling" reader="LONG"/>
+				<node name="post_fee_setting_BillingFeePer" reader="DOUBLE"/>
+			</for>
+			<write name="\r\n"/>
+			
+			<node name="raid_auction_post_fee" reader="CNTR"/>
+			<for name="raid_auction_post_fee" size="#raid_auction_post_fee">
+				<node name="post_fee_setting_ServerGroupID" reader="UINT"/>
+				<node name="post_fee_setting_PostFee" reader="UINT"/>
+			</for>
+			<write name="\r\n"/>
+			<node name="world_server_move_skill" reader="UINT"/>
+			<write name="\r\n"/>
+			<node name="PartyMember_Max" reader="UBYTE"/>
+			<write name="\r\n"/>
+		</for>
+	</file>
+</list>

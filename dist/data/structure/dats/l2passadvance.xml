@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--AUTHOR: Bonux-->
+<list>
+	<file pattern="queen_ant_sylph_311" isSafePackage="true">
+		<node name="data" reader="UINT"/>
+		<for name="L2pass_advance" size="#data" hidden="false">
+			<node name="advance_type" reader="UINT"/>
+			<node name="advance_id" reader="UINT"/>
+			<node name="advance_type_name" reader="ASCF"/>
+			<node name="target_item" reader="CNTR"/>
+			<for name="target_item" size="#target_item">
+				<node name="target_item_id" reader="UINT"/>
+			</for>
+			<node name="target_item_enchant" reader="CNTR"/>
+			<for name="target_item_enchant" size="#target_item_enchant">
+				<node name="enchant_level" reader="UINT"/>
+			</for>
+			<node name="target_item_desc" reader="ASCF"/>
+		</for>
+	</file>
+</list>

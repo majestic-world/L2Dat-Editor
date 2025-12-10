@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<list>
+	<file pattern="preludewar_kamael_228" isSafePackage="true">
+		<node name="data" reader="UINT"/>
+		<for name="artifact_type_setting" size="#data" hidden="false">
+			<node name="artifact_group_id" reader="UINT"/>
+			<node name="material_items" reader="CNTR"/>
+			<for name="material_items" size="#material_items">
+				<node name="material_items0" reader="UINT"/>
+			</for>
+		</for>
+	</file>
+</list>

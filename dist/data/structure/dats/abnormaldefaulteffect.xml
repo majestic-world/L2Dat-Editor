@@ -1,0 +1,217 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<list>
+	<file pattern="kor_lindvior" isSafePackage="true">
+		<node name="data" reader="UINT"/>
+		<for name="abnormal_default_effect" size="#data" hidden="false">
+			<node name="id" reader="UINT" key="true"/>
+			<node name="effect_name" reader="ASCF"/>
+			<node name="attach_bone_name" reader="ASCF"/>
+			<node name="attach_type" reader="UINT"/>
+			<wrapper name="offset_position">
+				<node name="var1" reader="FLOAT"/>
+				<node name="var2" reader="FLOAT"/>
+				<node name="var3" reader="FLOAT"/>
+			</wrapper>
+			<node name="effect_scale" reader="FLOAT"/>
+		</for>
+	</file>
+	<file pattern="kor_ertheia" isSafePackage="true">
+		<node name="data" reader="UINT"/>
+		<for name="abnormal_default_effect" size="#data" hidden="false">
+			<node name="id" reader="UINT" key="true"/>
+			<node name="effect_name" reader="ASCF"/>
+			<node name="is_attach_to_ground" reader="UINT"/>
+			<node name="attach_bone_name" reader="ASCF"/>
+			<node name="attach_type" reader="UINT"/>
+			<wrapper name="offset_position">
+				<node name="var1" reader="FLOAT"/>
+				<node name="var2" reader="FLOAT"/>
+				<node name="var3" reader="FLOAT"/>
+			</wrapper>
+			<node name="is_scaling_by_cylinder" reader="UINT"/>
+			<node name="is_locate_on_foot" reader="UINT"/>
+			<node name="effect_scale" reader="FLOAT"/>
+		</for>
+	</file>
+	<file pattern="ru_ertheia" isSafePackage="true">
+		<node name="data" reader="UINT"/>
+		<for name="abnormal_default_effect" size="#data" hidden="false">
+			<node name="id" reader="UINT" key="true"/>
+			<node name="effect_name" reader="ASCF"/>
+			<node name="is_attach_to_ground" reader="UINT"/>
+			<node name="attach_bone_name" reader="ASCF"/>
+			<node name="attach_type" reader="UINT"/>
+			<wrapper name="offset_position">
+				<node name="var1" reader="FLOAT"/>
+				<node name="var2" reader="FLOAT"/>
+				<node name="var3" reader="FLOAT"/>
+			</wrapper>
+			<node name="is_scaling_by_cylinder" reader="UINT"/>
+			<node name="effect_scale" reader="FLOAT"/>
+		</for>
+	</file>
+	<file pattern="kor_helios" isSafePackage="true">
+		<node name="data" reader="UINT"/>
+		<for name="abnormal_default_effect" size="#data" hidden="false">
+			<node name="id" reader="UINT" key="true"/>
+			<node name="effect_name" reader="ASCF"/>
+			<node name="is_screen_effect" reader="UINT"/>
+			<node name="is_attach_to_ground" reader="UINT"/>
+			<node name="attach_bone_name" reader="ASCF"/>
+			<node name="attach_type" reader="UINT"/>
+			<wrapper name="offset_position">
+				<node name="var1" reader="FLOAT"/>
+				<node name="var2" reader="FLOAT"/>
+				<node name="var3" reader="FLOAT"/>
+			</wrapper>
+			<node name="is_scaling_by_cylinder" reader="UINT"/>
+			<node name="is_locate_on_foot" reader="UINT"/>
+			<node name="effect_scale" reader="FLOAT"/>
+			<node name="posteffect_id" reader="UINT"/>
+		</for>
+	</file>
+	<file pattern="kor_helios_p3" isSafePackage="true">
+		<node name="data" reader="UINT"/>
+		<for name="abnormal_default_effect" size="#data" hidden="false">
+			<node name="id" reader="UINT" key="true"/>
+			<node name="effect_name" reader="ASCF"/>
+			<node name="is_screen_effect" reader="UINT"/>
+			<node name="is_attach_to_ground" reader="UINT"/>
+			<node name="attach_bone_name" reader="MAP_INT"/>
+			<node name="attach_type" reader="UINT"/>
+			<wrapper name="offset_position">
+				<node name="var1" reader="FLOAT"/>
+				<node name="var2" reader="FLOAT"/>
+				<node name="var3" reader="FLOAT"/>
+			</wrapper>
+			<node name="is_scaling_by_cylinder" reader="UINT"/>
+			<node name="is_locate_on_foot" reader="UINT"/>
+			<node name="effect_scale" reader="FLOAT"/>
+			<node name="posteffect_id" reader="UINT"/>
+		</for>
+	</file>
+	<file pattern="fufarion_secretofempire_166" isSafePackage="true">
+		<node name="data" reader="UINT"/>
+		<for name="abnormal_default_effect" size="#data" hidden="false">
+			<node name="id" reader="UINT" key="true"/>
+			<node name="effect_name" reader="ASCF"/>
+			<node name="is_screen_effect" reader="USHORT"/>
+			<node name="is_attach_to_ground" reader="USHORT"/>
+			<node name="attach_bone_name" reader="MAP_INT"/>
+			<node name="attach_type" reader="UINT"/>
+			<wrapper name="offset_position">
+				<node name="var1" reader="FLOAT"/>
+				<node name="var2" reader="FLOAT"/>
+				<node name="var3" reader="FLOAT"/>
+			</wrapper>
+			<node name="is_scaling_by_cylinder" reader="UINT"/>
+			<node name="effect_scale" reader="FLOAT"/>
+			<node name="posteffect_id" reader="UINT"/>
+		</for>
+		
+		<node name="val" reader="UBYTE"/>
+		<!--for name="abnormal_default_effect" size="256" hidden="false">
+			<node name="val" reader="UBYTE"/>
+		</for-->
+	</file>
+	<file pattern="death_knight_338" isSafePackage="true">
+		<node name="data" reader="UINT"/>
+		<for name="abnormal_default_effect" size="#data" hidden="false">
+			<node name="id" reader="UINT" key="true"/>
+			<node name="effect_name" reader="ASCF"/>
+			<node name="is_screen_effect" reader="USHORT"/>
+			<node name="is_attach_to_ground" reader="USHORT"/>
+			<node name="attach_bone_name" reader="MAP_INT"/>
+			<node name="attach_type" reader="UINT"/>
+			<wrapper name="offset_position">
+				<node name="var1" reader="FLOAT"/>
+				<node name="var2" reader="FLOAT"/>
+				<node name="var3" reader="FLOAT"/>
+			</wrapper>
+			
+			<wrapper name="offset_rotation">
+				<node name="var1_" reader="FLOAT"/>
+				<node name="var2_" reader="FLOAT"/>
+				<node name="var3_" reader="FLOAT"/>
+			</wrapper>
+			
+			<node name="is_scaling_by_cylinder" reader="UINT"/>
+			<node name="effect_scale" reader="FLOAT"/>
+			<node name="posteffect_id" reader="UINT"/>
+		</for>
+	</file>
+	<file pattern="death_knight_362" isSafePackage="true">
+		<node name="data" reader="UINT"/>
+		<for name="abnormal_default_effect" size="#data" hidden="false">
+			<node name="id" reader="UINT" key="true"/>
+			<node name="effect_name" reader="ASCF"/>
+			<node name="is_screen_effect" reader="USHORT"/>
+			<node name="is_attach_to_ground" reader="USHORT"/>
+			<node name="attach_bone_name" reader="MAP_INT"/>
+			<node name="attach_type" reader="UINT"/>
+			<wrapper name="offset_position">
+				<node name="var1" reader="FLOAT"/>
+				<node name="var2" reader="FLOAT"/>
+				<node name="var3" reader="FLOAT"/>
+			</wrapper>
+			
+			<wrapper name="offset_rotation">
+				<node name="var1_" reader="FLOAT"/>
+				<node name="var2_" reader="FLOAT"/>
+				<node name="var3_" reader="FLOAT"/>
+			</wrapper>
+			
+			<node name="is_scaling_by_cylinder" reader="UINT"/>
+			<node name="effect_scale" reader="FLOAT"/>
+			<node name="posteffect_id" reader="UINT"/>
+			<node name="bodypart" reader="UINT"/>
+		</for>
+	</file>
+	<file pattern="assassin_414_classic" isSafePackage="true">
+		<node name="data" reader="UINT"/>
+		<for name="abnormal_default_effect" size="#data" hidden="false">
+			<node name="id" reader="UINT" key="true"/>
+			<node name="effect_name" reader="ASCF"/>
+			<node name="is_screen_effect" reader="USHORT"/>
+			<node name="is_attach_to_ground" reader="USHORT"/>
+			<node name="attach_bone_name" reader="ASCF"/>
+			<node name="attach_type" reader="UINT"/>
+			<wrapper name="offset_position">
+				<node name="var1" reader="FLOAT"/>
+				<node name="var2" reader="FLOAT"/>
+				<node name="var3" reader="FLOAT"/>
+			</wrapper>
+			<node name="unk_414_1" reader="UINT"/>
+			<node name="is_scaling_by_cylinder" reader="UINT"/>
+			<node name="effect_scale" reader="FLOAT"/>
+		</for>
+	</file>
+	<file pattern="guardians_493" isSafePackage="true">
+		<node name="data" reader="UINT"/>
+		<for name="abnormal_default_effect" size="#data" hidden="false">
+			<node name="id" reader="UINT" key="true"/>
+			<node name="effect_name" reader="ASCF"/>
+			<node name="is_screen_effect" reader="USHORT"/>
+			<node name="is_attach_to_ground" reader="USHORT"/>
+			<node name="unk_502" reader="UBYTE"/>
+			<node name="attach_bone_name" reader="MAP_INT"/>
+			<node name="attach_type" reader="UINT"/>
+			<wrapper name="offset_position">
+				<node name="var1" reader="FLOAT"/>
+				<node name="var2" reader="FLOAT"/>
+				<node name="var3" reader="FLOAT"/>
+			</wrapper>
+			
+			<wrapper name="offset_rotation">
+				<node name="var1_" reader="FLOAT"/>
+				<node name="var2_" reader="FLOAT"/>
+				<node name="var3_" reader="FLOAT"/>
+			</wrapper>
+			
+			<node name="is_scaling_by_cylinder" reader="UINT"/>
+			<node name="effect_scale" reader="FLOAT"/>
+			<node name="posteffect_id" reader="UINT"/>
+			<node name="bodypart" reader="UINT"/>
+		</for>
+	</file>
+</list>

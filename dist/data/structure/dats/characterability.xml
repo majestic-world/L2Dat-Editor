@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<list>
+	<file pattern="queen_ant_sylph_311" isSafePackage="true">
+		<node name="data" reader="CNTR"/>
+		<for name="ability" size="#data" hidden="false">
+			<node name="category" reader="MAP_INT"/>
+			<node name="name" reader="ASCF"/>
+			<node name="unk1" reader="UCHAR"/>
+		</for>
+	</file>
+	<file pattern="death_knight_338" isSafePackage="true">
+		<node name="data" reader="CNTR"/>
+		<for name="characterability" size="#data" hidden="false">
+			<node name="category" reader="MAP_INT"/>
+			<node name="name" reader="ASCF"/>
+			<node name="is_percent" reader="UCHAR"/>
+			<node name="detail" reader="ASCF"/>
+		</for>
+	</file>
+	<file pattern="high_elf_474" isSafePackage="true">
+		<node name="data" reader="CNTR"/>
+		<for name="ability" size="#data" hidden="false">
+			<node name="category" reader="MAP_INT"/>
+			<node name="detail" reader="ASCF"/>
+			<node name="tooltip" reader="ASCF"/>
+		
+			<node name="index" reader="USHORT"/>
+			<node name="UNK_1" reader="USHORT"/>
+			<node name="is_percent" reader="UCHAR"/>
+		</for>
+	</file>
+</list>

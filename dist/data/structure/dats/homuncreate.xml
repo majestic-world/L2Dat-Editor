@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<list>
+	<file pattern="preludewar_kamael_270" isSafePackage="true">
+		<node name="cost_base" reader="LONG"/>
+		<node name="hpTimes" reader="UINT"/>
+		<node name="hpCost" reader="UINT"/>
+		<node name="spTimes" reader="UINT"/>
+		<node name="spCost" reader="LONG"/>
+		<node name="vpTimes" reader="UINT"/>
+		<node name="vpCost" reader="UINT"/>
+		<node name="secWait" reader="UINT"/>
+	</file>
+	<file pattern="crusade_388" isSafePackage="true">
+		<for name="homun_create" size="1" hidden="false">
+			<node name="cost_base" reader="LONG"/>
+			<node name="hp_count" reader="UINT"/>
+			<node name="hp_volume" reader="UINT"/>
+			<node name="sp_count" reader="UINT"/>
+			<node name="sp_volume" reader="LONG"/>
+			<node name="vp_count" reader="UINT"/>
+			<node name="vp_volume" reader="UINT"/>
+			<node name="cost_time" reader="UINT"/>
+		</for>
+	</file>
+	<file pattern="high_elf_464" isSafePackage="true">
+		<for name="homun_create" size="1" hidden="false">
+			<node name="cost_base" reader="LONG"/>
+			<node name="hp_count" reader="UINT"/>
+			<node name="hp_volume" reader="UINT"/>
+			<node name="sp_count" reader="UINT"/>
+			<node name="sp_volume" reader="LONG"/>
+			<node name="vp_count" reader="UINT"/>
+			<node name="vp_volume" reader="UINT"/>
+			<node name="cost_time" reader="UINT"/>
+			<node name="gain_evolution_point" reader="CNTR"/>
+			<for name="gain_evolution_point" size="#gain_evolution_point">
+				<node name="gain_evolution_point1" reader="UINT"/>
+			</for>
+		</for>
+	</file>
+</list>

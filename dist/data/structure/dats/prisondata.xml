@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--AUTHOR: Akumu-->
+<list>
+	<file pattern="crusade_388" isSafePackage="true">
+		<node name="data" reader="UINT"/>
+		<for name="prison_data" size="#data" hidden="false">
+			<node name="prison_type" reader="UBYTE"/>
+			<for name="pk_count_cond" size="1">
+				<node name="min" reader="UINT"/>
+				<node name="max" reader="UINT"/>
+			</for>
+			<node name="donation" reader="UINT"/>
+			<for name="need_item" size="1">
+				<node name="id" reader="UINT"/>
+				<node name="count" reader="UINT"/>
+			</for>
+			<node name="holding_minute" reader="UINT"/>
+		</for>
+	</file>
+</list>

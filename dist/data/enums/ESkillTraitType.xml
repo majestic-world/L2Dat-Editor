@@ -1,0 +1,31 @@
+<list>
+	<enum name="ESkillTraitType">
+		<node index="0" name="None" />
+		<node index="1" name="Hold" />
+		<node index="2" name="Infection" />
+		<node index="3" name="Sleep" />
+		<node index="4" name="Shock" />
+		<node index="5" name="Paralyze" />
+		<node index="6" name="Seal" />
+		<node index="7" name="Pull" />
+		<node index="8" name="Silence" />
+		<node index="9" name="Fear" />
+		<node index="10" name="SlowDown" />
+		<node index="11" name="TurnStone" />
+		<node index="12" name="Disarm" />
+		<node index="13" name="Hate" />
+		<node index="14" name="PhysicalBlockade" />
+		<node index="15" name="RootPhysically" />
+		<node index="16" name="Deport" />
+		<node index="17" name="Bluff" />
+		<node index="18" name="Poison" />
+		<node index="19" name="Bleed" />
+		<node index="20" name="Changebody" />
+		<node index="21" name="Derangement" />
+		<node index="22" name="AirBind" />
+		<node index="23" name="WindStun" />
+		<node index="24" name="Psychic" />
+		<node index="25" name="KnockBack" />
+		<node index="26" name="KnockDown" />
+	</enum>
+</list>

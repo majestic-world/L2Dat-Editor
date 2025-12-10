@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<list>
+	<file pattern="crusade_388" isSafePackage="true">
+		<node name="data" reader="UINT"/>
+		<for name="slot_fee_data" size="#data" hidden="false">
+			<node name="dye_slot" reader="UBYTE"/>
+			<wrapper name="dye_level">
+				<node name="dye_min_level" reader="UCHAR"/>
+				<node name="dye_max_level" reader="UCHAR"/>
+			</wrapper>
+			<node name="slot_fee" reader="CNTR"/>
+			<for name="slot_fee" size="#slot_fee">
+				<node name="step" reader="UBYTE"/>
+				<node name="max_daily_count" reader="UBYTE"/>
+				<node name="exp_count" reader="CNTR"/>
+				<for name="exp_count" size="#exp_count">
+					<node name="exp" reader="UBYTE"/>
+					<node name="chance" reader="FLOAT"/>
+				</for>
+				<node name="fee_items" reader="CNTR"/>
+				<for name="fee_items" size="#fee_items">
+					<node name="itemId" reader="UINT"/>
+					<node name="itemCount" reader="UINT"/>
+				</for>
+			</for>
+		</for>
+	</file>
+	<file pattern="guardians_493" isSafePackage="true">
+		<node name="data" reader="UINT"/>
+		<for name="slot_fee_data" size="#data" hidden="false">
+			<node name="dye_slot" reader="UBYTE"/>
+			<wrapper name="dye_level">
+				<node name="dye_min_level" reader="UCHAR"/>
+				<node name="dye_max_level" reader="UCHAR"/>
+			</wrapper>
+			<node name="slot_fee" reader="CNTR"/>
+			<for name="slot_fee" size="#slot_fee">
+				<node name="step" reader="UBYTE"/>
+				<node name="max_daily_count" reader="UBYTE"/>
+				<node name="exp_count" reader="CNTR"/>
+				<for name="exp_count" size="#exp_count">
+					<node name="exp" reader="UBYTE"/>
+					<node name="chance" reader="FLOAT"/>
+				</for>
+				<node name="fee_items" reader="CNTR"/>
+				<for name="fee_items" size="#fee_items">
+					<node name="itemId" reader="UINT"/>
+					<node name="itemCount" reader="UINT"/>
+				</for>
+				<node name="commission" reader="UINT"/>
+				<node name="unk493" reader="UCHAR"/>
+				<for name="unk493" size="#unk493">
+					<node name="unk" reader="UINT"/>
+				</for>
+			</for>
+		</for>
+	</file>
+</list>

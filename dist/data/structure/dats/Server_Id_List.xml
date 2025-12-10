@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<list>
+	<file pattern="high_elf_464" isSafePackage="true">
+		<node name="data" reader="UINT"/>
+		<for name="server_id" size="#data" hidden="false">
+			<node name="GroupID" reader="UINT"/>
+			<node name="isQa" reader="UINT"/>
+			<node name="applycountry" reader="CNTR"/>
+			<for name="applycountry" size="#applycountry">
+				  <node name="applycountry1" reader="UINT"/>
+			</for>
+			<node name="Server_list" reader="CNTR"/>
+			<for name="Server_list" size="#Server_list">
+				  <node name="Server_list1" reader="UINT"/>
+			</for>
+		</for>
+	</file>
+	<file pattern="project_wolf_502_kr" isSafePackage="true">
+		<node name="data" reader="UINT"/>
+		<for name="server_id" size="#data" hidden="false">
+			<node name="GroupID" reader="UINT"/>
+			<node name="Server_list" reader="CNTR"/>
+			<for name="Server_list" size="#Server_list">
+				  <node name="Server_list1" reader="UINT"/>
+			</for>
+		</for>
+	</file>
+</list>

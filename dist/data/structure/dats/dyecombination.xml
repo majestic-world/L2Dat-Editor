@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<list>
+	<file pattern="death_knight_338" isSafePackage="true">
+		<node name="data" reader="UINT"/>
+		<for name="dyecombination" size="#data" hidden="false">
+			<node name="slotone" reader="UINT"/>
+			<node name="slottwo" reader="UINT"/>
+			<node name="adena" reader="UINT"/>
+			<node name="chance" reader="FLOAT"/>
+		</for>
+	</file>
+	<file pattern="high_elf_474" isSafePackage="true">
+		<node name="data" reader="UINT"/>
+		<for name="dyecombination" size="#data" hidden="false">
+			<node name="slotone" reader="UINT"/>
+			<node name="slottwo" reader="UINT"/>
+			<node name="adena" reader="UINT"/>
+		</for>
+	</file>
+</list>

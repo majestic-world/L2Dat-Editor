@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<list>
+
+	<file pattern="death_knight_2_430" isSafePackage="true">
+		<node name="data" reader="CNTR"/>
+		<for name="dethrone_fire_ability_combo_effect" size="#data" hidden="false">
+			<node name="combo_effect_level" reader="UINT"/>
+			<node name="combo_effect_title" reader="ASCF"/>
+			<node name="combo_effect_list" reader="CNTR"/>
+			<for name="combo_effect_list" size="#combo_effect_list">
+				<node name="combo_effect" reader="ASCF"/>
+			</for>
+		</for>
+	</file>
+
+</list>

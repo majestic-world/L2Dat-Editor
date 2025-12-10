@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--AUTHOR: Bonux-->
+<!--bonuxq@gmail.com-->
+<list>
+	<links id="1000" parent_id="330" name="Arena (140) RU">
+		<link pattern="ChooseClassData_Arena-[\w]+\.dat" file="chooseclassdata" version="arena_140_ru"/>
+		<link pattern="Chargrp(_Classic(Aden)?)?\.dat" file="chargrp" version="arena_140_ru"/>
+		<link pattern="Questname_Arena-[\w]+\.dat" file="questname" version="kor_helios"/>
+		<link pattern="MinimapRegion_Arena.dat" file="minimapregion" version="kor_grand_crusade"/>
+		<link pattern="EventAlarmList_Arena-[\w]+\.dat" file="eventalarmlist" version="fufarion_secretofempire_166"/>
+		<link pattern="Credit-[\w]+\.dat" file="credit" version="kor_lindvior"/>
+		<link pattern="AbnormalDefaultEffect.dat" file="abnormaldefaulteffect" version="kor_helios_p3"/>
+	</links>
+</list>

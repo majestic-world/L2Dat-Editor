@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<list>
+
+	<file pattern="death_knight_2_430" isSafePackage="true">
+		<for name="dethrone_fire_ability_levelup_info" size="5" hidden="false">
+			<node name="data" reader="CNTR"/>
+			<for name="ability_levelup_info" size="#data" hidden="false">
+
+				<node name="Subtype" reader="UINT"/>
+				<node name="Level" reader="UINT"/>
+				<node name="Exp" reader="UINT"/>
+
+				<node name="exp_up_cost_item" reader="CNTR"/>
+				<for name="exp_up_cost_item" size="#exp_up_cost_item">
+					<node name="exp_up_cost_item_id" reader="UINT"/>
+					<node name="exp_up_cost_item_count" reader="UINT"/>
+				</for>
+
+				<node name="exp_up_success_rate" reader="UINT"/>
+				<node name="exp_up_amount" reader="UINT"/>
+
+				<node name="level_up_cost" reader="CNTR"/>
+				<for name="level_up_cost" size="#level_up_cost">
+					<node name="ExpUpCostItem_id" reader="UINT"/>
+					<node name="ExpUpCostItem_count" reader="UINT"/>
+				</for>
+
+				<node name="exp_up_success_reward" reader="CNTR"/>
+				<for name="exp_up_success_reward" size="#exp_up_success_reward">
+					<node name="exp_up_success_reward_id" reader="UINT"/>
+					<node name="exp_up_success_reward_count" reader="UINT"/>
+				</for>
+
+				<node name="SkillEffect" reader="CNTR"/>
+				<for name="SkillEffect" size="#SkillEffect">
+					<node name="reward_id" reader="ASCF"/>
+				</for>
+			</for>
+		</for>
+	</file>
+
+</list>

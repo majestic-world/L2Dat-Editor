@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<list>
+	<file pattern="kor_grand_crusade" isSafePackage="true">
+		<node name="data" reader="UINT"/>
+		<for name="MinimapRegion" size="#data" hidden="false">
+			<node name="regionid" reader="USHORT"/>
+			<node name="IconTexNormal" reader="MAP_INT"/>
+			<node name="IconTexOver" reader="MAP_INT"/>
+			<node name="IconTexPushed" reader="MAP_INT"/>
+			<node name="WorldLocX" reader="UINT"/>
+			<node name="WorldLocY" reader="UINT"/>				
+			<node name="Width" reader="USHORT"/>				
+			<node name="Height" reader="USHORT"/>				
+			<node name="DescOffsetX" reader="SHORT"/>
+			<node name="DescOffsetY" reader="SHORT"/>
+			<node name="DescFontName" reader="MAP_INT"/>
+		</for>
+	</file>
+	<file pattern="salvation_antharas_140" isSafePackage="true">
+		<node name="data" reader="UINT"/>
+		<for name="MinimapRegion" size="#data" hidden="false">
+			<node name="regionid" reader="USHORT"/>
+			<node name="IconTexNormal" reader="MAP_INT"/>
+			<node name="IconTexOver" reader="MAP_INT"/>
+			<node name="IconTexPushed" reader="MAP_INT"/>
+			<node name="WorldLocX" reader="UINT"/>
+			<node name="WorldLocY" reader="UINT"/>				
+			<node name="Width" reader="USHORT"/>				
+			<node name="Height" reader="USHORT"/>				
+			<node name="DescOffsetX" reader="SHORT"/>
+			<node name="DescOffsetY" reader="SHORT"/>
+			<node name="DescFontName" reader="MAP_INT"/>
+			<node name="ApplyCountry" reader="UBYTE"/>
+			<for name="ApplyCountry" size="#ApplyCountry">
+				<node name="country" reader="UINT"/>
+			</for>
+		</for>
+	</file>
+	<file pattern="assassin_414" isSafePackage="true">
+		<node name="data" reader="UINT"/>
+		<for name="MinimapRegion" size="#data" hidden="false">
+			<node name="regionid" reader="USHORT"/>
+			<node name="IconTexNormal" reader="MAP_INT"/>
+			<node name="IconTexOver" reader="MAP_INT"/>
+			<node name="IconTexPushed" reader="MAP_INT"/>
+			<node name="WorldLocX" reader="UINT"/>
+			<node name="WorldLocY" reader="UINT"/>				
+			<node name="Width" reader="USHORT"/>				
+			<node name="Height" reader="USHORT"/>				
+			<node name="DescOffsetX" reader="SHORT"/>
+			<node name="DescOffsetY" reader="SHORT"/>
+			<node name="DescFontName" reader="MAP_INT"/>
+		</for>
+	</file>
+	<file pattern="high_elf_464" isSafePackage="true">
+		<node name="data" reader="UINT"/>
+		<for name="MinimapRegion" size="#data" hidden="false">
+			<node name="regionid" reader="USHORT"/>
+			<node name="IconTexNormal" reader="MAP_INT"/>
+			<node name="IconTexOver" reader="MAP_INT"/>
+			<node name="IconTexPushed" reader="MAP_INT"/>
+			<node name="WorldLocX" reader="UINT"/>
+			<node name="WorldLocY" reader="UINT"/>
+			<node name="Width" reader="USHORT"/>
+			<node name="Height" reader="USHORT"/>
+			<node name="DescOffsetX" reader="SHORT"/>
+			<node name="DescOffsetY" reader="SHORT"/>
+			<node name="DescFontName" reader="MAP_INT"/>
+			<node name="DescFontColors" reader="UBYTE"/>
+			<for name="DescFontColors" size="#DescFontColors" hidden="true">
+				<node name="color" reader="RGBA"/>
+			</for>
+		</for>
+	</file>
+</list>

@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--AUTHOR: Bonux-->
+<list>
+	<file pattern="project_wolf_516_kr" isSafePackage="true">
+		<node name="data" reader="UINT"/>
+		<for name="character_style" size="#data" hidden="false">
+			<node name="StyleID" reader="USHORT"/>
+			<node name="Category" reader="UBYTE"/>
+			<node name="MarkType" reader="UBYTE"/>
+			<node name="UiGrade" reader="UBYTE"/>
+			<node name="StyleName" reader="ASCF"/>
+			<wrapper name="ActiveCost">
+				<node name="id" reader="UINT"/>
+				<node name="count" reader="UINT"/>
+			</wrapper>
+			<node name="ShiftWeaponID" reader="UINT"/>
+			<node name="SkillID" reader="UINT"/>
+			<node name="Enchants" reader="CNTR"/>
+			<for name="Enchants" size="#Enchants" hidden="true">
+				<node name="Enchant" reader="UBYTE"/>
+			</for>
+			<node name="KillEffect" reader="MAP_INT"/>
+			<node name="ChatBgTex" reader="MAP_INT"/>
+		</for>
+	</file>
+	<file pattern="rose_vain_520_kr" isSafePackage="true">
+		<node name="data" reader="UINT"/>
+		<for name="character_style" size="#data" hidden="false">
+			<node name="StyleID" reader="USHORT"/>
+			<node name="Category" reader="UBYTE"/>
+			<node name="MarkType" reader="UBYTE"/>
+			<node name="UiGrade" reader="UBYTE"/>
+			<node name="StyleName" reader="ASCF"/>
+			<node name="ActiveCost" reader="CNTR"/>
+			<for name="ActiveCost" size="#ActiveCost" hidden="true">
+				<node name="id" reader="UINT"/>
+				<node name="count" reader="UINT"/>
+			</for>
+			<node name="ShiftWeaponID" reader="UINT"/>
+			<node name="SkillID" reader="UINT"/>
+			<node name="Enchants" reader="CNTR"/>
+			<for name="Enchants" size="#Enchants" hidden="true">
+				<node name="Enchant" reader="UBYTE"/>
+			</for>
+			<node name="KillEffect" reader="MAP_INT"/>
+			<node name="ChatBgTex" reader="MAP_INT"/>
+		</for>
+	</file>
+	<file pattern="rose_vain_523_kr" isSafePackage="true">
+		<node name="data" reader="UINT"/>
+		<for name="character_style" size="#data" hidden="false">
+			<node name="StyleID" reader="USHORT"/>
+			<node name="Category" reader="UBYTE"/>
+			<node name="MarkType" reader="UBYTE"/>
+			<node name="StyleName" reader="ASCF"/>
+			<node name="ActiveCost" reader="CNTR"/>
+			<for name="ActiveCost" size="#ActiveCost" hidden="true">
+				<node name="id" reader="UINT"/>
+				<node name="count" reader="UINT"/>
+			</for>
+			<wrapper name="DeactiveCost">
+				<node name="id" reader="UINT"/>
+				<node name="count" reader="UINT"/>
+			</wrapper>
+			<node name="ShiftItemID" reader="UINT"/>
+			<node name="SkillID" reader="UINT"/>
+			<node name="Enchants" reader="CNTR"/>
+			<for name="Enchants" size="#Enchants" hidden="true">
+				<node name="Enchant" reader="UBYTE"/>
+			</for>
+			<node name="KillEffect" reader="MAP_INT"/>
+			<node name="ChatBgTex" reader="MAP_INT"/>
+			<node name="ActivatableInfo" reader="CNTR"/>
+			<for name="ActivatableInfo" size="#ActivatableInfo" hidden="true">
+				<node name="Race" reader="UBYTE" enum_name="race"/>
+				<node name="gender" reader="UBYTE" enum_name="sex"/>
+				<node name="OriginClassID" reader="UINT" enum_name="class"/>
+			</for>
+		</for>
+	</file>
+</list>

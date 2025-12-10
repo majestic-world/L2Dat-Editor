@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--AUTHOR: Bonux-->
+<list>
+	<file pattern="project_wolf_516_kr" isSafePackage="true">
+		<node name="data" reader="UINT"/>
+		<for name="petequipinfo" size="#data" hidden="false">
+			<node name="item_id" reader="UINT"/>
+			<!--NEW-->
+			<node name="soulshot_count" reader="UBYTE"/>
+			<node name="spiritshot_count" reader="UBYTE"/>
+			<!--/NEW-->
+			<node name="enchant_step" reader="UBYTE"/>
+			<for name="enchant_step" size="#enchant_step" hidden="true">
+				<node name="step" reader="UBYTE"/>
+			</for>
+			<write name="\r\n"/>
+			<node name="stats" reader="UBYTE"/>
+			<for name="stats" size="#stats" hidden="false">
+				<node name="min_enchant" reader="UBYTE"/>
+				<node name="shield_defense_rate" reader="UBYTE"/>
+				<node name="p_defense" reader="SHORT"/>
+				<node name="m_defense" reader="SHORT"/>
+				<node name="p_attack" reader="SHORT"/>
+				<node name="m_attack" reader="SHORT"/>
+				<node name="p_attack_speed" reader="SHORT"/>
+				<node name="shield_defense" reader="SHORT"/>
+				<node name="p_hit_rate" reader="FLOAT"/>
+				<node name="p_cri_rate" reader="FLOAT"/>
+				<node name="p_avoid" reader="FLOAT"/>
+			</for>
+		</for>
+	</file>
+</list>

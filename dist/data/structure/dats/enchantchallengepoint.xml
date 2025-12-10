@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<list>
+	<file pattern="death_knight_362" isSafePackage="true">
+		<node name="data" reader="UINT"/>
+		<for name="enchantchallengepoint" size="#data" hidden="false">
+			<node name="point_group_id" reader="UBYTE"/>
+
+			<node name="prob_inc1" reader="FLOAT"/>
+			<wrapper name="prob_inc1_range">
+				<node name="prob_inc1_from" reader="UBYTE"/>
+				<node name="prob_inc1_to" reader="UBYTE"/>
+			</wrapper>
+
+			<node name="prob_inc2" reader="FLOAT"/>
+			<wrapper name="prob_inc2_range">
+				<node name="prob_inc2_from" reader="UBYTE"/>
+				<node name="prob_inc2_to" reader="UBYTE"/>
+			</wrapper>
+			
+			<node name="over_up" reader="CNTR"/>
+			<for name="over_up" size="#over_up">
+				<node name="over_up_id" reader="UBYTE"/>
+				<node name="over_up_prob" reader="FLOAT"/>
+			</for>
+			
+			<wrapper name="over_up_range">
+				<node name="over_up_range_from" reader="UBYTE"/>
+				<node name="over_up_range_to" reader="UBYTE"/>
+			</wrapper>
+			
+			<node name="num_reset_prob" reader="FLOAT"/>
+			<wrapper name="num_reset_range">
+				<node name="num_reset_from" reader="UBYTE"/>
+				<node name="num_reset_to" reader="UBYTE"/>
+			</wrapper>
+
+			<node name="num_down_prob" reader="FLOAT"/>
+			<wrapper name="num_down_range">
+				<node name="num_down_from" reader="UBYTE"/>
+				<node name="num_down_to" reader="UBYTE"/>
+			</wrapper>
+			
+			<node name="num_protect_prob" reader="FLOAT"/>
+			<wrapper name="num_protect_range">
+				<node name="num_protect_from" reader="UBYTE"/>
+				<node name="num_protect_to" reader="UBYTE"/>
+			</wrapper>
+
+		</for>
+	</file>
+</list> 

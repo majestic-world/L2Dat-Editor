@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<list>
+	<file pattern="death_knight_362" isSafePackage="true">
+		<node name="data" reader="UINT"/>
+		<for name="missionlevel" size="#data" hidden="false">
+			<node name="season_date" reader="UINT"/>
+			<node name="limit_lv" reader="UINT"/>
+			<node name="base_reward_count" reader="UCHAR"/>
+			<for name="base_reward" size="#base_reward_count">
+				<node name="base_reward_1" reader="UINT"/>
+				<node name="base_reward_id" reader="UINT"/>
+				<node name="base_reward_chance" reader="UINT"/>
+			</for>
+			<node name="key_reward_count" reader="UCHAR"/>
+			<for name="key_reward" size="#key_reward_count">
+				<node name="key_reward_1" reader="UINT"/>
+				<node name="key_reward_id" reader="UINT"/>
+				<node name="key_reward_chance" reader="UINT"/>
+			</for>
+			<wrapper name="special_reward">
+				<node name="special_reward_1" reader="UINT"/>
+				<node name="special_reward_id" reader="UINT"/>
+				<node name="special_reward_chance" reader="UINT"/>
+			</wrapper>
+			<wrapper name="extra_reward">
+				<node name="extra_reward_1" reader="UINT"/>
+				<node name="extra_reward_id" reader="UINT"/>
+				<node name="extra_reward_chance" reader="UINT"/>
+			</wrapper>
+		</for>
+	</file>
+	<file pattern="high_elf_464" isSafePackage="true">
+		<node name="data" reader="UINT"/>
+		<for name="missionlevel" size="#data" hidden="false">
+			<node name="season_date" reader="UINT"/>
+			<node name="limit_lv" reader="UINT"/>
+			<node name="start_level" reader="UINT"/>
+			<node name="lcoin_amount" reader="UINT"/>
+			<node name="base_reward_count" reader="UCHAR"/>
+			<for name="base_reward" size="#base_reward_count">
+				<node name="base_reward_1" reader="UINT"/>
+				<node name="base_reward_id" reader="UINT"/>
+				<node name="base_reward_chance" reader="UINT"/>
+			</for>
+			<node name="key_reward_count" reader="UCHAR"/>
+			<for name="key_reward" size="#key_reward_count">
+				<node name="key_reward_1" reader="UINT"/>
+				<node name="key_reward_id" reader="UINT"/>
+				<node name="key_reward_chance" reader="UINT"/>
+			</for>
+			<wrapper name="special_reward">
+				<node name="special_reward_1" reader="UINT"/>
+				<node name="special_reward_id" reader="UINT"/>
+				<node name="special_reward_chance" reader="UINT"/>
+			</wrapper>
+			<wrapper name="extra_reward">
+				<node name="extra_reward_1" reader="UINT"/>
+				<node name="extra_reward_id" reader="UINT"/>
+				<node name="extra_reward_chance" reader="UINT"/>
+			</wrapper>
+		</for>
+	</file>
+</list>

@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<list>
+	<file pattern="death_knight_362" isSafePackage="true">
+		<node name="data" reader="UINT"/>
+		<for name="enchant_scroll_set" size="#data" hidden="false">
+			<node name="scroll_set_id" reader="UBYTE"/>
+			<node name="failure_base" reader="UBYTE"/>
+			<node name="failure_decrease" reader="UBYTE"/>
+			<node name="failure_maintain" reader="UBYTE"/>
+			<node name="failure_crush" reader="UBYTE"/>
+			<node name="inc_base_min" reader="UBYTE"/>
+			<node name="inc_base_max" reader="UBYTE"/>
+			<node name="great_success_effect" reader="UBYTE"/>
+			<node name="enchant_range_datas" reader="CNTR"/>
+			<for name="enchant_range_datas" size="#enchant_range_datas">
+				<node name="range_min" reader="UBYTE"/>
+				<node name="range_max" reader="UBYTE"/>
+				<node name="random_value" reader="UBYTE"/>
+			</for>
+		</for>
+	</file>
+	<file pattern="assassin_414" isSafePackage="true">
+		<node name="data" reader="UINT"/>
+		<for name="enchant_scroll_set" size="#data" hidden="false">
+			<node name="scroll_set_id" reader="UBYTE"/>
+			<node name="failure_base" reader="UBYTE"/>
+			<node name="failure_decrease" reader="UBYTE"/>
+			<node name="failure_maintain" reader="UCHAR"/>
+			<node name="failure_crush" reader="UBYTE"/>
+			<node name="inc_base_min" reader="UBYTE"/>
+			<node name="inc_base_max" reader="UBYTE"/>
+			<node name="great_success_effect" reader="UBYTE"/>
+			<node name="enchant_range_datas" reader="CNTR"/>
+			<for name="enchant_range_datas" size="#enchant_range_datas">
+				<node name="range_min" reader="UBYTE"/>
+				<node name="range_max" reader="UBYTE"/>
+				<node name="random_value" reader="UBYTE"/>
+			</for>
+			<node name="enchant_group_ids" reader="CNTR"/>
+			<for name="enchant_group_ids" size="#enchant_group_ids">
+				<node name="enchant_group_id" reader="UBYTE"/>
+			</for>
+		</for>
+	</file>
+	<file pattern="death_knight_2_430" isSafePackage="true">
+		<node name="data" reader="UINT"/>
+		<for name="enchant_scroll_set" size="#data" hidden="false">
+			<node name="scroll_set_id" reader="UBYTE"/>
+			<node name="failure_base" reader="UBYTE"/>
+			<node name="failure_decrease" reader="UBYTE"/>
+			<node name="failure_maintain" reader="UBYTE"/>
+			<node name="failure_crush" reader="UBYTE"/>
+			<node name="inc_base_min" reader="UBYTE"/>
+			<node name="inc_base_max" reader="UBYTE"/>
+			<node name="great_success_effect" reader="UBYTE"/>
+			<node name="enchant_range_datas" reader="CNTR"/>
+			<for name="enchant_range_datas" size="#enchant_range_datas">
+				<node name="range_min" reader="UBYTE"/>
+				<node name="range_max" reader="UBYTE"/>
+				<node name="random_value" reader="UBYTE"/>
+			</for>
+			<node name="enchant_group_id" reader="UBYTE"/>
+		</for>
+	</file>
+</list> 

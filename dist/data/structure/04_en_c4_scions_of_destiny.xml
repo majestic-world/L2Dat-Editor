@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<list>
+	<links id="40" parent_id="30" name="Scions of Destiny (C4)">
+		<link pattern="actionname-[\w]+\.dat" file="actionname" version="high_five_p4"/>
+		<link pattern="armorgrp\.dat" file="armorgrp" version="interlude"/>
+		<link pattern="castlename-[\w]+\.dat" file="castlename" version="interlude"/>
+		<link pattern="chargrp\.dat" file="chargrp" version="interlude"/>
+		<link pattern="classinfo-[\w]+\.dat" file="classinfo" version="high_five_p4"/>
+		<link pattern="clientdata\.dat" file="clientdata" version="interlude"/>
+		<link pattern="commandname-[\w]+\.dat" file="commandname" version="kor_lindvior"/>
+		<link pattern="creditgrp-[\w]+\.dat" file="credit" version="interlude"/>
+		<link pattern="entereventgrp\.dat" file="entereventgrp" version="kor_lindvior"/>
+		<link pattern="etcitemgrp\.dat" file="etcitemgrp" version="interlude"/>
+		<link pattern="eula-[\w]+\.dat" file="eula" version="chronicle_4"/>
+		<link pattern="gametip-[\w]+\.dat" file="gametip" version="high_five_p4"/> <!-- unk0 ?? -->
+	<!-- 	<link pattern="hairaccessarygrp.dat" file="hairaccessarygrp" version=""/> no struct -->
+		<link pattern="hairaccessorylocgrp\.dat" file="hairaccessorylocgrp" version="kor_lindvior"/>
+	<!-- 	<link pattern="hairgrp\.dat" file="hairgrp" version="interlude"/> cant write data -->
+	<!-- 	<link pattern="helmetgrp\.dat" file="helmetgrp" version="interlude"/> no struct -->
+		<link pattern="hennagrp-[\w]+\.dat" file="hennagrp" version="kor_lindvior"/>
+		<link pattern="huntingzone-[\w]+\.dat" file="huntingzone" version="kor_lindvior"/>
+		<link pattern="itemname-[\w]+\.dat" file="itemname" version="chronicle_4"/>
+		<link pattern="logongrp\.dat" file="logongrp" version="interlude"/>
+		<link pattern="mobskillanimgrp\.dat" file="mobskillanimgrp" version="kor_lindvior"/>
+		<link pattern="musicinfo\.dat" file="musicinfo" version="kor_lindvior"/>
+		<link pattern="npcgrp\.dat" file="npcgrp" version="chronicle_4"/>
+		<link pattern="npcname-[\w]+\.dat" file="npcname" version="kor_lindvior"/>
+		<link pattern="obscene-[\w]+\.dat" file="obscene" version="kor_lindvior"/>
+		<link pattern="optiondata_client-[\w]+\.dat" file="optiondata_client" version="kor_lindvior"/>
+		<link pattern="questname-[\w]+\.dat" file="questname" version="chronicle_4"/>
+		<link pattern="raiddata-[\w]+\.dat" file="raiddata" version="cn_lindvior"/>
+		<link pattern="recipe(-c)?\.dat" file="recipe" version="interlude"/>
+		<link pattern="servername-[\w]+\.dat" file="servername" version="chronicle_4"/>
+		<link pattern="skillgrp\.dat" file="skillgrp" version="interlude"/>
+		<link pattern="skillname-[\w]+\.dat" file="skillname" version="kor_lindvior"/>
+		<link pattern="skillsoundgrp\.dat" file="skillsoundgrp" version="interlude"/>
+		<link pattern="staticobject-[\w]+\.dat" file="staticobject" version="kor_lindvior"/>
+		<link pattern="symbolname-[\w]+\.dat" file="symbolname" version="kor_lindvior"/>
+		<link pattern="sysstring-[\w]+\.dat" file="sysstring" version="kor_lindvior"/>
+		<link pattern="systemmsg-[\w]+\.dat" file="systemmsg" version="chronicle_4"/>
+		<link pattern="variationeffectgrp-[\w]+\.dat" file="variationeffectgrp" version="kor_lindvior"/>
+		<link pattern="weapongrp\.dat" file="weapongrp" version="interlude"/>
+		<link pattern="zonename-[\w]+\.dat" file="zonename" version="chronicle_4"/>
+	</links>
+</list>

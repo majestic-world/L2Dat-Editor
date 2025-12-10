@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<list>
+	<file pattern="fufarion_secretofempire_196" isSafePackage="true">
+		<node name="data" reader="UINT"/>
+		<for name="teleport_list" size="#data" hidden="false">
+			<node name="huntingzone_id" reader="UINT"/>
+			<node name="town_id" reader="UINT"/>
+			<node name="price" reader="UINT"/>
+			<node name="priority" reader="UINT"/>
+		</for>
+	</file>
+	<file pattern="queen_ant_sylph_306" isSafePackage="true">
+		<node name="data" reader="UINT"/>
+		<for name="teleport_list" size="#data" hidden="false">
+			<node name="huntingzone_id" reader="UINT"/>
+			<node name="town_id" reader="UINT"/>
+			<node name="priority" reader="UINT"/>
+			<node name="price_size" reader="CNTR"/>
+			<for name="price" size="#price_size">
+				<node name="item_id" reader="UINT"/>
+				<node name="item_count" reader="UINT"/>
+			</for>
+			<node name="usable_level" reader="UINT"/>
+			<node name="usable_transfer_degree" reader="UINT"/>
+		</for>
+	</file>
+	<file pattern="death_knight_362" isSafePackage="true">
+		<node name="data" reader="UINT"/>
+		<for name="teleport_list" size="#data" hidden="false">
+			<node name="huntingzone_id" reader="UINT"/>
+			<node name="town_id" reader="UINT"/>
+			<node name="priority" reader="UINT"/>
+			<node name="price_size" reader="CNTR"/>
+			<for name="price" size="#price_size">
+				<node name="item_id" reader="UINT"/>
+				<node name="item_count" reader="UINT"/>
+			</for>
+			<node name="usable_level" reader="UINT"/>
+			<node name="usable_transfer_degree" reader="UINT"/>
+			<node name="server_range" reader="UINT"/>
+		</for>
+	</file>
+	<file pattern="high_elf_474" isSafePackage="true">
+		<node name="data" reader="UINT"/>
+		<for name="teleport_list" size="#data" hidden="false">
+			<node name="huntingzone_id" reader="UINT"/>
+			<node name="town_id" reader="UINT"/>
+			<node name="priority" reader="UINT"/>
+			<node name="price_size" reader="CNTR"/>
+			<for name="price" size="#price_size">
+				<node name="item_id" reader="UINT"/>
+				<node name="item_count" reader="UINT"/>
+			</for>
+			<node name="usable_level" reader="UINT"/>
+			<node name="usable_transfer_degree" reader="UINT"/>
+			<node name="server_range" reader="UINT"/>
+			<node name="tag_start_time" reader="UINT"/>
+			<node name="tag_end_time" reader="UINT"/>
+			<node name="tag_type" reader="UBYTE" enum_name="teleport_tag_type"/>
+		</for>
+	</file>
+	<file pattern="guardians_493" isSafePackage="true">
+		<node name="data" reader="UINT"/>
+		<for name="teleport_list" size="#data" hidden="false">
+			<node name="huntingzone_id" reader="UINT"/>
+			<node name="town_id" reader="UINT"/>
+			<node name="priority" reader="UCHAR"/>
+			<node name="price_size" reader="CNTR"/>
+			<for name="price" size="#price_size">
+				<node name="item_id" reader="UINT"/>
+				<node name="item_count" reader="UINT"/>
+			</for>
+			<node name="usable_level" reader="UBYTE"/>
+			<node name="usable_transfer_degree" reader="UBYTE"/>
+			<node name="server_range" reader="UBYTE"/>
+			<node name="tag_start_time" reader="UINT"/>
+			<node name="tag_end_time" reader="UINT"/>
+			<node name="tag_type" reader="UBYTE" enum_name="teleport_tag_type"/>
+			<node name="rc_zone_id" reader="UBYTE"/>
+		</for>
+	</file>
+</list>

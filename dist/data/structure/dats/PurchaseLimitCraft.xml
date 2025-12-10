@@ -1,0 +1,479 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<list>
+	<file pattern="queen_ant_sylph_306" isSafePackage="true">
+		<node name="data" reader="UINT"/>
+		<for name="product" size="#data" hidden="false">
+			<node name="shop_index" reader="UCHAR"/>
+			<node name="product_id" reader="USHORT"/>
+
+			<node name="category" reader="UCHAR"/>
+			<node name="category_sub" reader="UINT"/> <!-- Это ид NpcString -->
+			<node name="MarkType" reader="UBYTE" enum_name="LCoinShopMarkType"/>
+			<node name="MaxBuyCount" reader="UCHAR"/>
+
+			<node name="product_name" reader="ASCF"/>
+			<node name="product_item" reader="UINT"/>
+			<node name="buy_item" reader="UCHAR"/>
+			<for name="buy_item" size="#buy_item">
+				<node name="ItemClassID" reader="UINT"/>
+				<node name="Count" reader="UINT"/>
+				<node name="Prob" reader="FLOAT"/>
+				<node name="ProductRank" reader="UCHAR"/>
+			</for>
+			<wrapper name="limit_lv">
+				<node name="LevelMin" reader="SHORT"/>
+				<node name="LevelMax" reader="SHORT"/>
+			</wrapper>
+			<wrapper name="buy_limit">
+				<node name="limit_type" reader="UCHAR" enum_name="plshop_limit_type"/>
+				<node name="reset_type" reader="UCHAR" enum_name="plshop_reset_type"/>
+				<node name="limit_count" reader="UINT"/>
+				<node name="server_max_buy_count" reader="UINT"/>
+			</wrapper>
+		</for>
+	</file>
+	<file pattern="queen_ant_p2_frost_lord_311" isSafePackage="true">
+		<node name="data" reader="UINT"/>
+		<for name="product" size="#data" hidden="false">
+			<node name="shop_index" reader="UCHAR"/>
+			<node name="product_id" reader="USHORT"/>
+
+			<node name="category" reader="UCHAR"/>
+			<node name="category_sub" reader="UINT"/> <!-- Это ид NpcString -->
+			<node name="MarkType" reader="UBYTE" enum_name="LCoinShopMarkType"/>
+			<node name="MaxBuyCount" reader="UCHAR"/>
+
+			<node name="product_name" reader="ASCF"/>
+			<node name="product_item" reader="UINT"/>
+			<node name="buy_item" reader="UCHAR"/>
+			<for name="buy_item" size="#buy_item">
+				<node name="ItemClassID" reader="UINT"/>
+				<node name="Count" reader="UINT"/>
+				<node name="Prob" reader="FLOAT"/>
+				<node name="ProductRank" reader="UINT"/>
+				<node name="IsLimitServer" reader="UBYTE"/>
+			</for>
+			<wrapper name="limit_lv">
+				<node name="LevelMin" reader="SHORT"/>
+				<node name="LevelMax" reader="SHORT"/>
+			</wrapper>
+			<wrapper name="buy_limit">
+				<node name="limit_type" reader="UCHAR" enum_name="plshop_limit_type"/>
+				<node name="reset_type" reader="UCHAR" enum_name="plshop_reset_type"/>
+				<node name="limit_count" reader="UINT"/>
+				<node name="server_max_buy_count" reader="UINT"/>
+			</wrapper>
+			<node name="RequirementBuySkill" reader="UINT"/>
+		</for>
+	</file>
+	<file pattern="death_knight_338" isSafePackage="true">
+		<node name="data" reader="UINT"/>
+		<for name="product" size="#data" hidden="false">
+			<node name="shop_index" reader="UCHAR"/>
+			<node name="product_id" reader="USHORT"/>
+
+			<node name="category" reader="UCHAR"/>
+			<node name="category_sub" reader="UINT"/> <!-- Это ид NpcString -->
+			<node name="MarkType" reader="UBYTE" enum_name="LCoinShopMarkType"/>
+			<node name="MaxBuyCount" reader="UCHAR"/>
+
+			<node name="product_name" reader="ASCF"/>
+			<node name="product_item" reader="UINT"/>
+			<node name="buy_item" reader="UCHAR"/>
+			<for name="buy_item" size="#buy_item">
+				<node name="ItemClassID" reader="UINT"/>
+				<node name="Count" reader="UINT"/>
+				<node name="Prob" reader="FLOAT"/>
+				<node name="ProductRank" reader="UINT"/>
+				<node name="IsLimitServer" reader="UBYTE"/>
+			</for>
+			<wrapper name="limit_lv">
+				<node name="LevelMin" reader="SHORT"/>
+				<node name="LevelMax" reader="SHORT"/>
+				<node name="unk_5" reader="SHORT"/>
+				<node name="unk_6" reader="SHORT"/>
+			</wrapper>
+			<wrapper name="buy_limit">
+				<node name="limit_type" reader="UCHAR" enum_name="plshop_limit_type"/>
+				<node name="reset_type" reader="UCHAR" enum_name="plshop_reset_type"/>
+				<node name="limit_count" reader="UINT"/>
+				<node name="server_max_buy_count" reader="UINT"/>
+			</wrapper>
+			<node name="RequirementBuySkills" reader="UBYTE"/>
+			<for name="RequirementBuySkills">
+				<node name="skill_id" reader="UINT"/>
+			</for>
+		</for>
+	</file>
+	<file pattern="crusade_388" isSafePackage="true">
+		<node name="data" reader="UINT"/>
+		<for name="product" size="#data" hidden="false">
+			<node name="shop_index" reader="UCHAR"/>
+			<node name="product_id" reader="USHORT"/>
+
+			<node name="category" reader="UCHAR"/>
+			<node name="category_sub" reader="UINT"/>
+			<node name="MarkType" reader="UBYTE" enum_name="LCoinShopMarkType"/>
+			<node name="MaxBuyCount" reader="UCHAR"/>
+
+			<node name="product_name" reader="ASCF"/>
+			<node name="product_item" reader="UINT"/>
+			<node name="product_enchant" reader="UINT"/>
+			<node name="buy_item" reader="UCHAR"/>
+			<for name="buy_item" size="#buy_item">
+				<node name="ItemClassID" reader="UINT"/>
+				<node name="Count" reader="UINT"/>
+				<node name="Prob" reader="FLOAT"/>
+				<node name="Enchant" reader="UINT"/>
+				<node name="ProductRank" reader="UINT"/>
+				<node name="IsLimitServer" reader="UBYTE"/>
+			</for>
+			<wrapper name="limit_lv">
+				<node name="LevelMin" reader="SHORT"/>
+				<node name="LevelMax" reader="SHORT"/>
+				<node name="unk_8" reader="SHORT"/>
+				<node name="unk_9" reader="SHORT"/>
+			</wrapper>
+			<wrapper name="buy_limit">
+				<node name="limit_type" reader="UCHAR" enum_name="plshop_limit_type"/>
+				<node name="reset_type" reader="UCHAR" enum_name="plshop_reset_type"/>
+				<node name="limit_count" reader="UINT"/>
+				<node name="server_max_buy_count" reader="UINT"/>
+			</wrapper>
+			<node name="RequirementBuySkills" reader="UBYTE"/>
+			<for name="RequirementBuySkills">
+				<node name="skill_id" reader="UINT"/>
+			</for>
+			<node name="KeepOptionFee" reader="UBYTE"/>
+			<for name="KeepOptionFee">
+				<node name="KeepItemClassID" reader="UINT"/>
+				<node name="KeepCount" reader="UINT"/>
+				<node name="KeepProb" reader="FLOAT"/>
+				<node name="KeepEnchant" reader="UINT"/>
+				<node name="KeepProductRank" reader="UINT"/>
+				<node name="KeepIsLimitServer" reader="UBYTE"/>
+			</for>
+			<node name="KeepOption" reader="UBYTE"/>
+		</for>
+	</file>
+	<file pattern="death_knight_2_430" isSafePackage="true">
+		<node name="data" reader="UINT"/>
+		<for name="product" size="#data" hidden="false">
+			<node name="shop_index" reader="UCHAR"/>
+			<node name="product_id" reader="USHORT"/>
+
+			<node name="category" reader="UCHAR"/>
+			<node name="category_sub" reader="UINT"/>
+			<node name="MarkType" reader="UBYTE" enum_name="LCoinShopMarkType"/>
+			<node name="MaxBuyCount" reader="UCHAR"/>
+
+			<node name="product_name" reader="ASCF"/>
+			<node name="product_item" reader="UINT"/>
+			<node name="product_enchant" reader="UINT"/>
+			<node name="buy_item" reader="UCHAR"/>
+			<for name="buy_item" size="#buy_item">
+				<node name="ItemClassID" reader="UINT"/>
+				<node name="Count" reader="UINT"/>
+				<node name="Prob" reader="FLOAT"/>
+				<node name="Enchant" reader="UINT"/>
+				<node name="ProductRank" reader="UINT"/>
+				<node name="IsLimitServer" reader="UBYTE"/>
+			</for>
+			<wrapper name="limit_lv">
+				<node name="LevelMin" reader="SHORT"/>
+				<node name="LevelMax" reader="SHORT"/>
+			</wrapper>
+			<wrapper name="buy_limit">
+				<node name="limit_type" reader="UCHAR" enum_name="plshop_limit_type"/>
+				<node name="reset_type" reader="UCHAR" enum_name="plshop_reset_type"/>
+				<node name="limit_count" reader="UINT"/>
+				<node name="server_max_buy_count" reader="UINT"/>
+			</wrapper>
+			<node name="LimitServerBuyCountMax" reader="UINT"/>
+			<node name="RequirementBuySkills" reader="UBYTE"/>
+			<for name="RequirementBuySkills">
+				<node name="skill_id" reader="UINT"/>
+			</for>
+			<node name="KeepOptionFee" reader="UBYTE"/>
+			<for name="KeepOptionFee">
+				<node name="KeepItemClassID" reader="UINT"/>
+				<node name="KeepCount" reader="UINT"/>
+				<node name="KeepProb" reader="FLOAT"/>
+				<node name="KeepEnchant" reader="UINT"/>
+				<node name="KeepProductRank" reader="UINT"/>
+				<node name="KeepIsLimitServer" reader="UBYTE"/>
+			</for>
+			<node name="KeepOption" reader="UBYTE"/>
+			<node name="automatic_type" reader="UBYTE"/>
+		</for>
+	</file>
+	<file pattern="seven_signs_447" isSafePackage="true">
+		<node name="data" reader="UINT"/>
+		<for name="product" size="#data" hidden="false">
+			<node name="shop_index" reader="UCHAR"/>
+			<node name="product_id" reader="USHORT"/>
+
+			<node name="category" reader="UCHAR"/>
+			<node name="category_sub" reader="UINT"/>
+			<node name="MarkType" reader="UBYTE" enum_name="LCoinShopMarkType"/>
+			<node name="MaxBuyCount" reader="UCHAR"/>
+
+			<node name="product_name" reader="ASCF"/>
+			<node name="product_item" reader="UINT"/>
+			<node name="product_enchant" reader="UINT"/>
+			<node name="buy_item" reader="UCHAR"/>
+			<for name="buy_item" size="#buy_item">
+				<node name="ItemClassID" reader="UINT"/>
+				<node name="Count" reader="UINT"/>
+				<node name="Prob" reader="FLOAT"/>
+				<node name="Enchant" reader="UINT"/>
+				<node name="ProductRank" reader="UINT"/>
+				<node name="IsLimitServer" reader="UBYTE"/>
+			</for>
+			<wrapper name="limit_lv">
+				<node name="LevelMin" reader="SHORT"/>
+				<node name="LevelMax" reader="SHORT"/>
+			</wrapper>
+			<wrapper name="buy_limit">
+				<node name="limit_type" reader="UCHAR" enum_name="plshop_limit_type"/>
+				<node name="reset_type" reader="UCHAR" enum_name="plshop_reset_type"/>
+				<node name="limit_count" reader="UINT"/>
+			</wrapper>
+			<node name="RequirementBuySkills" reader="UBYTE"/>
+			<for name="RequirementBuySkills">
+				<node name="skill_id" reader="UINT"/>
+			</for>
+			<node name="KeepOptionFee" reader="UBYTE"/>
+			<for name="KeepOptionFee">
+				<node name="KeepItemClassID" reader="UINT"/>
+				<node name="KeepCount" reader="UINT"/>
+				<node name="KeepProb" reader="FLOAT"/>
+				<node name="KeepEnchant" reader="UINT"/>
+				<node name="KeepProductRank" reader="UINT"/>
+				<node name="KeepIsLimitServer" reader="UBYTE"/>
+			</for>
+			<node name="KeepOption" reader="UBYTE"/>
+			<node name="automatic_type" reader="UBYTE"/>
+		</for>
+	</file>
+	<file pattern="high_elf_474" isSafePackage="true">
+		<node name="data" reader="UINT"/>
+		<for name="product" size="#data" hidden="false">
+			<node name="shop_index" reader="UCHAR"/>
+			<node name="product_id" reader="USHORT"/>
+
+			<node name="ServerId" reader="UBYTE"/>
+			<node name="ShopType" reader="UBYTE"/>
+			<node name="category" reader="UCHAR"/>
+			<node name="category_sub" reader="UINT"/>
+			<node name="MarkType" reader="UBYTE" enum_name="LCoinShopMarkType"/>
+			<node name="MaxBuyCount" reader="UCHAR"/>
+
+			<node name="product_name" reader="ASCF"/>
+			<node name="product_item" reader="UINT"/>
+			<node name="product_enchant" reader="UINT"/>
+			<node name="buy_item" reader="UCHAR"/>
+			<for name="buy_item" size="#buy_item">
+				<node name="ItemClassID" reader="UINT"/>
+				<node name="Count" reader="UINT"/>
+				<node name="Enchant" reader="UINT"/>
+				<node name="ProductRank" reader="UINT"/>
+				<node name="IsLimitServer" reader="UBYTE"/>
+			</for>
+			<wrapper name="limit_lv">
+				<node name="LevelMin" reader="SHORT"/>
+				<node name="LevelMax" reader="SHORT"/>
+			</wrapper>
+			<wrapper name="buy_limit">
+				<node name="limit_type" reader="UCHAR" enum_name="plshop_limit_type"/>
+				<node name="reset_type" reader="UCHAR" enum_name="plshop_reset_type"/>
+				<node name="limit_count" reader="UINT"/>
+			</wrapper>
+			<node name="RequirementBuySkills" reader="UBYTE"/>
+			<for name="RequirementBuySkills">
+				<node name="skill_id" reader="UINT"/>
+			</for>
+			<node name="KeepOptionFee" reader="UBYTE"/>
+			<for name="KeepOptionFee">
+				<node name="KeepItemClassID" reader="UINT"/>
+				<node name="KeepCount" reader="UINT"/>
+				<node name="KeepEnchant" reader="UINT"/>
+				<node name="KeepProductRank" reader="UINT"/>
+				<node name="KeepIsLimitServer" reader="UBYTE"/>
+			</for>
+			<node name="KeepOption" reader="UBYTE"/>
+			<node name="automatic_type" reader="UBYTE"/>
+		</for>
+	</file>
+	<file pattern="project_wolf_516_kr" isSafePackage="true">
+		<node name="data" reader="UINT"/>
+		<for name="product" size="#data" hidden="false">
+			<node name="shop_index" reader="UCHAR"/>
+			<node name="product_id" reader="USHORT"/>
+
+			<node name="ServerId" reader="UBYTE"/>
+			<node name="ShopType" reader="UBYTE"/>
+			<node name="category" reader="UCHAR"/>
+			<node name="category_sub" reader="UINT"/>
+			<node name="MarkType" reader="UBYTE" enum_name="LCoinShopMarkType"/>
+			<node name="MaxBuyCount" reader="UCHAR"/>
+
+			<node name="product_name" reader="ASCF"/>
+			<node name="product_item" reader="UINT"/>
+			<node name="product_enchant" reader="UINT"/>
+			<node name="buy_item" reader="UCHAR"/>
+			<for name="buy_item" size="#buy_item">
+				<node name="ItemClassID" reader="UINT"/>
+				<node name="Count" reader="UINT"/>
+				<node name="Enchant" reader="UINT"/>
+				<node name="ProductRank" reader="UINT"/>
+				<node name="IsLimitServer" reader="UBYTE"/>
+			</for>
+			<wrapper name="limit_lv">
+				<node name="LevelMin" reader="SHORT"/>
+				<node name="LevelMax" reader="SHORT"/>
+			</wrapper>
+			<wrapper name="buy_limit">
+				<node name="limit_type" reader="UCHAR" enum_name="plshop_limit_type"/>
+				<node name="reset_type" reader="UCHAR" enum_name="plshop_reset_type"/>
+				<node name="limit_count" reader="UINT"/>
+			</wrapper>
+			<node name="RequirementBuySkills" reader="UBYTE"/>
+			<for name="RequirementBuySkills">
+				<node name="skill_id" reader="UINT"/>
+			</for>
+			<node name="KeepOptionFee" reader="UBYTE"/>
+			<for name="KeepOptionFee">
+				<node name="KeepItemClassID" reader="UINT"/>
+				<node name="KeepCount" reader="UINT"/>
+				<node name="KeepEnchant" reader="UINT"/>
+				<node name="KeepProductRank" reader="UINT"/>
+				<node name="KeepIsLimitServer" reader="UBYTE"/>
+			</for>
+			<node name="KeepOption" reader="UBYTE"/>
+			<node name="automatic_type" reader="UBYTE"/>
+			<node name="unk1_516" reader="UBYTE"/>
+			<node name="CostItemSlot1" reader="UBYTE"/>
+			<for name="CostItemSlot1">
+				<node name="item_id" reader="UINT"/>
+				<node name="item_count" reader="LONG"/>
+				<node name="item_enchant" reader="UBYTE"/>
+				<node name="item_blessed" reader="UBYTE"/>
+			</for>
+			<node name="CostItemSlot2" reader="UBYTE"/>
+			<for name="CostItemSlot2">
+				<node name="item_id" reader="UINT"/>
+				<node name="item_count" reader="LONG"/>
+				<node name="item_enchant" reader="UBYTE"/>
+				<node name="item_blessed" reader="UBYTE"/>
+			</for>
+			<node name="CostItemSlot3" reader="UBYTE"/>
+			<for name="CostItemSlot3">
+				<node name="item_id" reader="UINT"/>
+				<node name="item_count" reader="LONG"/>
+				<node name="item_enchant" reader="UBYTE"/>
+				<node name="item_blessed" reader="UBYTE"/>
+			</for>
+			<node name="CostItemSlot4" reader="UBYTE"/>
+			<for name="CostItemSlot4">
+				<node name="item_id" reader="UINT"/>
+				<node name="item_count" reader="LONG"/>
+				<node name="item_enchant" reader="UBYTE"/>
+				<node name="item_blessed" reader="UBYTE"/>
+			</for>
+			<node name="CostItemSlot5" reader="UBYTE"/>
+			<for name="CostItemSlot5">
+				<node name="item_id" reader="UINT"/>
+				<node name="item_count" reader="LONG"/>
+				<node name="item_enchant" reader="UBYTE"/>
+				<node name="item_blessed" reader="UBYTE"/>
+			</for>
+		</for>
+	</file>
+	<file pattern="samurai_541" isSafePackage="true">
+		<node name="data" reader="UINT"/>
+		<for name="product" size="#data" hidden="false">
+			<node name="shop_index" reader="UCHAR"/>
+			<node name="product_id" reader="USHORT"/>
+
+			<node name="ServerId" reader="UBYTE"/>
+			<node name="ShopType" reader="UBYTE"/>
+			<node name="category" reader="UCHAR"/>
+			<node name="category_sub" reader="UINT"/>
+			<node name="MarkType" reader="UBYTE" enum_name="LCoinShopMarkType"/>
+			<node name="MaxBuyCount" reader="UCHAR"/>
+
+			<node name="product_name" reader="ASCF"/>
+			<node name="product_item" reader="UINT"/>
+			<node name="product_enchant" reader="UINT"/>
+			<node name="buy_item" reader="UCHAR"/>
+			<for name="buy_item" size="#buy_item">
+				<node name="ItemClassID" reader="UINT"/>
+				<node name="Count" reader="UINT"/>
+				<node name="Enchant" reader="UINT"/>
+				<node name="ProductRank" reader="UINT"/>
+				<node name="IsLimitServer" reader="UBYTE"/>
+			</for>
+			<wrapper name="limit_lv">
+				<node name="LevelMin" reader="SHORT"/>
+				<node name="LevelMax" reader="SHORT"/>
+			</wrapper>
+			<wrapper name="buy_limit">
+				<node name="limit_type" reader="UCHAR" enum_name="plshop_limit_type"/>
+				<node name="reset_type" reader="UCHAR" enum_name="plshop_reset_type"/>
+				<node name="limit_count" reader="UINT"/>
+			</wrapper>
+			<node name="RequirementBuySkills" reader="UBYTE"/>
+			<for name="RequirementBuySkills">
+				<node name="skill_id" reader="UINT"/>
+			</for>
+			<node name="KeepOptionFee" reader="UBYTE"/>
+			<for name="KeepOptionFee">
+				<node name="KeepItemClassID" reader="UINT"/>
+				<node name="KeepCount" reader="UINT"/>
+				<node name="KeepEnchant" reader="UINT"/>
+				<node name="KeepProductRank" reader="UINT"/>
+				<node name="KeepIsLimitServer" reader="UBYTE"/>
+			</for>
+			<node name="KeepOption" reader="UBYTE"/>
+			<node name="automatic_type" reader="UBYTE"/>
+			<node name="GroupID" reader="USHORT"/>
+			<node name="unk1_516" reader="UBYTE"/>
+			<node name="CostItemSlot1" reader="UBYTE"/>
+			<for name="CostItemSlot1">
+				<node name="item_id" reader="UINT"/>
+				<node name="item_count" reader="LONG"/>
+				<node name="item_enchant" reader="UBYTE"/>
+				<node name="item_blessed" reader="UBYTE"/>
+			</for>
+			<node name="CostItemSlot2" reader="UBYTE"/>
+			<for name="CostItemSlot2">
+				<node name="item_id" reader="UINT"/>
+				<node name="item_count" reader="LONG"/>
+				<node name="item_enchant" reader="UBYTE"/>
+				<node name="item_blessed" reader="UBYTE"/>
+			</for>
+			<node name="CostItemSlot3" reader="UBYTE"/>
+			<for name="CostItemSlot3">
+				<node name="item_id" reader="UINT"/>
+				<node name="item_count" reader="LONG"/>
+				<node name="item_enchant" reader="UBYTE"/>
+				<node name="item_blessed" reader="UBYTE"/>
+			</for>
+			<node name="CostItemSlot4" reader="UBYTE"/>
+			<for name="CostItemSlot4">
+				<node name="item_id" reader="UINT"/>
+				<node name="item_count" reader="LONG"/>
+				<node name="item_enchant" reader="UBYTE"/>
+				<node name="item_blessed" reader="UBYTE"/>
+			</for>
+			<node name="CostItemSlot5" reader="UBYTE"/>
+			<for name="CostItemSlot5">
+				<node name="item_id" reader="UINT"/>
+				<node name="item_count" reader="LONG"/>
+				<node name="item_enchant" reader="UBYTE"/>
+				<node name="item_blessed" reader="UBYTE"/>
+			</for>
+		</for>
+	</file>
+</list>

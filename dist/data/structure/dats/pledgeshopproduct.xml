@@ -1,0 +1,129 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--AUTHOR: Bonux-->
+<list>
+	<file pattern="queen_ant_sylph_306" isSafePackage="true">
+		<node name="data" reader="UINT"/>
+		<for name="product" size="#data" hidden="false">
+			<node name="shop_index" reader="USHORT"/>
+			<node name="product_id" reader="USHORT"/>
+			<node name="unk1" reader="UINT"/>
+			<node name="product_name" reader="ASCF"/>
+			<node name="product_item" reader="UINT"/>
+			<node name="buy_item_count" reader="CNTR"/>
+			<for name="buy_item" size="#buy_item_count" hidden="true">
+				<node name="item_id" reader="UINT"/>
+				<node name="item_count" reader="UINT"/>
+				<node name="item_chance" reader="FLOAT"/>
+				<node name="item_unk" reader="UBYTE"/>
+			</for>
+			<wrapper name="limit_lv">
+				<node name="min_level" reader="USHORT"/>
+				<node name="max_level" reader="USHORT"/>
+			</wrapper>
+			<wrapper name="pledge_limit_lv">
+				<node name="pledge_min_level" reader="USHORT"/>
+				<node name="pledge_max_level" reader="USHORT"/>
+			</wrapper>
+			<node name="product_type" reader="UCHAR"/>
+			<node name="popular_priority" reader="UCHAR"/>
+			<wrapper name="buy_limit">
+				<node name="limit_type" reader="UCHAR" enum_name="plshop_limit_type"/>
+				<node name="reset_type" reader="UCHAR" enum_name="plshop_reset_type"/>
+				<node name="limit_count" reader="UINT"/>
+				<node name="server_max_buy_count" reader="UINT"/>
+			</wrapper>
+			<node name="product_desc" reader="ASCF"/>
+			<node name="head_line" reader="ASCF"/>
+		</for>
+	</file>
+	<file pattern="queen_ant_p2_frost_lord_311" isSafePackage="true">
+		<node name="data" reader="UINT"/>
+		<for name="product" size="#data" hidden="false">
+			<node name="shop_index" reader="USHORT"/>
+			<node name="product_id" reader="USHORT"/>
+			<node name="product_name" reader="ASCF"/>
+			<node name="product_item" reader="UINT"/>
+			<node name="buy_item_count" reader="CNTR"/>
+			<for name="buy_item" size="#buy_item_count" hidden="true">
+				<node name="item_id" reader="UINT"/>
+				<node name="item_count" reader="UINT"/>
+				<node name="item_chance" reader="FLOAT"/>
+			</for>
+			<wrapper name="limit_lv">
+				<node name="min_level" reader="USHORT"/>
+				<node name="max_level" reader="USHORT"/>
+			</wrapper>
+			<wrapper name="pledge_limit_lv">
+				<node name="pledge_min_level" reader="USHORT"/>
+				<node name="pledge_max_level" reader="USHORT"/>
+			</wrapper>
+			<wrapper name="buy_limit">
+				<node name="limit_type" reader="UCHAR" enum_name="plshop_limit_type"/>
+				<node name="reset_type" reader="UCHAR" enum_name="plshop_reset_type"/>
+				<node name="limit_count" reader="UINT"/>
+				<node name="server_max_buy_count" reader="UINT"/>
+			</wrapper>
+			<node name="product_desc" reader="ASCF"/>
+		</for>
+	</file>
+	<file pattern="seven_signs_447" isSafePackage="true">
+		<node name="data" reader="UINT"/>
+		<for name="product" size="#data" hidden="false">
+			<node name="shop_index" reader="USHORT"/>
+			<node name="product_id" reader="USHORT"/>
+			<node name="product_name" reader="ASCF"/>
+			<node name="product_item" reader="UINT"/>
+			<node name="buy_item_count" reader="CNTR"/>
+			<for name="buy_item" size="#buy_item_count" hidden="true">
+				<node name="item_id" reader="UINT"/>
+				<node name="item_count" reader="UINT"/>
+				<node name="item_chance" reader="FLOAT"/>
+			</for>
+			<wrapper name="limit_lv">
+				<node name="min_level" reader="USHORT"/>
+				<node name="max_level" reader="USHORT"/>
+			</wrapper>
+			<wrapper name="pledge_limit_lv">
+				<node name="pledge_min_level" reader="USHORT"/>
+				<node name="pledge_max_level" reader="USHORT"/>
+			</wrapper>
+			<wrapper name="buy_limit">
+				<node name="limit_type" reader="UCHAR" enum_name="plshop_limit_type"/>
+				<node name="reset_type" reader="UCHAR" enum_name="plshop_reset_type"/>
+				<node name="limit_count" reader="UINT"/>
+			</wrapper>
+			<node name="product_desc" reader="ASCF"/>
+		</for>
+	</file>
+	<file pattern="high_elf_474" isSafePackage="true">
+		<node name="data" reader="UINT"/>
+		<for name="product" size="#data" hidden="false">
+			<node name="shop_index" reader="USHORT"/>
+			<node name="product_id" reader="USHORT"/>
+			<node name="ServerId" reader="UBYTE"/>
+			<node name="ShopType" reader="UBYTE"/>
+			<node name="product_name" reader="ASCF"/>
+			<node name="product_item" reader="UINT"/>
+			<node name="buy_item_count" reader="CNTR"/>
+			<for name="buy_item" size="#buy_item_count" hidden="true">
+				<node name="item_id" reader="UINT"/>
+				<node name="item_count" reader="UINT"/>
+				<node name="item_chance" reader="FLOAT"/>
+			</for>
+			<wrapper name="limit_lv">
+				<node name="min_level" reader="USHORT"/>
+				<node name="max_level" reader="USHORT"/>
+			</wrapper>
+			<wrapper name="pledge_limit_lv">
+				<node name="pledge_min_level" reader="USHORT"/>
+				<node name="pledge_max_level" reader="USHORT"/>
+			</wrapper>
+			<wrapper name="buy_limit">
+				<node name="limit_type" reader="UCHAR" enum_name="plshop_limit_type"/>
+				<node name="reset_type" reader="UCHAR" enum_name="plshop_reset_type"/>
+				<node name="limit_count" reader="UINT"/>
+			</wrapper>
+			<node name="product_desc" reader="ASCF"/>
+		</for>
+	</file>
+</list>

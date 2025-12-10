@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<list>
+	<file pattern="fufarion_secretofempire_166" isSafePackage="true">
+		<node name="data" reader="UINT"/>
+		<for name="elemental" size="#data" hidden="false">
+			<node name="level" reader="USHORT"/>
+			<node name="id" reader="USHORT"/>
+			<node name="npc_id" reader="UINT"/>
+			<node name="element_id" reader="UINT" enum_name="elemental_type"/>
+			<node name="evolution_level" reader="UINT"/>
+			<node name="attack" reader="UINT"/>
+			<node name="defence" reader="UINT"/>
+			<node name="crit_rate" reader="UINT"/>
+			<node name="crit_attack" reader="UINT"/>
+			<node name="max_exp" reader="UINT"/>
+			<node name="npcstring_id" reader="CNTR"/>
+			<for name="npcstring_id" size="#npcstring_id">
+				<node name="val1" reader="UINT"/>
+				<node name="val2" reader="UINT"/>
+			</for>
+		</for>
+	</file>
+	<file pattern="preludewar_kamael_228" isSafePackage="true">
+		<node name="data" reader="UINT"/>
+		<for name="elemental" size="#data" hidden="false">
+			<node name="level" reader="USHORT"/>
+			<node name="id" reader="USHORT"/>
+			<node name="npc_id" reader="UINT"/>
+			<node name="element_id" reader="UINT" enum_name="elemental_type"/>
+			<node name="evolution_level" reader="UINT"/>
+			<node name="attack" reader="UINT"/>
+			<node name="defence" reader="UINT"/>
+			<node name="crit_rate" reader="UINT"/>
+			<node name="crit_attack" reader="UINT"/>
+			<node name="max_exp" reader="LONG"/>
+			<node name="npcstring_id" reader="CNTR"/>
+			<for name="npcstring_id" size="#npcstring_id">
+				<node name="val1" reader="UINT"/>
+				<node name="val2" reader="UINT"/>
+			</for>
+		</for>
+	</file>
+</list>

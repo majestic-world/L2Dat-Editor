@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<list>
+	<file pattern="preludewar_kamael_286" isSafePackage="true">
+		<node name="data" reader="UINT"/>
+		<for name="drop_data" size="#data" hidden="false">
+			<node name="npc_id" reader="UINT"/>
+			<node name="corpse_make_list" reader="UCHAR"/>
+			<for name="corpse_make_list" size="#corpse_make_list">
+				<node name="item_name1" reader="ASCF"/>
+				<node name="count_min1" reader="LONG"/>
+				<node name="count_max1" reader="LONG"/>
+				<node name="chance1" reader="FLOAT"/>
+			</for>
+			<node name="additional_make_list" reader="UCHAR"/>
+			<for name="additional_make_list" size="#additional_make_list">
+				<node name="item_name2" reader="ASCF"/>
+				<node name="count_min2" reader="LONG"/>
+				<node name="count_max2" reader="LONG"/>
+				<node name="chance2" reader="FLOAT"/>
+			</for>
+			<node name="additional_make_multi_list" reader="UCHAR"/>
+			<for name="additional_make_multi_list" size="#additional_make_multi_list">
+				<node name="groups1" reader="UCHAR"/>
+				<for name="groups1" size="#groups1">
+					<node name="item_name3" reader="ASCF"/>
+					<node name="count_min3" reader="LONG"/>
+					<node name="count_max3" reader="LONG"/>
+					<node name="chance3" reader="FLOAT"/>
+				</for>
+				<node name="grp_chance2" reader="FLOAT"/>
+			</for>
+			<node name="ex_item_drop_list" reader="UCHAR"/>
+			<for name="ex_item_drop_list" size="#ex_item_drop_list">
+				<node name="groups2" reader="UCHAR"/>
+				<for name="groups2" size="#groups2">
+					<node name="item_name4" reader="ASCF"/>
+					<node name="count_min4" reader="LONG"/>
+					<node name="count_max4" reader="LONG"/>
+					<node name="chance4" reader="FLOAT"/>
+				</for>
+				<node name="grp_chance4" reader="FLOAT"/>
+			</for>
+		</for>
+	</file>
+</list>

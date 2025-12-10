@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--AUTHOR: Bonux-->
+<!--bonuxq@gmail.com-->
+<list>
+	<links id="610" parent_id="600" name="Rose Vain (527) KR">
+		<link pattern="GamePlayData(_Classic(Aden)?)?\.dat" file="gameplaydata" version="rose_vain_527_kr"/>
+		<link pattern="NewQuestData(_ClassicAden?)?(-[\w]+)?\.dat" file="newquestdata" version="rose_vain_527_kr"/>
+		<link pattern="SkillAcquire(_Classic(Aden)?)?\.dat" file="skillacquire" version="rose_vain_527_kr"/>
+		<link pattern="CombinationItemData(_Classic(Aden)?)?\.dat" file="combinationitemdata" version="rose_vain_527_kr"/>
+	</links>
+</list>

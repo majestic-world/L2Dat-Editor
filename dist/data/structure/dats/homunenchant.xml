@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<list>
+	<file pattern="preludewar_kamael_270" isSafePackage="true">
+		<node name="day_count" reader="UINT"/>
+		<node name="mobs_count" reader="UINT"/>
+		<node name="extends_count" reader="UINT"/>
+		<node name="points_cost" reader="UINT"/>
+		<node name="vp_count" reader="UINT"/>
+		<node name="vpCost" reader="UINT"/>
+		<node name="vp_extend_times" reader="UINT"/>
+		<node name="vp_points_cost" reader="UINT"/>
+		<node name="unk3" reader="UINT"/>
+		<node name="game_points_cost" reader="UINT"/>
+		<node name="game_sp_cost" reader="UINT"/>
+		<node name="item_id_for_reset_mobs" reader="UINT"/>
+		<node name="item_count_for_reset_mobs" reader="UINT"/>
+		<node name="item_id_for_reset_vp_count" reader="UINT"/>
+		<node name="item_count_for_reset_vp_count" reader="UINT"/>
+	</file>
+	<file pattern="crusade_388" isSafePackage="true">
+		<for name="homun_enchant" size="1" hidden="false">
+			<node name="day_count" reader="UINT"/>
+			<node name="mobs_count" reader="UINT"/>
+			<node name="extends_count" reader="UINT"/>
+			<node name="points_cost" reader="UINT"/>
+			<node name="vp_count" reader="UINT"/>
+			<node name="vpCost" reader="UINT"/>
+			<node name="vp_extend_times" reader="UINT"/>
+			<node name="vp_points_cost" reader="UINT"/>
+			<node name="unk3" reader="UINT"/>
+			<node name="game_points_cost" reader="UINT"/>
+			<node name="game_sp_cost" reader="UINT"/>
+			<node name="item_id_for_reset_mobs" reader="UINT"/>
+			<node name="item_count_for_reset_mobs" reader="UINT"/>
+			<node name="item_id_for_reset_vp_count" reader="UINT"/>
+			<node name="item_count_for_reset_vp_count" reader="UINT"/>
+		</for>
+	</file>
+</list>

@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<list>
+<!--
+202EC5CA   PUSH Engine.20AEDA6C					  UNICODE "pet_id"
+202EC64C   PUSH Engine.20ADCF08					  UNICODE "skill_id"
+202EC6CE   PUSH Engine.20ADED04					  UNICODE "skill_level"
+202EC750   PUSH Engine.20AEDB00					  UNICODE "get_lv"
+202EC7D2   PUSH Engine.20AEDB58					  UNICODE "get_evolve_step"
+202EC854   PUSH Engine.20AEDB40					  UNICODE "item_needed"
+-->
+	<file pattern="homunculus_kamael_286" isSafePackage="true">
+		<node name="data" reader="UINT"/>
+		<for name="pet_acquire_skill" size="#data" hidden="false">
+			<node name="pet_id" reader="UINT"/>
+			<node name="acquire_skills" reader="CNTR"/>
+			<for name="acquire_skills" size="#acquire_skills">
+				<node name="get_evolve_step" reader="UINT"/>
+				<node name="get_lv" reader="UINT"/>
+				<node name="skill_id" reader="UINT"/>
+				<node name="skill_level" reader="SHORT"/>
+				<node name="skill_sublevel" reader="SHORT"/>
+				<node name="item_needed" reader="CNTR"/>
+				<for name="item_needed" size="#item_needed">
+					<node name="item_needed_id" reader="UINT"/>
+					<node name="item_needed_count" reader="UINT"/>
+				</for>
+			</for>
+		</for>
+	</file>
+	<file pattern="high_elf_474" isSafePackage="true">
+		<node name="data" reader="UINT"/>
+		<for name="pet_acquire_skill" size="#data" hidden="false">
+			<node name="pet_id" reader="UINT"/>
+			<node name="acquire_skills" reader="CNTR"/>
+			<for name="acquire_skills" size="#acquire_skills">
+				<node name="get_evolve_step" reader="UINT"/>
+				<node name="get_lv" reader="UINT"/>
+				<node name="skill_id" reader="UINT"/>
+				<node name="skill_level" reader="SHORT"/>
+				<node name="skill_sublevel" reader="SHORT"/>
+				<node name="item_needed" reader="CNTR"/>
+				<for name="item_needed" size="#item_needed">
+					<node name="id" reader="UINT"/>
+					<node name="count" reader="UINT"/>
+				</for>
+				<node name="prioritized_items" reader="CNTR"/>
+				<for name="prioritized_items" size="#prioritized_items">
+					<node name="id" reader="UINT"/>
+					<node name="count" reader="UINT"/>
+				</for>
+			</for>
+		</for>
+	</file>
+	<file pattern="guardians_493" isSafePackage="true">
+		<node name="data" reader="UINT"/>
+		<for name="pet_acquire_skill" size="#data" hidden="false">
+			<node name="pet_id" reader="UINT"/>
+			<node name="acquire_skills" reader="UINT"/>
+			<for name="acquire_skills" size="#acquire_skills">
+				<node name="skill_id1" reader="UINT"/>
+				<node name="skill_id2" reader="UINT"/>
+				<node name="skill_minlevel" reader="UINT"/>
+				<node name="skill_maxlevel" reader="UINT"/>
+				<node name="levels" reader="CNTR"/>
+				<for name="levels" size="#levels">
+					<node name="skill_level" reader="SHORT"/>
+					<node name="skill_sublevel" reader="SHORT"/>
+					<node name="get_evolve_step" reader="UINT"/>
+					<node name="get_lv" reader="UINT"/>
+					<node name="item_needed" reader="CNTR"/>
+					<for name="item_needed" size="#item_needed">
+						<node name="id" reader="UINT"/>
+						<node name="count" reader="UINT"/>
+					</for>
+					<node name="prioritized_items" reader="CNTR"/>
+					<for name="prioritized_items" size="#prioritized_items">
+						<node name="id" reader="UINT"/>
+						<node name="count" reader="UINT"/>
+					</for>
+				</for>
+			</for>
+		</for>
+	</file>
+</list>

@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<list>
+	<file pattern="preludewar_kamael_228" isSafePackage="true">
+		<node name="data" reader="UINT"/>
+		<for name="character_initial_stat_ex" size="#data" hidden="false">
+			<node name="class" reader="UINT"/>
+			<node name="race" reader="UCHAR"/>
+			<node name="sex" reader="UCHAR"/>
+			<node name="str" reader="USHORT"/>
+			<node name="dex" reader="USHORT"/>
+			<node name="con" reader="USHORT"/>
+			<node name="int" reader="USHORT"/>
+			<node name="wit" reader="USHORT"/>
+			<node name="men" reader="USHORT"/>
+			<node name="luc" reader="USHORT"/>
+			<node name="cha" reader="USHORT"/>
+			<!--
+			<node name="sex" reader="UCHAR"/>
+			<node name="str" reader="UINT"/>
+			<node name="dex" reader="UINT"/>
+			<node name="con" reader="UINT"/>
+			<node name="int" reader="UINT"/>
+			<node name="wit" reader="UINT"/>
+			<node name="men" reader="UINT"/>
+			<node name="luc" reader="UINT"/>
+			<node name="cha" reader="UINT"/>
+			-->
+		</for>
+	</file>
+</list>

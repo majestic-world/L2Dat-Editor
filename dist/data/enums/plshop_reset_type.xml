@@ -1,0 +1,9 @@
+<list>
+	<enum name="plshop_reset_type">
+		<node index="0" name="always" />
+		<node index="1" name="oneday" />
+		<node index="2" name="oneweek" />
+		<node index="3" name="onemonth" />
+		<node index="4" name="oneday2" />
+	</enum>
+</list>

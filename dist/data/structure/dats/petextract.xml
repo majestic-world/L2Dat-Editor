@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<list>
+<!--
+202ECFD7   PUSH Engine.20AEDBD0					  UNICODE "extract_pet_begin"
+202ED05A   PUSH Engine.20AEDA6C					  UNICODE "pet_id"
+202ED0DC   PUSH Engine.20AEDC14					  UNICODE "pet_level"
+202ED15E   PUSH Engine.20AEDBFC					  UNICODE "extract_exp"
+202ED1E0   PUSH Engine.20AEDC44					  UNICODE "extract_item"
+202ED262   PUSH Engine.20AEDC28					  UNICODE "default_cost"
+202ED2E4   PUSH Engine.20AEDC80					  UNICODE "extract_cost"
+202ED36F   PUSH Engine.20AEDC60					  UNICODE "extract_pet_end"
+-->
+	<file pattern="homunculus_kamael_286" isSafePackage="true">
+		<node name="data" reader="UINT"/>
+		<for name="extract_pet" size="#data" hidden="false">
+			<wrapper name="key">
+				<node name="id" reader="UINT"/>
+				<node name="level" reader="UINT"/>
+			</wrapper>
+			<node name="pet_id" reader="UINT"/>
+			<node name="pet_level" reader="UINT"/>
+			<node name="extract_exp" reader="LONG"/>
+			<node name="extract_item" reader="UINT"/>
+			<wrapper name="default_cost">
+				<node name="default_cost_id" reader="UINT"/>
+				<node name="default_cost_count" reader="UINT"/>
+			</wrapper>
+			<wrapper name="extract_cost">
+				<node name="extract_cost_id" reader="UINT"/>
+				<node name="extract_cost_count" reader="UINT"/>
+			</wrapper>
+		</for>
+	</file>
+</list>

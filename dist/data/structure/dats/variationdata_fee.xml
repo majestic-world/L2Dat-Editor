@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<list>
+<!--
+202EF4B4   PUSH Engine.20AEDED4					  UNICODE "variation_fee_begin"
+202EF537   PUSH Engine.20AEDE48					  UNICODE "mineral_item_id"
+202EF5B9   PUSH Engine.20AEDEBC					  UNICODE "fee_item_id"
+202EF63B   PUSH Engine.20AEDF10					  UNICODE "fee_item_count"
+202EF6BD   PUSH Engine.20AEDEFC					  UNICODE "fee_adena"
+202EF73F   PUSH Engine.20AEDF54					  UNICODE "cancel_fee"
+202EF7C1   PUSH Engine.20AEDF30					  UNICODE "variation_fee_end"
+-->
+	<file pattern="homunculus_kamael_286" isSafePackage="true">
+		<node name="data" reader="UINT"/>
+		<for name="variation_fee" size="#data" hidden="false">
+			<node name="mineral_item_id" reader="UINT"/>
+			<node name="fee_item_id" reader="UINT"/>
+			<node name="fee_item_count" reader="UINT"/>
+			<node name="fee_adena" reader="LONG"/>
+			<node name="cancel_fee" reader="UINT"/>
+		</for>
+	</file>
+	<file pattern="high_elf_474" isSafePackage="true">
+		<node name="data" reader="UINT"/>
+		<for name="variation_fee" size="#data" hidden="false">
+			<node name="mineral_item_id" reader="UINT"/>
+			<node name="item_group_name" reader="UINT"/>
+			<node name="fee_item_id" reader="UINT"/>
+			<node name="fee_item_count" reader="UINT"/>
+			<node name="fee_adena" reader="LONG"/>
+			<node name="cancel_fee" reader="UINT"/>
+		</for>
+	</file>
+</list>

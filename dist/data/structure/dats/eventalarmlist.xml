@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<list>
+	<file pattern="fufarion_secretofempire_166" isSafePackage="true">
+		<node name="data" reader="UINT"/>
+		<for name="event" size="#data" hidden="false">
+			<node name="event_id" reader="USHORT"/>
+			<node name="event_type" reader="USHORT"/>
+			<node name="event_icon" reader="MAP_INT"/>
+			<node name="event_title" reader="ASCF"/>
+								
+			<node name="start_date" reader="UINT"/> <!-- 160831 = 2016-08-31 -->
+			<node name="start_time" reader="UINT"/> <!-- 700 = 7:00 -->	
+			
+			<node name="end_date" reader="UINT"/> <!-- 161231 = 2016-12-31 -->
+			<node name="end_time" reader="UINT"/> <!-- 500 = 5:00 -->
+			
+			<!-- Not Confirmed -->
+			<for name="activate_time" size="3">
+				<node name="value1" reader="UINT"/>
+			</for>
+			<!-- Not Confirmed -->
+			<for name="deactivate_time" size="3">
+				<node name="value2" reader="UINT"/>
+			</for>
+			<!-- Not Confirmed -->
+			<for name="event_day" size="3">
+				<node name="value3" reader="UINT"/>
+			</for>
+	
+			<node name="event_desc" reader="ASCF"/>
+		</for>
+	</file>
+</list>

@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<list>
+	<file pattern="kor_lindvior" isSafePackage="true">
+		<node name="data" reader="UINT"/>
+		<for name="item" size="#data" hidden="false">
+			<node name="object_id" reader="UINT"/>
+			<node name="pDefense" reader="FLOAT"/>
+			<node name="mDefense" reader="FLOAT"/>
+			<node name="pAttack" reader="FLOAT"/>
+			<node name="mAttack" reader="FLOAT"/>
+			<node name="pAttackSpeed" reader="FLOAT"/>
+			<node name="mAttackSpeed" reader="FLOAT"/>
+			<node name="pHit" reader="FLOAT"/>
+			<node name="mHit" reader="FLOAT"/>
+			<node name="pCritical" reader="FLOAT"/>
+			<node name="mCritical" reader="FLOAT"/>
+			<node name="speed" reader="FLOAT"/>
+			<node name="ShieldDefense" reader="FLOAT"/>
+			<node name="ShieldDefenseRate" reader="FLOAT"/>
+			<node name="pavoid" reader="FLOAT"/>
+			<node name="mavoid" reader="FLOAT"/>
+			<node name="property_params" reader="FLOAT"/>
+		</for>
+	</file>
+	<file pattern="kor_episodion" isSafePackage="true">
+		<node name="data" reader="UINT"/>
+		<for name="item" size="#data" hidden="false">
+			<node name="object_id" reader="UINT"/>
+			<node name="pDefense" reader="FLOAT"/>
+			<node name="mDefense" reader="FLOAT"/>
+			<node name="pAttack" reader="FLOAT"/>
+			<node name="mAttack" reader="FLOAT"/>
+			<node name="pAttackSpeed" reader="FLOAT"/>
+			<node name="mAttackSpeed" reader="FLOAT"/>
+			<node name="pHit" reader="FLOAT"/>
+			<node name="mHit" reader="FLOAT"/>
+			<node name="pCritical" reader="FLOAT"/>
+			<node name="mCritical" reader="FLOAT"/>
+			<node name="speed" reader="FLOAT"/>
+			<node name="ShieldDefense" reader="FLOAT"/>
+			<node name="ShieldDefenseRate" reader="FLOAT"/>
+			<node name="pavoid" reader="FLOAT"/>
+			<node name="mavoid" reader="FLOAT"/>
+			<node name="property_params" reader="UINT"/>
+		</for>
+	</file>
+	<file pattern="kor_helios_p3" isSafePackage="true">
+		<node name="data" reader="UINT"/>
+		<for name="item" size="#data" hidden="false">
+			<node name="object_id" reader="UINT"/>
+			<node name="pDefense" reader="SHORT"/>
+			<node name="mDefense" reader="SHORT"/>
+			<node name="pAttack" reader="SHORT"/>
+			<node name="mAttack" reader="SHORT"/>
+			<node name="pAttackSpeed" reader="SHORT"/>
+			<node name="pHit" reader="FLOAT"/>
+			<node name="mHit" reader="FLOAT"/>
+			<node name="pCritical" reader="FLOAT"/>
+			<node name="mCritical" reader="FLOAT"/>
+			<node name="speed" reader="UCHAR"/>
+			<node name="ShieldDefense" reader="SHORT"/>
+			<node name="ShieldDefenseRate" reader="UCHAR"/>
+			<node name="pavoid" reader="FLOAT"/>
+			<node name="mavoid" reader="FLOAT"/>
+			<node name="property_params" reader="SHORT"/>
+		</for>
+	</file>
+	<file pattern="death_knight_362" isSafePackage="true">
+		<node name="data" reader="UINT"/>
+		<for name="item" size="#data" hidden="false">
+			<node name="object_id" reader="UINT"/>
+			<node name="pDefense" reader="SHORT"/>
+			<node name="mDefense" reader="SHORT"/>
+			<node name="pAttack" reader="SHORT"/>
+			<node name="mAttack" reader="SHORT"/>
+			<node name="pAttackSpeed" reader="SHORT"/>
+			<node name="pHit" reader="FLOAT"/>
+			<node name="mHit" reader="FLOAT"/>
+			<node name="pCritical" reader="FLOAT"/>
+			<node name="mCritical" reader="FLOAT"/>
+			<node name="speed" reader="UCHAR"/>
+			<node name="ShieldDefense" reader="SHORT"/>
+			<node name="ShieldDefenseRate" reader="UCHAR"/>
+			<node name="pavoid" reader="FLOAT"/>
+			<node name="mavoid" reader="FLOAT"/>
+		</for>
+	</file>
+</list>

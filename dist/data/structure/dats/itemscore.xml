@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<list>
+	<file pattern="guardians_493" isSafePackage="true">
+		<node name="data" reader="UINT"/>
+		<for name="itemscore" size="#data" hidden="false">
+			<node name="id" reader="USHORT"/>
+			<node name="grade" reader="UBYTE"/>
+			<node name="unk3" reader="UBYTE"/>
+			<node name="unk4" reader="UINT"/>
+		</for>
+	</file>
+</list>

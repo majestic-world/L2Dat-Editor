@@ -1,0 +1,120 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project name="DatEditor" default="build" basedir=".">
+    
+    <!-- Propriedades do projeto -->
+    <property name="src.dir" location="dateditor"/>
+    <property name="build.dir" location="build"/>
+    <property name="dist.dir" location="dist"/>
+    <property name="lib.dir" location="dist/lib"/>
+    <property name="jar.name" value="dateditor.jar"/>
+    <property name="manifest.file" location="dateditor/META-INF/MANIFEST.MF"/>
+    
+    <!-- Versão do Java -->
+    <property name="java.source.version" value="1.8"/>
+    <property name="java.target.version" value="1.8"/>
+    
+    <!-- Classpath com todas as bibliotecas -->
+    <path id="classpath">
+        <fileset dir="${lib.dir}">
+            <include name="*.jar"/>
+            <exclude name="${jar.name}"/>
+        </fileset>
+    </path>
+    
+    <!-- Target: clean - Limpa os diretórios de build -->
+    <target name="clean" description="Remove arquivos compilados">
+        <delete dir="${build.dir}"/>
+        <echo message="Diretório de build limpo."/>
+    </target>
+    
+    <!-- Target: init - Inicializa o ambiente de build -->
+    <target name="init" description="Inicializa o ambiente de build">
+        <mkdir dir="${build.dir}"/>
+        <mkdir dir="${dist.dir}"/>
+        <mkdir dir="${lib.dir}"/>
+        <echo message="Diretórios criados."/>
+    </target>
+    
+    <!-- Target: compile - Compila o código fonte -->
+    <target name="compile" depends="init" description="Compila o código fonte">
+        <echo message="Compilando código fonte..."/>
+        <javac srcdir="${src.dir}"
+               destdir="${build.dir}"
+               source="${java.source.version}"
+               target="${java.target.version}"
+               encoding="UTF-8"
+               includeantruntime="false"
+               debug="true"
+               debuglevel="lines,vars,source">
+            <classpath refid="classpath"/>
+        </javac>
+        <echo message="Compilação concluída."/>
+    </target>
+    
+    <!-- Target: jar - Cria o arquivo JAR -->
+    <target name="jar" depends="compile" description="Cria o arquivo JAR">
+        <echo message="Criando arquivo JAR..."/>
+        
+        <!-- Atualiza o MANIFEST com informações de build -->
+        <tstamp>
+            <format property="build.date" pattern="yyyy.MM.dd HH:mm"/>
+        </tstamp>
+        
+        <manifest file="${build.dir}/MANIFEST.MF">
+            <attribute name="Manifest-Version" value="1.0"/>
+            <attribute name="Ant-Version" value="${ant.version}"/>
+            <attribute name="Created-By" value="${java.version} (${java.vendor})"/>
+            <attribute name="Build-By" value="${user.name}"/>
+            <attribute name="Build-Date" value="${build.date}"/>
+            <attribute name="Implementation-Version" value="1.8.0"/>
+        </manifest>
+        
+        <jar destfile="${build.dir}/${jar.name}" 
+             manifest="${build.dir}/MANIFEST.MF">
+            <fileset dir="${build.dir}">
+                <include name="**/*.class"/>
+            </fileset>
+            <fileset dir="${src.dir}">
+                <exclude name="**/*.java"/>
+                <exclude name="META-INF/MANIFEST.MF"/>
+            </fileset>
+        </jar>
+        
+        <echo message="JAR criado: ${build.dir}/${jar.name}"/>
+    </target>
+    
+    <!-- Target: deploy - Copia o JAR para dist/lib -->
+    <target name="deploy" depends="jar" description="Copia o JAR para dist/lib">
+        <echo message="Copiando JAR para ${lib.dir}..."/>
+        <copy file="${build.dir}/${jar.name}" 
+              todir="${lib.dir}" 
+              overwrite="true"/>
+        <echo message="JAR copiado para ${lib.dir}/${jar.name}"/>
+    </target>
+    
+    <!-- Target: build - Build completo (padrão) -->
+    <target name="build" depends="clean, deploy" description="Build completo do projeto">
+        <echo message="Build completo concluído com sucesso!"/>
+        <echo message="JAR disponível em: ${lib.dir}/${jar.name}"/>
+    </target>
+    
+    <!-- Target: rebuild - Rebuild sem limpar -->
+    <target name="rebuild" depends="deploy" description="Rebuild sem limpar">
+        <echo message="Rebuild concluído!"/>
+    </target>
+    
+    <!-- Target: help - Mostra ajuda -->
+    <target name="help" description="Mostra os targets disponíveis">
+        <echo message="Targets disponíveis:"/>
+        <echo message="  clean   - Remove arquivos compilados"/>
+        <echo message="  init    - Inicializa o ambiente de build"/>
+        <echo message="  compile - Compila o código fonte"/>
+        <echo message="  jar     - Cria o arquivo JAR"/>
+        <echo message="  deploy  - Copia o JAR para dist/lib"/>
+        <echo message="  build   - Build completo (padrão)"/>
+        <echo message="  rebuild - Rebuild sem limpar"/>
+        <echo message="  help    - Mostra esta ajuda"/>
+    </target>
+    
+</project>
+

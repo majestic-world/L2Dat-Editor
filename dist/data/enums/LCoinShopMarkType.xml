@@ -1,0 +1,14 @@
+<list>
+	<enum name="LCoinShopMarkType">
+		<node index="0" name="None" />
+		<node index="1" name="Event" />
+		<node index="2" name="Sale" />
+		<node index="3" name="Best" />
+		<node index="4" name="Limited" />
+		<node index="5" name="New" />
+		<node index="6" name="Relay" />
+		<node index="7" name="Account" />
+		<node index="8" name="Character" />
+		<node index="9" name="Server" />
+	</enum>
+</list>

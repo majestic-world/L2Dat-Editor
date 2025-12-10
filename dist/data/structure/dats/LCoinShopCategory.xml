@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<list>
+	<file pattern="high_elf_464" isSafePackage="true">
+		<node name="data" reader="CNTR"/>
+		<for name="LCoinShopCategory" size="#data" hidden="false">
+			<node name="category_id" reader="UBYTE"/>
+			<node name="string_id" reader="UINT"/>
+			<node name="string_color" reader="ASCF"/>
+			<node name="ribbon_texture_lshop" reader="MAP_INT"/>
+			<node name="optional" reader="UBYTE"/>
+			<node name="show_server" reader="UCHAR"/>
+			<for name="show_server" size="#show_server">
+				<node name="show_server1" reader="UINT"/>
+			</for>
+		</for>
+	</file>
+	<file pattern="samurai_541" isSafePackage="true">
+		<node name="data" reader="CNTR"/>
+		<for name="LCoinShopCategory" size="#data" hidden="false">
+			<node name="category_id" reader="UBYTE"/>
+			<node name="string_id" reader="UINT"/>
+			<node name="string_color" reader="ASCF"/>
+			<node name="ribbon_texture_lshop" reader="MAP_INT"/>
+			<node name="optional" reader="UBYTE"/>
+			<node name="show_server" reader="UCHAR"/>
+			<for name="show_server" size="#show_server">
+				<node name="show_server1" reader="UINT"/>
+			</for>
+			<node name="CraftableList" reader="UBYTE"/>
+			<node name="MainStringID" reader="UINT"/>
+		</for>
+	</file>
+</list>

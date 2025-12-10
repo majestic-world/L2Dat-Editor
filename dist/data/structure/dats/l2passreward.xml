@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--AUTHOR: Bonux-->
+<list>
+<!--
+u"L2pass_reward_begin"
+u"\t[%s] %d line : undefined item_type (%s) !!!"
+u"advance_premium_cost"
+u"hunting_premium_cost"
+u"premium_reward"
+u"pass_type"
+u"L2pass_reward_end"
+-->
+	<file pattern="queen_ant_sylph_311" isSafePackage="true">
+		<node name="data" reader="UINT"/>
+		<for name="L2pass_reward" size="#data" hidden="false">
+			<node name="pass_type" reader="UINT"/>
+			<node name="pass_id" reader="UINT"/>
+			<node name="required_points" reader="UINT"/>
+			<wrapper name="advance_premium_cost">
+				<node name="item_id_1" reader="UINT"/>
+				<node name="item_count_1" reader="UINT"/>
+			</wrapper>
+			<wrapper name="hunting_premium_cost">
+				<node name="item_id_2" reader="UINT"/>
+				<node name="item_count_2" reader="UINT"/>
+			</wrapper>
+			<wrapper name="reward">
+				<node name="reward_type_3" reader="UINT"/>
+				<node name="item_id_3" reader="UINT"/>
+				<node name="item_count_3" reader="UINT"/>
+			</wrapper>
+			<wrapper name="premium_reward">
+				<node name="reward_type_4" reader="UINT"/>
+				<node name="item_id_4" reader="UINT"/>
+				<node name="item_count_4" reader="UINT"/>
+			</wrapper>
+			<node name="size1" reader="CNTR"/>
+			<for name="applycountry" size="#size1">
+				<node name="country" reader="UINT"/>
+			</for>
+		</for>
+	</file>
+</list>

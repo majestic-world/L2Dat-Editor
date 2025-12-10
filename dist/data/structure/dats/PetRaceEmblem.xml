@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<list>
+	<file pattern="queen_ant_sylph_306" isSafePackage="true">
+		<node name="data" reader="UINT"/>
+		<for name="emblem" size="#data" hidden="false">
+			<node name="pet_id" reader="UINT"/>
+			<node name="name" reader="ASCF"/>
+			<node name="race_emblem" reader="MAP_INT"/>
+		</for>
+	</file>
+	<file pattern="high_elf_474" isSafePackage="true">
+		<node name="data" reader="UINT"/>
+		<for name="emblem" size="#data" hidden="false">
+			<node name="pet_id" reader="UINT"/>
+			<node name="pet_type" reader="UINT"/>
+			<node name="name" reader="ASCF"/>
+			<node name="race_emblem" reader="MAP_INT"/>
+		</for>
+	</file>
+	<file pattern="guardians_493" isSafePackage="true">
+		<node name="data" reader="UINT"/>
+		<for name="emblem" size="#data" hidden="false">
+			<node name="pet_id" reader="UINT"/>
+			<node name="pet_type" reader="UINT"/>
+			<node name="unk" reader="UINT"/>
+			<node name="name" reader="ASCF"/>
+			<node name="race_emblem" reader="MAP_INT"/>
+			<node name="HUD_emblem_tex_name" reader="MAP_INT"/>
+		</for>
+	</file>
+	<file pattern="project_wolf_516_kr" isSafePackage="true">
+		<node name="data" reader="UINT"/>
+		<for name="emblem" size="#data" hidden="false">
+			<node name="pet_id" reader="UINT"/>
+			<node name="pet_type" reader="UINT"/>
+			<node name="unk" reader="UINT"/>
+			<node name="name" reader="ASCF"/>
+			<node name="race_emblem" reader="MAP_INT"/>
+			<node name="HUD_emblem_tex_name" reader="MAP_INT"/>
+			<node name="skill_id" reader="UINT"/>
+		</for>
+	</file>
+</list>

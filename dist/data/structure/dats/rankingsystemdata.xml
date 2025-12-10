@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<list>
+	<file pattern="preludewar_kamael_228" isSafePackage="true">
+		<node name="data" reader="UINT"/>
+		<for name="ranking" size="#data" hidden="false">
+			<node name="id" reader="UINT" enum_name="ranking_type"/>
+			<node name="type" reader="UINT" enum_name="ranking_group_type"/>
+			<node name="grouptype" reader="UINT"/>
+			<node name="grade" reader="UINT"/>
+			<node name="gradescope" reader="UINT"/>
+			<node name="rewardskillID" reader="UINT"/>			
+		</for>
+	</file>
+	<file pattern="rose_vain_520_kr" isSafePackage="true">
+		<node name="data" reader="UINT"/>
+		<for name="ranking_group" size="#data" hidden="false">
+			<node name="id" reader="UBYTE" enum_name="ranking_type"/>
+			<node name="type" reader="UBYTE" enum_name="ranking_group_type"/>
+			<node name="grouptype" reader="UINT"/>
+			<node name="unk" reader="UBYTE"/>
+			<node name="ranking" reader="CNTR"/>
+			<write name="\r\n"/>
+			<for name="ranking" size="#ranking" hidden="false">
+				<node name="grade" reader="UINT"/>
+				<node name="gradescope" reader="UINT"/>
+				<node name="rewardskillID" reader="UINT"/>
+				<node name="rewardItemID" reader="UINT"/>
+				<node name="rewardItemAmount" reader="UINT"/>
+			</for>
+		</for>
+	</file>
+</list>

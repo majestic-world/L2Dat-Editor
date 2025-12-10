@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--AUTHOR: Bonux-->
+<!--E-MAIL: bonuxq@gmail.com-->
+<list>
+	<file pattern="fufarion_secretofempire_166" isSafePackage="true">
+		<node name="data" reader="UINT"/>
+		<for name="costume" size="#data" hidden="false">
+			<node name="costume_id" reader="UINT"/>
+			<wrapper name="collection_skill">
+				<node name="skill_id" reader="UINT"/>
+				<node name="skill_level" reader="UINT"/>
+			</wrapper>
+			<node name="costume_preview" reader="UINT"/>
+			<node name="extract_fee" reader="CNTR"/>
+			<for name="extract_fee" size="#extract_fee">
+				<node name="extract_fee_id" reader="UINT"/>
+				<node name="extract_fee_count" reader="UINT"/>
+			</for>
+			<wrapper name="costume_need_item">
+				<node name="item_id" reader="UINT"/>
+				<node name="item_count" reader="UINT"/>
+			</wrapper>
+			<node name="evolution_need_costume" reader="UINT"/>
+			<node name="origin_type" reader="UINT"/>
+			<node name="grade" reader="UINT"/>
+			<node name="applycountry" reader="CNTR"/>
+			<for name="applycountry" size="#applycountry">
+				<node name="param_applycountry" reader="UINT"/>
+			</for>
+		</for>
+	</file>
+	<file pattern="death_knight_362" isSafePackage="true">
+		<node name="data" reader="UINT"/>
+		<for name="costume" size="#data" hidden="false">
+			<node name="costume_id" reader="UINT"/>
+			<wrapper name="collection_skill">
+				<node name="skill_id" reader="UINT"/>
+				<node name="skill_level" reader="UINT"/>
+			</wrapper>
+			<node name="costume_preview" reader="UINT"/>
+			<node name="extract_fee" reader="CNTR"/>
+			<for name="extract_fee" size="#extract_fee">
+				<node name="extract_fee_id" reader="UINT"/>
+				<node name="extract_fee_count" reader="UINT"/>
+			</for>
+			<wrapper name="costume_need_item">
+				<node name="item_id" reader="UINT"/>
+				<node name="item_count" reader="UINT"/>
+			</wrapper>
+			<node name="evolution_need_costume" reader="UINT"/>
+			<node name="origin_type" reader="UINT"/>
+			<node name="grade" reader="UINT"/>
+			<node name="applycountry" reader="CNTR"/>
+			<for name="applycountry" size="#applycountry">
+				<node name="param_applycountry" reader="UINT"/>
+			</for>
+		</for>
+	</file>
+</list>

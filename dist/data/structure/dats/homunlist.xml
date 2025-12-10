@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<list>
+	<file pattern="queen_ant_sylph_306" isSafePackage="true">
+		<node name="data" reader="UINT"/>
+		<for name="homun_list" size="#data" hidden="false">
+			<node name="itemid" reader="UINT"/>
+			<node name="amount" reader="UINT"/>
+			<node name="fee" reader="UINT"/>
+			<node name="grade" reader="UINT"/>
+			<node name="event" reader="UINT"/>
+			<node name="unk" reader="UINT"/>
+		</for>
+	</file>
+</list>

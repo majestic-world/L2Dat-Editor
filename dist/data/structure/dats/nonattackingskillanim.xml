@@ -1,0 +1,152 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<list>
+	<file pattern="queen_ant_sylph_306" isSafePackage="true">
+		<node name="data" reader="UINT"/>
+		<for name="nonattackingskillanim" size="#data" hidden="false">
+			<node name="Animation" reader="MAP_INT"/>
+			<node name="NonAtkAnimation" reader="MAP_INT"/>
+		</for>
+	</file>
+</list>
+
+<!--
+_DWORD *__thiscall sub_202C2CA0(_DWORD *this)
+{
+  _DWORD *v1; // esi
+  signed int v2; // ebx
+  _WORD *v3; // edi
+  int v4; // eax
+  _WORD *v5; // edi
+  int v6; // eax
+  _WORD *v7; // edi
+  int v8; // eax
+  _WORD *v9; // edi
+  int v10; // eax
+  int v12; // [esp+0h] [ebp-70h]
+  int v13; // [esp+10h] [ebp-60h]
+  int v14; // [esp+1Ch] [ebp-54h]
+  int v15; // [esp+28h] [ebp-48h]
+  int v16; // [esp+34h] [ebp-3Ch]
+  _WORD *v17; // [esp+4Ch] [ebp-24h]
+  _DWORD *v18; // [esp+50h] [ebp-20h]
+  _WORD *v19; // [esp+58h] [ebp-18h]
+  unsigned int v20; // [esp+5Ch] [ebp-14h]
+  int *v21; // [esp+60h] [ebp-10h]
+  int v22; // [esp+6Ch] [ebp-4h]
+
+  v21 = &v12;
+  v1 = this;
+  v18 = this;
+  v2 = 0;
+  v20 = 0;
+  sub_2025DDE0(this);
+  v22 = 0;
+  *v1 = &FL2NonAttackingSkillAnimManager::`vftable';
+  LOBYTE(v22) = 1;
+  v3 = (_WORD *)sub_20101B30(16);
+  v17 = v3;
+  LOBYTE(v22) = 2;
+  if ( v3 )
+  {
+	FString::FString(&v16, L"NonAttackingSkillAnim_begin");
+	LOBYTE(v22) = 3;
+	v2 = 1;
+	v20 = 1;
+	v19 = sub_2025D920(v3, &v16, 99);
+  }
+  else
+  {
+	v19 = 0;
+  }
+  v22 = 4;
+  v4 = FArray::Add(v1 + 1, 1, 4);
+  *(_DWORD *)(v1[1] + 4 * v4) = v19;
+  v1[10] = v4;
+  v22 = 1;
+  if ( v2 & 1 )
+  {
+	v2 &= 0xFFFFFFFE;
+	v20 = v2;
+	FString::~FString(&v16);
+  }
+  v5 = (_WORD *)sub_20101B30(16);
+  v17 = v5;
+  LOBYTE(v22) = 5;
+  if ( v5 )
+  {
+	FString::FString(&v15, L"Animation");
+	LOBYTE(v22) = 6;
+	v2 |= 2u;
+	v20 = v2;
+	v19 = sub_2025D920(v5, &v15, 115);
+  }
+  else
+  {
+	v19 = 0;
+  }
+  v22 = 7;
+  v6 = FArray::Add(v1 + 1, 1, 4);
+  *(_DWORD *)(v1[1] + 4 * v6) = v19;
+  v1[11] = v6;
+  v22 = 1;
+  if ( v2 & 2 )
+  {
+	v2 &= 0xFFFFFFFD;
+	v20 = v2;
+	FString::~FString(&v15);
+  }
+  v7 = (_WORD *)sub_20101B30(16);
+  v17 = v7;
+  LOBYTE(v22) = 8;
+  if ( v7 )
+  {
+	FString::FString(&v14, L"NonAtkAnimation");
+	LOBYTE(v22) = 9;
+	v2 |= 4u;
+	v20 = v2;
+	v19 = sub_2025D920(v7, &v14, 115);
+  }
+  else
+  {
+	v19 = 0;
+  }
+  v22 = 10;
+  v8 = FArray::Add(v1 + 1, 1, 4);
+  *(_DWORD *)(v1[1] + 4 * v8) = v19;
+  v1[12] = v8;
+  v22 = 1;
+  if ( v2 & 4 )
+  {
+	v2 &= 0xFFFFFFFB;
+	v20 = v2;
+	FString::~FString(&v14);
+  }
+  v9 = (_WORD *)sub_20101B30(16);
+  v17 = v9;
+  LOBYTE(v22) = 11;
+  if ( v9 )
+  {
+	FString::FString(&v13, L"NonAttackingSkillAnim_end");
+	LOBYTE(v22) = 12;
+	v2 |= 8u;
+	v20 = v2;
+	v19 = sub_2025D920(v9, &v13, 101);
+  }
+  else
+  {
+	v19 = 0;
+  }
+  v22 = 13;
+  v10 = FArray::Add(v1 + 1, 1, 4);
+  *(_DWORD *)(v1[1] + 4 * v10) = v19;
+  v1[13] = v10;
+  v22 = 1;
+  if ( v2 & 8 )
+  {
+	v20 = v2 & 0xFFFFFFF7;
+	FString::~FString(&v13);
+  }
+  return v1;
+}
+
+-->

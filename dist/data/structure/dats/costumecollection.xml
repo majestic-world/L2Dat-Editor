@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<list>
+	<file pattern="fufarion_secretofempire_166" isSafePackage="true">
+		<node name="data" reader="UINT"/>
+		<for name="costume_collection" size="#data" hidden="false">
+			<node name="costume_id" reader="UINT"/>
+			<node name="costume_list" reader="CNTR"/>
+			<for name="costume_list" size="#costume_list">
+				<node name="costume" reader="UINT"/>
+			</for>
+			<wrapper name="collection_skill">
+				<node name="id" reader="UINT"/>
+				<node name="level" reader="UBYTE"/>
+				<node name="sub_level" reader="UINT"/> <!-- need confirm -->
+			</wrapper>
+		</for>
+	</file>
+</list>

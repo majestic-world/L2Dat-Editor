@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<list>
+	<file pattern="high_five_p4" isSafePackage="true">
+		<node name="data" reader="UINT"/>
+		<for name="item" size="#data" hidden="false">
+			<node name="id" reader="UINT"/>
+			<node name="int1" reader="UINT"/>
+			<node name="int2" reader="UINT"/>
+			<node name="name" reader="UNICODE"/>
+			<node name="IDconn" reader="UINT"/>
+			<wrapper name="vals">
+				<node name="vals_1" reader="UINT"/>
+				<node name="vals_2" reader="UINT"/>
+				<node name="vals_3" reader="UINT"/>
+				<node name="vals_4" reader="UINT"/>
+				<node name="vals_5" reader="UINT"/>
+				<node name="vals_6" reader="UINT"/>
+				<node name="vals_7" reader="UINT"/>
+				<node name="vals_8" reader="UINT"/>
+				<node name="vals_9" reader="UINT"/>
+			</wrapper>
+			<node name="tail" reader="INT"/>
+		</for>
+	</file>
+</list>

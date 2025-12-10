@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--AUTHOR: Bonux-->
+<!--bonuxq@gmail.com-->
+<list>
+	<links id="590" parent_id="570" name="Rose Vain (521) KR">
+		<link pattern="EnterEventgrp(_Classic(Aden)?)?\.dat" file="entereventgrp" version="rose_vain_521_kr"/>
+	</links>
+</list>

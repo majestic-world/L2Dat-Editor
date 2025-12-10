@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--AUTHOR: Bonux-->
+<!--bonuxq@gmail.com-->
+<list>
+	<links id="500" parent_id="490" name="Guardians (493)">
+		<link pattern="abnormaldefaulteffect\.dat" file="abnormaldefaulteffect" version="guardians_493"/>
+		<link pattern="ItemScore(_Classic(Aden)?)?\.dat" file="itemscore" version="guardians_493"/>
+		<link pattern="teleportlist(_Classic(Aden)?)?\.dat" file="teleportlist" version="guardians_493"/>
+		<link pattern="variationexeffectgrp(_Classic(Aden)?)?\.dat" file="variationexeffectgrp" version="guardians_493"/>
+		<link pattern="variationdata_option(_Classic(Aden)?)?-[\w]+\.dat" file="variationdata_option" version="guardians_493"/>
+		<link pattern="variationarmoreffectgrp(_Classic(Aden)?)?\.dat" file="variationarmoreffectgrp" version="guardians_493"/>
+		<link pattern="storeurl(_Classic(Aden)?)?\.dat" file="storeurl" version="guardians_493"/>
+		<link pattern="skillsoundgrp(_Classic(Aden)?)?\.dat" file="skillsoundgrp" version="guardians_493"/>
+		<link pattern="relics_main(_Classic(Aden)?)?\.dat" file="relicsmain" version="guardians_493"/>
+		<link pattern="relics_collection(_Classic(Aden)?)?-[\w]+\.dat" file="relicscollection" version="guardians_493"/>
+		<link pattern="recoverycoupon(_Classic(Aden)?)?\.dat" file="recoverycoupon" version="guardians_493"/>
+		<link pattern="PetRaceEmblem(_Classic(Aden)?)?-[\w]+\.dat" file="PetRaceEmblem" version="guardians_493"/>
+		<link pattern="petacquireskill(_Classic(Aden)?)?\.dat" file="petacquireskill" version="guardians_493"/>
+		<link pattern="inventory_effect(_Classic(Aden)?)?\.dat" file="inventory_effect" version="guardians_493"/>
+		<link pattern="GamePlayData(_Classic)?\.dat" file="gameplaydata" version="guardians_493"/>
+		<link pattern="GamePlayData_ClassicAden\.dat" file="gameplaydata" version="guardians_493_aden"/>
+		<link pattern="EnterEventgrp(_Classic(Aden)?)?\.dat" file="entereventgrp" version="guardians_493"/>
+		<link pattern="cardselect_stage(_Classic(Aden)?)?\.dat" file="cardselect_stage" version="guardians_493"/>
+		<link pattern="collection(_Classic(Aden)?)?-[\w]+\.dat" file="collection" version="guardians_493"/>
+		<link pattern="dyeeffect(_Classic(Aden)?)?\.dat" file="dyeeffect" version="guardians_493"/>
+		<link pattern="dyepotential_fee(_Classic(Aden)?)?\.dat" file="dyepotential_fee" version="guardians_493"/>
+		<link pattern="dyepotential_slot_fee(_Classic(Aden)?)?\.dat" file="dyepotential_slot_fee" version="guardians_493"/>
+	</links>
+</list>

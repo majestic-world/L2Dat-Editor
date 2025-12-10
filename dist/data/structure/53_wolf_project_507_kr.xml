@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--AUTHOR: Bonux-->
+<!--bonuxq@gmail.com-->
+<list>
+	<links id="530" parent_id="520" name="Project Wolf (507) KR">
+		<link pattern="GamePlayData(_Classic(Aden)?)?\.dat" file="gameplaydata" version="project_wolf_507_kr"/>
+		<link pattern="collection(_Classic(Aden)?)?-[\w]+\.dat" file="collection" version="project_wolf_507_kr"/>
+	</links>
+</list>

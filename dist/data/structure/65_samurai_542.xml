@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--AUTHOR: Bonux-->
+<!--bonuxq@gmail.com-->
+<list>
+	<links id="650" parent_id="630" name="Samurai (542)">
+		<link pattern="DamageSkin(_Classic(Aden)?)?\.dat" file="DamageSkin" version="samurai_542"/>
+	</links>
+</list>

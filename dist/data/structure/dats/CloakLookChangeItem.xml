@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<list>
+	<file pattern="death_knight_2_430" isSafePackage="true">
+		<node name="data" reader="UINT"/>
+		<for name="CloakLookChange" size="#data" hidden="false">
+			<node name="ItemClassID" reader="UINT"/>
+			<node name="LookItemClassID_list" reader="CNTR"/>
+			<for name="LookItemClassID_list" size="#LookItemClassID_list">
+				<node name="LookItemClassID" reader="UINT"/>
+			</for>
+		</for>
+	</file>
+	<file pattern="rose_vain_520_kr_main" isSafePackage="true">
+		<node name="data" reader="UINT"/>
+		<for name="CloakLookChange" size="#data" hidden="false">
+			<node name="Id" reader="UINT"/>
+			<node name="Cnt" reader="CNTR"/>
+			<for name="ItemClassID" size="#Cnt">
+				<node name="ItemId1" reader="UINT"/>
+				<node name="ItemId2" reader="UINT"/>
+			</for>
+		</for>
+	</file>
+</list>

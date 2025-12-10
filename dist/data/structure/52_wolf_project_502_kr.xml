@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--AUTHOR: Bonux-->
+<!--bonuxq@gmail.com-->
+<list>
+	<links id="520" parent_id="510" name="Project Wolf (502) KR">
+		<link pattern="charcreategrp(_Classic(Aden)?)?\.dat" file="charcreategrp" version="project_wolf_502_kr"/>
+		<link pattern="GamePlayData(_Classic(Aden)?)?\.dat" file="gameplaydata" version="project_wolf_502_kr"/>
+		<link pattern="logongrp(_Classic(Aden)?)?\.dat" file="logongrp" version="project_wolf_502_kr"/>
+		<link pattern="variationdata_stone(_Classic(Aden)?)?\.dat" file="variationdata_stone" version="project_wolf_502_kr"/>
+		<link pattern="mable_game(_Classic(Aden)?)?\.dat" file="mable_game" version="project_wolf_502_kr"/>
+		<link pattern="LCoinShopBanner(_Classic(Aden)?)?(-[\w]+)?\.dat" file="lcoinshopbanner" version="project_wolf_502_kr"/>
+		<link pattern="UpgradeSystem(_Classic(Aden)?)?\.dat" file="upgradesystem" version="project_wolf_502_kr"/>
+		<link pattern="UpgradeSystem_Normal(_Classic(Aden)?)?\.dat" file="upgradesystem_normal" version="project_wolf_502_kr"/>
+		<link pattern="CombinationItemData(_Classic(Aden)?)?\.dat" file="combinationitemdata" version="project_wolf_502_kr"/>
+		<link pattern="ArmorGradeLookChange(_Classic(Aden)?)?\.dat" file="armorgradelookchange" version="project_wolf_502_kr"/>
+		<link pattern="Server_Id_List(_Classic(Aden)?)?\.dat" file="Server_Id_List" version="project_wolf_502_kr"/>
+		<link pattern="ChangeClass(_Classic(Aden)?)?\.dat" file="changeclass" version="project_wolf_502_kr"/>
+		<link pattern="MinimapRegion(_Classic(Aden)?)?\.dat" file="minimapregion" version="assassin_414"/>
+	</links>
+</list>

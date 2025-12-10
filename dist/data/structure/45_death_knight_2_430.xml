@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--AUTHOR: Bonux-->
+<!--bonuxq@gmail.com-->
+<list>
+	<links id="450" parent_id="440" name="Death Knight II (430)">
+		<link pattern="skillgrp(_Classic(Aden)?)?\.dat" file="skillgrp" version="death_knight_2_430"/>
+		<link pattern="GamePlayData(_Classic(Aden)?)?\.dat" file="gameplaydata" version="death_knight_2_430"/>
+		<link pattern="MSConditionData(_Classic(Aden)?)?\.dat" file="msconditiondata" version="death_knight_2_430"/>
+		<link pattern="SkillAcquire(_Classic(Aden)?)?\.dat" file="skillacquire" version="death_knight_2_430"/>
+		<link pattern="SkillName(_Classic(Aden)?)?(-[\w]+)?\.dat" file="skillname" version="death_knight_2_430"/>
+		<link pattern="etcitemgrp(_Classic(Aden)?)?\.dat" file="etcitemgrp" version="death_knight_2_430"/>
+		<link pattern="NewQuestData(_Classic(Aden)?)?(-[\w]+)?\.dat" file="newquestdata" version="death_knight_2_430"/>
+		<link pattern="PurchaseLimitCraft(_Classic(Aden)?)?-[\w]+\.dat" file="PurchaseLimitCraft" version="death_knight_2_430"/>
+		<link pattern="SkillEnchantCharge(_Classic(Aden)?)?\.dat" file="skillenchantcharge" version="death_knight_2_430"/>
+		<link pattern="hennagrp(_Classic(Aden)?)?-[\w]+\.dat" file="hennagrp" version="death_knight_2_430"/>
+		<link pattern="ReplaceSkillIcon(_Classic(Aden)?)?\.dat" file="ReplaceSkillIcon" version="death_knight_2_430"/>
+		<link pattern="UpgradeSystem(_Classic(Aden)?)?\.dat" file="upgradesystem" version="death_knight_2_430"/>
+		<link pattern="Ranking_inzonedata(_Classic(Aden)?)?\.dat" file="rankinginzonedata" version="death_knight_2_430"/>
+		<link pattern="CloakLookChangeItem(_Classic(Aden)?)?\.dat" file="CloakLookChangeItem" version="death_knight_2_430"/>
+		<link pattern="DethroneFireAbility(_Classic(Aden)?)?\.dat" file="DethroneFireAbility" version="death_knight_2_430"/>
+		<link pattern="DethroneFireAbilityComboEffect(_Classic(Aden)?)?-[\w]+\.dat" file="DethroneFireAbilityComboEffect" version="death_knight_2_430"/>
+		<link pattern="DethroneFireAbilityLevelupInfo(_Classic(Aden)?)?-[\w]+\.dat" file="DethroneFireAbilityLevelupInfo" version="death_knight_2_430"/>
+		<link pattern="DethroneShop(_Classic(Aden)?)?\.dat" file="DethroneShop" version="death_knight_2_430"/>
+		<link pattern="hero_book\.dat" file="hero_book" version="death_knight_2_430"/>
+		<link pattern="mable_game_event(_Classic(Aden)?)?-[\w]+\.dat" file="mable_game_event" version="death_knight_2_430"/>
+		<link pattern="collectionmain(_Classic(Aden)?)?\.dat" file="collectionmain" version="death_knight_2_430"/>
+		<link pattern="enchantscrollset(_Classic(Aden)?)?\.dat" file="enchantscrollset" version="death_knight_2_430"/>
+	</links>
+</list>

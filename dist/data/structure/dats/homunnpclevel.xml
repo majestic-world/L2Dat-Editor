@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<list>
+	<file pattern="preludewar_kamael_270" isSafePackage="true">
+		<node name="data" reader="UINT"/>
+		<for name="homunnpclevel" size="#data" hidden="false">
+			<node name="id" reader="UINT"/>
+			<node name="level" reader="UBYTE"/>
+			<node name="exp_to_level" reader="UINT"/>
+			<node name="exp_per_point_grade1" reader="UINT"/>
+			<node name="exp_per_point_grade2" reader="UINT"/>
+			<node name="exp_per_point_grade3" reader="UINT"/>
+			<node name="unk" reader="UINT"/>
+			<node name="skill_id_win1" reader="UINT"/>
+			<node name="skill_level_win1" reader="UINT"/>
+			<node name="skill_id_win2" reader="UINT"/>
+			<node name="skill_level_win2" reader="UINT"/>
+			<node name="skill_id_win3" reader="UINT"/>
+			<node name="skill_level_win3" reader="UINT"/>
+		</for>
+	</file>
+</list>

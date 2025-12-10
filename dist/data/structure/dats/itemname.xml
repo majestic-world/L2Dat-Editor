@@ -1,0 +1,727 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<list>
+	<file pattern="chronicle_4" isSafePackage="true">
+		<node name="data" reader="UINT"/>
+		<for name="item_name" size="#data" hidden="false">
+			<node name="id" reader="UINT"/>
+			<node name="name" reader="UNICODE"/>
+			<node name="additionalname" reader="UNICODE"/>
+			<node name="description" reader="ASCF"/>
+			<node name="popup" reader="INT"/>
+		</for>
+	</file>
+	<file pattern="interlude" isSafePackage="true">
+		<node name="data" reader="UINT"/>
+		<for name="item_name" size="#data" hidden="false">
+			<node name="id" reader="UINT"/>
+			<node name="name" reader="UNICODE"/>
+			<node name="additionalname" reader="UNICODE"/>
+			<node name="description" reader="ASCF"/>
+			<node name="popup" reader="INT"/>
+			<node name="set_ids" reader="ASCF"/>
+			<node name="set_bonus_desc" reader="ASCF"/>
+			<node name="set_extra_id" reader="ASCF"/>
+			<node name="set_extra_desc" reader="ASCF"/>
+			<wrapper name="unk_bytes">
+				<node name="unk_byte_1" reader="UBYTE"/>
+				<node name="unk_byte_2" reader="UBYTE"/>
+			</wrapper>
+			<node name="special_enchant_amount" reader="UINT"/>
+			<node name="special_enchant_desc" reader="ASCF"/>
+		</for>
+	</file>
+	<file pattern="high_five_p4" isSafePackage="true">
+		<node name="data" reader="UINT"/>
+		<for name="item_name" size="#data" hidden="false">
+			<node name="id" reader="UINT"/>
+			<node name="name" reader="UNICODE"/>
+			<node name="additionalname" reader="UNICODE"/>
+			<node name="description" reader="ASCF"/>
+			<node name="popup" reader="INT"/>
+			<node name="supercnt0" reader="UINT"/>
+			<node name="setid_1" reader="UINT"/>
+			<for name="setid_1" size="#setid_1">
+				<node name="seteffect_1" reader="UNICODE"/>
+			</for>
+			<node name="set_bonus_desc" reader="ASCF"/>
+			<node name="supercnt1" reader="UINT"/>
+			<node name="setid_2" reader="UINT"/>
+			<for name="setid_2" size="#setid_2">
+				<node name="seteffect_2" reader="UNICODE"/>
+			</for>
+			<node name="set_extra_desc" reader="ASCF"/>
+			<wrapper name="unk_bytes">
+				<node name="unk_byte_1" reader="UBYTE"/>
+				<node name="unk_byte_2" reader="UBYTE"/>
+				<node name="unk_byte_3" reader="UBYTE"/>
+				<node name="unk_byte_4" reader="UBYTE"/>
+				<node name="unk_byte_5" reader="UBYTE"/>
+				<node name="unk_byte_6" reader="UBYTE"/>
+				<node name="unk_byte_7" reader="UBYTE"/>
+				<node name="unk_byte_8" reader="UBYTE"/>
+				<node name="unk_byte_9" reader="UBYTE"/>
+			</wrapper>
+			<node name="special_enchant_amount" reader="UINT"/>
+			<node name="special_enchant_desc" reader="ASCF"/>
+			<node name="unk2" reader="UINT"/>
+		</for>
+	</file>
+	<file pattern="kor_lindvior" isSafePackage="true">
+		<node name="data" reader="UINT"/>
+		<for name="item_name" size="#data" hidden="false">
+			<node name="id" reader="UINT"/>
+			<node name="name" reader="UNICODE"/>
+			<node name="additionalname" reader="UNICODE"/>
+			<node name="description" reader="ASCF"/>
+			<node name="popup" reader="INT"/>
+			<node name="name_class" reader="UINT"/>
+			<for name="name_class" size="#name_class">
+				<node name="name_class_sub" reader="UINT"/>
+				<for name="name_class_sub" size="#name_class_sub">
+					<node name="name_class_sub2" reader="UINT"/>
+				</for>
+			</for>
+			<node name="setid_1" reader="UINT"/>
+			<for name="setid_1" size="#setid_1">
+				<node name="seteffect_1" reader="ASCF"/>
+			</for>
+			<node name="setid_2" reader="UINT"/>
+			<for name="setid_2" size="#setid_2">
+				<node name="seteffect_2_sub" reader="UINT"/>
+				<for name="seteffect_2_sub" size="#seteffect_2_sub">
+					<node name="seteffect_2_sub2" reader="UINT"/>
+				</for>
+			</for>
+			<node name="setid_3" reader="UINT"/>
+			<for name="setid_3" size="#setid_3">
+				<node name="seteffect_3" reader="ASCF"/>
+			</for>
+			<node name="unknown_1" reader="UINT"/>
+			<node name="unknown_2" reader="UINT"/>
+			<node name="set_enchant_count" reader="UINT"/>
+			<node name="set_enchant_effect" reader="ASCF"/>
+			<node name="color" reader="UINT"/>
+		</for>
+	</file>
+	<file pattern="cn_lindvior" isSafePackage="true">
+		<node name="data" reader="UINT"/>
+		<for name="item_name" size="#data" hidden="false">
+			<node name="id" reader="UINT"/>
+			<node name="name" reader="UNICODE"/>
+			<node name="additionalname" reader="UNICODE"/>
+			<node name="description" reader="ASCF"/>
+			<node name="is_trade" reader="UINT"/>
+			<node name="is_drop" reader="UINT"/>
+			<node name="is_destruct" reader="UINT"/>
+			<node name="is_private_store" reader="UINT"/>
+			<node name="keep_type" reader="UINT"/>
+			<node name="is_olympiad_can_use" reader="UINT"/>
+			<node name="is_npctrade" reader="UINT"/>
+			<node name="auction_itemtype" reader="UINT"/>
+			<node name="enchant_enable" reader="UINT"/>
+			<node name="smelting_enable" reader="UINT"/>
+			<node name="soul_crystal_enable" reader="UINT"/>
+			<node name="elemental_enable" reader="UINT"/>
+			<node name="general_item_tooltip" reader="UINT"/>
+			<node name="default_action" reader="ASCF"/>
+			<node name="use_order" reader="UINT"/>
+			<node name="period_extend" reader="UINT"/>
+			<node name="popup" reader="INT"/>
+			<node name="name_class" reader="UINT"/>
+			<node name="color" reader="UINT"/>
+		</for>
+	</file>
+	<file pattern="kor_episodion" isSafePackage="true">
+		<node name="data" reader="UINT"/>
+		<for name="item_name" size="#data" hidden="false">
+			<node name="id" reader="UINT"/>
+			<node name="name" reader="UNICODE"/>
+			<node name="additionalname" reader="UNICODE"/>
+			<node name="description" reader="ASCF"/>
+			<node name="popup" reader="INT"/>
+			<node name="name_class" reader="UINT"/>
+			<node name="color" reader="UINT"/>
+			<node name="Tooltip_Texture" reader="UNICODE"/>
+		</for>
+	</file>
+	<file pattern="cn_epeisodion" isSafePackage="true">
+		<node name="data" reader="UINT"/>
+		<for name="item_name" size="#data" hidden="false">
+			<node name="id" reader="UINT"/>
+			<node name="name" reader="UNICODE"/>
+			<node name="additionalname" reader="UNICODE"/>
+			<node name="description" reader="ASCF"/>
+			<node name="is_trade" reader="UINT"/>
+			<node name="is_drop" reader="UINT"/>
+			<node name="is_destruct" reader="UINT"/>
+			<node name="is_private_store" reader="UINT"/>
+			<node name="keep_type" reader="UINT"/>
+			<node name="is_olympiad_can_use" reader="UINT"/>
+			<node name="is_npctrade" reader="UINT"/>
+			<node name="auction_itemtype" reader="UINT"/>
+			<node name="enchant_enable" reader="UINT"/>
+			<node name="smelting_enable" reader="UINT"/>
+			<node name="soul_crystal_enable" reader="UINT"/>
+			<node name="elemental_enable" reader="UINT"/>
+			<node name="general_item_tooltip" reader="UINT"/>
+			<node name="default_action" reader="ASCF"/>
+			<node name="use_order" reader="UINT"/>
+			<node name="period_extend" reader="UINT"/>
+			<node name="popup" reader="INT"/>
+			<node name="name_class" reader="UINT"/>
+			<node name="color" reader="UINT"/>
+			<node name="Tooltip_Texture" reader="UNICODE"/>
+		</for>
+	</file>
+	<file pattern="kor_ertheia" isSafePackage="true">
+		<node name="data" reader="UINT"/>
+		<for name="item_name" size="#data" hidden="false">
+			<node name="id" reader="UINT"/>
+			<node name="name" reader="UNICODE"/>
+			<node name="additionalname" reader="ASCF"/>
+			<node name="description" reader="ASCF"/>
+			<node name="popup" reader="INT"/>
+			<node name="name_class" reader="UINT"/>
+			<node name="color" reader="UINT"/>
+			<node name="Tooltip_Texture" reader="UNICODE"/>
+			<node name="is_trade" reader="UINT"/>
+			<node name="is_drop" reader="UINT"/>
+			<node name="is_destruct" reader="UINT"/>
+			<node name="is_private_store" reader="UINT"/>
+			<node name="keep_type" reader="UINT"/>
+			<node name="is_npctrade" reader="UINT"/>
+			<node name="is_commission_store" reader="UINT"/>
+		</for>
+	</file>
+	<file pattern="cn_ertheia" isSafePackage="true">
+		<node name="data" reader="UINT"/>
+		<for name="item_name" size="#data" hidden="false">
+			<node name="id" reader="UINT"/>
+			<node name="name" reader="UNICODE"/>
+			<node name="additionalname" reader="ASCF"/>
+			<node name="description" reader="ASCF"/>
+			<node name="is_trade" reader="UINT"/>
+			<node name="is_drop" reader="UINT"/>
+			<node name="is_destruct" reader="UINT"/>
+			<node name="is_private_store" reader="UINT"/>
+			<node name="keep_type" reader="UINT"/>
+			<node name="is_olympiad_can_use" reader="UINT"/>
+			<node name="enchant_enable" reader="UINT"/>
+			<node name="smelting_enable" reader="UINT"/>
+			<node name="soul_crystal_enable" reader="UINT"/>
+			<node name="elemental_enable" reader="UINT"/>
+			<node name="general_item_tooltip" reader="UINT"/>
+			<node name="default_action" reader="ASCF"/>
+			<node name="use_order" reader="UINT"/>
+			<node name="period_extend" reader="UINT"/>
+			<node name="unk" reader="INT"/>
+			<node name="name_class" reader="UINT"/>
+			<node name="color" reader="UINT"/>
+			<node name="Tooltip_Texture" reader="UNICODE"/>
+			<node name="auction_itemtype" reader="UINT"/>
+			<node name="is_npctrade" reader="UINT"/>
+			<node name="is_npctrade2" reader="UINT"/>
+			<node name="is_npctrade3" reader="UINT"/>
+			<node name="is_npctrade4" reader="UINT"/>
+			<node name="is_npctrade5" reader="UINT"/>
+			<node name="is_npctrade6" reader="UINT"/>
+		</for>
+	</file>
+	<file pattern="ru_infinite_odyssey_hymn_of_doul" isSafePackage="true">
+		<node name="data" reader="UINT"/>
+		<for name="item_name" size="#data" hidden="false">
+			<node name="id" reader="UINT"/>
+			<node name="name" reader="UNICODE"/>
+			<node name="additionalname" reader="ASCF"/>
+			<node name="description" reader="ASCF"/>
+			<node name="popup" reader="INT"/>
+			<node name="default_action" reader="ASCF"/>
+			<node name="use_order" reader="UINT"/>
+			<node name="name_class" reader="UINT"/>
+			<node name="color" reader="UINT"/>
+			<node name="Tooltip_Texture" reader="UNICODE"/>
+			<node name="is_trade" reader="UINT"/>
+			<node name="is_drop" reader="UINT"/>
+			<node name="is_destruct" reader="UINT"/>
+			<node name="is_private_store" reader="UINT"/>
+			<node name="keep_type" reader="UINT"/>
+			<node name="is_npctrade" reader="UINT"/>
+			<node name="is_commission_store" reader="UINT"/>
+		</for>
+	</file>
+	<file pattern="kor_helios_p2" isSafePackage="true">
+		<node name="data" reader="UINT"/>
+		<for name="item_name" size="#data" hidden="false">
+			<node name="id" reader="UINT"/>
+			<node name="name" reader="MAP_INT"/>
+			<node name="additionalname" reader="ASCF"/>
+			<node name="description" reader="ASCF"/>
+			<node name="popup" reader="INT"/>
+			<node name="name_class" reader="UINT"/>
+			<node name="color" reader="UINT"/>
+			<node name="Tooltip_Texture" reader="UINT"/>
+			<node name="is_trade" reader="UINT"/>
+			<node name="is_drop" reader="UINT"/>
+			<node name="is_destruct" reader="UINT"/>
+			<node name="is_private_store" reader="UINT"/>
+			<node name="keep_type" reader="UINT"/>
+			<node name="is_npctrade" reader="UINT"/>
+			<node name="is_commission_store" reader="UINT"/>
+		</for>
+	</file>
+	<file pattern="kor_helios_p3" isSafePackage="true">
+		<node name="data" reader="UINT"/>
+		<for name="item_name" size="#data" hidden="false">
+			<node name="id" reader="UINT"/>
+			<node name="name" reader="MAP_INT"/>
+			<node name="additionalname" reader="MAP_INT"/>
+			<node name="popup" reader="ASCF"/>
+			<node name="description" reader="SHORT"/>
+			<node name="name_class" reader="SHORT"/>
+			<node name="color" reader="UCHAR"/>
+			<node name="Tooltip_Texture" reader="UINT"/>
+			<node name="is_trade" reader="UCHAR"/>
+			<node name="is_drop" reader="UCHAR"/>
+			<node name="is_destruct" reader="UCHAR"/>
+			<node name="is_private_store" reader="UCHAR"/>
+			<node name="keep_type" reader="UCHAR"/>
+			<node name="is_npctrade" reader="UCHAR"/>
+			<node name="is_commission_store" reader="UCHAR"/>
+		</for>
+	</file>
+	<file pattern="kor_helios_p5" isSafePackage="true">
+		<node name="data" reader="UINT"/>
+		<for name="item_name" size="#data" hidden="false">
+			<node name="id" reader="UINT"/>
+			<node name="name" reader="MAP_INT"/>
+			<node name="additionalname" reader="MAP_INT"/>
+			<node name="description" reader="ASCF"/>
+			<node name="popup" reader="SHORT"/>
+			<node name="default_action" reader="ASCF"/>
+			<node name="use_order" reader="UINT"/>
+			<node name="name_class" reader="SHORT"/>
+			<node name="color" reader="UCHAR"/>
+			<node name="Tooltip_Texture" reader="MAP_INT"/>
+			<node name="is_trade" reader="UCHAR"/>
+			<node name="is_drop" reader="UCHAR"/>
+			<node name="is_destruct" reader="UCHAR"/>
+			<node name="is_private_store" reader="UCHAR"/>
+			<node name="keep_type" reader="UCHAR"/>
+			<node name="is_npctrade" reader="UCHAR"/>
+			<node name="is_commission_store" reader="UCHAR"/>
+		</for>
+	</file>
+	<file pattern="kor_grand_crusade_p3" isSafePackage="true">
+		<node name="data" reader="UINT"/>
+		<for name="item_name" size="#data" hidden="false">
+			<node name="id" reader="UINT"/>
+			<node name="name" reader="MAP_INT"/>
+			<node name="additionalname" reader="ASCF"/>
+			<node name="description" reader="ASCF"/>
+			<node name="popup" reader="SHORT"/>
+			<node name="default_action" reader="ASCF"/>
+			<node name="use_order" reader="UINT"/>
+			<node name="name_class" reader="SHORT"/>
+			<node name="color" reader="UCHAR"/>
+			<node name="Tooltip_Texture" reader="MAP_INT"/>
+			<node name="is_trade" reader="UCHAR"/>
+			<node name="is_drop" reader="UCHAR"/>
+			<node name="is_destruct" reader="UCHAR"/>
+			<node name="is_private_store" reader="UCHAR"/>
+			<node name="keep_type" reader="UCHAR"/>
+			<node name="is_npctrade" reader="UCHAR"/>
+			<node name="is_commission_store" reader="UCHAR"/>
+		</for>
+	</file>
+	<file pattern="fufarion_secretofempire_196" isSafePackage="true" format="ItemNameFormat">
+		<node name="data" reader="UINT"/>
+		<for name="item_name" size="#data" hidden="false">
+			<node name="id" reader="UINT"/>
+			<node name="name" reader="MAP_INT"/>
+			<node name="additionalname" reader="ASCF"/>
+			<node name="description" reader="ASCF"/>
+			<node name="popup" reader="SHORT"/>
+			<node name="default_action" reader="ASCF"/>
+			<node name="use_order" reader="UINT"/>
+			<node name="name_class" reader="SHORT"/>
+			<node name="color" reader="UCHAR"/>
+			<node name="Tooltip_Texture" reader="MAP_INT"/>
+			<node name="is_trade" reader="UCHAR"/>
+			<node name="is_drop" reader="UCHAR"/>
+			<node name="is_destruct" reader="UCHAR"/>
+			<node name="is_private_store" reader="UCHAR"/>
+			<node name="keep_type" reader="UCHAR"/>
+			<node name="is_npctrade" reader="UCHAR"/>
+			<node name="is_commission_store" reader="UCHAR"/>
+		</for>
+		<node name="item_autouse" reader="CNTR"/>
+		<for name="item_autouse" size="#item_autouse" hidden="false">
+			<node name="item_id" reader="UINT"/>
+			<node name="autouse_type" reader="UINT"/>
+		</for>
+	</file>
+	<file pattern="preludewar_kamael_228" isSafePackage="true" format="ItemNameFormat">
+		<node name="data" reader="UINT"/>
+		<for name="item_name" size="#data" hidden="false">
+			<node name="id" reader="UINT"/>
+			<node name="name" reader="MAP_INT"/>
+			<node name="additionalname" reader="ASCF"/>
+			<node name="description" reader="ASCF"/>
+			<node name="popup" reader="SHORT"/>
+			<node name="default_action" reader="ASCF"/>
+			<node name="use_order" reader="UINT"/>
+			<node name="name_class" reader="SHORT"/>
+			<node name="color" reader="UCHAR"/>
+			<node name="Tooltip_Texture" reader="MAP_INT"/>
+			<node name="is_trade" reader="UCHAR"/>
+			<node name="is_drop" reader="UCHAR"/>
+			<node name="is_destruct" reader="UCHAR"/>
+			<node name="is_private_store" reader="UCHAR"/>
+			<node name="keep_type" reader="UCHAR"/>
+			<node name="is_npctrade" reader="UCHAR"/>
+			<node name="is_commission_store" reader="UCHAR"/>
+		</for>
+		<node name="item_autouse" reader="CNTR"/>
+		<for name="item_autouse" size="#item_autouse" hidden="false">
+			<node name="item_id" reader="UINT"/>
+			<node name="autouse_type" reader="UBYTE"/>
+		</for>
+	</file>
+	<file pattern="preludewar_kamael_245" isSafePackage="true" format="ItemNameFormat245">
+		<node name="data" reader="UINT"/>
+		<for name="item_name" size="#data" hidden="false">
+			<node name="id" reader="UINT"/>
+			<node name="name" reader="MAP_INT"/>
+			<node name="additionalname" reader="ASCF"/>
+			<node name="description" reader="ASCF"/>
+			<node name="popup" reader="SHORT"/>
+			<node name="default_action" reader="ASCF"/>
+			<node name="use_order" reader="UINT"/>
+			<node name="name_class" reader="SHORT"/>
+			<node name="color" reader="UCHAR"/>
+			<node name="Tooltip_Texture" reader="MAP_INT"/>
+			<node name="is_trade" reader="UCHAR"/>
+			<node name="is_drop" reader="UCHAR"/>
+			<node name="is_destruct" reader="UCHAR"/>
+			<node name="is_private_store" reader="UCHAR"/>
+			<node name="keep_type" reader="UCHAR"/>
+			<node name="is_npctrade" reader="UCHAR"/>
+			<node name="is_commission_store" reader="UCHAR"/>
+		</for>
+		<node name="item_autouse" reader="CNTR"/>
+		<for name="item_autouse" size="#item_autouse" hidden="false">
+			<node name="item_id" reader="UINT"/>
+			<node name="autouse_type" reader="UBYTE"/>
+		</for>
+		<node name="unk" reader="UINT"/>
+		<for name="unk" size="#unk" hidden="false">
+			<node name="unk_item_id" reader="UINT"/>
+			<node name="unk1" reader="UINT"/>
+			<node name="unk2" reader="UBYTE"/>
+			<node name="unk3" reader="USHORT"/>
+		</for>
+	</file>
+	<file pattern="preludewar_kamael_270" isSafePackage="true" format="ItemNameFormat245">
+		<node name="data" reader="UINT"/>
+		<for name="item_name" size="#data" hidden="false">
+			<node name="id" reader="UINT"/>
+			<node name="name" reader="MAP_INT"/>
+			<node name="additionalname" reader="ASCF"/>
+			<node name="description" reader="ASCF"/>
+			<node name="popup" reader="SHORT"/>
+			<node name="default_action" reader="ASCF"/>
+			<node name="use_order" reader="UINT"/>
+			<node name="name_class" reader="SHORT"/>
+			<node name="color" reader="UCHAR"/>
+			<node name="Tooltip_Texture" reader="MAP_INT"/>
+			<node name="Tooltip_BG_Texture" reader="MAP_INT"/>
+			<node name="Tooltip_BG_Texture_Compare" reader="MAP_INT"/>
+			<node name="Tooltip_BG_Deco_Texture" reader="MAP_INT"/>
+			<node name="is_trade" reader="UCHAR"/>
+			<node name="is_drop" reader="UCHAR"/>
+			<node name="is_destruct" reader="UCHAR"/>
+			<node name="is_private_store" reader="UCHAR"/>
+			<node name="keep_type" reader="UCHAR"/>
+			<node name="is_npctrade" reader="UCHAR"/>
+			<node name="is_commission_store" reader="UCHAR"/>
+		</for>
+		<node name="item_autouse" reader="CNTR"/>
+		<for name="item_autouse" size="#item_autouse" hidden="false">
+			<node name="item_id" reader="UINT"/>
+			<node name="autouse_type" reader="UBYTE"/>
+		</for>
+		<node name="unk" reader="UINT"/>
+		<for name="unk" size="#unk" hidden="false">
+			<node name="unk_item_id" reader="UINT"/>
+			<node name="unk1" reader="UINT"/>
+			<node name="unk2" reader="UBYTE"/>
+			<node name="unk3" reader="USHORT"/>
+		</for>
+	</file>
+	<file pattern="homunculus_kamael_286" isSafePackage="true" format="ItemNameFormat245">
+		<node name="data" reader="UINT"/>
+		<for name="item_name" size="#data" hidden="false">
+			<node name="id" reader="UINT"/>
+			<node name="name" reader="MAP_INT"/>
+			<node name="additionalname" reader="ASCF"/>
+			<node name="description" reader="ASCF"/>
+			<node name="popup" reader="SHORT"/>
+			<node name="default_action" reader="ASCF"/>
+			<node name="use_order" reader="UINT"/>
+			<node name="name_class" reader="SHORT"/>
+			<node name="color" reader="UCHAR"/>
+			<node name="Tooltip_Texture" reader="MAP_INT"/>
+			<node name="Tooltip_BG_Texture" reader="MAP_INT"/>
+			<node name="Tooltip_BG_Texture_Compare" reader="MAP_INT"/>
+			<node name="Tooltip_BG_Deco_Texture" reader="MAP_INT"/>
+			<node name="is_trade" reader="UCHAR"/>
+			<node name="is_drop" reader="UCHAR"/>
+			<node name="is_destruct" reader="UCHAR"/>
+			<node name="is_private_store" reader="UCHAR"/>
+			<node name="keep_type" reader="UCHAR"/>
+			<node name="is_npctrade" reader="UCHAR"/>
+			<node name="is_commission_store" reader="UCHAR"/>
+			<node name="enchant_bless" reader="UINT"/>
+			<node name="DBdelete" reader="LONG"/>
+			<node name="create_items_list_c" reader="CNTR"/>
+			<for name="create_items_list" size="#create_items_list_c">
+				<node name="create_item_id" reader="UINT"/>
+				<node name="create_item_count" reader="UINT"/>
+				<node name="create_item_enchant" reader="UCHAR"/>
+				<node name="create_item_UNK1" reader="USHORT"/>
+				<node name="create_item_UNK2" reader="UBYTE"/>
+				<node name="create_item_type" reader="UBYTE"/><!--1 - guaranteed, 2 - random-->
+			</for>
+			<node name="sort_order" reader="UCHAR"/>
+		</for>
+		<node name="item_autouse" reader="CNTR"/>
+		<for name="item_autouse" size="#item_autouse" hidden="false">
+			<node name="item_id" reader="UINT"/>
+			<node name="autouse_type" reader="UBYTE"/>
+		</for>
+		<node name="item_enchant" reader="UINT"/>
+		<for name="item_enchant" size="#item_enchant" hidden="false">
+			<node name="item_ex_id" reader="UINT"/>
+			<node name="keep_type_selection" reader="UCHAR" enum_name="keep_type_selection"/>
+			<wrapper name="keep_type_enchant">
+				<node name="KeepEnchantCondition" reader="UINT"/>
+				<node name="KeepOption1" reader="UCHAR"/>
+				<node name="KeepOption2" reader="UCHAR"/>
+			</wrapper>
+		</for>
+	</file>
+	<file pattern="death_knight_362" isSafePackage="true" format="ItemNameFormat245">
+		<node name="data" reader="UINT"/>
+		<for name="item_name" size="#data" hidden="false">
+			<node name="id" reader="UINT"/>
+			<node name="name" reader="MAP_INT"/>
+			<node name="additionalname" reader="ASCF"/>
+			<node name="description" reader="ASCF"/>
+			<node name="popup" reader="SHORT"/>
+			<node name="default_action" reader="ASCF"/>
+			<node name="use_order" reader="UINT"/>
+			<node name="name_class" reader="SHORT"/>
+			<node name="color" reader="UCHAR"/>
+			<node name="Tooltip_Texture" reader="MAP_INT"/>
+			<node name="Tooltip_BG_Texture" reader="MAP_INT"/>
+			<node name="Tooltip_BG_Texture_Compare" reader="MAP_INT"/>
+			<node name="Tooltip_BG_Deco_Texture" reader="MAP_INT"/>
+			<node name="is_trade" reader="UCHAR"/>
+			<node name="is_drop" reader="UCHAR"/>
+			<node name="is_destruct" reader="UCHAR"/>
+			<node name="is_private_store" reader="UCHAR"/>
+			<node name="keep_type" reader="UCHAR"/>
+			<node name="is_npctrade" reader="UCHAR"/>
+			<node name="is_commission_store" reader="UCHAR"/>
+			<node name="enchant_bless" reader="UINT"/>
+			<node name="DBdelete" reader="LONG"/>
+			<node name="create_items_list_c" reader="CNTR"/>
+			<for name="create_items_list" size="#create_items_list_c">
+				<node name="items_drop_type" reader="UBYTE"/><!--0 - Gauranted, 1 - Addtional not-gauranted, 2 - random-->
+				<node name="list_cntr" reader="CNTR"/>
+				<for name="list" size="#list_cntr">
+					<node name="create_item_id" reader="UINT"/>
+					<node name="create_item_count" reader="UINT"/>
+					<node name="create_item_enchant" reader="UCHAR"/>
+					<node name="create_item_UNK1" reader="USHORT"/>
+					<node name="create_item_UNK2" reader="UBYTE"/>
+					<node name="create_item_UNK3" reader="UINT"/>
+				</for>
+			</for>
+			<node name="sort_order" reader="UCHAR"/>
+			<node name="auction_category" reader="UINT"/>
+		</for>
+		<node name="item_autouse" reader="CNTR"/>
+		<for name="item_autouse" size="#item_autouse" hidden="false">
+			<node name="item_id" reader="UINT"/>
+			<node name="autouse_type" reader="UBYTE"/>
+		</for>
+		<node name="item_enchant" reader="UINT"/>
+		<for name="item_enchant" size="#item_enchant" hidden="false">
+			<node name="item_ex_id" reader="UINT"/>
+			<node name="keep_type_selection" reader="UCHAR" enum_name="keep_type_selection"/>
+			<wrapper name="keep_type_enchant">
+				<node name="KeepEnchantCondition" reader="UINT"/>
+				<node name="KeepOption1" reader="UCHAR"/>
+				<node name="KeepOption2" reader="UCHAR"/>
+			</wrapper>
+		</for>
+	</file>
+	<file pattern="crusade_388" isSafePackage="true" format="ItemNameFormat245">
+		<node name="data" reader="UINT"/>
+		<for name="item_name" size="#data" hidden="false">
+			<node name="id" reader="UINT"/>
+			<node name="name" reader="MAP_INT"/>
+			<node name="additionalname" reader="ASCF"/>
+			<node name="description" reader="ASCF"/>
+			<node name="popup" reader="SHORT"/>
+			<node name="default_action" reader="UINT" enum_name="item_default_action"/>
+			<node name="use_order" reader="UINT"/>
+			<node name="name_class" reader="SHORT"/>
+			<node name="color" reader="UCHAR"/>
+			<node name="Tooltip_Texture" reader="MAP_INT"/>
+			<node name="Tooltip_BG_Texture" reader="MAP_INT"/>
+			<node name="Tooltip_BG_Texture_Compare" reader="MAP_INT"/>
+			<node name="Tooltip_BG_Deco_Texture" reader="MAP_INT"/>
+			<node name="is_trade" reader="UCHAR"/>
+			<node name="is_drop" reader="UCHAR"/>
+			<node name="is_destruct" reader="UCHAR"/>
+			<node name="is_private_store" reader="UCHAR"/>
+			<node name="keep_type" reader="UCHAR"/>
+			<node name="is_npctrade" reader="UCHAR"/>
+			<node name="is_commission_store" reader="UCHAR"/>
+			<node name="enchant_bless" reader="UINT"/>
+			<node name="DBdelete" reader="LONG"/>
+			<node name="create_items_list_c" reader="CNTR"/>
+			<for name="create_items_list" size="#create_items_list_c">
+				<node name="items_drop_type" reader="UBYTE"/><!--0 - Gauranted, 1 - Addtional not-gauranted, 2 - random-->
+				<node name="list_cntr" reader="CNTR"/>
+				<for name="list" size="#list_cntr">
+					<node name="create_item_id" reader="UINT"/>
+					<node name="create_item_count" reader="UINT"/>
+					<node name="create_item_enchant" reader="UCHAR"/>
+					<node name="create_item_UNK1" reader="USHORT"/>
+					<node name="create_item_UNK2" reader="UBYTE"/>
+					<node name="create_item_UNK3" reader="UINT"/>
+				</for>
+			</for>
+			<node name="sort_order" reader="UCHAR"/>
+			<node name="auction_category" reader="UINT"/>
+		</for>
+		<node name="item_autouse" reader="CNTR"/>
+		<for name="item_autouse" size="#item_autouse" hidden="false">
+			<node name="item_id" reader="UINT"/>
+			<node name="autouse_type" reader="UBYTE"/>
+		</for>
+		<node name="item_enchant" reader="UINT"/>
+		<for name="item_enchant" size="#item_enchant" hidden="false">
+			<node name="item_ex_id" reader="UINT"/>
+			<node name="keep_type_selection" reader="UCHAR" enum_name="keep_type_selection"/>
+			<wrapper name="keep_type_enchant">
+				<node name="KeepEnchantCondition" reader="UINT"/>
+				<node name="KeepOption1" reader="UCHAR"/>
+				<node name="KeepOption2" reader="UCHAR"/>
+			</wrapper>
+		</for>
+	</file>
+	<file pattern="seven_signs_447" isSafePackage="true" format="ItemNameFormat245">
+		<node name="data" reader="UINT"/>
+		<for name="item_name" size="#data" hidden="false">
+			<node name="id" reader="UINT"/>
+			<node name="name" reader="MAP_INT"/>
+			<node name="additionalname" reader="ASCF"/>
+			<node name="description" reader="ASCF"/>
+			<node name="popup" reader="SHORT"/>
+			<node name="default_action" reader="UINT" enum_name="item_default_action"/>
+			<node name="use_order" reader="UINT"/>
+			<node name="name_class" reader="SHORT"/>
+			<node name="color" reader="UCHAR"/>
+			<node name="Tooltip_Texture" reader="MAP_INT"/>
+			<node name="Tooltip_BG_Texture" reader="MAP_INT"/>
+			<node name="Tooltip_BG_Texture_Compare" reader="MAP_INT"/>
+			<node name="Tooltip_BG_Deco_Texture" reader="MAP_INT"/>
+			<node name="is_trade" reader="UCHAR"/>
+			<node name="is_drop" reader="UCHAR"/>
+			<node name="is_destruct" reader="UCHAR"/>
+			<node name="is_private_store" reader="UCHAR"/>
+			<node name="keep_type" reader="UCHAR"/>
+			<node name="is_npctrade" reader="UCHAR"/>
+			<node name="is_commission_store" reader="UCHAR"/>
+			<node name="enchant_bless" reader="UINT"/>
+			<node name="create_items_list_c" reader="CNTR"/>
+			<for name="create_items_list" size="#create_items_list_c">
+				<node name="items_drop_type" reader="UBYTE"/><!--0 - Gauranted, 1 - Addtional not-gauranted, 2 - random-->
+				<node name="list_cntr" reader="CNTR"/>
+				<for name="list" size="#list_cntr">
+					<node name="create_item_id" reader="UINT"/>
+					<node name="create_item_count" reader="UINT"/>
+					<node name="create_item_enchant" reader="UCHAR"/>
+					<node name="create_item_UNK1" reader="USHORT"/>
+					<node name="create_item_UNK2" reader="UBYTE"/>
+					<node name="create_item_UNK3" reader="UINT"/>
+				</for>
+			</for>
+			<node name="sort_order" reader="UCHAR"/>
+			<node name="auction_category" reader="UINT"/>
+		</for>
+		<node name="item_autouse" reader="CNTR"/>
+		<for name="item_autouse" size="#item_autouse" hidden="false">
+			<node name="item_id" reader="UINT"/>
+			<node name="autouse_type" reader="UBYTE"/>
+		</for>
+		<node name="item_enchant" reader="UINT"/>
+		<for name="item_enchant" size="#item_enchant" hidden="false">
+			<node name="item_ex_id" reader="UINT"/>
+			<node name="keep_type_selection" reader="UCHAR" enum_name="keep_type_selection"/>
+			<wrapper name="keep_type_enchant">
+				<node name="KeepEnchantCondition" reader="UINT"/>
+				<node name="KeepOption1" reader="UCHAR"/>
+				<node name="KeepOption2" reader="UCHAR"/>
+			</wrapper>
+		</for>
+	</file>
+	<file pattern="high_elf_474" isSafePackage="true" format="ItemNameFormat245">
+		<node name="data" reader="UINT"/>
+		<for name="item_name" size="#data" hidden="false">
+			<node name="id" reader="UINT"/>
+			<node name="name" reader="MAP_INT"/>
+			<node name="additionalname" reader="ASCF"/>
+			<node name="description" reader="ASCF"/>
+			<node name="popup" reader="SHORT"/>
+			<node name="default_action" reader="UINT" enum_name="item_default_action"/>
+			<node name="use_order" reader="UINT"/>
+			<node name="name_class" reader="SHORT"/>
+			<node name="color" reader="UCHAR"/>
+			<node name="Tooltip_Texture" reader="MAP_INT"/>
+			<node name="Tooltip_BG_Texture" reader="MAP_INT"/>
+			<node name="Tooltip_BG_Texture_Compare" reader="MAP_INT"/>
+			<node name="Tooltip_BG_Deco_Texture" reader="MAP_INT"/>
+			<node name="is_trade" reader="UCHAR"/>
+			<node name="is_drop" reader="UCHAR"/>
+			<node name="is_destruct" reader="UCHAR"/>
+			<node name="is_private_store" reader="UCHAR"/>
+			<node name="keep_type" reader="UCHAR"/>
+			<node name="is_npctrade" reader="UCHAR"/>
+			<node name="is_commission_store" reader="UCHAR"/>
+			<node name="enchant_bless" reader="UINT"/>
+			<node name="show_create_items" reader="UCHAR"/>
+			<node name="sort_order" reader="UCHAR"/>
+			<node name="auction_category" reader="UINT"/>
+		</for>
+		<node name="item_autouse" reader="CNTR"/>
+		<for name="item_autouse" size="#item_autouse" hidden="false">
+			<node name="item_id" reader="UINT"/>
+			<node name="autouse_type" reader="UBYTE"/>
+		</for>
+		<node name="item_enchant" reader="UINT"/>
+		<for name="item_enchant" size="#item_enchant" hidden="false">
+			<node name="item_ex_id" reader="UINT"/>
+			<node name="keep_type_selection" reader="UCHAR" enum_name="keep_type_selection"/>
+			<wrapper name="keep_type_enchant">
+				<node name="KeepEnchantCondition" reader="UINT"/>
+				<node name="KeepOption1" reader="UCHAR"/>
+				<node name="KeepOption2" reader="UCHAR"/>
+			</wrapper>
+		</for>
+	</file>
+</list>

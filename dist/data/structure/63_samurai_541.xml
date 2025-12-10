@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--AUTHOR: Bonux-->
+<!--bonuxq@gmail.com-->
+<list>
+	<links id="630" parent_id="620" name="Samurai (541)">
+		<link pattern="ArmorGradeLookChange(_Classic(Aden)?)?\.dat" file="armorgradelookchange" version="assassin_414"/>
+		<link pattern="GamePlayData(_Classic(Aden)?)?\.dat" file="gameplaydata" version="samurai_541"/>
+		<link pattern="Server_Id_List(_Classic(Aden)?)?\.dat" file="Server_Id_List" version="high_elf_464"/>
+		<link pattern="CombinationItemData(_Classic(Aden)?)?\.dat" file="combinationitemdata" version="samurai_541"/>
+		<link pattern="MinimapRegion(_Classic(Aden)?)?\.dat" file="minimapregion" version="high_elf_464"/>
+		<link pattern="UpgradeSystem(_Classic(Aden)?)?\.dat" file="upgradesystem" version="death_knight_2_430"/>
+		<link pattern="UpgradeSystem_Normal(_Classic(Aden)?)?\.dat" file="upgradesystem_normal" version="high_elf_474"/>
+		<link pattern="variationdata_stone(_Classic(Aden)?)?\.dat" file="variationdata_stone" version="assassin_414"/>
+	</links>
+</list>

@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<list>
+	<links id="140" parent_id="130" name="High Five (Part 4)">
+		<link pattern="actionname-[\w]+\.dat" file="actionname" version="high_five_p4"/>
+		<link pattern="AdditionalEffect.dat" file="additionaleffect" version="high_five_p4"/>
+		<link pattern="AdditionalItemgrp.dat" file="additionalitemgrp" version="high_five_p4"/>
+		<link pattern="armorgrp.dat" file="armorgrp" version="high_five_p4"/>
+		<link pattern="britemgrp.dat" file="britemgrp" version="high_five_p4"/>
+		<link pattern="castlename-[\w]+\.dat" file="castlename" version="kor_lindvior"/>
+		<link pattern="timelimit_name-[\w]+\.dat" file="timelimit_name" version="cn_lindvior"/>
+		<link pattern="AttendanceStamp\.dat" file="attendancestamp" version="cn_lindvior"/>
+		<link pattern="IDCName-[\w]+\.dat" file="idcname" version="cn_lindvior"/>
+		<link pattern="charcreategrp.dat" file="charcreategrp" version="high_five_p4"/>
+		<link pattern="Chargrp.dat" file="chargrp" version="high_five_p4"/>
+		<link pattern="classinfo-[\w]+\.dat" file="classinfo" version="high_five_p4"/>
+		<link pattern="commandname-[\w]+\.dat" file="commandname" version="kor_lindvior"/>
+		<link pattern="entereventgrp.dat" file="entereventgrp" version="kor_lindvior"/>
+		<link pattern="etcitemgrp.dat" file="etcitemgrp" version="high_five_p4"/>
+		<link pattern="eula-[\w]+\.dat" file="eula" version="kor_lindvior"/>
+		<link pattern="exceptionminimapdata.dat" file="exceptionminimapdata" version="high_five_p4"/>
+		<link pattern="gametip-[\w]+\.dat" file="gametip" version="high_five_p4"/>
+		<link pattern="goodsicon.dat" file="goodsicon" version="kor_lindvior"/>
+		<link pattern="hairaccessorylocgrp.dat" file="hairaccessorylocgrp" version="kor_lindvior"/>
+		<link pattern="hennagrp-[\w]+\.dat" file="hennagrp" version="kor_lindvior"/>
+		<link pattern="huntingzone-[\w]+\.dat" file="huntingzone" version="kor_lindvior"/>
+		<link pattern="instantzonedata-[\w]+\.dat" file="instantzonedata" version="kor_lindvior"/>
+		<link pattern="itemname-[\w]+\.dat" file="itemname" version="high_five_p4"/>
+		<link pattern="logongrp.dat" file="logongrp" version="kor_lindvior"/>
+		<link pattern="mantleexception.dat" file="mantleexception" version="kor_lindvior"/>
+		<link pattern="mobskillanimgrp.dat" file="mobskillanimgrp" version="kor_lindvior"/>
+		<link pattern="musicinfo.dat" file="musicinfo" version="kor_lindvior"/>
+		<link pattern="npcgrp\.dat" file="npcgrp" version="high_five_p4"/>
+		<link pattern="npcname-[\w]+\.dat" file="npcname" version="kor_lindvior"/>
+		<link pattern="npcstring-[\w]+\.dat" file="npcstring" version="kor_lindvior"/>
+		<link pattern="obscene-[\w]+\.dat" file="obscene" version="kor_lindvior"/>
+		<link pattern="optiondata_client-[\w]+\.dat" file="optiondata_client" version="kor_lindvior"/>
+		<link pattern="posteffectdata.dat" file="posteffectdata" version="high_five_p4"/>
+		<link pattern="ProductName-[\w]+\.dat" file="productname" version="high_five_p4"/>
+		<link pattern="questname-[\w]+\.dat" file="questname" version="high_five_p4"/>
+		<link pattern="raiddata-[\w]+\.dat" file="raiddata" version="cn_lindvior"/>
+		<link pattern="recipe(-c)?\.dat" file="recipe" version="high_five_p4"/>
+		<link pattern="sceneplayerdata.dat" file="sceneplayerdata" version="kor_lindvior"/>
+		<link pattern="servername-[\w]+\.dat" file="servername" version="kor_lindvior"/>
+		<link pattern="shortcutalias.dat" file="shortcutalias" version="kor_lindvior"/>
+		<link pattern="skillgrp.dat" file="skillgrp" version="high_five_p4"/>
+		<link pattern="skillname-[\w]+\.dat" file="skillname" version="kor_lindvior"/>
+		<link pattern="OneDayReward-[\w]+\.dat" file="onedayreward" version="cn_lindvior"/>
+		<link pattern="skillsoundgrp.dat" file="skillsoundgrp" version="high_five_p4"/>
+		<link pattern="skillsoundsource.dat" file="skillsoundsource" version="kor_lindvior"/>
+		<link pattern="staticobject-[\w]+\.dat" file="staticobject" version="kor_lindvior"/>
+		<link pattern="symbolname-[\w]+\.dat" file="symbolname" version="kor_lindvior"/>
+		<link pattern="sysstring-[\w]+\.dat" file="sysstring" version="kor_lindvior"/>
+		<link pattern="systemmsg-[\w]+\.dat" file="systemmsg" version="kor_lindvior"/>
+		<link pattern="transformdata.dat" file="transformdata" version="kor_lindvior"/>
+		<link pattern="variationeffectgrp-[\w]+\.dat" file="variationeffectgrp" version="kor_lindvior"/>
+		<link pattern="vehiclepartsgrp.dat" file="vehiclepartsgrp" version="kor_lindvior"/>
+		<link pattern="Weapongrp.dat" file="weapongrp" version="high_five_p4"/>
+		<link pattern="zonename-[\w]+\.dat" file="zonename" version="high_five_p4"/>
+	</links>
+</list>

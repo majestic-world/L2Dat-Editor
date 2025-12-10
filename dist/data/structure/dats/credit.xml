@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<list>
+	<file pattern="interlude" isSafePackage="true">
+		<node name="data" reader="UINT"/>
+		<for name="credit" size="#data" hidden="false">
+			<node name="id" reader="UINT"/>
+			<node name="html" reader="ASCF"/>
+			<node name="image" reader="ASCF"/>
+			<node name="time" reader="UINT"/>
+			<node name="align" reader="UINT"/>
+		</for>
+	</file>
+	<file pattern="kor_lindvior" isRaw="true" isSafePackage="true">
+		<node name="text" reader="ASCF"/>
+	</file>
+	<file pattern="fufarion_secretofempire_166" isSafePackage="true">
+		<node name="data" reader="CNTR"/>
+		<for name="department" size="#data" hidden="false">
+			<node name="team" reader="CNTR"/>
+			<for name="team" size="#team" hidden="false">
+				<node name="member" reader="CNTR"/>
+				<for name="member" size="#member" hidden="false">
+					<node name="name" reader="ASCF"/>
+					<node name="comment" reader="ASCF"/>
+				</for>
+				<node name="t_position" reader="ASCF"/>
+				<node name="t_сomment" reader="ASCF"/>
+			</for>
+			<node name="d_name" reader="ASCF"/>
+			<node name="d_comment" reader="ASCF"/>
+		</for>
+	</file>
+</list>

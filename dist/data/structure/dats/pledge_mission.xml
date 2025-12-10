@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<list>
+	<file pattern="preludewar_kamael_245" isSafePackage="true">
+		<node name="data" reader="UINT"/>
+		<for name="pledge_mission" size="#data" hidden="false">
+			<node name="id" reader="USHORT"/>
+			<node name="category" reader="UBYTE"/>
+			<node name="is_repeat" reader="UBYTE"/>
+			<node name="name" reader="ASCF"/>
+			<node name="pledge_level" reader="UBYTE"/>
+			<node name="c_pledge_mastery" reader="USHORT"/>
+			<node name="min_level" reader="UBYTE"/>
+			<node name="max_level" reader="UBYTE"/>
+			<node name="job_main" reader="UBYTE"/>
+			<node name="job_dual" reader="UBYTE"/>
+			<node name="job_sub" reader="UBYTE"/>
+			<node name="pre_mission_id" reader="USHORT"/>
+			
+			<!-- ???????? -->
+			<node name="start_date" reader="UINT"/>
+			<node name="start_time" reader="UINT"/>
+			<node name="end_date" reader="UINT"/>
+			<node name="end_time" reader="UINT"/>
+			<node name="activate_time" reader="USHORT"/>
+			<node name="deactivate_time" reader="USHORT"/>
+			<node name="unknown_bytes" reader="USHORT"/>
+			<node name="available_day" reader="CNTR"/>
+			<for name="available_day" size="#available_day">
+				<node name="day" reader="UBYTE"/> <!-- type? -->
+			</for>
+			<!-- ???????? -->
+			
+			<node name="goal_desc" reader="ASCF"/>
+			<node name="goal_count" reader="UINT"/>
+			
+			<node name="reward_pledge_name_value" reader="UINT"/>
+			<node name="reward_pvp_point" reader="UINT"/>
+			
+			<node name="reward_items" reader="CNTR"/>
+			<for name="reward_items" size="#reward_items">
+				<node name="item_id" reader="UINT"/>
+				<node name="item_count" reader="UINT"/>
+			</for>
+		</for>
+	</file>
+</list>
+<!--
+	FString::FString(USHORT, L"id");
+	FString::FString(ASCF, L"name");
+	FString::FString(USHORT, L"category");
+	FString::FString(USHORT, L"is_repeat");
+	FString::FString(USHORT, L"pledge_level");
+	FString::FString(USHORT, L"c_pledge_mastery");
+	FString::FString(USHORT, L"min_level");
+	FString::FString(USHORT, L"max_level");
+	FString::FString(USHORT, L"job_main");
+	FString::FString(USHORT, L"job_dual");
+	FString::FString(USHORT, L"job_sub");
+	FString::FString(USHORT, L"pre_mission_id");
+	FString::FString(USHORT, L"start_date");
+	FString::FString(USHORT, L"start_time");
+	FString::FString(USHORT, L"end_date");
+	FString::FString(USHORT, L"end_time");
+	FString::FString(USHORT, L"activate_time");
+	FString::FString(USHORT, L"deactivate_time");
+	FString::FString(v41-UINT, L"available_day");
+	FString::FString(ASCF, L"goal_desc");
+	FString::FString(USHORT, L"goal_count");
+	FString::FString(USHORT, L"reward_pledge_name_value");
+	FString::FString(USHORT, L"reward_pvp_point");
+	FString::FString(v32-UINT, L"reward_items");
+-->

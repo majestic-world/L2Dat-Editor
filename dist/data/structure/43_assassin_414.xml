@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--AUTHOR: Bonux-->
+<!--bonuxq@gmail.com-->
+<list>
+	<links id="430" parent_id="420" name="Assassin (414)">
+		<link pattern="systemmsg(_Classic(Aden)?)?-[\w]+\.dat" file="systemmsg" version="assassin_414"/>
+		<link pattern="missionlevel_Classic(Aden)?(-[\w]+)?\.dat" file="missionlevel" version="death_knight_362"/>
+		<link pattern="LCoinShopBanner(_Classic(Aden)?)?(-[\w]+)?\.dat" file="lcoinshopbanner" version="assassin_414"/>
+		<link pattern="GamePlayData(_Classic(Aden)?)?\.dat" file="gameplaydata" version="assassin_414"/>
+		<link pattern="armorgrp(_Classic(Aden)?)?\.dat" file="armorgrp" version="assassin_414"/>
+		<link pattern="etcitemgrp(_Classic(Aden)?)?\.dat" file="etcitemgrp" version="assassin_414"/>
+		<link pattern="Weapongrp(_Classic(Aden)?)?\.dat" file="weapongrp" version="assassin_414"/>
+		<link pattern="MSConditionData(_Classic(Aden)?)?\.dat" file="msconditiondata" version="assassin_414"/>
+		<link pattern="variationdata_stone(_Classic(Aden)?)?\.dat" file="variationdata_stone" version="assassin_414"/>
+		<link pattern="skillgrp(_Classic(Aden)?)?\.dat" file="skillgrp" version="assassin_414"/>
+		<link pattern="logongrp(_Classic(Aden)?)?\.dat" file="logongrp" version="assassin_414"/>
+		<link pattern="skillsoundgrp(_Classic(Aden)?)?\.dat" file="skillsoundgrp" version="assassin_414"/>
+		<link pattern="ReplaceSkillIcon(_Classic(Aden)?)?\.dat" file="ReplaceSkillIcon" version="assassin_414"/>
+		<link pattern="MSAffectData(_Classic(Aden)?)?\.dat" file="msaffectdata" version="assassin_414"/>
+		<link pattern="abnormaldefaulteffect_Classic(Aden)?\.dat" file="abnormaldefaulteffect" version="assassin_414_classic"/>
+		<link pattern="AdditionalNpcGrpParts(_Classic(Aden)?)?\.dat" file="additionalnpcgrpparts" version="assassin_414"/>
+		<link pattern="AnimationCombo_Classic(Aden)?\.dat" file="animationcombo" version="assassin_414_classic"/>
+		<link pattern="charcreategrp(_Classic(Aden)?)?\.dat" file="charcreategrp" version="assassin_414"/>
+		<link pattern="ClassTreeDesc(_Classic(Aden)?)?(-[\w]+)?\.dat" file="classtreedesc" version="fufarion_secretofempire_196"/>
+		<link pattern="ItemMultisell(_Classic(Aden)?)?-[\w]+\.dat" file="itemmultisell" version="assassin_414"/>
+		<link pattern="SkillAcquire(_Classic(Aden)?)?\.dat" file="skillacquire" version="assassin_414"/>
+		<link pattern="UpgradeSystem_Normal(_Classic(Aden)?)?\.dat" file="upgradesystem_normal" version="assassin_414"/>
+		<link pattern="DethroneDailyMission(-[\w]+)?\.dat" file="dethronedailymission" version="assassin_414"/>
+		<link pattern="DethroneDistrictName(-[\w]+)?\.dat" file="dethronedistrictname" version="death_knight_338"/>
+		<link pattern="EventLookChange.dat" file="eventlookchange" version="assassin_414"/>
+		<link pattern="AdditionalEffect(_Classic(Aden)?)?\.dat" file="additionaleffect" version="assassin_414"/>
+		<link pattern="CombinationItemData(_Classic(Aden)?)?\.dat" file="combinationitemdata" version="assassin_414"/>
+		<link pattern="UpgradeSystem(_Classic(Aden)?)?\.dat" file="upgradesystem" version="assassin_414"/>
+		<link pattern="MinimapRegion(_Classic(Aden)?)?\.dat" file="minimapregion" version="assassin_414"/>
+		<link pattern="NewQuestData(_Classic(Aden)?)?(-[\w]+)?\.dat" file="newquestdata" version="assassin_414"/>
+		<link pattern="NewQuestDialog(_Classic(Aden)?)?(-[\w]+)?\.dat" file="newquestdialog" version="assassin_414"/>
+		<link pattern="NewQuestNpcPortrait(_Classic(Aden)?)?\.dat" file="newquestnpcportrait" version="assassin_414"/>
+		<link pattern="SkillEnchantCharge(_Classic(Aden)?)?\.dat" file="skillenchantcharge" version="assassin_414"/>
+		<link pattern="EventLookChange(_Classic(Aden)?)?\.dat" file="eventlookchange" version="assassin_414"/>
+		<link pattern="ArmorGradeLookChange(_Classic(Aden)?)?\.dat" file="armorgradelookchange" version="assassin_414"/>
+		<link pattern="PledgeCrestPreset(_Classic(Aden)?)?\.dat" file="PledgeCrestPreset" version="assassin_414"/>
+		<link pattern="enchantscrollset(_Classic(Aden)?)?\.dat" file="enchantscrollset" version="assassin_414"/>
+	</links>
+</list>

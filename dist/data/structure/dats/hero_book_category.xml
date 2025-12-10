@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--AUTHOR: Bonux-->
+<!--bonuxq@gmail.com-->
+<list>
+	<file pattern="rose_vain_520_kr" isSafePackage="true">
+		<node name="data" reader="UINT"/>
+		<for name="category" size="#data" hidden="false">
+			<node name="id" reader="UBYTE"/>
+			<write name="\r\n"/>
+			<node name="entry_count" reader="CNTR"/>
+			<for name="entry" size="#entry_count" hidden="false">
+				<node name="item_id"  reader="UINT"/>
+				<node name="type" reader="UBYTE"/>
+			</for>
+		</for>
+	</file>
+</list>

@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<list>
+	<file pattern="guardians_493" isSafePackage="true">
+		<node name="data" reader="UINT"/>
+		<for name="variation_exeffect" size="#data" hidden="false">
+			<node name="unk_1" reader="UBYTE"/>
+			<node name="unk_2" reader="UBYTE"/>
+			<node name="unk_3" reader="USHORT"/>
+			<node name="unk_4" reader="UBYTE"/>
+			<node name="unk_5" reader="UBYTE"/>
+		</for>
+	</file>
+</list>

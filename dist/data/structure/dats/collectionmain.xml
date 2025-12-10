@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<list>
+	<file pattern="queen_ant_sylph_306" isSafePackage="true">
+		<for name="collectionmain" size="1" hidden="false">
+			<node name="data" reader="UINT"/>
+			<write name="\r\n"/>
+			<for name="collection" size="7" hidden="false">
+				<node name="main_id" reader="UINT"/>
+				<node name="background_level" reader="UINT"/>
+				<node name="category" reader="UINT"/>
+				<node name="collection_id" reader="UINT"/>
+				<node name="key_item_id" reader="UINT"/>
+				<node name="key_effect" reader="UINT"/>
+			</for>
+		</for>
+	</file>
+	<file pattern="queen_ant_sylph_311" isSafePackage="true">
+		<for name="collectionmain" size="1" hidden="false">
+			<node name="data" reader="UINT"/>
+			<write name="\r\n"/>
+			<for name="collection" size="18" hidden="false">
+				<node name="main_id" reader="UINT"/>
+				<node name="background_level" reader="UINT"/>
+				<node name="category" reader="UINT"/>
+				<node name="collection_id" reader="UINT"/>
+				<node name="key_item_id" reader="UINT"/>
+				<node name="key_effect" reader="UINT"/>
+			</for>
+		</for>
+	</file>
+	<file pattern="death_knight_338" isSafePackage="true">
+		<for name="collectionmain" size="1" hidden="false">
+			<node name="data" reader="UINT"/>
+			<write name="\r\n"/>
+			<for name="collection" size="9" hidden="false">
+				<node name="main_id" reader="UINT"/>
+				<node name="background_level" reader="UINT"/>
+				<node name="category" reader="UINT"/>
+				<node name="collection_id" reader="UINT"/>
+				<node name="key_item_id" reader="UINT"/>
+				<node name="key_effect" reader="UINT"/>
+			</for>
+		</for>
+	</file>
+	<file pattern="death_knight_338_classic" isSafePackage="true">
+		<for name="collectionmain" size="1" hidden="false">
+			<node name="data" reader="UINT"/>
+			<write name="\r\n"/>
+			<for name="collection" size="18" hidden="false">
+				<node name="main_id" reader="UINT"/>
+				<node name="background_level" reader="UINT"/>
+				<node name="category" reader="UINT"/>
+				<node name="collection_id" reader="UINT"/>
+				<node name="key_item_id" reader="UINT"/>
+				<node name="key_effect" reader="UINT"/>
+			</for>
+		</for>
+	</file>
+	<file pattern="death_knight_2_430" isSafePackage="true">
+		<node name="data" reader="UINT"/>
+		<for name="collection" size="#data" hidden="false">
+			<node name="main_id" reader="UINT"/>
+			<node name="background_level" reader="UINT"/>
+			<node name="category" reader="UINT"/>
+			<node name="collection_id" reader="UINT"/>
+			<node name="key_item_id" reader="UINT"/>
+			<node name="key_effect" reader="UINT"/>
+		</for>
+	</file>
+	<file pattern="project_wolf_516_kr" isSafePackage="true">
+		<node name="data" reader="UINT"/>
+		<for name="collection" size="#data" hidden="false">
+			<node name="main_id" reader="UINT"/>
+			<node name="background_level" reader="UINT"/>
+			<node name="category" reader="UINT"/>
+			<node name="collection_id" reader="UINT"/>
+			<node name="key_item_id" reader="UINT"/>
+			<node name="key_effect" reader="UINT"/>
+			<node name="show_server" reader="UCHAR"/>
+			<for name="show_server" size="#show_server">
+				<node name="show_server1" reader="UINT"/>
+			</for>
+		</for>
+	</file>
+</list>

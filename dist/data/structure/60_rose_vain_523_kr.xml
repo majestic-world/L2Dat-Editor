@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--AUTHOR: Bonux-->
+<!--bonuxq@gmail.com-->
+<list>
+	<links id="600" parent_id="590" name="Rose Vain (523) KR">
+		<link pattern="character_style(_Classic(Aden)?)?-[\w]+\.dat" file="character_style" version="rose_vain_523_kr"/>
+		<link pattern="classinfo(_Classic(Aden)?)?-[\w]+\.dat" file="classinfo" version="rose_vain_523_kr"/>
+		<link pattern="GamePlayData(_Classic(Aden)?)?\.dat" file="gameplaydata" version="rose_vain_523_kr"/>
+	</links>
+</list>

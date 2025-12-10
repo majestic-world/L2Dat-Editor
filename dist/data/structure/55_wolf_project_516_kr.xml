@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--AUTHOR: Bonux-->
+<!--bonuxq@gmail.com-->
+<list>
+	<links id="550" parent_id="540" name="Project Wolf (516) KR">
+		<link pattern="character_style(_Classic(Aden)?)?-[\w]+\.dat" file="character_style" version="project_wolf_516_kr"/>
+		<link pattern="GamePlayData(_Classic(Aden)?)?\.dat" file="gameplaydata" version="project_wolf_516_kr"/>
+		<link pattern="CombinationItemData(_Classic(Aden)?)?\.dat" file="combinationitemdata" version="project_wolf_516_kr"/>
+		<link pattern="petequipinfos(_Classic(Aden)?)?\.dat" file="petequipinfos" version="project_wolf_516_kr"/>
+		<link pattern="PetRaceEmblem(_Classic(Aden)?)?-[\w]+\.dat" file="PetRaceEmblem" version="project_wolf_516_kr"/>
+		<link pattern="collectionmain(_Classic(Aden)?)?\.dat" file="collectionmain" version="project_wolf_516_kr"/>
+		<link pattern="EnchantedCloakEffectData(_Classic(Aden)?)?\.dat" file="enchantedcloakeffectdata" version="project_wolf_516_kr"/>
+		<link pattern="PurchaseLimitCraft(_Classic(Aden)?)?-[\w]+\.dat" file="PurchaseLimitCraft" version="project_wolf_516_kr"/>
+		<link pattern="TimeZoneData(_Classic(Aden)?)?-[\w]+\.dat" file="timezonedata" version="project_wolf_516_kr"/>
+	</links>
+</list>

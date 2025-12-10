@@ -1,0 +1,115 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<list>
+	<file pattern="ru_episodion" isSafePackage="true">
+		<node name="data" reader="UINT"/>
+		<for name="npcparts" size="#data" hidden="false">
+			<node name="npc_id" reader="UINT" key="true"/>
+			<node name="class" reader="UINT"/>
+			<node name="chest" reader="UINT"/>
+			<node name="legs" reader="UINT"/>
+			<node name="gloves" reader="UINT"/>
+			<node name="feet" reader="UINT"/>
+			<node name="hairAcc" reader="UINT"/>
+			<node name="hairStyle" reader="UINT"/>
+			<node name="rhand" reader="UINT"/>
+			<node name="lhand" reader="UINT"/>
+		</for>
+	</file>
+	<file pattern="kor_infinite_odyssey" isSafePackage="true">
+		<node name="data" reader="UINT"/>
+		<for name="npcparts" size="#data" hidden="false">
+			<node name="npc_id" reader="UINT" key="true"/>
+			<node name="class" reader="UINT"/>
+			<node name="chest" reader="UINT"/>
+			<node name="legs" reader="UINT"/>
+			<node name="gloves" reader="UINT"/>
+			<node name="feet" reader="UINT"/>
+			<node name="back" reader="UINT"/>
+			<node name="hairAcc" reader="UINT"/>
+			<node name="hairStyle" reader="UINT"/>
+			<node name="rhand" reader="UINT"/>
+			<node name="lhand" reader="UINT"/>
+		</for>
+	</file>
+	<file pattern="death_knight_362" isSafePackage="true">
+		<node name="data" reader="UINT"/>
+		<for name="npcparts" size="#data" hidden="false">
+			<node name="npc_id" reader="UINT" key="true"/>
+			<node name="class" reader="UINT"/>
+			<node name="chest" reader="UINT"/>
+			<node name="legs" reader="UINT"/>
+			<node name="gloves" reader="UINT"/>
+			<node name="feet" reader="UINT"/>
+			<node name="back" reader="UINT"/>
+			<node name="hairAcc" reader="UINT"/>
+			<node name="hairStyle" reader="UINT"/>
+			<node name="rhand" reader="UINT"/>
+			<node name="lhand" reader="UINT"/>
+			<node name="beast" reader="UINT"/>
+			<!-- <node name="aLocalization" reader="UINT"/> -->
+		</for>
+	</file>
+	<file pattern="assassin_414" isSafePackage="true">
+		<node name="data" reader="UINT"/>
+		<for name="npcparts" size="#data" hidden="false">
+			<node name="npc_id" reader="UINT" key="true"/>
+			<node name="class" reader="UINT"/>
+			<node name="chest" reader="UINT"/>
+			<node name="legs" reader="UINT"/>
+			<node name="gloves" reader="UINT"/>
+			<node name="feet" reader="UINT"/>
+			<node name="back" reader="UINT"/>
+			<node name="hairAcc" reader="UINT"/>
+			<node name="hairStyle" reader="UINT"/>
+			<node name="rhand" reader="UINT"/>
+			<node name="lhand" reader="UINT"/>
+			<node name="beast" reader="UINT"/>
+			<node name="weapon_enchant" reader="UINT"/>
+			<node name="armor_enchant" reader="UINT"/>
+			<!-- <node name="aLocalization" reader="UINT"/> -->
+		</for>
+	</file>
+	<file pattern="seven_signs_447" isSafePackage="true">
+		<node name="data" reader="UINT"/>
+		<for name="npcparts" size="#data" hidden="false">
+			<node name="npc_id" reader="UINT" key="true"/>
+			<node name="class" reader="UINT"/>
+			<node name="chest" reader="UINT"/>
+			<node name="legs" reader="UINT"/>
+			<node name="gloves" reader="UINT"/>
+			<node name="feet" reader="UINT"/>
+			<node name="back" reader="UINT"/>
+			<node name="hairAcc" reader="UINT"/>
+			<node name="hairStyle" reader="UINT"/>
+			<node name="rhand" reader="UINT"/>
+			<node name="lhand" reader="UINT"/>
+			<node name="beast" reader="UINT"/>
+			<node name="weapon_enchant" reader="UINT"/>
+			<node name="armor_enchant" reader="UINT"/>
+			<node name="unk_447" reader="UINT"/>
+			<!-- <node name="aLocalization" reader="UINT"/> -->
+		</for>
+	</file>
+	<file pattern="samurai_541" isSafePackage="true">
+		<node name="data" reader="UINT"/>
+		<for name="npcparts" size="#data" hidden="false">
+			<node name="npc_id" reader="UINT" key="true"/>
+			<node name="class" reader="UINT"/>
+			<node name="chest" reader="UINT"/>
+			<node name="legs" reader="UINT"/>
+			<node name="gloves" reader="UINT"/>
+			<node name="feet" reader="UINT"/>
+			<node name="back" reader="UINT"/>
+			<node name="hairAcc" reader="UINT"/>
+			<node name="hairStyle" reader="UINT"/>
+			<node name="rhand" reader="UINT"/>
+			<node name="lhand" reader="UINT"/>
+			<node name="beast" reader="UINT"/>
+			<node name="weapon_enchant" reader="UINT"/>
+			<node name="armor_enchant" reader="UINT"/>
+			<node name="unk_447" reader="UINT"/>
+			<node name="unk_541_1" reader="UINT"/>
+			<node name="unk_541_2" reader="UBYTE"/>
+		</for>
+	</file>
+</list>

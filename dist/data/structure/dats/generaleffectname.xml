@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<list>
+	<file pattern="preludewar_kamael_245" isSafePackage="true">
+		<node name="data" reader="UINT"/>
+		<for name="General_Effect_Name" size="#data" hidden="false">
+			<node name="name_key" reader="ASCF"/>
+			<node name="effect_name" reader="MAP_INT"/>
+		</for>
+	</file>
+</list>

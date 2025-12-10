@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--AUTHOR: Bonux-->
+<list>
+	<file pattern="arena_140_ru" isSafePackage="true">
+		<node name="data" reader="UINT"/>
+		<for name="class" size="#data" hidden="false">
+			<node name="ClassID" reader="UINT"/>
+			<node name="Desc" reader="ASCF"/>
+			<for name="skills" size="6">
+				<node name="skill_id" reader="USHORT"/>
+			</for>
+		</for>
+	</file>
+</list>

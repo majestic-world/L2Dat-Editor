@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--AUTHOR: Bonux-->
+<list>
+	<file pattern="assassin_414" isSafePackage="true">
+		<node name="data" reader="UINT"/>
+		<for name="skill_enchant_charge" size="#data" hidden="false">
+			<node name="group_item" reader="UINT"/>
+			<node name="exp_grade" reader="UINT"/>
+			<for name="exp_grade" size="#exp_grade" hidden="true">
+				<node name="exp_grade_id" reader="UBYTE"/>
+				<node name="exp_grade_value" reader="UINT"/>
+			</for>
+			<node name="commission_item_id" reader="UINT"/>
+			<node name="commission_item_count" reader="UINT"/>
+			<node name="group_id" reader="UBYTE"/>
+		</for>
+	</file>
+	<file pattern="death_knight_2_430" isSafePackage="true">
+		<node name="data" reader="UINT"/>
+		<for name="skill_enchant_charge" size="#data" hidden="false">
+			<node name="group_item" reader="UINT"/>
+			<node name="exp_grade" reader="UINT"/>
+			<for name="exp_grade" size="#exp_grade" hidden="true">
+				<node name="exp_grade_id" reader="UBYTE"/>
+				<node name="exp_grade_value" reader="UINT"/>
+				<node name="unk_430" reader="UINT"/>
+			</for>
+			<node name="commission_item_id" reader="UINT"/>
+			<node name="group_id" reader="UBYTE"/>
+		</for>
+	</file>
+	<file pattern="high_elf_464" isSafePackage="true">
+		<node name="data" reader="UINT"/>
+		<for name="skill_enchant_charge" size="#data" hidden="false">
+			<node name="group_item" reader="UINT"/>
+			<node name="exp_grade" reader="UINT"/>
+			<for name="exp_grade" size="#exp_grade" hidden="true">
+				<node name="exp_grade_id" reader="UBYTE"/>
+				<node name="exp_grade_value" reader="UINT"/>
+				<node name="unk_430" reader="UINT"/>
+			</for>
+			<node name="commission_item_id" reader="UINT"/>
+			<node name="group_id" reader="UBYTE"/>
+			<node name="target_level" reader="SHORT"/>
+		</for>
+	</file>
+</list>

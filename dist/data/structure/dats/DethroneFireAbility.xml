@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<list>
+
+	<file pattern="death_knight_2_430" isSafePackage="true">
+		<node name="data" reader="CNTR"/>
+		<for name="dethrone_fire_ability" size="#data" hidden="false">
+			<node name="subtype" reader="ASCF"/>
+			<node name="daily_exp_up_count" reader="UINT"/>
+			<node name="daily_init_count" reader="UINT"/>
+			<node name="daily_init_cost" reader="CNTR"/>
+			<for name="daily_init_cost" size="#daily_init_cost">
+				<node name="cost_id" reader="UINT"/>
+				<node name="cost_count" reader="UINT"/>
+			</for>
+			<node name="max_level" reader="UINT"/>
+		</for>
+	</file>
+
+</list>

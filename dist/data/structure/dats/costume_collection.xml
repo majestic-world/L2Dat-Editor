@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--AUTHOR: Bonux-->
+<!--E-MAIL: bonuxq@gmail.com-->
+<list>
+	<file pattern="ru_fufarion_secterofempire" isSafePackage="true">
+		<node name="data" reader="UINT"/>
+		<for name="costume_collection" size="#data" hidden="false">
+			<node name="costume_collection_id" reader="UINT"/>
+			<node name="costume_list" reader="CNTR"/>
+			<for name="costume_list" size="#costume_list">
+				<node name="costume_id" reader="UINT"/>
+			</for>
+			<node name="collection_skill_id" reader="UINT"/>
+			<node name="collection_skill_level" reader="UCHAR"/>
+			<node name="collection_skill_sublevel" reader="UINT"/>
+		</for>
+	</file>
+</list>

@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<list>
+	<file pattern="guardians_493" isSafePackage="true">
+		<node name="data" reader="UINT"/>
+		<for name="inventory_effect" size="#data" hidden="false">
+			<node name="item_id" reader="UINT"/>
+			<node name="min_enchant" reader="UBYTE"/>
+			<node name="max_enchant" reader="UBYTE"/>
+			<node name="effect" reader="UBYTE"/>
+		</for>
+	</file>
+	<file pattern="rose_vain_520_kr" isSafePackage="true">
+		<node name="data" reader="UINT"/>
+		<for name="inventory_effect" size="#data" hidden="false">
+			<node name="item_id" reader="UINT"/>
+			<node name="min_enchant" reader="UBYTE"/>
+			<node name="max_enchant" reader="UBYTE"/>
+			<node name="effect" reader="UBYTE"/>
+		</for>
+		<for name="chat_effect_count" size="1" hidden="false">
+			<node name="value" reader="UINT"/>
+		</for>
+		<node name="data2" reader="CNTR"/>
+		<for name="chat_effect" size="#data2" hidden="false">
+			<node name="item_id" reader="UINT"/>
+			<node name="texture" reader="MAP_INT"/>
+		</for>
+	</file>
+</list>

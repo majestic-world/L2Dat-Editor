@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--AUTHOR: Bonux-->
+<!--bonuxq@gmail.com-->
+<list>
+	<links id="420" parent_id="410" name="Crusader (388)">
+		<link pattern="hero_book\.dat" file="hero_book" version="crusade_388"/>
+		<link pattern="PrisonData\.dat" file="prisondata" version="crusade_388"/>
+		<link pattern="PurchaseLimitCraft(_Classic(Aden)?)?-[\w]+\.dat" file="PurchaseLimitCraft" version="crusade_388"/>
+		<link pattern="CombinationItemData(_Classic(Aden)?)?\.dat" file="combinationitemdata" version="crusade_388"/>
+		<link pattern="dyepotential_slot_fee(_Classic(Aden)?)?\.dat" file="dyepotential_slot_fee" version="crusade_388"/>
+		<link pattern="GamePlayData(_Classic(Aden)?)?\.dat" file="gameplaydata" version="crusade_388"/>
+		<link pattern="BlessOption(_Classic(Aden)?)?\.dat" file="blessoption" version="crusade_388"/>
+		<link pattern="item_baseinfo(_Classic(Aden)?)?\.dat" file="item_baseinfo" version="crusade_388"/>
+		<link pattern="EventLookChange\.dat" file="eventlookchange" version="crusade_388"/>
+		<link pattern="itemname(_Classic(Aden)?)?-[\w]+\.dat" file="itemname" version="crusade_388"/>
+		<link pattern="logongrp(_Classic(Aden)?)?\.dat" file="logongrp" version="crusade_388"/>
+		<link pattern="UpgradeSystem\.dat" file="upgradesystem" version="crusade_388"/>
+		<link pattern="TimeZoneData(_Classic(Aden)?)?-[\w]+\.dat" file="timezonedata" version="crusade_388"/>
+		<link pattern="HomunCreate(_Classic(Aden)?)?\.dat" file="homuncreate" version="crusade_388"/>
+		<link pattern="HomunEnchant(_Classic(Aden)?)?\.dat" file="homunenchant" version="crusade_388"/>
+		<link pattern="UpgradeSystem_Classic\.dat" file="upgradesystem" version="crusade_388"/>
+		<link pattern="UpgradeSystem_ClassicAden\.dat" file="upgradesystem" version="crusade_388"/>
+		<link pattern="raiddata(_Classic(Aden)?)?(-[\w]+)?\.dat" file="raiddata" version="preludewar_kamael_235"/>
+		<link pattern="DeathKnightCloakItem(_Classic(Aden)?)?\.dat" file="deathknightcloakitem" version="crusade_388"/>
+		<link pattern="EnchantedCloakEffectData(_Classic(Aden)?)?\.dat" file="EnchantedCloakEffectData" version="crusade_388"/>
+		<link pattern="variationeffectgrp(_Classic(Aden)?)?(-[\w]+)?\.dat" file="variationeffectgrp" version="kor_grand_crusade"/>
+		<link pattern="PledgeLevelDesc(_Classic(Aden)?)?(-[\w]+)?\.dat" file="pledgeleveldesc" version="fufarion_secretofempire_166"/>
+	</links>
+</list>

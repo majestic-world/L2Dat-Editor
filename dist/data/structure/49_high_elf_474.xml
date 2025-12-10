@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--AUTHOR: Bonux-->
+<!--bonuxq@gmail.com-->
+<list>
+	<links id="490" parent_id="480" name="High Elf (474)">
+		<link pattern="itemname(_Classic(Aden)?)?-[\w]+\.dat" file="itemname" version="high_elf_474"/>
+		<link pattern="dyecombination(_Classic(Aden)?)?\.dat" file="dyecombination" version="high_elf_474"/>
+		<link pattern="petacquireskill(_Classic(Aden)?)?\.dat" file="petacquireskill" version="high_elf_474"/>
+		<link pattern="CombinationItemData(_Classic(Aden)?)?\.dat" file="combinationitemdata" version="high_elf_474"/>
+		<link pattern="teleportlist(_Classic(Aden)?)?\.dat" file="teleportlist" version="high_elf_474"/>
+		<link pattern="UpgradeSystem_Normal(_Classic(Aden)?)?\.dat" file="upgradesystem_normal" version="high_elf_474"/>
+		<link pattern="variationdata_fee(_Classic(Aden)?)?.dat" file="variationdata_fee" version="high_elf_474"/>
+		<link pattern="variationdata_option(_Classic(Aden)?)?-[\w]+\.dat" file="variationdata_option" version="high_elf_474"/>
+		<link pattern="GamePlayData(_Classic(Aden)?)?\.dat" file="gameplaydata" version="high_elf_474"/>
+		<link pattern="relics_main(_Classic(Aden)?)?\.dat" file="relicsmain" version="high_elf_474"/>
+		<link pattern="LCoinShopProduct(_Classic(Aden)?)?-[\w]+\.dat" file="lcoinshopproduct" version="high_elf_474"/>
+		<link pattern="CharacterAbility(_Classic(Aden)?)?-[\w]+\.dat" file="characterability" version="high_elf_474"/>
+		<link pattern="PurchaseLimitCraft(_Classic(Aden)?)?-[\w]+\.dat" file="PurchaseLimitCraft" version="high_elf_474"/>
+		<link pattern="PledgeShopProduct(_Classic(Aden)?)?-[\w]+\.dat" file="pledgeshopproduct" version="high_elf_474"/>
+		<link pattern="relics_playdata(_Classic(Aden)?)?\.dat" file="relicsplaydata" version="high_elf_474"/>
+		<link pattern="cardselect(_Classic(Aden)?)?\.dat" file="cardselect" version="high_elf_474"/>
+		<link pattern="cardselect_stage(_Classic(Aden)?)?\.dat" file="cardselect_stage" version="high_elf_474"/>
+		<link pattern="hero_book\.dat" file="hero_book" version="high_elf_474"/>
+		<link pattern="PetRaceEmblem(_Classic(Aden)?)?-[\w]+\.dat" file="PetRaceEmblem" version="high_elf_474"/>
+		<link pattern="EnchantedWeaponFlowEffectData(_Classic(Aden)?)?\.dat" file="enchantedweaponfloweffectdata" version="high_elf_474"/>
+	</links>
+</list>

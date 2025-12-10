@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--AUTHOR: bonuxq@gmail.com-->
+<list>
+	<file pattern="samurai_541" isSafePackage="true">
+		<node name="data" reader="UINT"/>
+		<for name="DamageSkin" size="#data" hidden="false">
+			<node name="SkillID" reader="UINT" key="true"/>
+			<node name="DamageSkinID" reader="UINT"/>
+		</for>
+	</file>
+	<file pattern="samurai_542" isSafePackage="true">
+		<node name="data" reader="UINT"/>
+		<for name="DamageSkin" size="#data" hidden="false">
+			<node name="SkillID" reader="UINT" key="true"/>
+			<node name="DamageSkinID" reader="CNTR"/>
+			<for name="DamageSkinID">
+				<node name="ID" reader="UINT"/>
+			</for>
+		</for>
+	</file>
+</list>

@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<list>
+	<file pattern="chronicle_4" isSafePackage="true"> <!-- NOT FULL, maybe because using korean symbols -->
+		<node name="data" reader="UINT"/>
+		<for name="server_name" size="#data" hidden="false">
+			<node name="id" reader="UINT" key="true"/>
+			<node name="tag_?" reader="UINT"/>
+			<node name="name" reader="ASCF"/>
+			<node name="desc" reader="ASCF"/>
+		</for>
+	</file>
+	<file pattern="interlude" isSafePackage="true">
+		<node name="data" reader="UINT"/>
+		<for name="server_name" size="#data" hidden="false">
+			<node name="id" reader="UINT" key="true"/>
+			<node name="tag_?" reader="UINT"/>
+			<node name="name" reader="ASCF"/>
+			<node name="desc" reader="ASCF"/>
+		</for>
+	</file>
+	<file pattern="kor_lindvior" isSafePackage="true">
+		<node name="data" reader="UINT"/>
+		<for name="server_name" size="#data" hidden="false">
+			<node name="id" reader="UINT" key="true"/>
+			<node name="name" reader="UINT"/>
+			<for name="name" size="#name">
+				<node name="param_name" reader="ASCF"/>
+			</for>
+			<node name="desc" reader="ASCF"/>
+		</for>
+	</file>
+	<file pattern="kor_helios_p3" isSafePackage="true">
+		<node name="data" reader="UINT"/>
+		<for name="server_name" size="#data" hidden="false">
+			<node name="id" reader="UINT" key="true"/>
+			<node name="name" reader="UINT"/>
+			<for name="name" size="#name">
+				<node name="param_name" reader="ASCF"/>
+			</for>
+		</for>
+	</file>
+	<file pattern="death_knight_338" isSafePackage="true">
+		<node name="data" reader="UINT"/>
+		<for name="server_name" size="#data" hidden="false">
+			<node name="id" reader="UINT" key="true"/>
+			<node name="name" reader="UINT"/>
+			<node name="color" reader="RGBA"/>
+			<for name="name" size="#name">
+				<node name="param_name1" reader="ASCF"/>
+				<node name="param_name2" reader="ASCF"/>
+			</for>
+			<node name="visible_id" reader="UINT"/>
+		</for>
+	</file>
+	<file pattern="samurai_541" isSafePackage="true">
+		<node name="data" reader="UINT"/>
+		<for name="server_name" size="#data" hidden="false">
+			<node name="id" reader="UINT" key="true"/>
+			<node name="name" reader="UINT"/>
+			<node name="color" reader="RGBA"/>
+			<for name="name" size="#name">
+				<node name="param_name1" reader="ASCF"/>
+				<node name="param_name2" reader="ASCF"/>
+			</for>
+			<node name="visible_id" reader="UINT"/>
+			<node name="group_id" reader="UINT"/>
+		</for>
+	</file>
+</list>

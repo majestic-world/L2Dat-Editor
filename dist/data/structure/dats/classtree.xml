@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<list>
+	<file pattern="fufarion_secretofempire_196" isSafePackage="true">
+		<node name="data" reader="UINT"/>
+		<for name="classtree" size="#data" hidden="false">
+			<node name="id" reader="UINT" enum_name="class"/>
+			<node name="class_list" reader="CNTR"/>
+			<for name="class_list" size="#class_list">
+				<node name="class_id" reader="UINT" enum_name="class"/>
+			</for>
+		</for>
+	</file>
+</list>

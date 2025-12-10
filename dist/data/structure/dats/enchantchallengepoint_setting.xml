@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<list>
+	<file pattern="death_knight_362" isSafePackage="true">
+		<for name="enchantchallengepoint_setting" size="1" hidden="false">
+			<node name="max_point" reader="UBYTE"/>
+			<node name="max_ticket_charge" reader="UBYTE"/>
+			<node name="prob_inc1_fee" reader="UBYTE"/>
+			<node name="prob_inc2_fee" reader="UBYTE"/>
+			<node name="over_up_prob_fee" reader="UBYTE"/>
+			<node name="num_reset_prob_fee" reader="UBYTE"/>
+			<node name="num_down_prob_fee" reader="UBYTE"/>
+			<node name="num_protect_prob_fee" reader="UBYTE"/>
+		</for>
+	</file>
+</list> 

@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--AUTHOR: Bonux-->
+<!--bonuxq@gmail.com-->
+<list>
+	<links id="620" parent_id="610" name="Samurai (541) KR">
+		<link pattern="actionname(_Classic(Aden)??)?(-[\w]+)?\.dat" file="actionname" version="samurai_541"/>
+		<link pattern="AdditionalNpcGrpParts(_Classic(Aden)?)?\.dat" file="additionalnpcgrpparts" version="samurai_541"/>
+		<link pattern="armorgrp(_Classic(Aden)?)?\.dat" file="armorgrp" version="samurai_541"/>
+		<link pattern="Chargrp(_Classic(Aden)?)?\.dat" file="chargrp" version="samurai_541"/>
+		<link pattern="ClassSpecificEtcItemIcon(_Classic(Aden)?)?\.dat" file="ClassSpecificEtcItemIcon" version="samurai_541"/>
+		<link pattern="ClassSpecificWeaponIcon(_Classic(Aden)?)?\.dat" file="ClassSpecificWeaponIcon" version="samurai_541"/>
+		<link pattern="CloakLookChangeItem_ClassicAden\.dat" file="CloakLookChangeItem" version="rose_vain_520_kr_main"/>
+		<link pattern="DamageSkin(_Classic(Aden)?)?\.dat" file="DamageSkin" version="samurai_541"/>
+		<link pattern="faceexgrp(_Classic(Aden)?)?\.dat" file="faceexgrp" version="samurai_541"/>
+		<link pattern="GamePlayData(_Classic(Aden)?)?\.dat" file="gameplaydata" version="samurai_541_kr"/>
+		<link pattern="hairexgrp(_Classic(Aden)?)?\.dat" file="hairexgrp" version="samurai_541"/>
+		<link pattern="LCoinShopCategory(_Classic(Aden)?)?\.dat" file="LCoinShopCategory" version="samurai_541"/>
+		<link pattern="PurchaseLimitCraft(_Classic(Aden)?)?-[\w]+\.dat" file="PurchaseLimitCraft" version="samurai_541"/>
+		<link pattern="PurchaseLimitCraftCategory(_Classic(Aden)?)?\.dat" file="PurchaseLimitCraftCategory" version="samurai_541"/>
+		<link pattern="RideData(_Classic(Aden)?)?\.dat" file="ridedata" version="samurai_541"/>
+		<link pattern="servername-[\w]+\.dat" file="servername" version="samurai_541"/>
+		<link pattern="skillsoundgrp(_Classic(Aden)?)?\.dat" file="skillsoundgrp" version="samurai_541"/>
+		<link pattern="usmmoviedata-[\w]+\.dat" file="usmmoviedata" version="samurai_541"/>
+	</links>
+</list>

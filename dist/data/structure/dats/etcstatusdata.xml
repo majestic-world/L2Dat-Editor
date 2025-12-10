@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<list>
+	<file pattern="preludewar_kamael_245" isSafePackage="true">
+		<node name="data" reader="UINT"/>
+		<for name="etc_status" size="#data" hidden="false">
+			<node name="skill_id" reader="UINT"/>
+			<node name="fixed_level" reader="UINT"/>
+		</for>
+	</file>
+</list>
+
+<!--
+
+af 10 00 00
+ff ff ff ff
+
+ae 10 00 00
+ff ff ff ff
+
+ad 10 00 00
+01 00 00 00
+
+ac 10 00 00
+01 00 00 00
+
+41 18 00 00
+ff ff ff ff
+
+45 18 00 00
+ff ff ff ff
+
+b1 13 00 00
+01 00 00 00
+
+d4 13 00 00
+ff ff ff ff
+
+46 15 00 00
+ff ff ff ff
+
+77 b0 00 00
+ff ff ff ff
+
+76 b0 00 00
+ff ff ff ff
+
+etc_status_begin	skill_id=4271	fixed_level=-1	etc_status_end
+etc_status_begin	skill_id=4270	fixed_level=-1	etc_status_end
+etc_status_begin	skill_id=4269	fixed_level=1	etc_status_end
+etc_status_begin	skill_id=4268	fixed_level=1	etc_status_end
+etc_status_begin	skill_id=6209	fixed_level=-1	etc_status_end
+etc_status_begin	skill_id=6213	fixed_level=-1	etc_status_end
+etc_status_begin	skill_id=5041	fixed_level=1	etc_status_end
+etc_status_begin	skill_id=5076	fixed_level=-1	etc_status_end
+etc_status_begin	skill_id=5446	fixed_level=-1	etc_status_end
+etc_status_begin	skill_id=45175	fixed_level=-1	etc_status_end
+etc_status_begin	skill_id=45174	fixed_level=-1	etc_status_end
+-->

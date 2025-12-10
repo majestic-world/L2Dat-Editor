@@ -1,0 +1,89 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<list>
+	<file pattern="interlude" isSafePackage="true">
+		<for name="LogPawn" size="26" hidden="false">
+			<node name="x" reader="UINT"/>
+			<node name="y" reader="UINT"/>
+			<node name="z" reader="UINT"/>
+			<node name="yaw" reader="UINT"/>
+		</for>
+	</file>
+	<file pattern="kor_lindvior" isSafePackage="true">
+		<for name="LogPawn" size="8" hidden="false">
+			<node name="x" reader="FLOAT"/>
+			<node name="y" reader="FLOAT"/>
+			<node name="z" reader="FLOAT"/>
+			<node name="yaw" reader="FLOAT"/>
+		</for>
+	</file>
+	<file pattern="queen_ant_sylph_306" isSafePackage="true">
+		<for name="LogPawn" size="87" hidden="false">
+			<node name="x" reader="FLOAT"/>
+			<node name="y" reader="FLOAT"/>
+			<node name="z" reader="FLOAT"/>
+			<node name="yaw" reader="FLOAT"/>
+		</for>
+		<node name="unk_size" reader="UBYTE"/>
+		<for name="Unk" size="#unk_size" hidden="false">
+			<node name="class" reader="UBYTE"/>
+		</for>
+	</file>
+	<file pattern="death_knight_338" isSafePackage="true">
+		<for name="LogPawn" size="88" hidden="false">
+			<node name="x" reader="FLOAT"/>
+			<node name="y" reader="FLOAT"/>
+			<node name="z" reader="FLOAT"/>
+			<node name="yaw" reader="FLOAT"/>
+		</for>
+	</file>
+	<file pattern="crusade_388" isSafePackage="true">
+		<for name="LogPawn" size="89" hidden="false">
+			<node name="x" reader="FLOAT"/>
+			<node name="y" reader="FLOAT"/>
+			<node name="z" reader="FLOAT"/>
+			<node name="yaw" reader="FLOAT"/>
+		</for>
+	</file>
+	<file pattern="assassin_414" isSafePackage="true">
+		<for name="LogPawn" size="91" hidden="false">
+			<node name="x" reader="FLOAT"/>
+			<node name="y" reader="FLOAT"/>
+			<node name="z" reader="FLOAT"/>
+			<node name="yaw" reader="FLOAT"/>
+		</for>
+	</file>
+	<file pattern="seven_signs_447" isSafePackage="true">
+		<for name="LogPawn" size="92" hidden="false">
+			<node name="x" reader="FLOAT"/>
+			<node name="y" reader="FLOAT"/>
+			<node name="z" reader="FLOAT"/>
+			<node name="yaw" reader="FLOAT"/>
+		</for>
+	</file>
+	<file pattern="high_elf_464" isSafePackage="true">
+		<for name="LogPawn" size="94" hidden="false">
+			<node name="x" reader="FLOAT"/>
+			<node name="y" reader="FLOAT"/>
+			<node name="z" reader="FLOAT"/>
+			<node name="yaw" reader="FLOAT"/>
+		</for>
+	</file>
+	<file pattern="project_wolf_502_kr" isSafePackage="true">
+		<for name="LogPawn" size="95" hidden="false">
+			<node name="x" reader="FLOAT"/>
+			<node name="y" reader="FLOAT"/>
+			<node name="z" reader="FLOAT"/>
+			<node name="yaw" reader="FLOAT"/>
+		</for>
+	</file>
+	<file pattern="rose_vain_520_kr" isSafePackage="true">
+		<node name="data" reader="UINT"/>
+		<for name="LogPawn" size="#data" hidden="false">
+			<node name="id" reader="UINT"/>
+			<node name="x" reader="FLOAT"/>
+			<node name="y" reader="FLOAT"/>
+			<node name="z" reader="FLOAT"/>
+			<node name="yaw" reader="FLOAT"/>
+		</for>
+	</file>
+</list>

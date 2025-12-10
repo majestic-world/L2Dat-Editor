@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--AUTHOR: Bonux-->
+<!--bonuxq@gmail.com-->
+<list>
+	<links id="580" parent_id="560" name="Rose Vain (520)">
+		<link pattern="AdditionalItemgrp(_Classic(Aden)?)?\.dat" file="additionalitemgrp" version="rose_vain_520_kr"/>
+		<link pattern="character_style(_Classic(Aden)?)?-[\w]+\.dat" file="character_style" version="rose_vain_520_kr"/>
+		<link pattern="charcreategrp(_Classic(Aden)?)?\.dat" file="charcreategrp" version="rose_vain_520_kr"/>
+		<link pattern="CloakLookChangeItem\.dat" file="CloakLookChangeItem" version="rose_vain_520_kr_main"/>
+		<link pattern="collection(_Classic(Aden)?)?-[\w]+\.dat" file="collection" version="project_wolf_507_kr"/>
+		<link pattern="collectionmain(_Classic(Aden)?)?\.dat" file="collectionmain" version="project_wolf_516_kr"/>
+		<link pattern="EnchantedCloakEffectData_[\w]+\.dat" file="enchantedcloakeffectdata" version="project_wolf_516_kr"/>
+		<link pattern="EnchantedItemSkills(_Classic(Aden)?)?-[\w]+\.dat" file="enchanteditemskills" version="rose_vain_520_kr"/>
+		<link pattern="GamePlayData(_Classic(Aden)?)?\.dat" file="gameplaydata" version="rose_vain_520"/>
+		<link pattern="hero_book\.dat" file="hero_book" version="rose_vain_520_kr"/>
+		<link pattern="hero_book_category\.dat" file="hero_book_category" version="rose_vain_520_kr"/>
+		<link pattern="inventory_effect(_Classic(Aden)?)?\.dat" file="inventory_effect" version="rose_vain_520_kr"/>
+		<link pattern="logongrp(_Classic(Aden)?)?\.dat" file="logongrp" version="rose_vain_520_kr"/>
+		<link pattern="petequipinfos(_Classic(Aden)?)?\.dat" file="petequipinfos" version="project_wolf_516_kr"/>
+		<link pattern="PetRaceEmblem(_Classic(Aden)?)?-[\w]+\.dat" file="PetRaceEmblem" version="project_wolf_516_kr"/>
+		<link pattern="PurchaseLimitCraft(_Classic(Aden)?)?-[\w]+\.dat" file="PurchaseLimitCraft" version="project_wolf_516_kr"/>
+		<link pattern="RankingSystemData(_Classic(Aden)?)?.dat" file="rankingsystemdata" version="rose_vain_520_kr"/>
+		<link pattern="relics_playdata(_Classic(Aden)?)?\.dat" file="relicsplaydata" version="rose_vain_520_kr"/>
+		<link pattern="TimeZoneData(_Classic(Aden)?)?-[\w]+\.dat" file="timezonedata" version="project_wolf_516_kr"/>
+	</links>
+</list>

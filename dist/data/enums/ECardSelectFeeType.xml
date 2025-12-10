@@ -1,0 +1,10 @@
+<list>
+	<enum name="ECardSelectFeeType">
+		<node index="0" name="OPEN" />
+		<node index="1" name="NORMALLOW" />
+		<node index="2" name="NORMALHIGH" />
+		<node index="3" name="SPECIAL" />
+		<node index="4" name="SPECIALFIXED" />
+		<node index="5" name="TRANSCEND" />
+	</enum>
+</list>

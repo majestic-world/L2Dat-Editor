@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<list>
+	<file pattern="preludewar_kamael_245" isSafePackage="true">
+		<node name="data" reader="UINT"/>
+		<for name="gacha_shop" size="#data" hidden="false">
+
+			<node name="shop_id" reader="USHORT"/>
+			<node name="group_id" reader="UINT"/>
+			<node name="group_prob" reader="UINT"/>
+			<node name="roll_cost" reader="UINT"/>
+			<node name="pick_cost" reader="UINT"/>
+
+			<!-- куета получается -->
+			<node name="title_item_id" reader="UINT"/>
+			<for name="item_list" size="#title_item_id">
+				<node name="id" reader="UINT"/>
+				<for name="item_list" size="59">
+					<node name="item_list" reader="UBYTE"/>
+				</for>
+			</for>
+		</for>
+	</file>
+</list>
+
+<!--
+
+[2020-09-18 13:23:34] INFO Read the file structure ...
+[2020-09-18 13:23:34] INFO pos: 4 data: 2
+[2020-09-18 13:23:34] INFO size: 309
+
+01 00 - shop_id
+d2 04 00 00 - group_id
+0a 00 00 00 - group_prob
+39 30 00 00 - roll_cost
+14 00 00 00 - pick_cost
+03 00 00 00 - title_item_id
+	01 00 00 00 
+		a4 41 80 0d	00 00 0a 00 00 00 81 0d 00 00 14 00 00 00 29 09 00 00 03 2d 00 00 00 01 00 00 00 0a d7 23 3c 2e 00 00 00 02 00 00 00 ec 51 b8 3d 2f 00 00 00 03 00 00 00 cd cc c7 42
+	02 00 00 00
+		f4 41
+		80 0d 00 00 0a 00 00 00 81 0d 00 00 14 00 00 00 2a 09 00 00 03 2d 00 00 00 01 00 00 00 0a d7 23 3c 2e 00 00 00 02 00 00 00 ec 51 b8 3d 2f 00 00 00 03 00 00 00 cd cc c7 42
+	03 00 00 00
+		44 42
+		80 0d 00 00 0a 00 00 00 81 0d 00 00 14 00 00 00 2b 09 00 00 03 2d 00 00 00 01 00 00 00 0a d7 23 3c 2e 00 00 00 02 00 00 00 ec 51 b8 3d 2f 00 00 00 03 00 00 00 cd cc c7 42
+
+02 00 - shop_id
+d2 04 00 00 - group_id
+0a 00 00 00 - group_prob
+39 30 00 00 - roll_cost
+14 00 00 00 - pick_cost
+01 00 00 00 - title_item_id
+	01 00 00 00
+		c8 42 80 0d 00 00 0a 00 00 00 81 0d 00 00 14 00 00 00 29 09 00 00 03 2d 00 00 00 01 00 00 00 0a d7 23 3c 2e 00 00 00 02 00 00 00 ec 51 b8 3d 2f 00 00 00 03 00 00 00 cd cc c7 42
+
+-->

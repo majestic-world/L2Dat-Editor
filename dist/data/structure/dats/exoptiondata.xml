@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<list>
+	<file pattern="seven_signs_447" isSafePackage="true">
+		<for name="exoptiondata" size="1" hidden="false">
+			<node name="last_option" reader="UINT"/>
+			<write name="\r\n"/>
+			<node name="options_cnt" reader="CNTR"/>
+			<for name="options" size="#options_cnt" hidden="false">
+				<node name="desc" reader="ASCF"/>
+				<node name="opt_id1" reader="UINT"/>
+			</for>
+
+			<node name="option_data" reader="UINT"/>
+			<for name="option_data" size="#option_data" hidden="false">
+				<node name="option_param" reader="CNTR"/>
+				<for name="option_param" size="#option_param" hidden="true">
+					<node name="opt_id2" reader="UINT"/>
+					<node name="opt_param" reader="FLOAT"/>
+					<node name="opt_flag" reader="UBYTE"/>
+				</for>
+				<wrapper name="option_filter">
+					<node name="opt_id3" reader="UINT"/>
+					<node name="opt_id4" reader="UINT"/>
+				</wrapper>
+				<node name="option_quality" reader="UINT"/>
+				<node name="level" reader="USHORT"/>
+				<node name="option_type" reader="UBYTE"/>
+			</for>
+		</for>
+	</file>
+</list>

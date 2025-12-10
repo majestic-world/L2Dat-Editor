@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--AUTHOR: Bonux-->
+<!--bonuxq@gmail.com-->
+<list>
+	<links id="570" parent_id="550" name="Rose Vain (520) KR">
+		<link pattern="charcreategrp(_Classic(Aden)?)?\.dat" file="charcreategrp" version="rose_vain_520_kr"/>
+		<link pattern="AdditionalItemgrp(_Classic(Aden)?)?\.dat" file="additionalitemgrp" version="rose_vain_520_kr"/>
+		<link pattern="character_style(_Classic(Aden)?)?-[\w]+\.dat" file="character_style" version="rose_vain_520_kr"/>
+		<link pattern="CloakLookChangeItem\.dat" file="CloakLookChangeItem" version="rose_vain_520_kr_main"/>
+		<link pattern="EnchantedItemSkills(_Classic(Aden)?)?-[\w]+\.dat" file="enchanteditemskills" version="rose_vain_520_kr"/>
+		<link pattern="GamePlayData(_Classic(Aden)?)?\.dat" file="gameplaydata" version="rose_vain_520_kr"/>
+		<link pattern="hero_book\.dat" file="hero_book" version="rose_vain_520_kr"/>
+		<link pattern="hero_book_category\.dat" file="hero_book_category" version="rose_vain_520_kr"/>
+		<link pattern="inventory_effect(_Classic(Aden)?)?\.dat" file="inventory_effect" version="rose_vain_520_kr"/>
+		<link pattern="logongrp(_Classic(Aden)?)?\.dat" file="logongrp" version="rose_vain_520_kr"/>
+		<link pattern="RankingSystemData(_Classic(Aden)?)?.dat" file="rankingsystemdata" version="rose_vain_520_kr"/>
+		<link pattern="relics_playdata(_Classic(Aden)?)?\.dat" file="relicsplaydata" version="rose_vain_520_kr"/>
+	</links>
+</list>

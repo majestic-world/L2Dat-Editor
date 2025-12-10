@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<list>
+	<file pattern="high_elf_464" isSafePackage="true">
+		<for name="Enchant_extract_data" size="1" hidden="false">
+			<write name="\r\n"/>
+			<node name="extract_min_grade" reader="UBYTE"/>  
+			<write name="\r\n"/>
+			<write name="\r\n"/>
+			<node name="data" reader="UINT"/> 
+			<for name="skill_enchant_setting_extract" size="#data" hidden="false"> 
+				<node name="extract_grade" reader="UBYTE"/> 
+				<node name="extract_sublevel" reader="USHORT"/> 
+				<node name="success_item_id" reader="UINT"/> 
+				<node name="extract_item_count" reader="CNTR"/> 
+				<for name="extract_item_list" size="#extract_item_count"> 
+					<node name="unk2" reader="UINT"/> 
+					<node name="unk3" reader="UINT"/> 
+					<node name="unk4" reader="LONG"/> 
+					<node name="unk5" reader="UINT"/> 
+				</for> 
+			</for> 
+			<write name="\r\n"/>
+			<node name="data1" reader="UINT"/> 
+			<for name="skill_enchant_setting_coupon" size="#data1" hidden="false"> 
+				<node name="coupon_grade" reader="UBYTE"/> 
+				<node name="coupon_sublevel" reader="USHORT"/> 
+				<node name="target_enchant_item_count" reader="CNTR"/> 
+				<for name="target_enchant_item_list" size="#target_enchant_item_count"> 
+					<node name="unk6" reader="UINT"/> 
+					<node name="unk7" reader="UINT"/> 
+					<node name="unk8" reader="LONG"/> 
+				</for> 
+			</for> 
+		</for>
+	</file>
+</list>

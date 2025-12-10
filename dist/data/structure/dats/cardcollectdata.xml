@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<list>
+	<file pattern="fufarion_secretofempire_166" isSafePackage="true">
+		<node name="data" reader="UINT"/>
+		<for name="card_collect_reward" size="#data" hidden="false">
+			<node name="event_id" reader="UINT"/>
+			<node name="collect_group_id" reader="UINT"/>
+			<node name="count1" reader="CNTR"/>
+			<for name="card_id" size="#count1">
+				<node name="id" reader="UINT"/>
+			</for>
+			<node name="count2" reader="CNTR"/>
+			<for name="card_reward_Texture" size="#count2">
+				<node name="texture" reader="MAP_INT"/>
+			</for>
+			<node name="sub_title" reader="MAP_INT"/>
+		</for>
+	</file>
+</list>

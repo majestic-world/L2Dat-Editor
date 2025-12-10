@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<list>
+	<file pattern="fufarion_secretofempire_166" isSafePackage="true">
+		<node name="data" reader="UINT"/>
+		<for name="pledge_mission" size="#data" hidden="false">
+			<node name="id" reader="USHORT"/>
+			<node name="category" reader="UBYTE" enum_name="pledgemission_category"/>
+			<node name="is_repeat" reader="UBYTE"/>
+			<node name="name" reader="ASCF"/>
+			<node name="pledge_level" reader="UBYTE"/>
+			<node name="c_pledge_mastery" reader="USHORT"/>
+			<node name="min_level" reader="UBYTE"/>
+			<node name="max_level" reader="UBYTE"/>
+			<node name="job_main" reader="UBYTE"/>
+			<node name="job_dual" reader="UBYTE"/>
+			<node name="job_sub" reader="UBYTE"/>
+			<node name="pre_mission_id" reader="USHORT"/>
+			
+			<!-- Begin: Not Confirmed -->
+			<node name="start_date" reader="UINT"/>
+			<node name="start_time" reader="UINT"/>
+			<node name="end_date" reader="UINT"/>
+			<node name="end_time" reader="UINT"/>
+			<node name="activate_time" reader="USHORT"/>
+			<node name="deactivate_time" reader="USHORT"/>
+			<node name="unknown_bytes" reader="USHORT"/>
+			<node name="available_day" reader="CNTR"/>
+			<for name="available_day" size="#available_day">
+				<node name="day" reader="UBYTE"/> <!-- unk type -->
+			</for>
+			<!-- End: Not Confirmed -->
+			
+			<node name="goal_desc" reader="ASCF"/>
+			<node name="goal_count" reader="UINT"/>
+			
+			<node name="reward_pledge_name_value" reader="UINT"/>
+			<node name="reward_pvp_point" reader="UINT"/>
+			
+			<node name="reward_items" reader="CNTR"/>
+			<for name="reward_items" size="#reward_items">
+				<node name="itemId" reader="UINT"/>
+				<node name="itemCount" reader="UINT"/>
+			</for>
+		</for>
+	</file>
+</list>

@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<list>
+	<file pattern="kor_lindvior" isSafePackage="true">
+		<node name="data" reader="UINT"/>
+		<for name="raid" size="#data" hidden="false">
+			<node name="id" reader="UINT"/>
+			<node name="raid_id" reader="UINT"/>
+			<node name="raid_lvl" reader="UINT"/>
+			<node name="search_zoneid" reader="UINT"/>
+			<wrapper name="Loc">
+				<node name="start_npc_x" reader="FLOAT"/>
+				<node name="start_npc_y" reader="FLOAT"/>
+				<node name="start_npc_z" reader="FLOAT"/>
+			</wrapper>
+			<node name="desc" reader="ASCF"/>
+		</for>
+	</file>
+	<file pattern="cn_lindvior" isSafePackage="true">
+		<node name="data" reader="UINT"/>
+		<for name="raid" size="#data" hidden="false">
+			<node name="id" reader="UINT"/>
+			<node name="raid_id" reader="UINT"/>
+			<node name="raid_lvl" reader="UINT"/>
+			<node name="search_zoneid" reader="UINT"/>
+			<wrapper name="Loc">
+				<node name="start_npc_x" reader="FLOAT"/>
+				<node name="start_npc_y" reader="FLOAT"/>
+				<node name="start_npc_z" reader="FLOAT"/>
+			</wrapper>
+			<node name="desc" reader="ASCF"/>
+			<node name="boss_type" reader="UINT"/>
+		</for>
+	</file>
+	<file pattern="kor_grand_crusade" isSafePackage="true">
+		<node name="data" reader="UINT"/>
+		<for name="raid" size="#data" hidden="false">
+			<node name="id" reader="UINT"/>
+			<node name="raid_id" reader="UINT"/>
+			<node name="raid_lvl" reader="UINT"/>
+			<node name="search_zoneid" reader="UINT"/>
+			<wrapper name="Loc">
+				<node name="start_npc_x" reader="FLOAT"/>
+				<node name="start_npc_y" reader="FLOAT"/>
+				<node name="start_npc_z" reader="FLOAT"/>
+			</wrapper>
+			<node name="desc" reader="ASCF"/>
+			<wrapper name="rc_level">
+				<node name="rc_level_min" reader="UBYTE"/>
+				<node name="rc_level_max" reader="UBYTE"/>
+			</wrapper>
+		</for>
+	</file>
+	<file pattern="preludewar_kamael_235" isSafePackage="true">
+		<node name="data" reader="UINT"/>
+		<for name="raid" size="#data" hidden="false">
+			<node name="id" reader="UINT"/>
+			<node name="raid_id" reader="UINT"/>
+			<node name="raid_lvl" reader="UINT"/>
+			<node name="search_zoneid" reader="UINT"/>
+			<wrapper name="loc">
+				<node name="start_npc_x" reader="FLOAT"/>
+				<node name="start_npc_y" reader="FLOAT"/>
+				<node name="start_npc_z" reader="FLOAT"/>
+			</wrapper>
+			<node name="desc" reader="ASCF"/>
+			<node name="raid_ppl" reader="UINT"/>
+			<node name="respawn_type" reader="UINT" enum_name="respawn_type"/>
+			<node name="drop_items_cnt" reader="UBYTE"/>
+			<for name="view_item" size="#drop_items_cnt" hidden="true">
+				<node name="view_item_id" reader="UINT"/>
+			</for>
+			<node name="respawn_time_cnt" reader="UBYTE"/>
+			<for name="respawn_time" size="#respawn_time_cnt" hidden="true">
+				<node name="respawn_time_value" reader="UINT"/>
+			</for>
+			<wrapper name="rc_level">
+				<node name="rc_level_min" reader="UBYTE"/>
+				<node name="rc_level_max" reader="UBYTE"/>
+			</wrapper>
+			<wrapper name="teleport_loc">
+				<node name="teleport_loc_x" reader="FLOAT"/>
+				<node name="teleport_loc_y" reader="FLOAT"/>
+				<node name="teleport_loc_z" reader="FLOAT"/>
+			</wrapper>
+			<node name="use_teleport_loc" reader="UINT"/>
+		</for>
+	</file>
+</list>

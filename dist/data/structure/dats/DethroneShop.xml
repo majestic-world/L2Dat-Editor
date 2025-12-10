@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<list>
+
+	<file pattern="death_knight_2_430" isSafePackage="true">
+		<node name="data" reader="CNTR"/>
+		<for name="dethrone_shop_item_list" size="#data" hidden="false">
+			<node name="id" reader="UINT"/>
+			<node name="item_id" reader="UINT"/>
+			<node name="item_Amount" reader="UINT"/>
+			<node name="need_item_list" reader="CNTR"/>
+			<for name="need_item_list" size="#need_item_list">
+				<node name="need_item_id" reader="UINT"/>
+				<node name="need_item_count" reader="UINT"/>
+			</for>
+		</for>
+	</file>
+
+</list>

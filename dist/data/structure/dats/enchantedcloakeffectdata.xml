@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<list>
+	<file pattern="death_knight_338" isSafePackage="true">
+		<node name="data" reader="UINT"/>
+		<for name="enchanted_cloak_effect" size="#data" hidden="false">
+			<node name="ID" reader="UINT"/>
+			<node name="EffectCnt" reader="CNTR"/>
+			<for name="Effects" size="#EffectCnt">
+				<node name="Start_enchanted_value" reader="UINT"/>
+				<node name="Effect_name" reader="MAP_INT"/>
+			</for>
+		</for>
+	</file>
+	<file pattern="project_wolf_516_kr" isSafePackage="true">
+		<node name="data" reader="UINT"/>
+		<for name="enchanted_cloak_effect" size="#data" hidden="false">
+			<node name="ID" reader="UINT"/>
+			<node name="PetNpcID" reader="UINT"/>
+			<node name="EffectCnt" reader="CNTR"/>
+			<for name="Effects" size="#EffectCnt">
+				<node name="Start_enchanted_value" reader="UINT"/>
+				<node name="Effect_name" reader="MAP_INT"/>
+				<node name="Visual_item_id" reader="UINT"/>
+			</for>
+		</for>
+	</file>
+</list>

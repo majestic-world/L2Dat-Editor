@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--AUTHOR: Bonux-->
+<list>
+	<file pattern="preludewar_kamael_245" isSafePackage="true">
+		<node name="data" reader="UBYTE"/>
+		<for name="banner" size="#data" hidden="false">
+			<node name="TextureName" reader="MAP_INT"/>
+			<node name="LinkURL" reader="UBYTE"/>
+		</for>
+	</file>
+	<file pattern="death_knight_338" isSafePackage="true">
+		<node name="data" reader="CNTR"/>
+		<for name="banner" size="#data" hidden="false">
+			<node name="TextureName" reader="MAP_INT"/>
+			<node name="ShopIndex" reader="USHORT"/>
+			<node name="LinkURL" reader="ASCF"/>
+		</for>
+	</file>
+	<file pattern="assassin_414" isSafePackage="true">
+		<node name="data" reader="CNTR"/>
+		<for name="banner" size="#data" hidden="false">
+			<node name="TextureName" reader="MAP_INT"/>
+			<node name="ShopIndex" reader="UBYTE"/>
+			<node name="LinkURL" reader="ASCF"/>
+		</for>
+	</file>
+	<file pattern="project_wolf_502_kr" isSafePackage="true">
+		<node name="data" reader="CNTR"/>
+		<for name="banner" size="#data" hidden="false">
+			<node name="TextureName" reader="MAP_INT"/>
+			<node name="LinkURL" reader="ASCF"/>
+			<node name="unk502" reader="CNTR"/>
+			<for name="unk502" size="#unk502" hidden="true">
+				<node name="unk" reader="UINT"/>
+			</for>
+		</for>
+	</file>
+</list>

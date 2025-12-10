@@ -1,0 +1,19 @@
+<list>
+	<enum name="ESkillAffectScope">
+		<node index="0" name="None" />
+		<node index="1" name="Single" />
+		<node index="2" name="Party" />
+		<node index="3" name="Pledge" />
+		<node index="4" name="Fan" />
+		<node index="5" name="PointBlank" />
+		<node index="6" name="RangeSortByDist" />
+		<node index="7" name="RangeSortByHp" />
+		<node index="8" name="Range" />
+		<node index="9" name="Square" />
+		<node index="10" name="Range_sort_by_block_act" />
+		<node index="11" name="Fan_with_relation" />
+		<node index="12" name="Point_blank_with_relation" />
+		<node index="13" name="Range_with_relation" />
+		<node index="14" name="Square_with_relation" />
+	</enum>
+</list>

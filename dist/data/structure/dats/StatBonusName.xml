@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<list>
+	 <file pattern="preludewar_kamael_245" isSafePackage="true">
+		<node name="data" reader="UINT"/>
+		<for name="statbonusname" size="#data" hidden="false">
+			<node name="stat_bonus_type" reader="UINT" enum_name="base_stat_type"/>
+			<node name="stat_grade" reader="UINT"/>
+			<node name="desc" reader="ASCF"/>
+		</for>
+	</file>
+</list>

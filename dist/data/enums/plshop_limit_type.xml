@@ -1,0 +1,9 @@
+<list>
+	<enum name="plshop_limit_type">
+		<node index="0" name="none" />
+		<node index="1" name="character" />
+		<node index="2" name="account" />
+		<node index="3" name="server" />
+		<node index="4" name="world_account" />
+	</enum>
+</list>

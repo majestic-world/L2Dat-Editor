@@ -1,0 +1,96 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<list>
+	<file pattern="preludewar_kamael_245" isSafePackage="true">
+		<node name="data" reader="UINT"/>
+		<for name="ArmorGradeLookChange" size="#data" hidden="false">
+			<node name="Class" reader="UINT"/>
+			<node name="Grade" reader="UINT" enum_name="grade_type"/>
+			<node name="ArmorID" reader="UINT"/>
+			<node name="EffectSetID" reader="UINT"/>
+		</for>
+	</file>
+	<file pattern="death_knight_338" isSafePackage="true">
+		<node name="data" reader="UINT"/>
+		<for name="ArmorGradeLookChange" size="#data" hidden="false">
+			<node name="Class" reader="UINT"/>
+			<node name="Grade" reader="UINT" enum_name="grade_type"/>
+			<node name="size1" reader="CNTR"/>
+			<for name="ArmorID" size="#size1">
+				<node name="ArmorID_0" reader="UINT"/>
+			</for>
+			<node name="size2" reader="CNTR"/>
+			<for name="EffectSetID" size="#size2">
+				<node name="EffectSetID_0" reader="UINT"/>
+			</for>
+			<node name="applycountry" reader="CNTR"/>
+			<for name="applycountry" size="#applycountry">
+				<node name="country" reader="UINT" enum_name="localization_type"/>
+			</for>
+		</for>
+	</file>
+	<file pattern="assassin_414" isSafePackage="true">
+		<node name="data" reader="UINT"/>
+		<for name="ArmorGradeLookChange" size="#data" hidden="false">
+			<node name="Class" reader="MAP_INT"/>
+			<node name="ChangeByGrade" reader="UINT" enum_name="grade_type"/>
+			<node name="ChangeByChestID" reader="CNTR"/>
+			<for name="ChangeByChestID" size="#ChangeByChestID">
+				<node name="ChangeByChestID_" reader="UINT"/>
+			</for>
+			<node name="ArmorID" reader="CNTR"/>
+			<for name="ArmorID" size="#ArmorID">
+				<node name="ArmorID_" reader="UINT"/>
+			</for>
+			<node name="BackID" reader="UINT"/>
+			<node name="EffectSetID" reader="CNTR"/>
+			<for name="EffectSetID" size="#EffectSetID">
+				<node name="EffectSetID_" reader="UINT"/>
+			</for>
+			<node name="applycountry" reader="CNTR"/>
+			<for name="applycountry" size="#applycountry">
+				<node name="country" reader="UINT" enum_name="localization_type"/>
+			</for>
+		</for>
+	</file>
+	<file pattern="project_wolf_502_kr" isSafePackage="true">
+		<node name="data" reader="UINT"/>
+		<for name="ArmorGradeLookChange" size="#data" hidden="false">
+			<node name="Class" reader="MAP_INT"/>
+			<node name="ChangeByGrade" reader="UINT" enum_name="grade_type"/>
+			<node name="ChangeByChestID" reader="CNTR"/>
+			<for name="ChangeByChestID" size="#ChangeByChestID">
+				<node name="ChangeByChestID_" reader="UINT"/>
+			</for>
+			<node name="ArmorID" reader="CNTR"/>
+			<for name="ArmorID" size="#ArmorID">
+				<node name="ArmorID_" reader="UINT"/>
+			</for>
+			<node name="BackID" reader="UINT"/>
+			<node name="EffectSetID" reader="CNTR"/>
+			<for name="EffectSetID" size="#EffectSetID">
+				<node name="EffectSetID_" reader="UINT"/>
+			</for>
+		</for>
+	</file>
+</list>
+
+<!--
+00 00 00 00 05 00 00 00 30 6f 01 00 01 00 00 00
+00 00 00 00 04 00 00 00 30 6f 01 00 01 00 00 00
+00 00 00 00 03 00 00 00 31 6f 01 00 02 00 00 00
+00 00 00 00 02 00 00 00 32 6f 01 00 ff ff ff ff
+00 00 00 00 01 00 00 00 32 6f 01 00 ff ff ff ff
+00 00 00 00 00 00 00 00 32 6f 01 00 ff ff ff ff
+08 00 00 00 05 00 00 00 30 6f 01 00 03 00 00 00
+08 00 00 00 04 00 00 00 30 6f 01 00 03 00 00 00
+08 00 00 00 03 00 00 00 31 6f 01 00 04 00 00 00
+08 00 00 00 02 00 00 00 32 6f 01 00 ff ff ff ff
+08 00 00 00 01 00 00 00 32 6f 01 00 ff ff ff ff
+08 00 00 00 00 00 00 00 32 6f 01 00 ff ff ff ff
+10 00 00 00 05 00 00 00 30 6f 01 00 05 00 00 00
+10 00 00 00 04 00 00 00 30 6f 01 00 05 00 00 00
+10 00 00 00 03 00 00 00 31 6f 01 00 06 00 00 00
+10 00 00 00 02 00 00 00 32 6f 01 00 ff ff ff ff
+10 00 00 00 01 00 00 00 32 6f 01 00 ff ff ff ff
+10 00 00 00 00 00 00 00 32 6f 01 00 ff ff ff ff
+-->

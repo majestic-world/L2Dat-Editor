@@ -1,0 +1,270 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<list>
+	<file pattern="cn_lindvior" isSafePackage="true">
+		<node name="data" reader="UINT"/>
+		<for name="onedayreward" size="#data" hidden="false">
+			<node name="id" reader="UINT"/>
+			<node name="reward_id" reader="UINT"/>
+			<node name="reward_name" reader="ASCF"/>
+			<node name="reward_item" reader="CNTR"/>
+			<for name="reward_item" size="#reward_item">
+				<node name="param_reward_item" reader="UINT"/>
+			</for>
+			<node name="class_filter" reader="CNTR"/>
+			<for name="class_filter" size="#class_filter">
+				<node name="param_class_filter" reader="UINT" enum_name="class"/>
+			</for>
+			<node name="reward_desc" reader="ASCF"/>
+			<node name="reward_period" reader="ASCF"/>
+		</for>
+	</file>
+	<file pattern="ru_infinite_odyssey_hymn_of_doul" isSafePackage="true">
+		<node name="data" reader="UINT"/>
+		<for name="onedayreward" size="#data" hidden="false">
+			<node name="id" reader="UINT"/>
+			<node name="reward_id" reader="UINT"/>
+			<node name="reward_name" reader="ASCF"/>
+			<node name="reward_item" reader="UINT"/>
+			<node name="reward_desc" reader="ASCF"/>
+			<node name="reward_period" reader="ASCF"/>
+			<node name="class_filter" reader="CNTR"/>
+			<for name="class_filter" size="#class_filter">
+				<node name="param_class_filter1" reader="UINT" enum_name="class"/>
+			</for>
+			<for name="reward_item" size="#reward_item">
+				<node name="param_reward_item_id" reader="UINT"/>
+				<node name="param_reward_item_count" reader="UINT"/>
+			</for>
+		</for>
+	</file>
+	<file pattern="en_infinite_odyssey_underground" isSafePackage="true">
+		<node name="data" reader="UINT"/>
+		<for name="onedayreward" size="#data" hidden="false">
+			<node name="id" reader="UINT"/>
+			<node name="reward_id" reader="UINT"/>
+			<node name="reward_name" reader="ASCF"/>
+			<node name="reward_item" reader="UINT"/>
+			<node name="reward_desc" reader="ASCF"/>
+			<node name="reward_period" reader="ASCF"/>
+			<node name="class_filter" reader="CNTR"/>
+			<for name="class_filter" size="#class_filter">
+				<node name="param_class_filter1" reader="UINT" enum_name="class"/>
+			</for>
+			<for name="reward_item" size="#reward_item">
+				<node name="param_reward_item_id" reader="UINT"/>
+				<node name="param_reward_item_count" reader="UINT"/>
+			</for>
+		</for>
+	</file>
+	<file pattern="grand_crusade_110" isSafePackage="true">
+		<node name="data" reader="UINT"/>
+		<for name="onedayreward" size="#data" hidden="false">
+			<node name="id" reader="UINT"/>
+			<node name="reward_id" reader="UINT"/>
+			<node name="reward_name" reader="ASCF"/>
+			<node name="reward_item" reader="UINT"/>
+			<node name="reward_desc" reader="ASCF"/>
+			<node name="reward_period" reader="ASCF"/>
+			<node name="class_filter" reader="CNTR"/>
+			<for name="class_filter" size="#class_filter">
+				<node name="param_class_filter1" reader="UINT" enum_name="class"/>
+			</for>
+			<node name="reset_period" reader="UINT" enum_name="onedayreward_reset_period"/>
+			<node name="condition_count" reader="UINT"/>
+			<node name="condition_level" reader="UINT"/>
+			<wrapper name="can_condition_level">
+				<node name="condition_level1" reader="UINT"/>
+				<node name="condition_level2" reader="UINT"/>
+				<node name="condition_level3" reader="UINT" enum_name="onedayreward_condition_level"/>
+			</wrapper>
+			<node name="targetloc_scale_cnt" reader="UINT"/>
+			<node name="can_condition_day" reader="UBYTE"/>
+			<for name="can_condition_day" size="#can_condition_day">
+				<node name="day" reader="UINT" enum_name="onedayreward_day"/>
+			</for>
+			<for name="reward_item" size="#reward_item">
+				<node name="param_reward_item_id" reader="UINT"/>
+				<node name="param_reward_item_count" reader="UINT"/>
+			</for>
+			<for name="targetloc_scale" size="#targetloc_scale_cnt">
+				<node name="x" reader="FLOAT"/>
+				<node name="y" reader="FLOAT"/>
+				<node name="z" reader="FLOAT"/>
+				<node name="scale" reader="FLOAT"/>
+			</for>
+		</for>
+	</file>
+	<file pattern="fufarion_secretofempire_166" isSafePackage="true">
+	<!--AUTHOR: Bonux-->
+	<!--E-MAIL: bonuxq@gmail.com-->
+		<node name="data" reader="UINT"/>
+		<for name="onedayreward" size="#data" hidden="false">
+			<node name="id" reader="UINT"/>
+			<node name="reward_id" reader="UINT"/>
+			<node name="reward_name" reader="ASCF"/>
+			<node name="reward_item" reader="UINT"/>
+			<node name="reward_desc" reader="ASCF"/>
+			<node name="reward_period" reader="ASCF"/>
+			<node name="class_filter" reader="CNTR"/>
+			<for name="class_filter" size="#class_filter">
+				<node name="param_class_filter1" reader="UINT" enum_name="class"/>
+			</for>
+			<node name="reset_period" reader="UINT" enum_name="onedayreward_reset_period"/>
+			<node name="condition_count" reader="UINT"/>
+			<node name="condition_level" reader="UINT"/>
+			<wrapper name="can_condition_level">
+				<node name="condition_level1" reader="UINT"/>
+				<node name="condition_level2" reader="UINT"/>
+				<node name="condition_level3" reader="UINT" enum_name="onedayreward_condition_level"/>
+			</wrapper>
+			<node name="targetloc_scale_cnt" reader="UINT"/>	
+			<node name="can_condition_day" reader="UBYTE"/>
+			<for name="can_condition_day" size="#can_condition_day">
+				<node name="day" reader="UINT" enum_name="onedayreward_day"/>
+			</for>
+			<node name="category" reader="UINT" enum_name="onedayreward_category"/>
+			<for name="reward_item" size="#reward_item">
+				<node name="param_reward_item_id" reader="UINT"/>
+				<node name="param_reward_item_count" reader="UINT"/>
+			</for>
+			<for name="targetloc_scale" size="#targetloc_scale_cnt">
+				<node name="x" reader="FLOAT"/>
+				<node name="y" reader="FLOAT"/>
+				<node name="z" reader="FLOAT"/>
+				<node name="scale" reader="FLOAT"/>
+			</for>
+		</for>
+	</file>
+	<file pattern="preludewar_kamael_245" isSafePackage="true">
+	<!--AUTHOR: Bonux-->
+	<!--E-MAIL: bonuxq@gmail.com-->
+		<node name="data" reader="UINT"/>
+		<for name="onedayreward" size="#data" hidden="false">
+			<node name="id" reader="UINT"/>
+			<node name="reward_id" reader="UINT"/>
+			<node name="reward_name" reader="ASCF"/>
+			<node name="reward_item" reader="UINT"/>
+			<node name="reward_desc" reader="ASCF"/>
+			<node name="reward_period" reader="ASCF"/>
+			<node name="class_filter" reader="CNTR"/>
+			<for name="class_filter" size="#class_filter">
+				<node name="param_class_filter1" reader="UINT" enum_name="class"/>
+			</for>
+			<node name="reset_period" reader="UINT" enum_name="onedayreward_reset_period"/>
+			<node name="condition_count" reader="UINT"/>
+			<node name="condition_level" reader="UINT"/>
+			<wrapper name="can_condition_level">
+				<node name="condition_level1" reader="UINT"/>
+				<node name="condition_level2" reader="UINT"/>
+				<node name="condition_level3" reader="UINT" enum_name="onedayreward_condition_level"/>
+			</wrapper>
+			<node name="targetloc_scale_cnt" reader="UINT"/>	
+			<node name="can_condition_day" reader="UBYTE"/>
+			<for name="can_condition_day" size="#can_condition_day">
+				<node name="day" reader="UINT" enum_name="onedayreward_day"/>
+			</for>
+			<node name="category" reader="UINT" enum_name="onedayreward_category"/>
+			<node name="check_type" reader="UBYTE" enum_name="onedayreward_check_type"/>
+			<for name="reward_item" size="#reward_item">
+				<node name="param_reward_item_id" reader="UINT"/>
+				<node name="param_reward_item_count" reader="UINT"/>
+			</for>
+			<for name="targetloc_scale" size="#targetloc_scale_cnt">
+				<node name="x" reader="FLOAT"/>
+				<node name="y" reader="FLOAT"/>
+				<node name="z" reader="FLOAT"/>
+				<node name="scale" reader="FLOAT"/>
+			</for>
+		</for>
+	</file>
+	<file pattern="death_knight_338" isSafePackage="true">
+	<!--AUTHOR: Bonux-->
+	<!--E-MAIL: bonuxq@gmail.com-->
+		<node name="data" reader="UINT"/>
+		<for name="onedayreward" size="#data" hidden="false">
+			<node name="id" reader="UINT"/>
+			<node name="reward_id" reader="UINT"/>
+			<node name="reward_name" reader="ASCF"/>
+			<node name="reward_item" reader="UINT"/>
+			<node name="reward_desc" reader="ASCF"/>
+			<node name="reward_period" reader="ASCF"/>
+			<node name="class_filter" reader="CNTR"/>
+			<for name="class_filter" size="#class_filter">
+				<node name="param_class_filter1" reader="UINT" enum_name="class"/>
+			</for>
+			<node name="reset_period" reader="UINT" enum_name="onedayreward_reset_period"/>
+			<node name="condition_count" reader="UINT"/>
+			<node name="condition_level" reader="UINT"/>
+			<wrapper name="can_condition_level">
+				<node name="condition_level1" reader="UINT"/>
+				<node name="condition_level2" reader="UINT"/>
+				<node name="condition_level3" reader="UINT" enum_name="onedayreward_condition_level"/>
+			</wrapper>
+			<node name="targetloc_scale_cnt" reader="UINT"/>	
+			<node name="can_condition_day" reader="UBYTE"/>
+			<for name="can_condition_day" size="#can_condition_day">
+				<node name="day" reader="UINT" enum_name="onedayreward_day"/>
+			</for>
+			<node name="category" reader="UINT" enum_name="onedayreward_category"/>
+			<node name="check_type" reader="UBYTE" enum_name="onedayreward_check_type"/>
+			<node name="server_range" reader="UBYTE"/>
+			<for name="reward_item" size="#reward_item">
+				<node name="param_reward_item_id" reader="UINT"/>
+				<node name="param_reward_item_count" reader="UINT"/>
+			</for>
+			<for name="targetloc_scale" size="#targetloc_scale_cnt">
+				<node name="x" reader="FLOAT"/>
+				<node name="y" reader="FLOAT"/>
+				<node name="z" reader="FLOAT"/>
+				<node name="scale" reader="FLOAT"/>
+			</for>
+		</for>
+	</file>
+	<file pattern="high_elf_464" isSafePackage="true">
+	<!--AUTHOR: Bonux-->
+	<!--E-MAIL: bonuxq@gmail.com-->
+		<node name="data" reader="UINT"/>
+		<for name="onedayreward" size="#data" hidden="false">
+			<node name="id" reader="UINT"/>
+			<node name="reward_id" reader="UINT"/>
+			<node name="reward_name" reader="ASCF"/>
+			<node name="reward_item" reader="UINT"/>
+			<node name="reward_desc" reader="ASCF"/>
+			<node name="reward_period" reader="ASCF"/>
+			<node name="class_filter" reader="CNTR"/>
+			<for name="class_filter" size="#class_filter">
+				<node name="param_class_filter1" reader="UINT" enum_name="class"/>
+			</for>
+			<node name="reset_period" reader="UINT" enum_name="onedayreward_reset_period"/>
+			<node name="condition_count" reader="UINT"/>
+			<node name="condition_level" reader="UINT"/>
+			<wrapper name="can_condition_level">
+				<node name="condition_level1" reader="UINT"/>
+				<node name="condition_level2" reader="UINT"/>
+				<node name="condition_level3" reader="UINT" enum_name="onedayreward_condition_level"/>
+			</wrapper>
+			<node name="targetloc_scale_cnt" reader="UINT"/>	
+			<node name="can_condition_day" reader="UBYTE"/>
+			<for name="can_condition_day" size="#can_condition_day">
+				<node name="day" reader="UINT" enum_name="onedayreward_day"/>
+			</for>
+			<node name="category" reader="UINT" enum_name="onedayreward_category"/>
+			<node name="check_type" reader="UBYTE" enum_name="onedayreward_check_type"/>
+			<node name="server_range" reader="UBYTE"/>
+			<node name="show_server" reader="UCHAR"/>
+			<for name="show_server" size="#show_server">
+				<node name="show_server1" reader="UINT"/>
+			</for>
+			<for name="reward_item" size="#reward_item">
+				<node name="param_reward_item_id" reader="UINT"/>
+				<node name="param_reward_item_count" reader="UINT"/>
+			</for>
+			<for name="targetloc_scale" size="#targetloc_scale_cnt">
+				<node name="x" reader="FLOAT"/>
+				<node name="y" reader="FLOAT"/>
+				<node name="z" reader="FLOAT"/>
+				<node name="scale" reader="FLOAT"/>
+			</for>
+		</for>
+	</file>
+</list>

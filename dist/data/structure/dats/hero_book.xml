@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--AUTHOR: Akumu-->
+<list>
+	<file pattern="crusade_388" isSafePackage="true">
+		<node name="data" reader="UINT"/>
+		<for name="hero_book" size="#data" hidden="false">
+			<node name="id" reader="USHORT"/>
+			<for name="book_skill" size="1">
+				<node name="book_skill_id" reader="UINT"/>
+				<node name="book_skill_level" reader="UBYTE"/>
+			</for>
+			<for name="success_item" size="1">
+				<node name="success_item_id" reader="UINT"/>
+				<node name="success_item_count" reader="UINT"/>
+			</for>
+			<for name="success_skill" size="1">
+				<node name="success_skill_id" reader="UINT"/>
+				<node name="success_skill_level" reader="UBYTE"/>
+			</for>
+			<node name="max_point" reader="UINT"/>
+			<node name="commission" reader="UINT"/>
+		</for>
+	</file>
+	<file pattern="death_knight_2_430" isSafePackage="true">
+		<node name="data" reader="UINT"/>
+		<for name="hero_book" size="#data" hidden="false">
+			<node name="id" reader="USHORT"/>
+			<wrapper name="book_skill">
+				<node name="book_skill_id" reader="USHORT"/>
+				<node name="book_skill_level" reader="UINT"/>
+			</wrapper>
+			<wrapper name="success_item">
+				<node name="success_item_id" reader="UINT"/>
+				<node name="success_item_count" reader="UINT"/>
+			</wrapper>
+			<wrapper name="success_skill">
+				<node name="success_skill_id" reader="UINT"/>
+				<node name="success_skill_level" reader="USHORT"/>
+			</wrapper>
+			<node name="max_point" reader="UINT"/>
+			<node name="commission" reader="UINT"/>
+		</for>
+	</file>
+	<file pattern="high_elf_474" isSafePackage="true">
+		<node name="data" reader="UINT"/>
+		<for name="hero_book" size="#data" hidden="false">
+			<node name="id" reader="USHORT"/>
+			<wrapper name="book_skill">
+				<node name="book_skill_id" reader="USHORT"/>
+				<node name="book_skill_level" reader="UINT"/>
+			</wrapper>
+			<wrapper name="success_item">
+				<node name="success_item_id" reader="UINT"/>
+				<node name="success_item_count" reader="UINT"/>
+			</wrapper>
+			<wrapper name="success_skill">
+				<node name="success_skill_id" reader="UINT"/>
+				<node name="success_skill_level" reader="USHORT"/>
+			</wrapper>
+			<node name="commission" reader="UINT"/>
+		</for>
+	</file>
+	<file pattern="rose_vain_520_kr" isSafePackage="true">
+		<node name="category" reader="UINT"/>
+		<for name="category" size="#category" hidden="false">
+			<node name="category_id" reader="UBYTE"/>
+			<write name="\r\n"/>
+			<node name="data" reader="UINT"/>
+			<for name="hero_book" size="#data" hidden="false">
+				<node name="id" reader="USHORT"/>
+				<wrapper name="book_skill">
+					<node name="book_skill_id" reader="USHORT"/>
+					<node name="book_skill_level" reader="UINT"/>
+				</wrapper>
+				<wrapper name="success_item">
+					<node name="success_item_id" reader="UINT"/>
+					<node name="success_item_count" reader="UINT"/>
+				</wrapper>
+				<wrapper name="success_skill">
+					<node name="success_skill_id" reader="UINT"/>
+					<node name="success_skill_level" reader="USHORT"/>
+				</wrapper>
+				<node name="commission" reader="UINT"/>
+			</for>
+		</for>
+	</file>
+</list>

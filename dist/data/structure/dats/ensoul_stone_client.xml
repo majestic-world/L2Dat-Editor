@@ -1,0 +1,127 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<list>
+	<file pattern="kor_infinite_odyssey_hymn_of_doul" isSafePackage="true">
+		<node name="data" reader="UINT"/>
+		<for name="ensoul_stone" size="#data" hidden="false">
+			<node name="id" reader="UINT"/>
+			<node name="slot_type" reader="UINT"/>
+			<node name="option_list" reader="CNTR"/>
+			<for name="option_list" size="#option_list">
+				<node name="option_list_node" reader="UINT"/>
+			</for>
+		</for>
+	</file>
+	<file pattern="queen_ant_sylph_306_classic" isSafePackage="true">
+		<node name="data" reader="UINT"/>
+		<for name="ensoul_stone" size="#data" hidden="false">
+			<node name="id" reader="UINT"/>
+			<node name="slot_type" reader="UINT"/>
+
+			<node name="ensoul_fee" reader="UINT"/>
+			<for name="ensoul_fee" size="#ensoul_fee">
+				<node name="ensoul_fee_item_id" reader="UINT"/>
+				<node name="ensoul_fee_item_count" reader="UINT"/>
+			</for>
+			<node name="ensoul_refee" reader="UINT"/>
+			<for name="ensoul_refee" size="#ensoul_refee">
+				<node name="ensoul_refee_item_id" reader="UINT"/>
+				<node name="ensoul_refee_item_count" reader="UINT"/>
+			</for>
+			<node name="ensoul_extraction" reader="UINT"/>
+			<for name="ensoul_extraction" size="#ensoul_extraction">
+				<node name="ensoul_extraction_item_id" reader="UINT"/>
+				<node name="ensoul_extraction_item_count" reader="UINT"/>
+			</for>
+			<node name="ensoul_option_list_armor" reader="CNTR"/>
+			<for name="ensoul_option_list_armor" size="#ensoul_option_list_armor">
+				<node name="ensoul_option_list_armor_node" reader="UINT"/>
+			</for>
+			<node name="ensoul_option_list_accessory" reader="CNTR"/>
+			<for name="ensoul_option_list_accessory" size="#ensoul_option_list_accessory">
+				<node name="ensoul_option_list_accessory_node" reader="UINT"/>
+			</for>
+			<node name="ensoul_option_list_weapon" reader="CNTR"/>
+			<for name="ensoul_option_list_weapon" size="#ensoul_option_list_weapon">
+				<node name="ensoul_option_list_weapon_node" reader="UINT"/>
+			</for>
+			<node name="option_list" reader="CNTR"/>
+			<for name="option_list" size="#option_list">
+				<node name="option_list_node" reader="UINT"/>
+			</for>
+		</for>
+	</file>
+	<file pattern="death_knight_362" isSafePackage="true">
+		<node name="data" reader="UINT"/>
+		<for name="ensoul_stone" size="#data" hidden="false">
+			<node name="id" reader="UINT"/>
+			<node name="slot_type" reader="UINT"/>
+
+			<node name="ensoul_fee" reader="UINT"/>
+			<for name="ensoul_fee" size="#ensoul_fee">
+				<node name="ensoul_fee_item_id" reader="UINT"/>
+				<node name="ensoul_fee_item_count" reader="UINT"/>
+			</for>
+			<node name="ensoul_refee" reader="UINT"/>
+			<for name="ensoul_refee" size="#ensoul_refee">
+				<node name="ensoul_refee_item_id" reader="UINT"/>
+				<node name="ensoul_refee_item_count" reader="UINT"/>
+			</for>
+			<node name="ensoul_extraction" reader="UINT"/>
+			<for name="ensoul_extraction" size="#ensoul_extraction">
+				<node name="ensoul_extraction_item_id" reader="UINT"/>
+				<node name="ensoul_extraction_item_count" reader="UINT"/>
+			</for>
+			
+			
+			<node name="ensoul_option_list_legs" reader="CNTR"/>
+			<for name="ensoul_option_list_legs" size="#ensoul_option_list_legs">
+				<node name="ensoul_option_list_legs_node" reader="UINT"/>
+			</for>
+			<node name="ensoul_option_list_feet" reader="CNTR"/>
+			<for name="ensoul_option_list_feet" size="#ensoul_option_list_feet">
+				<node name="ensoul_option_list_feet_node" reader="UINT"/>
+			</for>
+			<node name="ensoul_option_list_head" reader="CNTR"/>
+			<for name="ensoul_option_list_head" size="#ensoul_option_list_head">
+				<node name="ensoul_option_list_head_node" reader="UINT"/>
+			</for>
+			<node name="ensoul_option_list_gloves" reader="CNTR"/>
+			<for name="ensoul_option_list_gloves" size="#ensoul_option_list_gloves">
+				<node name="ensoul_option_list_gloves_node" reader="UINT"/>
+			</for>
+			<node name="ensoul_option_list_onepiece" reader="CNTR"/>
+			<for name="ensoul_option_list_onepiece" size="#ensoul_option_list_onepiece">
+				<node name="ensoul_option_list_onepiece_node" reader="UINT"/>
+			</for>
+			<node name="ensoul_option_list_chest" reader="CNTR"/>
+			<for name="ensoul_option_list_chest" size="#ensoul_option_list_chest">
+				<node name="ensoul_option_list_chest_node" reader="UINT"/>
+			</for>
+			<node name="ensoul_option_list_finger" reader="CNTR"/>
+			<for name="ensoul_option_list_finger" size="#ensoul_option_list_finger">
+				<node name="ensoul_option_list_finger_node" reader="UINT"/>
+			</for>
+			<node name="ensoul_option_list_ear" reader="CNTR"/>
+			<for name="ensoul_option_list_ear" size="#ensoul_option_list_ear">
+				<node name="ensoul_option_list_ear_node" reader="UINT"/>
+			</for>
+			<node name="ensoul_option_list_neck" reader="CNTR"/>
+			<for name="ensoul_option_list_neck" size="#ensoul_option_list_neck">
+				<node name="ensoul_option_list_neck_node" reader="UINT"/>
+			</for>
+			<node name="ensoul_option_list_shield" reader="CNTR"/>
+			<for name="ensoul_option_list_shield" size="#ensoul_option_list_shield">
+				<node name="ensoul_option_list_shield_node" reader="UINT"/>
+			</for>
+			<node name="ensoul_option_list_sigil" reader="CNTR"/>
+			<for name="ensoul_option_list_sigil" size="#ensoul_option_list_sigil">
+				<node name="ensoul_option_list_sigil_node" reader="UINT"/>
+			</for>
+			<node name="ensoul_option_list_weapon" reader="CNTR"/>
+			<for name="ensoul_option_list_weapon" size="#ensoul_option_list_weapon">
+				<node name="ensoul_option_list_weapon_node" reader="UINT"/>
+			</for>
+			
+		</for>
+	</file>
+</list>

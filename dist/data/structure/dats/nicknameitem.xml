@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<list>
+	<file pattern="death_knight_338" isSafePackage="true">
+		<node name="data" reader="UINT"/>
+		<for name="nicknameitem" size="#data" hidden="false">
+			<node name="id" reader="UINT"/>
+			<node name="color_cnt" reader="CNTR"/>
+			<for name="color" size="#color_cnt">
+				<node name="color1" reader="UINT"/>
+			</for>
+			<node name="icon_cnt" reader="CNTR"/>
+			<for name="icon" size="#icon_cnt">
+				<node name="icon1" reader="UINT"/>
+			</for>
+		</for>
+	</file>
+</list>

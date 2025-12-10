@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<list>
+	<file pattern="kor_ertheia" isSafePackage="true">
+		<node name="data" reader="UINT"/>
+		<for name="item_baseinfo" size="#data" hidden="false">
+			<node name="id" reader="UINT"/>
+			<node name="default_price" reader="LONG"/>
+		</for>
+	</file>
+	<file pattern="ru_ertheia" isSafePackage="true">
+		<node name="data" reader="UINT"/>
+		<for name="item_baseinfo" size="#data" hidden="false">
+			<node name="id" reader="UINT"/>
+			<node name="default_price" reader="LONG"/>
+			<node name="is_premium" reader="UINT"/>
+		</for>
+	</file>
+	<file pattern="salvation_antharas_140" isSafePackage="true">
+		<node name="data" reader="UINT"/>
+		<for name="item_baseinfo" size="#data" hidden="false">
+			<node name="id" reader="UINT"/>
+			<node name="default_price" reader="LONG"/>
+			<node name="is_locked" reader="UBYTE"/>
+		</for>
+	</file>
+	<file pattern="preludewar_kamael_235" isSafePackage="true">
+		<node name="data" reader="UINT"/>
+		<for name="item_baseinfo" size="#data" hidden="false">
+			<node name="id" reader="UINT"/>
+			<node name="default_price" reader="LONG"/>
+			<node name="craft_charge_points" reader="UINT"/>
+			<node name="craft_charge_cost" reader="UINT"/>
+			<node name="is_locked" reader="UBYTE"/>
+		</for>
+	</file>
+	<file pattern="death_knight_362" isSafePackage="true">
+		<node name="data" reader="UINT"/>
+		<for name="item_baseinfo" size="#data" hidden="false">
+			<node name="id" reader="UINT"/>
+			<node name="default_price" reader="LONG"/>
+			<node name="craft_charge_points" reader="UINT"/>
+			<node name="craft_charge_cost" reader="UINT"/>
+			<node name="is_locked" reader="UBYTE"/>
+			<node name="enchant_enable" reader="UCHAR"/>
+			<node name="enchant_group_id" reader="UCHAR"/>
+			<node name="challenge_point_group_id" reader="UCHAR"/>
+		</for>
+	</file>
+	<file pattern="crusade_388" isSafePackage="true">
+		<node name="data" reader="UINT"/>
+		<for name="item_baseinfo" size="#data" hidden="false">
+			<node name="id" reader="UINT"/>
+			<node name="default_price" reader="LONG"/>
+			<node name="craft_charge_points" reader="UINT"/>
+			<node name="craft_charge_cost" reader="UINT"/>
+			<node name="is_locked" reader="UBYTE"/>
+			<node name="enchant_enable" reader="UCHAR"/>
+			<node name="enchant_group_id" reader="UCHAR"/>
+			<node name="challenge_point_group_id" reader="UCHAR"/>
+			<node name="hero_book_point" reader="USHORT"/>
+		</for>
+	</file>
+</list>

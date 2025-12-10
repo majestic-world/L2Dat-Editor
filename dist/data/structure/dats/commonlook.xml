@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<list>
+	<file pattern="queen_ant_sylph_306" isSafePackage="true">
+		<node name="data" reader="UINT"/>
+		<for name="commonlook" size="#data" hidden="false">
+			<node name="item_type" reader="USHORT"/>
+			<node name="item_id" reader="UINT"/>
+		</for>
+	</file>
+</list>
+
+<!--
+
+WTF???
+22 00 00 00
+
+00 08 3d 8e 00 00
+00 02 6b 00 00 00
+00 04 0c 32 00 00
+
+01 01 83 00 00 00
+02 01 ca 1e 00 00
+03 01 54 00 00 00
+04 01 a0 00 00 00
+05 01 e1 18 00 00
+06 01 c1 00 00 00
+07 01 cc 00 00 00
+08 01 e7 00 00 00
+09 01 2d 01 00 00
+0b 01 1e 01 00 00
+0d 01 e3 09 00 00
+0e 01 0a 01 00 00
+0f 01 b4 b1 00 00
+10 01 4c 24 00 00
+11 01 05 38 00 00
+12 01 50 24 00 00
+14 01 3a 36 00 00
+16 01 91 43 00 00
+17 01 97 43 00 00
+
+
+0c 53 61 66
+65 50 61 63
+6b 61 67 65
+00
+-->

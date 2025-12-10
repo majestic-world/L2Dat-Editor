@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--AUTHOR: Bonux-->
+<!--bonuxq@gmail.com-->
+<list>
+	<links id="480" parent_id="470" name="High Elf (464)">
+		<link pattern="GamePlayData(_Classic(Aden)?)?\.dat" file="gameplaydata" version="high_elf_464"/>
+		<link pattern="collection(_Classic(Aden)?)?-[\w]+\.dat" file="collection" version="high_elf_464"/>
+		<link pattern="skillenchantsetting(_Classic(Aden)?)?\.dat" file="SkillEnchantSetting" version="high_elf_464"/>
+		<link pattern="LCoinShopCategory(_Classic(Aden)?)?\.dat" file="LCoinShopCategory" version="high_elf_464"/>
+		<link pattern="Server_Id_List(_Classic(Aden)?)?\.dat" file="Server_Id_List" version="high_elf_464"/>
+		<link pattern="VirtualItemSystem(_Classic(Aden)?)?\.dat" file="virtualitemsystem" version="high_elf_464"/>
+		<link pattern="AbnormalRelationEffect(_Classic(Aden)?)?\.dat" file="abnormalrelationeffect" version="high_elf_464"/>
+		<link pattern="EnchantedHairEffectData(_Classic(Aden)?)?\.dat" file="EnchantedHairEffectData" version="high_elf_464"/>
+		<link pattern="LevelAmbience(_Classic(Aden)?)?\.dat" file="levelambience" version="high_elf_464"/>
+		<link pattern="PopupEvent(_Classic(Aden)?)?\.dat" file="popupevent" version="high_elf_464"/>
+		<link pattern="WeaponGradeLookChange(_Classic(Aden)?)?\.dat" file="WeaponGradeLookChange" version="high_elf_464"/>
+		<link pattern="WeaponLookChangeEffectGroup(_Classic(Aden)?)?\.dat" file="weaponlookchangeeffectgroup" version="high_elf_464"/>
+		<link pattern="PurchaseLimitCraftCategory(_Classic(Aden)?)?\.dat" file="PurchaseLimitCraftCategory" version="high_elf_464"/>
+		<link pattern="relics_main(_Classic(Aden)?)?\.dat" file="relicsmain" version="high_elf_464"/>
+		<link pattern="armorgrp(_Classic(Aden)?)?\.dat" file="armorgrp" version="high_elf_464"/>
+		<link pattern="charcreategrp(_Classic(Aden)?)?\.dat" file="charcreategrp" version="high_elf_464"/>
+		<link pattern="Chargrp(_Classic(Aden)?)?\.dat" file="chargrp" version="high_elf_464"/>
+		<link pattern="faceexgrp(_Classic(Aden)?)?\.dat" file="faceexgrp" version="high_elf_464"/>
+		<link pattern="hairexgrp(_Classic(Aden)?)?\.dat" file="hairexgrp" version="high_elf_464"/>
+		<link pattern="HomunCreate(_Classic(Aden)?)?\.dat" file="homuncreate" version="high_elf_464"/>
+		<link pattern="HomunNpc(_Classic(Aden)?)?\.dat" file="homunnpc" version="high_elf_464"/>
+		<link pattern="logongrp(_Classic(Aden)?)?\.dat" file="logongrp" version="high_elf_464"/>
+		<link pattern="missionlevel(_Classic(Aden)?)?(-[\w]+)?\.dat" file="missionlevel" version="high_elf_464"/>
+		<link pattern="OneDayReward(_Classic(Aden)?)?-[\w]+\.dat" file="onedayreward" version="high_elf_464"/>
+		<link pattern="RideData(_Classic(Aden)?)?\.dat" file="ridedata" version="high_elf_464"/>
+		<link pattern="SkillEnchantCharge(_Classic(Aden)?)?\.dat" file="skillenchantcharge" version="high_elf_464"/>
+		<link pattern="skillsoundgrp(_Classic(Aden)?)?\.dat" file="skillsoundgrp" version="high_elf_464"/>
+		<link pattern="MinimapRegion(_Classic(Aden)?)?\.dat" file="minimapregion" version="high_elf_464"/>
+	</links>
+</list>

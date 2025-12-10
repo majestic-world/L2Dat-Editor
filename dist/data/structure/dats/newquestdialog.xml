@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--AUTHOR: Bonux-->
+<list>
+	<file pattern="assassin_414" isSafePackage="true">
+		<node name="data" reader="UINT"/>
+		<for name="newquestdialog" size="#data" hidden="false">
+			<node name="quest_id" reader="UINT"/>
+			<node name="start_dialog" reader="ASCF"/>
+			<node name="accept_dialog" reader="ASCF"/>
+			<node name="complete_dialog" reader="ASCF"/>
+			<node name="end_dialog" reader="ASCF"/>
+			<node name="quest_info" reader="ASCF"/>
+		</for>
+	</file>
+</list>

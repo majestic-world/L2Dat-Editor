@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--AUTHOR: Bonux-->
+<list>
+	<file pattern="homunculus_kamael_286" isSafePackage="true">
+		<node name="data" reader="UINT"/>
+		<for name="blessoption" size="#data" hidden="false">
+			<node name="group_id" reader="UINT"/>
+			<wrapper name="type_group">
+				<node name="crystal_type" reader="UCHAR" enum_name="grade_type"/>
+				<node name="body_part" reader="UBYTE"/>
+				<node name="weapon_type" reader="UCHAR" enum_name="item_weapon_v2_type"/>
+			</wrapper>
+			<node name="base_effect_count" reader="CNTR"/>
+			<for name="base_effect" size="#base_effect_count">
+				<node name="skill_id_1" reader="UINT"/>
+				<node name="skill_level_1" reader="UINT"/>
+			</for>
+			<node name="enchant_effect_count" reader="CNTR"/>
+			<for name="enchant_effect" size="#enchant_effect_count">
+				<node name="option_type" reader="UINT" enum_name="blessoption_type"/>
+				<node name="item_enchant_level" reader="UINT"/>
+				<node name="skill_id_2" reader="UINT"/>
+				<node name="skill_level_2" reader="UINT"/>
+			</for>
+		</for>
+	</file>
+	<file pattern="crusade_388" isSafePackage="true">
+		<node name="data" reader="UINT"/>
+		<for name="blessoption" size="#data" hidden="false">
+			<node name="group_id" reader="UINT"/>
+			<wrapper name="type_group">
+				<node name="crystal_type" reader="UCHAR" enum_name="grade_type"/>
+				<node name="armor_type" reader="UBYTE" enum_name="armor_type"/>
+				<node name="body_part" reader="UBYTE"/>
+				<node name="weapon_type" reader="UCHAR" enum_name="item_weapon_v2_type"/>
+			</wrapper>
+			<node name="enchant_effect_count" reader="CNTR"/>
+			<for name="enchant_effect" size="#enchant_effect_count">
+				<node name="option_type" reader="UINT" enum_name="blessoption_type"/>
+				<node name="item_enchant_level" reader="UINT"/>
+				<node name="skill_id_2" reader="UINT"/>
+				<node name="skill_level_2" reader="UINT"/>
+			</for>
+		</for>
+	</file>
+	<file pattern="project_wolf_512_kr" isSafePackage="true">
+		<node name="data" reader="UINT"/>
+		<for name="blessoption" size="#data" hidden="false">
+			<node name="group_id" reader="UINT"/>
+			<wrapper name="type_group">
+				<node name="crystal_type" reader="UCHAR" enum_name="grade_type"/>
+				<node name="armor_type" reader="UBYTE" enum_name="armor_type"/>
+				<node name="body_part" reader="UBYTE"/>
+				<node name="weapon_type" reader="UCHAR" enum_name="item_weapon_v2_type"/>
+			</wrapper>
+			<node name="base_effect" reader="CNTR"/>
+			<for name="base_effect" size="#base_effect">
+				<node name="skills" reader="CNTR"/>
+				<for name="skills" size="#skills">
+					<node name="skill_id" reader="UINT"/>
+					<node name="skill_level" reader="UINT"/>
+					<node name="effect_id" reader="UINT"/>
+				</for>
+			</for>
+			<node name="enchant_effect" reader="CNTR"/>
+			<for name="enchant_effect" size="#enchant_effect">
+				<node name="skill_id" reader="UINT"/>
+				<node name="skill_level" reader="UINT"/>
+				<node name="item_enchant_level" reader="UINT"/>
+				<node name="skills" reader="CNTR"/>
+				<for name="skills" size="#skills">
+					<node name="skill_id" reader="UINT"/>
+					<node name="skill_level" reader="UINT"/>
+					<node name="item_enchant_level" reader="UINT"/>
+				</for>
+			</for>
+			<node name="change_look_effect" reader="CNTR"/>
+			<for name="change_look_effect" size="#change_look_effect">
+				<node name="item_id" reader="UINT"/>
+				<node name="min_enchant" reader="LONG"/>
+			</for>
+		</for>
+	</file>
+</list>

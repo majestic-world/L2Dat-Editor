@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<list>
+	<file pattern="fufarion_secretofempire_166" isSafePackage="true">
+		<node name="data" reader="UINT"/>
+		<for name="use_count_item" size="#data" hidden="false">
+			<node name="item_id" reader="UINT"/>
+			<node name="reuse_delay" reader="FLOAT"/>
+			<node name="max_use_count" reader="UBYTE"/>
+			<node name="size1" reader="UBYTE"/>	
+			<for name="fixed_reward_order" size="#size1">	
+				<node name="item" reader="UBYTE"/>
+			</for>
+		</for>
+	</file>
+</list>

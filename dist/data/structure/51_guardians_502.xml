@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--AUTHOR: Bonux-->
+<!--bonuxq@gmail.com-->
+<list>
+	<links id="510" parent_id="500" name="Guardians (502)">
+		<link pattern="GamePlayData_ClassicAden\.dat" file="gameplaydata" version="guardians_502_aden"/>
+	</links>
+</list>

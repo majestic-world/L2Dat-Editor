@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<list>
+	<file pattern="death_knight_338" isSafePackage="true">
+		<node name="data" reader="UINT"/>
+		<for name="dyepotential_fee" size="#data" hidden="false">
+			<node name="enchant_fee_step" reader="UCHAR"/>
+			<node name="daily_count" reader="UCHAR"/>
+			<node name="enchant_exp" reader="CNTR"/>
+			<for name="enchant_exp" size="#enchant_exp">
+				<node name="exp" reader="UCHAR"/>
+				<node name="prob" reader="FLOAT"/>
+			</for>
+			<wrapper name="upgrade_item">
+				<node name="param_upgrade_item_1" reader="UINT"/>
+				<node name="param_upgrade_item_2" reader="UINT"/>
+			</wrapper>
+		</for>
+	</file>
+	<file pattern="death_knight_362" isSafePackage="true">
+		<node name="data" reader="UINT"/>
+		<for name="dyepotential_fee" size="#data" hidden="false">
+			<node name="enchant_fee_step" reader="UCHAR"/>
+			<node name="daily_count" reader="UCHAR"/>
+			<node name="enchant_exp" reader="CNTR"/>
+			<for name="enchant_exp" size="#enchant_exp">
+				<node name="exp" reader="UCHAR"/>
+				<node name="prob" reader="FLOAT"/>
+			</for>
+			<node name="upgrade_item" reader="UCHAR"/>
+			<for name="upgrade_item" size="#upgrade_item">
+				<node name="param_upgrade_item_1" reader="UINT"/>
+				<node name="param_upgrade_item_2" reader="UINT"/>
+			</for>
+		</for>
+	</file>
+	<file pattern="guardians_493" isSafePackage="true">
+		<node name="data" reader="UINT"/>
+		<for name="dyepotential_fee" size="#data" hidden="false">
+			<node name="enchant_fee_step" reader="UCHAR"/>
+			<node name="daily_count" reader="UCHAR"/>
+			<node name="enchant_exp" reader="CNTR"/>
+			<for name="enchant_exp" size="#enchant_exp">
+				<node name="exp" reader="UCHAR"/>
+				<node name="prob" reader="FLOAT"/>
+			</for>
+			<node name="upgrade_item" reader="UCHAR"/>
+			<for name="upgrade_item" size="#upgrade_item">
+				<node name="param_upgrade_item_1" reader="UINT"/>
+				<node name="param_upgrade_item_2" reader="UINT"/>
+			</for>
+			<node name="commission" reader="UINT"/>
+			<node name="unk493" reader="UCHAR"/>
+			<for name="unk493" size="#unk493">
+				<node name="unk" reader="UINT"/>
+			</for>
+		</for>
+	</file>
+</list>

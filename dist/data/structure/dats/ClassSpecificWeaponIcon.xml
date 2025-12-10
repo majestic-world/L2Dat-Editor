@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<list>
+	<file pattern="samurai_541" isSafePackage="true">
+		<node name="data" reader="UINT"/>
+		<for name="ClassSpecificWeawponIcon" size="#data" hidden="false">
+			<node name="Class" reader="UINT" key="true"/>
+			<node name="ChangeById" reader="CNTR"/>
+			<for name="ChangeById">
+				<node name="ChangeById" reader="UINT"/>
+			</for>
+			<node name="Icon" reader="MAP_INT"/>
+			<node name="IconPanel" reader="MAP_INT"/>
+		</for>
+	</file>
+</list>

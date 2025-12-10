@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<list>
+	<file pattern="fufarion_secretofempire_166" isSafePackage="true">
+		<node name="data" reader="UINT"/>
+		<for name="elementalstat" size="#data" hidden="false">
+			<node name="unk" reader="USHORT"/>
+			<node name="evolution_id" reader="USHORT"/>
+			<node name="type" reader="UINT" enum_name="elemental_type"/>
+			<node name="level" reader="UINT"/>
+			<node name="attack" reader="UINT"/>
+			<node name="defence" reader="UINT"/>
+			<node name="crit_rate" reader="UINT"/>
+			<node name="crit_damage" reader="UINT"/>
+			<!--node name="desc" reader="ASCF" /-->
+			<!-- 
+				"elementalstat_begin"
+				"elementalstat_Statid"
+				"elementalstat_type"
+				"elementalstat_level"
+				"elementalstat_atk"
+				"elementalstat_def"
+				"elementalstat_crirate"
+				"elementalstat_cripow"
+				"elementalstat_desc"
+				"elementalstat_end"
+			-->
+		</for>
+	</file>
+</list>

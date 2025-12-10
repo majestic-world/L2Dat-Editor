@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<list>
+	<file pattern="preludewar_kamael_245" isSafePackage="true">
+		<node name="data" reader="UINT"/>
+		<for name="localize" size="#data" hidden="false">
+			<node name="target" reader="ASCF"/>
+			<node name="value1" reader="UINT"/>
+			<node name="value2" reader="UINT"/>
+			<node name="value3" reader="HEX"/>
+			<node name="value4" reader="HEX"/>
+			<node name="value5" reader="HEX"/>
+			<node name="value6" reader="HEX"/>
+			<node name="value7" reader="HEX"/>
+			<node name="value8" reader="HEX"/>
+			<node name="value9" reader="HEX"/>
+			<node name="value10" reader="HEX"/>
+			<node name="value11" reader="HEX"/>
+			<node name="value12" reader="HEX"/>
+			<node name="value13" reader="HEX"/>
+			<node name="value14" reader="HEX"/>
+			<node name="value15" reader="HEX"/>
+			<node name="value16" reader="HEX"/>
+			<node name="value17" reader="HEX"/>
+			<node name="value18" reader="HEX"/>
+			<node name="value19" reader="HEX"/>
+			<node name="value20" reader="HEX"/>
+			<node name="value21" reader="HEX"/>
+			<node name="value22" reader="HEX"/>
+			<node name="value23" reader="HEX"/>
+			<node name="value24" reader="HEX"/>
+			<node name="value25" reader="HEX"/>
+			<node name="value26" reader="HEX"/>
+			<node name="value27" reader="HEX"/>
+			<node name="value28" reader="HEX"/>
+			<node name="value29" reader="HEX"/>
+			<node name="value30" reader="HEX"/>
+			<node name="value31" reader="HEX"/>
+			<node name="value32" reader="HEX"/>
+			<node name="value33" reader="HEX"/>
+			<node name="value34" reader="HEX"/>
+		</for>
+	</file>
+	<file pattern="death_knight_362" isSafePackage="true">
+		<node name="data" reader="UINT"/>
+		<for name="localize" size="#data" hidden="false">
+			<node name="target" reader="ASCF"/>
+			<node name="targettype" reader="UINT"/>
+			<node name="targetid" reader="UINT"/>
+			<node name="skilllv" reader="UINT"/>
+			<node name="value" reader="ASCF"/>
+			<node name="applycountry" reader="CNTR"/>
+			<for name="applycountry" size="#applycountry">
+				<node name="applycountry_id" reader="UINT" enum_name="localization_type"/>
+			</for>
+		</for>
+	</file>
+</list>

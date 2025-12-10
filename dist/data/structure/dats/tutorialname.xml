@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<list>
+	<file pattern="kor_infinite_odyssey_will_of_the_ancients" isSafePackage="true">
+		<node name="data" reader="UINT"/>
+		<for name="tutorial_name" size="#data" hidden="false">
+			<node name="id" reader="UINT"/>
+			<node name="name" reader="ASCF"/>
+			<node name="type" reader="UINT"/>
+		</for>
+	</file>
+	<file pattern="fufarion_secretofempire_166" isSafePackage="true">
+		<node name="data" reader="UINT"/>
+		<for name="tutorial_name" size="#data" hidden="false">
+			<node name="id" reader="UINT"/>
+			<node name="name" reader="ASCF"/>
+			<node name="type" reader="UINT"/>
+			<node name="category" reader="UINT"/>
+			
+			<node name="order_id" reader="UINT"/>
+			<node name="level" reader="USHORT"/>
+			<node name="sub_name" reader="ASCF"/>
+			<node name="resource" reader="ASCF"/>
+			<node name="desc" reader="ASCF"/>
+			<node name="display_type" reader="UINT"/>
+		</for>
+		<!-- 
+			tutorial_name_begin
+			id
+			name
+			type
+			category
+			order_id
+			level
+			sub_name
+			resource
+			desc
+			display_type
+			tutorial_name_end
+		-->
+	</file>
+</list>

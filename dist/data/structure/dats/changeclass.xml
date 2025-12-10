@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<list>
+	<file pattern="project_wolf_502_kr" isSafePackage="true">
+		<node name="data" reader="UINT"/>
+		<for name="changeclass" size="#data" hidden="false">
+			<node name="class_id" reader="UINT" enum_name="class"/>
+			<node name="race_string_id" reader="UINT"/>
+			<node name="class_string_id" reader="UINT"/>
+			<node name="race" reader="UBYTE" enum_name="race"/>
+			<node name="sex" reader="UBYTE" enum_name="sex"/>
+			<node name="class_role" reader="UBYTE" enum_name="classtype"/>
+			<node name="unk1" reader="UBYTE"/>
+			<node name="unk2" reader="UBYTE"/>
+			<node name="male_texture_name" reader="ASCF"/>
+			<node name="is_hidden" reader="UBYTE"/>
+			<node name="female_texture_name" reader="ASCF"/>
+		</for>
+	</file>
+</list>

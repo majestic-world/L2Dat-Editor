@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<list>
+	<file pattern="fufarion_secretofempire_166" isSafePackage="true">
+		<node name="data" reader="UINT"/>
+		<for name="artifact_upgrade" size="#data" hidden="false">
+			<node name="artifact_item_id" reader="UINT"/>
+			<node name="artifact_level" reader="UINT"/>
+			<node name="artifact_group_id" reader="UINT"/>
+			<node name="count" reader="UINT"/>
+			<node name="result_prob" reader="UINT"/>
+		</for>
+	</file>
+</list>

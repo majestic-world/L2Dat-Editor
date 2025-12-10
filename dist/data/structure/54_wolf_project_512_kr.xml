@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--AUTHOR: Bonux-->
+<!--bonuxq@gmail.com-->
+<list>
+	<links id="540" parent_id="530" name="Project Wolf (512) KR">
+		<link pattern="BlessOption(_Classic(Aden)?)?\.dat" file="blessoption" version="project_wolf_512_kr"/>
+	</links>
+</list>

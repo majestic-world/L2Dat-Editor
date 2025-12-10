@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<list>
+	<file pattern="fufarion_secretofempire_196" isSafePackage="true">
+		<node name="data" reader="UINT"/>
+		<for name="dyeeffect" size="#data" hidden="false">
+			<node name="id" reader="UINT"/>
+			<node name="slot_id" reader="UINT"/>
+			<node name="skill_id" reader="UINT"/>
+		</for>
+	</file>
+	<file pattern="guardians_493" isSafePackage="true">
+		<node name="data" reader="UINT"/>
+		<for name="dyeeffect" size="#data" hidden="false">
+			<node name="category" reader="UBYTE"/>
+			<node name="slot_id" reader="UBYTE"/>
+			<write name="\r\n"/>
+			<node name="effect" reader="UINT"/>
+			<for name="effect" size="#effect" hidden="false">
+				<node name="dye_level" reader="UBYTE"/>
+				<wrapper name="skill">
+					<node name="skill_id" reader="UINT"/>
+					<node name="skill_level" reader="USHORT"/>
+				</wrapper>
+				<wrapper name="need_item">
+					<node name="item_id" reader="UINT"/>
+					<node name="item_count" reader="UINT"/>
+				</wrapper>
+				<wrapper name="cancel_need_item">
+					<node name="item_id" reader="UINT"/>
+					<node name="item_count" reader="UINT"/>
+				</wrapper>
+				<wrapper name="cancel_return_item">
+					<node name="item_id" reader="UINT"/>
+					<node name="item_count" reader="UINT"/>
+				</wrapper>
+				<wrapper name="hidden_need_item">
+					<node name="item_id" reader="UINT"/>
+					<node name="item_count" reader="UINT"/>
+				</wrapper>
+				<wrapper name="hidden_skill">
+					<node name="skill_id" reader="UINT"/>
+					<node name="skill_level" reader="USHORT"/>
+				</wrapper>
+			</for>
+		</for>
+	</file>
+</list>

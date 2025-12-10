@@ -1,0 +1,144 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<list>
+	<file pattern="preludewar_kamael_228" isSafePackage="true">
+		<node name="data" reader="UINT"/>
+		<for name="use_count_Item" size="#data" hidden="false">
+			
+			<node name="item_id" reader="UINT"/>
+
+			<node name="reuse_delay" reader="FLOAT"/>
+			
+			<node name="max_use_count" reader="UCHAR"/>
+
+			<node name="fixed_reward_order" reader="CNTR"/>
+			<for name="fixed_reward_order" size="#fixed_reward_order">
+				<node name="order" reader="UBYTE"/>
+			</for>
+
+			<!--
+			<node name="reuse_delay" reader="FLOAT"/>
+			<node name="max_use_count" reader="UINT"/>
+			<node name="fixed_reward_order" reader="UINT"/>
+			-->
+		</for>
+	</file>
+</list>
+
+<!--
+
+
+ 8 item_id: 48402
+ 12 reuse_delay: 180.0
+ 13 max_use_count: 30
+ 17 fixed_reward_order:
+ 21 item_id: 0
+ 25 reuse_delay: 2.9765308E-35
+ 26 max_use_count: 5
+ 
+ 
+ 8 item_id: 48402
+ 12 reuse_delay: 180.0
+ 13 max_use_count: 30
+ 15 fixed_reward_order:
+ 19 item_id: 48403
+ 23 reuse_delay: 60.0
+ 24 max_use_count: 30
+ 31 fixed_reward_order: ♣
+
+01
+09
+B1|B2|B3
+	FString::FString(&v18, L"item_id");
+	FString::FString(&v17, L"item_name");
+	FString::FString(&v16, L"reuse_delay");
+	FString::FString(&v15, L"max_use_count");
+	FString::FString(&v14, L"fixed_reward_order");
+	
+[2020-09-18 17:17:52] INFO pos: 4 data: 76
+[2020-09-18 17:17:52] INFO size: 934
+12 bd 00 00
+00 00 34 43
+1e
+01 1e
+
+13 bd 00 00
+00 00 70 42
+1e
+06 05 0a 0f 14 19 1e
+
+14 bd 00 00
+00 00 80 bf
+03
+00
+
+09 bd 00 00
+00 00 e1 44
+0a
+02 01 0a
+
+5d bd 00 00
+00 00 80 bf
+1e
+06 05 0a 0f 14 19 1e
+
+86 bd 00 00
+00 00 80 bf
+0a
+02 05 0a 14 be 00
+00 00 00 80 bf 0f 03 05 0a 0f 4a be 00 00 00 00
+40 40 06 01 06 4b be 00 00 00 00 40 40 06 01 06
+4c be 00 00 00 00 40 40 06 01 06 4d be 00 00 00
+00 40 40 06 01 06 4e be 00 00 00 00 40 40 06 01
+06 4f be 00 00 00 00 40 40 06 01 06 50 be 00 00
+00 00 40 40 06 01 06 51 be 00 00 00 00 40 40 06
+01 06 52 be 00 00 00 00 40 40 06 01 06 53 be 00
+00 00 00 40 40 06 01 06 54 be 00 00 00 00 40 40
+06 01 06 55 be 00 00 00 00 40 40 06 01 06 56 be
+00 00 00 00 40 40 06 01 06 57 be 00 00 00 00 40
+40 06 01 06 58 be 00 00 00 00 40 40 06 01 06 59
+be 00 00 00 00 40 40 06 01 06 5a be 00 00 00 00
+40 40 06 01 06 5b be 00 00 00 00 40 40 06 01 06
+5c be 00 00 00 00 40 40 06 01 06 5d be 00 00 00
+00 40 40 06 01 06 5e be 00 00 00 00 40 40 06 01
+06 5f be 00 00 00 00 80 bf 02 02 01 02 60 be 00
+00 00 00 80 bf 02 02 01 02 61 be 00 00 00 00 80
+bf 02 02 01 02 62 be 00 00 00 00 80 bf 02 02 01
+02 63 be 00 00 00 00 80 bf 02 02 01 02 64 be 00
+00 00 00 80 bf 02 02 01 02 65 be 00 00 00 00 80
+bf 02 02 01 02 66 be 00 00 00 00 80 bf 02 02 01
+02 67 be 00 00 00 00 80 bf 02 02 01 02 68 be 00
+00 00 00 80 bf 02 02 01 02 69 be 00 00 00 00 80
+bf 02 02 01 02 6a be 00 00 00 00 80 bf 02 02 01
+02 6b be 00 00 00 00 80 bf 02 02 01 02 6c be 00
+00 00 00 80 bf 02 02 01 02 6d be 00 00 00 00 80
+bf 02 02 01 02 6e be 00 00 00 00 80 bf 02 02 01
+02 6f be 00 00 00 00 80 bf 02 02 01 02 70 be 00
+00 00 00 80 bf 02 02 01 02 71 be 00 00 00 00 80
+bf 02 02 01 02 72 be 00 00 00 00 80 bf 02 02 01
+02 ce be 00 00 00 00 80 bf 1e 01 1e cf be 00 00
+00 00 80 bf 5a 03 1e 3c 5a e1 be 00 00 00 00 80
+bf 0f 05 03 06 09 0c 0f d7 3a 01 00 00 00 80 bf
+0f 00 d8 3a 01 00 00 00 80 bf 0f 00 a7 3b 01 00
+00 00 61 46 0a 0a 01 02 03 04 05 06 07 08 09 0a
+a8 3b 01 00 00 00 61 46 0a 0a 01 02 03 04 05 06
+07 08 09 0a a9 3b 01 00 00 00 61 46 0a 0a 01 02
+03 04 05 06 07 08 09 0a 16 12 00 00 00 00 34 44
+0f 02 01 0f 17 12 00 00 00 00 34 44 0f 02 01 0f
+18 12 00 00 00 00 34 44 0f 02 01 0f 19 12 00 00
+00 00 34 44 0f 02 01 0f 1a 12 00 00 00 00 34 44
+0f 02 01 0f 1b 12 00 00 00 00 34 44 0f 02 01 0f
+1c 12 00 00 00 00 34 44 0f 02 01 0f 1d 12 00 00
+00 00 34 44 0f 02 01 0f 1e 12 00 00 00 00 34 44
+0f 02 01 0f 1f 12 00 00 00 00 34 44 0f 02 01 0f
+20 12 00 00 00 00 34 44 0f 02 01 0f 21 12 00 00
+00 00 34 44 0f 02 01 0f 22 12 00 00 00 00 34 44
+0f 02 01 0f 23 12 00 00 00 00 34 44 0f 02 01 0f
+24 12 00 00 00 00 34 44 0f 02 01 0f 25 12 00 00
+00 00 34 44 0f 02 01 0f 26 12 00 00 00 00 34 44
+0f 02 01 0f 27 12 00 00 00 00 34 44 0f 02 01 0f
+28 12 00 00 00 00 34 44 0f 02 01 0f b3 72 00 00
+00 00 80 bf 1e 03 0a 14 1e 0c 53 61 66 65 50 61
+63 6b 61 67 65 00
+
+
+-->

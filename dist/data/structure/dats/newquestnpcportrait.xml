@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--AUTHOR: Bonux-->
+<list>
+	<file pattern="assassin_414" isSafePackage="true">
+		<node name="data" reader="UINT"/>
+		<for name="newquestnpcportrait" size="#data" hidden="false">
+			<node name="npc_id" reader="UINT"/>
+			<node name="view_offsetX" reader="UINT"/>
+			<node name="view_offsetY" reader="UINT"/>
+			<node name="view_offsetZ" reader="UINT"/>
+			<node name="view_dist" reader="UINT"/>
+			<node name="view_rotationYaw" reader="UINT"/>
+			<node name="view_scale" reader="FLOAT"/>
+		</for>
+	</file>
+</list>

@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--AUTHOR: Bonux-->
+<!--bonuxq@gmail.com-->
+<list>
+	<links id="560" parent_id="510" name="Project Wolf (507)">
+		<link pattern="BlessOption(_Classic(Aden)?)?\.dat" file="blessoption" version="project_wolf_512_kr"/>
+		<link pattern="ChangeClass(_Classic(Aden)?)?\.dat" file="changeclass" version="project_wolf_502_kr"/>
+		<link pattern="charcreategrp(_Classic(Aden)?)?\.dat" file="charcreategrp" version="project_wolf_502_kr"/>
+		<link pattern="CombinationItemData(_Classic(Aden)?)?\.dat" file="combinationitemdata" version="project_wolf_507"/>
+		<link pattern="GamePlayData(_Classic(Aden)?)?\.dat" file="gameplaydata" version="project_wolf_507"/>
+		<link pattern="logongrp(_Classic(Aden)?)?\.dat" file="logongrp" version="project_wolf_502_kr"/>
+	</links>
+</list>

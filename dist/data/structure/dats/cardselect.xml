@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<list>
+	<file pattern="seven_signs_447" isSafePackage="true">
+		<node name="data" reader="UINT"/>
+		<for name="cardselect" size="#data" hidden="false">
+			<node name="boss_id" reader="UBYTE"/>
+			<wrapper name="fee_daily_count">
+				<node name="low_fee_daily_count" reader="UBYTE"/>
+				<node name="high_fee_daily_count" reader="UBYTE"/>
+			</wrapper>
+			<node name="stage" reader="CNTR"/>
+			<for name="stage" size="#stage">
+				<node name="index" reader="USHORT"/>
+				<node name="stage_type" reader="UBYTE"/>
+			</for>
+			<node name="fee" reader="CNTR"/>
+			<for name="fee" size="#fee">
+				<node name="fee_type" reader="UBYTE" enum_name="ECardSelectFeeType"/>
+				<node name="item_id" reader="UINT"/>
+				<node name="item_count" reader="UINT"/>
+			</for>
+			<node name="transcend_effect" reader="CNTR"/>
+			<for name="transcend_effect" size="#transcend_effect">
+				<node name="effect_option_id" reader="USHORT"/>
+				<node name="prob" reader="FLOAT"/>
+			</for>
+		</for>
+	</file>
+	<file pattern="high_elf_474" isSafePackage="true">
+		<node name="data" reader="UINT"/>
+		<for name="cardselect" size="#data" hidden="false">
+			<node name="boss_id" reader="UBYTE"/>
+			<wrapper name="fee_daily_count">
+				<node name="low_fee_daily_count" reader="UBYTE"/>
+				<node name="high_fee_daily_count" reader="UBYTE"/>
+			</wrapper>
+			<node name="stage" reader="CNTR"/>
+			<for name="stage" size="#stage">
+				<node name="index" reader="USHORT"/>
+				<node name="stage_type" reader="UBYTE"/>
+			</for>
+			<node name="fee" reader="CNTR"/>
+			<for name="fee" size="#fee">
+				<node name="fee_type" reader="UBYTE" enum_name="ECardSelectFeeType"/>
+				<node name="item_id" reader="UINT"/>
+				<node name="item_count" reader="UINT"/>
+			</for>
+			<node name="eva_fee" reader="CNTR"/>
+			<for name="eva_fee" size="#eva_fee">
+				<node name="fee_type" reader="UBYTE" enum_name="ECardSelectFeeType"/>
+				<node name="item_id" reader="UINT"/>
+				<node name="item_count" reader="UINT"/>
+			</for>
+			<node name="transcend_effect" reader="CNTR"/>
+			<for name="transcend_effect" size="#transcend_effect">
+				<node name="effect_option_id" reader="USHORT"/>
+			</for>
+			<node name="eva_server_groups" reader="CNTR"/>
+			<for name="eva_server_groups" size="#eva_server_groups">
+				<node name="server_group" reader="UINT"/>
+			</for>
+			<wrapper name="fee_adena">
+				<node name="low_fee_adena" reader="UINT"/>
+				<node name="high_fee_adena" reader="UINT"/>
+			</wrapper>
+			<wrapper name="eva_fee_adena">
+				<node name="low_fee_adena" reader="UINT"/>
+				<node name="high_fee_adena" reader="UINT"/>
+			</wrapper>
+		</for>
+	</file>
+</list>

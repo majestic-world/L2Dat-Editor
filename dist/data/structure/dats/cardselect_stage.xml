@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<list>
+	<file pattern="seven_signs_447" isSafePackage="true">
+		<node name="data" reader="UINT"/>
+		<for name="cardselect_stage_normal" size="#data" hidden="false">
+			<node name="slot" reader="USHORT"/>
+			<node name="card_count" reader="UBYTE"/>
+			<node name="card_quality" reader="UBYTE"/>
+			<node name="effect" reader="UINT"/>
+			<node name="grade" reader="USHORT"/>
+		</for>
+		<node name="data1" reader="UINT"/>
+		<for name="cardselect_stage_special" size="#data1" hidden="false">
+			<node name="slot" reader="USHORT"/>
+			<node name="effects" reader="CNTR"/>
+			<for name="effects" size="#effects">
+				<node name="effect" reader="UINT"/>
+				<node name="grade" reader="USHORT"/>
+				<node name="index" reader="UBYTE"/>
+				<node name="prob" reader="FLOAT"/>
+			</for>
+		</for>
+	</file>
+	<file pattern="high_elf_474" isSafePackage="true">
+		<node name="data" reader="UINT"/>
+		<for name="cardselect_stage_normal" size="#data" hidden="false">
+			<node name="slot" reader="USHORT"/>
+			<node name="card_count" reader="UBYTE"/>
+			<node name="card_quality" reader="UBYTE"/>
+			<node name="effect" reader="UINT"/>
+			<node name="grade" reader="USHORT"/>
+		</for>
+		<node name="data1" reader="UINT"/>
+		<for name="cardselect_stage_special" size="#data1" hidden="false">
+			<node name="slot" reader="USHORT"/>
+			<node name="effects" reader="CNTR"/>
+			<for name="effects" size="#effects">
+				<node name="effect" reader="UINT"/>
+				<node name="grade" reader="USHORT"/>
+				<node name="index" reader="UBYTE"/>
+			</for>
+		</for>
+	</file>
+	<file pattern="guardians_493" isSafePackage="true">
+		<node name="data" reader="UINT"/>
+		<for name="cardselect_stage_normal" size="#data" hidden="false">
+			<node name="slot" reader="USHORT"/>
+			<node name="card_count" reader="UBYTE"/>
+			<node name="card_quality" reader="UBYTE"/>
+			<node name="effect" reader="UINT"/>
+			<node name="grade" reader="USHORT"/>
+		</for>
+		<node name="data1" reader="UINT"/>
+		<for name="cardselect_stage_special" size="#data1" hidden="false">
+			<node name="slot" reader="USHORT"/>
+			<node name="combat_power" reader="UINT"/>
+			<node name="effects" reader="CNTR"/>
+			<for name="effects" size="#effects">
+				<node name="effect" reader="UINT"/>
+				<node name="grade" reader="USHORT"/>
+				<node name="index" reader="UBYTE"/>
+			</for>
+		</for>
+		<node name="data2" reader="UINT"/>
+		<for name="cardselect_stage_transcend" size="#data2" hidden="false">
+			<node name="slot" reader="USHORT"/>
+			<node name="level" reader="USHORT"/>
+			<node name="combat_power" reader="UINT"/>
+			<node name="effects" reader="CNTR"/>
+			<for name="effects" size="#effects">
+				<node name="effect" reader="UINT"/>
+				<node name="grade" reader="USHORT"/>
+			</for>
+			<node name="special_effects" reader="CNTR"/>
+			<for name="special_effects" size="#special_effects">
+				<node name="effect" reader="UINT"/>
+				<node name="grade" reader="USHORT"/>
+			</for>
+		</for>
+	</file>
+</list>

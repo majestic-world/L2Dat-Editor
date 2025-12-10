@@ -1,0 +1,13 @@
+<list>
+	<enum name="ESkillTargetType">
+		<node index="0" name="None" />
+		<node index="1" name="Enemy" />
+		<node index="2" name="EnemyOnly" />
+		<node index="3" name="EnemyNot" />
+		<node index="4" name="Self" />
+		<node index="5" name="Summon" />
+		<node index="6" name="Target" />
+		<node index="7" name="TargetSelf" />
+		<node index="8" name="RealEnemyOnly" />
+	</enum>
+</list>
