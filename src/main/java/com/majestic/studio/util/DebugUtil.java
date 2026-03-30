@@ -4,7 +4,7 @@ import com.majestic.studio.config.ConfigDebug;
 import com.majestic.studio.xml.Variant;
 import org.apache.log4j.LogManager;
 import org.apache.log4j.Logger;
-import org.apache.log4j.xml.DOMConfigurator;
+import org.apache.logging.log4j.core.config.Configurator;
 
 import java.io.File;
 import java.io.FileOutputStream;
@@ -53,6 +53,6 @@ public class DebugUtil {
     }
 
     static {
-        DOMConfigurator.configure("./data/config/log4j.xml");
+        Configurator.initialize(null, "./data/config/log4j2.xml");
     }
 }
