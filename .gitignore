@@ -2,3 +2,6 @@
 build
 *.log
 .gradle
+wrapper/obj
+wrapper/bin
+*.pdb
