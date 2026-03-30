@@ -85,7 +85,7 @@ public class Boot extends JFrame {
     }
 
     public Boot() {
-        this.setTitle("L2DatEditor Samurai v" + this.getClass().getPackage().getImplementationVersion() + " (Mk Edition)");
+        this.setTitle("Lineage 2 Editor By Mk v" + this.getClass().getPackage().getImplementationVersion());
         this.setMinimumSize(new Dimension(1000, 600));
         this.setSize(new Dimension(ConfigWindow.WINDOW_WIDTH, ConfigWindow.WINDOW_HEIGHT));
         this.getContentPane().setLayout(new BorderLayout());

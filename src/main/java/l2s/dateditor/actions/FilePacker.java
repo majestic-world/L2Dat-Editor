@@ -139,8 +139,7 @@ public class FilePacker extends ActionTask {
                     if (!file.getName().endsWith(".dat") && !file.getName().endsWith(".txt")) {
                         if (!file.getName().endsWith(".ini")) {
                             Boot.addErrorConsole("Unknown file [" + file.getName() + "] type!", true);
-                            double os = progress;
-                            return os;
+                            return progress;
                         }
 
                         String readFileToString = FileUtils.readFileToString(file, StandardCharsets.UTF_8);

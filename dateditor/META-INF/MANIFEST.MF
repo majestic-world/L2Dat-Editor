@@ -1,7 +1,0 @@
-Manifest-Version: 1.0
-Ant-Version: Apache Ant 1.10.14
-Created-By: 1.8.0_442-b06 (Amazon.com Inc.)
-Build-By: bonux
-Build-Date: 2025.11.28 21:57
-Implementation-Version: 1.8.0 (342423431)
-

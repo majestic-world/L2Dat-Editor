@@ -29,7 +29,7 @@ public class MemoryClassLoader extends ClassLoader {
     }
 
     public String[] getLoadedClasses() {
-        return this.loaded.keySet().toArray(new String[this.loaded.size()]);
+        return this.loaded.keySet().toArray(new String[0]);
     }
 
     public void clear() {

@@ -102,7 +102,7 @@ public class OpenDat extends ActionTask {
                             if (buffer != null) {
                                 crypter = prevDecryptor;
                             }
-                        } catch (Exception var26) {
+                        } catch (Exception ignored) {
                         }
                     }
 
@@ -117,7 +117,7 @@ public class OpenDat extends ActionTask {
                                         crypter = c;
                                         break;
                                     }
-                                } catch (Exception var27) {
+                                } catch (Exception ignored) {
                                 }
                             }
                         }
@@ -151,23 +151,19 @@ public class OpenDat extends ActionTask {
                             var32 = var25;
                             throw var25;
                         } finally {
-                            if (fIn != null) {
-                                if (var32 != null) {
-                                    try {
-                                        fIn.close();
-                                    } catch (Throwable var24) {
-                                        var32.addSuppressed(var24);
-                                    }
-                                } else {
+                            if (var32 != null) {
+                                try {
                                     fIn.close();
+                                } catch (Throwable var24) {
+                                    var32.addSuppressed(var24);
                                 }
+                            } else {
+                                fIn.close();
                             }
 
                         }
                     } catch (IOException var29) {
-                        if (!mass) {
-                            Boot.addErrorConsole("Error reading" + fileName + "  file.", true);
-                        }
+                        Boot.addErrorConsole("Error reading" + fileName + "  file.", true);
                     }
                 }
 
@@ -183,7 +179,7 @@ public class OpenDat extends ActionTask {
     public static Pair<String, DatCrypter> decryptToTxt(ActionTask actionTask, double weight, File file, DatCrypter prevDecryptor, boolean mass) throws Exception {
         Pair<ByteBuffer, DatCrypter> decrypted = decrypt(file, prevDecryptor, mass);
         if (decrypted == null) {
-            return new Pair<String, DatCrypter>("", prevDecryptor);
+            return new Pair<>("", prevDecryptor);
         } else {
             ByteBuffer buffer = decrypted.getFirst();
             double progress = actionTask.getCurrentProgress();
@@ -224,21 +220,19 @@ public class OpenDat extends ActionTask {
                     }
 
                     progress = actionTask.addProgress(progress, 5.0F, weight);
-                    if (desc != null) {
-                        buffer.position(0);
-                        DebugUtil.debug("Buffer size: " + buffer.limit());
-                        if (!mass) {
-                            GameDataName.getInstance().clear();
-                        }
-
-                        text = DescriptorReader.getInstance().parseData(actionTask, actionTask.getWeightValue(94.0F, weight), file, crypter, desc, buffer, mass);
-                        System.gc();
-                        if (actionTask.isCancelled()) {
-                            return null;
-                        }
-
-                        progress = actionTask.addProgress(progress, 94.0F, weight);
+                    buffer.position(0);
+                    DebugUtil.debug("Buffer size: " + buffer.limit());
+                    if (!mass) {
+                        GameDataName.getInstance().clear();
                     }
+
+                    text = DescriptorReader.getInstance().parseData(actionTask, actionTask.getWeightValue(94.0F, weight), file, crypter, desc, buffer, mass);
+                    System.gc();
+                    if (actionTask.isCancelled()) {
+                        return null;
+                    }
+
+                    progress = actionTask.addProgress(progress, 94.0F, weight);
 
                     if (text == null) {
                         if (!mass) {
@@ -260,7 +254,7 @@ public class OpenDat extends ActionTask {
             if (text == null) {
                 return null;
             } else {
-                return new Pair<String, DatCrypter>(text, decrypted.getSecond());
+                return new Pair<>(text, decrypted.getSecond());
             }
         }
     }
