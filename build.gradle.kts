@@ -33,5 +33,6 @@ dependencies{
     "implementation"(fileTree("${rootProject.projectDir}/dist/lib") {
         include("*.jar")
         exclude("l2-editor.jar")
+        exclude("nproperty-1.0.jar")
     })
 }
