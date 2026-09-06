@@ -141,6 +141,9 @@ public class Boot extends JFrame {
         this.openButton.setText("Open");
         this.openButton.addActionListener(this::openSelectFileWindow);
         this.buttonsPanel.add(this.openButton);
+        JButton openRecentButton = new JButton("Open Recent");
+        openRecentButton.addActionListener(e -> this.showRecentDirectories(openRecentButton));
+        this.buttonsPanel.add(openRecentButton);
         this.saveButton = new JButton();
         this.saveButton.setText("Save");
         this.saveButton.addActionListener(this::saveActionPerformed);
@@ -450,7 +453,37 @@ public class Boot extends JFrame {
         }
     }
 
+    private void showRecentDirectories(JButton button) {
+        if (this.progressTask != null) {
+            return;
+        }
+        JPopupMenu menu = new JPopupMenu();
+        for (File directory : ConfigWindow.getRecentDirectories()) {
+            JMenuItem item = new JMenuItem(directory.getPath());
+            item.addActionListener(e -> {
+                if (!directory.isDirectory()) {
+                    JOptionPane.showMessageDialog(this, "Folder is no longer available:\n" + directory,
+                            "Open Recent", JOptionPane.WARNING_MESSAGE);
+                    return;
+                }
+                ConfigWindow.rememberDirectory(directory);
+                this.openSelectFileWindow(directory);
+            });
+            menu.add(item);
+        }
+        if (menu.getComponentCount() == 0) {
+            JMenuItem empty = new JMenuItem("No recent folders");
+            empty.setEnabled(false);
+            menu.add(empty);
+        }
+        menu.show(button, 0, button.getHeight());
+    }
+
     private void openSelectFileWindow(ActionEvent evt) {
+        this.openSelectFileWindow((File) null);
+    }
+
+    private void openSelectFileWindow(File directory) {
         if (this.progressTask == null) {
             JFileChooser fileopen = new JFileChooser();
             fileopen.setFileSelectionMode(JFileChooser.FILES_ONLY);
@@ -461,19 +494,23 @@ public class Boot extends JFrame {
             fileopen.setFileFilter(new FileNameExtensionFilter(".txt", "txt"));
             fileopen.setFileFilter(new FileNameExtensionFilter(".htm", "htm"));
             fileopen.setFileFilter(new FileNameExtensionFilter(".dat, .ini, .txt, .htm", "dat", "ini", "txt", "htm"));
-            if (ConfigWindow.INPUT_DIRECTORY.equalsIgnoreCase(".")) {
+            if (directory != null) {
+                fileopen.setCurrentDirectory(directory);
+                fileopen.setAcceptAllFileFilterUsed(true);
+                fileopen.setFileFilter(fileopen.getAcceptAllFileFilter());
+            } else if (ConfigWindow.INPUT_DIRECTORY.equalsIgnoreCase(".")) {
                 fileopen.setCurrentDirectory(new File(ConfigWindow.OUTPUT_DIRECTORY));
             } else {
                 fileopen.setCurrentDirectory(new File(ConfigWindow.INPUT_DIRECTORY));
             }
 
-            if (!ConfigWindow.LAST_FILE_SELECTED.equalsIgnoreCase(".")) {
+            if (directory == null && !ConfigWindow.LAST_FILE_SELECTED.equalsIgnoreCase(".")) {
                 fileopen.setSelectedFile(new File(ConfigWindow.LAST_FILE_SELECTED));
             }
 
             fileopen.setPreferredSize(new Dimension(600, 600));
             fileopen.setDialogTitle("Select file for open.");
-            int ret = fileopen.showDialog(null, "Select");
+            int ret = fileopen.showDialog(this, "Select");
             if (ret == 0) {
                 this.currentFileWindow = fileopen.getSelectedFile();
                 if (this.currentFileWindow == null || this.currentFileWindow.isDirectory()) {
@@ -483,6 +520,7 @@ public class Boot extends JFrame {
 
                 ConfigWindow.save("LAST_FILE_SELECTED", this.currentFileWindow.getAbsolutePath());
                 ConfigWindow.save("INPUT_DIRECTORY", this.currentFileWindow.getParent());
+                ConfigWindow.rememberDirectory(this.currentFileWindow.getParentFile());
                 addLogConsole("---------------------------------------", true);
                 addLogConsole("Open file: " + this.currentFileWindow.getName(), true);
                 this.progressTask = new OpenDat(this, this.currentFileWindow);
