@@ -3,6 +3,7 @@ package com.majestic.studio.forms;
 import javax.swing.*;
 import javax.swing.event.DocumentEvent;
 import javax.swing.event.DocumentListener;
+import javax.swing.text.Document;
 import javax.swing.undo.UndoManager;
 import java.awt.*;
 import java.awt.event.*;
@@ -21,6 +22,7 @@ public class JPopupTextArea extends JTextArea {
     static final String FIND = "Search (Ctrl + F)";
     final Vector<Integer> lineLength = new Vector<>();
     private final UndoManager man;
+    private SearchDialog searchDialog;
 
     public JPopupTextArea() {
         this.addPopupMenu();
@@ -137,7 +139,12 @@ public class JPopupTextArea extends JTextArea {
     }
 
     private void searchString() {
-        new SearchDialog().setVisible(true);
+        if (searchDialog == null) {
+            searchDialog = new SearchDialog();
+        }
+        searchDialog.setVisible(true);
+        searchDialog.toFront();
+        searchDialog.query.requestFocusInWindow();
     }
 
     private class SearchDialog extends JDialog {
@@ -146,12 +153,25 @@ public class JPopupTextArea extends JTextArea {
         private final JButton previous = new JButton("Previous");
         private final JButton next = new JButton("Next");
         private final List<Integer> matches = new ArrayList<>();
-        private final String editorText = JPopupTextArea.this.getText();
+        private final Document editorDocument = JPopupTextArea.this.getDocument();
+        private final DocumentListener searchListener = new DocumentListener() {
+            public void insertUpdate(DocumentEvent e) {
+                updateMatches();
+            }
+
+            public void removeUpdate(DocumentEvent e) {
+                updateMatches();
+            }
+
+            public void changedUpdate(DocumentEvent e) {
+                updateMatches();
+            }
+        };
         private int current = -1;
 
         private SearchDialog() {
             super(SwingUtilities.getWindowAncestor(JPopupTextArea.this),
-                    "Search", Dialog.ModalityType.APPLICATION_MODAL);
+                    "Search", Dialog.ModalityType.MODELESS);
             setDefaultCloseOperation(WindowConstants.DISPOSE_ON_CLOSE);
 
             JLabel prompt = new JLabel("Search string:");
@@ -179,22 +199,19 @@ public class JPopupTextArea extends JTextArea {
             query.addActionListener(e -> navigate(true));
             close.addActionListener(e -> dispose());
             getRootPane().setDefaultButton(next);
-            query.getDocument().addDocumentListener(new DocumentListener() {
-                public void insertUpdate(DocumentEvent e) {
-                    updateMatches();
-                }
-
-                public void removeUpdate(DocumentEvent e) {
-                    updateMatches();
-                }
-
-                public void changedUpdate(DocumentEvent e) {
-                    updateMatches();
-                }
-            });
+            query.getDocument().addDocumentListener(searchListener);
+            editorDocument.addDocumentListener(searchListener);
             pack();
             setResizable(false);
             setLocationRelativeTo(getOwner());
+        }
+
+        @Override
+        public void dispose() {
+            editorDocument.removeDocumentListener(searchListener);
+            query.getDocument().removeDocumentListener(searchListener);
+            searchDialog = null;
+            super.dispose();
         }
 
         private void updateMatches() {
@@ -202,6 +219,7 @@ public class JPopupTextArea extends JTextArea {
             current = -1;
             String term = query.getText();
             if (!term.isEmpty()) {
+                String editorText = JPopupTextArea.this.getText();
                 int start = editorText.indexOf(term);
                 while (start >= 0) {
                     matches.add(start);
@@ -216,6 +234,10 @@ public class JPopupTextArea extends JTextArea {
         private void navigate(boolean forward) {
             if (matches.isEmpty()) {
                 return;
+            }
+            if (current >= 0 && (JPopupTextArea.this.getSelectionStart() != matches.get(current)
+                    || JPopupTextArea.this.getSelectionEnd() != matches.get(current) + query.getText().length())) {
+                current = -1;
             }
             if (current >= 0) {
                 current = Math.floorMod(current + (forward ? 1 : -1), matches.size());
