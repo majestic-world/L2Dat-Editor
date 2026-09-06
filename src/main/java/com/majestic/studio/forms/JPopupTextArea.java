@@ -1,9 +1,13 @@
 package com.majestic.studio.forms;
 
 import javax.swing.*;
+import javax.swing.event.DocumentEvent;
+import javax.swing.event.DocumentListener;
 import javax.swing.undo.UndoManager;
 import java.awt.*;
 import java.awt.event.*;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.StringTokenizer;
 import java.util.Vector;
 
@@ -133,23 +137,111 @@ public class JPopupTextArea extends JTextArea {
     }
 
     private void searchString() {
-        String lineno = JOptionPane.showInputDialog("Search string: ");
-        if (lineno != null && !lineno.isEmpty()) {
-            try {
-                this.requestFocus();
-                String editorText = this.getText();
-                int start = editorText.indexOf(lineno, this.getSelectionEnd());
-                if (start != -1) {
-                    this.setCaretPosition(start);
-                    this.moveCaretPosition(start + lineno.length());
-                    this.getCaret().setSelectionVisible(true);
-                }
-            } catch (Exception var4) {
-                JOptionPane.showMessageDialog(new Frame(), "Bad position", "Error", 0);
-            }
+        new SearchDialog().setVisible(true);
+    }
 
-        } else {
-            JOptionPane.showMessageDialog(new Frame(), "Enter a empty string", "Error", 0);
+    private class SearchDialog extends JDialog {
+        private final JTextField query = new JTextField(28);
+        private final JLabel results = new JLabel("0 results");
+        private final JButton previous = new JButton("Previous");
+        private final JButton next = new JButton("Next");
+        private final List<Integer> matches = new ArrayList<>();
+        private final String editorText = JPopupTextArea.this.getText();
+        private int current = -1;
+
+        private SearchDialog() {
+            super(SwingUtilities.getWindowAncestor(JPopupTextArea.this),
+                    "Search", Dialog.ModalityType.APPLICATION_MODAL);
+            setDefaultCloseOperation(WindowConstants.DISPOSE_ON_CLOSE);
+
+            JLabel prompt = new JLabel("Search string:");
+            prompt.setLabelFor(query);
+            JPanel input = new JPanel(new BorderLayout(0, 6));
+            input.add(prompt, BorderLayout.NORTH);
+            input.add(query, BorderLayout.CENTER);
+            input.add(results, BorderLayout.SOUTH);
+
+            JButton close = new JButton("Close");
+            JPanel buttons = new JPanel(new FlowLayout(FlowLayout.RIGHT));
+            buttons.add(previous);
+            buttons.add(next);
+            buttons.add(close);
+            JPanel content = new JPanel(new BorderLayout(0, 10));
+            content.setBorder(BorderFactory.createEmptyBorder(12, 12, 12, 12));
+            content.add(input, BorderLayout.CENTER);
+            content.add(buttons, BorderLayout.SOUTH);
+            setContentPane(content);
+
+            previous.setEnabled(false);
+            next.setEnabled(false);
+            previous.addActionListener(e -> navigate(false));
+            next.addActionListener(e -> navigate(true));
+            query.addActionListener(e -> navigate(true));
+            close.addActionListener(e -> dispose());
+            getRootPane().setDefaultButton(next);
+            query.getDocument().addDocumentListener(new DocumentListener() {
+                public void insertUpdate(DocumentEvent e) {
+                    updateMatches();
+                }
+
+                public void removeUpdate(DocumentEvent e) {
+                    updateMatches();
+                }
+
+                public void changedUpdate(DocumentEvent e) {
+                    updateMatches();
+                }
+            });
+            pack();
+            setResizable(false);
+            setLocationRelativeTo(getOwner());
+        }
+
+        private void updateMatches() {
+            matches.clear();
+            current = -1;
+            String term = query.getText();
+            if (!term.isEmpty()) {
+                int start = editorText.indexOf(term);
+                while (start >= 0) {
+                    matches.add(start);
+                    start = editorText.indexOf(term, start + term.length());
+                }
+            }
+            results.setText(matches.size() + " results");
+            previous.setEnabled(!matches.isEmpty());
+            next.setEnabled(!matches.isEmpty());
+        }
+
+        private void navigate(boolean forward) {
+            if (matches.isEmpty()) {
+                return;
+            }
+            if (current >= 0) {
+                current = Math.floorMod(current + (forward ? 1 : -1), matches.size());
+            } else if (forward) {
+                current = 0;
+                int anchor = JPopupTextArea.this.getSelectionEnd();
+                for (int i = 0; i < matches.size(); i++) {
+                    if (matches.get(i) >= anchor) {
+                        current = i;
+                        break;
+                    }
+                }
+            } else {
+                current = matches.size() - 1;
+                int anchor = JPopupTextArea.this.getSelectionStart();
+                for (int i = matches.size() - 1; i >= 0; i--) {
+                    if (matches.get(i) < anchor) {
+                        current = i;
+                        break;
+                    }
+                }
+            }
+            int start = matches.get(current);
+            JPopupTextArea.this.select(start, start + query.getText().length());
+            JPopupTextArea.this.getCaret().setSelectionVisible(true);
+            results.setText((current + 1) + " of " + matches.size() + " results");
         }
     }
 
