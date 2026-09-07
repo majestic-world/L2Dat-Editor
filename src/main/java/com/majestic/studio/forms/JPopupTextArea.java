@@ -11,6 +11,8 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.StringTokenizer;
 import java.util.Vector;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 public class JPopupTextArea extends JTextArea {
     static final String COPY = "Copy (Ctrl + C)";
@@ -220,10 +222,10 @@ public class JPopupTextArea extends JTextArea {
             String term = query.getText();
             if (!term.isEmpty()) {
                 String editorText = JPopupTextArea.this.getText();
-                int start = editorText.indexOf(term);
-                while (start >= 0) {
-                    matches.add(start);
-                    start = editorText.indexOf(term, start + term.length());
+                Matcher matcher = Pattern.compile(term, Pattern.LITERAL | Pattern.CASE_INSENSITIVE | Pattern.UNICODE_CASE)
+                        .matcher(editorText);
+                while (matcher.find()) {
+                    matches.add(matcher.start());
                 }
             }
             results.setText(matches.size() + " results");
