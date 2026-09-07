@@ -60,7 +60,7 @@ tasks.jar {
         attributes["Created-By"] = "${System.getProperty("java.version")} (${System.getProperty("java.vendor")})"
         attributes["Build-By"] = System.getProperty("user.name")
         attributes["Build-Date"] = SimpleDateFormat("yyyy.MM.dd HH:mm").format(Date())
-        attributes["Implementation-Version"] = "1.3"
+        attributes["Implementation-Version"] = "1.4"
     }
     from(configurations.runtimeClasspath.get().map { if (it.isDirectory) it else zipTree(it) })
     duplicatesStrategy = DuplicatesStrategy.EXCLUDE
