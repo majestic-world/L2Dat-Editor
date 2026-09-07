@@ -81,6 +81,10 @@ public class Boot extends JFrame {
             Logger.getLogger(Boot.class.getName()).log(Level.SEVERE, null, ex);
         }
 
+        // Read-only file choosers: no inline rename, no "New Folder", no delete.
+        // Prevents accidental renames when clicking an already selected file.
+        UIManager.put("FileChooser.readOnly", Boolean.TRUE);
+
         EventQueue.invokeLater(Boot::new);
     }
 
