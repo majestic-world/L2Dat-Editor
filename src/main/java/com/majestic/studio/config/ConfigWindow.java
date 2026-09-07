@@ -11,6 +11,8 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 import java.lang.reflect.InvocationTargetException;
 import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Properties;
@@ -20,7 +22,7 @@ public class ConfigWindow extends ConfigParser {
     @CfgIgnore
     private static final ConfigWindow _instance = new ConfigWindow();
     @CfgIgnore
-    private static final String PATH = "./data/config/config_window.ini";
+    private static final Path PATH = resolveConfigPath();
     public static String INPUT_DIRECTORY = ".";
     public static String OUTPUT_DIRECTORY = ".";
     public static String CURRENT_STRUCTURE = "";
@@ -32,9 +34,31 @@ public class ConfigWindow extends ConfigParser {
     public static String CURRENT_ENUM = ".";
     public static String RECENT_DIRECTORIES = "";
 
+    /**
+     * User settings live in the per-user config directory (%APPDATA% on Windows), so the
+     * installation folder stays read-only and settings survive reinstalls.
+     */
+    private static Path resolveConfigPath() {
+        String appData = System.getenv("APPDATA");
+        Path base;
+        if (appData != null && !appData.isBlank()) {
+            base = Paths.get(appData);
+        } else {
+            String xdgConfigHome = System.getenv("XDG_CONFIG_HOME");
+            base = xdgConfigHome != null && !xdgConfigHome.isBlank()
+                    ? Paths.get(xdgConfigHome)
+                    : Paths.get(System.getProperty("user.home"), ".config");
+        }
+        return base.resolve("L2Dat-Editor").resolve("config_window.ini");
+    }
+
     public static void load() {
+        if (!Files.isRegularFile(PATH)) {
+            return;
+        }
+
         try {
-            parse(_instance, "./data/config/config_window.ini");
+            parse(_instance, PATH.toString());
         } catch (IllegalAccessException | InstantiationException | NoSuchMethodException | InvocationTargetException | IOException e) {
             DebugUtil.getLogger().error("Failed to load configuration file.", e);
         }
@@ -72,7 +96,7 @@ public class ConfigWindow extends ConfigParser {
     public static void save(String key, String var) {
         try {
             Properties props = new Properties();
-            File configFile = new File(PATH);
+            File configFile = PATH.toFile();
             if (configFile.isFile()) {
                 try (FileInputStream input = new FileInputStream(configFile)) {
                     props.load(input);
