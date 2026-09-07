@@ -16,6 +16,7 @@ import org.fusesource.jansi.AnsiConsole;
 import javax.swing.*;
 import javax.swing.event.DocumentEvent;
 import javax.swing.event.DocumentListener;
+import javax.swing.filechooser.FileFilter;
 import javax.swing.filechooser.FileNameExtensionFilter;
 import javax.swing.text.AbstractDocument;
 import javax.swing.text.AttributeSet;
@@ -286,10 +287,12 @@ public class Boot extends JFrame {
             fileopen.setFileSelectionMode(JFileChooser.FILES_AND_DIRECTORIES);
             fileopen.setMultiSelectionEnabled(true);
             fileopen.setAcceptAllFileFilterUsed(false);
-            fileopen.setFileFilter(new FileNameExtensionFilter(".ini", "ini"));
-            fileopen.setFileFilter(new FileNameExtensionFilter(".txt", "txt"));
-            fileopen.setFileFilter(new FileNameExtensionFilter(".htm", "htm"));
-            fileopen.setFileFilter(new FileNameExtensionFilter(".ini, .txt, .htm", "ini", "txt", "htm"));
+            FileFilter packFilter = new FileNameExtensionFilter(".ini, .txt, .htm", "ini", "txt", "htm");
+            fileopen.addChoosableFileFilter(packFilter);
+            fileopen.addChoosableFileFilter(new FileNameExtensionFilter(".ini", "ini"));
+            fileopen.addChoosableFileFilter(new FileNameExtensionFilter(".txt", "txt"));
+            fileopen.addChoosableFileFilter(new FileNameExtensionFilter(".htm", "htm"));
+            fileopen.setFileFilter(packFilter);
             if (ConfigWindow.OUTPUT_DIRECTORY.equalsIgnoreCase(".")) {
                 fileopen.setCurrentDirectory(new File(ConfigWindow.INPUT_DIRECTORY));
             } else {
@@ -352,10 +355,12 @@ public class Boot extends JFrame {
             fileopen.setFileSelectionMode(JFileChooser.FILES_AND_DIRECTORIES);
             fileopen.setMultiSelectionEnabled(true);
             fileopen.setAcceptAllFileFilterUsed(false);
-            fileopen.setFileFilter(new FileNameExtensionFilter(".ini", "ini"));
-            fileopen.setFileFilter(new FileNameExtensionFilter(".dat", "dat"));
-            fileopen.setFileFilter(new FileNameExtensionFilter(".htm", "htm"));
-            fileopen.setFileFilter(new FileNameExtensionFilter(".ini, .dat, .htm", "ini", "dat", "htm"));
+            FileFilter unpackFilter = new FileNameExtensionFilter(".ini, .dat, .htm", "ini", "dat", "htm");
+            fileopen.addChoosableFileFilter(unpackFilter);
+            fileopen.addChoosableFileFilter(new FileNameExtensionFilter(".ini", "ini"));
+            fileopen.addChoosableFileFilter(new FileNameExtensionFilter(".dat", "dat"));
+            fileopen.addChoosableFileFilter(new FileNameExtensionFilter(".htm", "htm"));
+            fileopen.setFileFilter(unpackFilter);
             if (ConfigWindow.INPUT_DIRECTORY.equalsIgnoreCase(".")) {
                 fileopen.setCurrentDirectory(new File(ConfigWindow.OUTPUT_DIRECTORY));
             } else {
@@ -418,10 +423,12 @@ public class Boot extends JFrame {
             fileopen.setFileSelectionMode(JFileChooser.FILES_AND_DIRECTORIES);
             fileopen.setMultiSelectionEnabled(true);
             fileopen.setAcceptAllFileFilterUsed(false);
-            fileopen.setFileFilter(new FileNameExtensionFilter(".ini", "ini"));
-            fileopen.setFileFilter(new FileNameExtensionFilter(".dat", "dat"));
-            fileopen.setFileFilter(new FileNameExtensionFilter(".htm", "htm"));
-            fileopen.setFileFilter(new FileNameExtensionFilter(".ini, .dat, .htm", "ini", "dat", "htm"));
+            FileFilter cryptFilter = new FileNameExtensionFilter(".ini, .dat, .htm", "ini", "dat", "htm");
+            fileopen.addChoosableFileFilter(cryptFilter);
+            fileopen.addChoosableFileFilter(new FileNameExtensionFilter(".ini", "ini"));
+            fileopen.addChoosableFileFilter(new FileNameExtensionFilter(".dat", "dat"));
+            fileopen.addChoosableFileFilter(new FileNameExtensionFilter(".htm", "htm"));
+            fileopen.setFileFilter(cryptFilter);
             if (ConfigWindow.INPUT_DIRECTORY.equalsIgnoreCase(".")) {
                 fileopen.setCurrentDirectory(new File(ConfigWindow.OUTPUT_DIRECTORY));
             } else {
@@ -492,16 +499,18 @@ public class Boot extends JFrame {
             JFileChooser fileopen = new JFileChooser();
             fileopen.setFileSelectionMode(JFileChooser.FILES_ONLY);
             fileopen.setMultiSelectionEnabled(false);
-            fileopen.setAcceptAllFileFilterUsed(false);
-            fileopen.setFileFilter(new FileNameExtensionFilter(".dat", "dat"));
-            fileopen.setFileFilter(new FileNameExtensionFilter(".ini", "ini"));
-            fileopen.setFileFilter(new FileNameExtensionFilter(".txt", "txt"));
-            fileopen.setFileFilter(new FileNameExtensionFilter(".htm", "htm"));
-            fileopen.setFileFilter(new FileNameExtensionFilter(".dat, .ini, .txt, .htm", "dat", "ini", "txt", "htm"));
+            // ".dat, .ini, .txt, .htm" stays the default filter; "All Files" is only an
+            // opt-in entry in the dropdown, including when opening a recent folder.
+            fileopen.setAcceptAllFileFilterUsed(true);
+            FileFilter openFilter = new FileNameExtensionFilter(".dat, .ini, .txt, .htm", "dat", "ini", "txt", "htm");
+            fileopen.addChoosableFileFilter(openFilter);
+            fileopen.addChoosableFileFilter(new FileNameExtensionFilter(".dat", "dat"));
+            fileopen.addChoosableFileFilter(new FileNameExtensionFilter(".ini", "ini"));
+            fileopen.addChoosableFileFilter(new FileNameExtensionFilter(".txt", "txt"));
+            fileopen.addChoosableFileFilter(new FileNameExtensionFilter(".htm", "htm"));
+            fileopen.setFileFilter(openFilter);
             if (directory != null) {
                 fileopen.setCurrentDirectory(directory);
-                fileopen.setAcceptAllFileFilterUsed(true);
-                fileopen.setFileFilter(fileopen.getAcceptAllFileFilter());
             } else if (ConfigWindow.INPUT_DIRECTORY.equalsIgnoreCase(".")) {
                 fileopen.setCurrentDirectory(new File(ConfigWindow.OUTPUT_DIRECTORY));
             } else {
