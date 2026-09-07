@@ -3,6 +3,7 @@ import java.util.Date
 
 plugins {
     id("java")
+    id("application")
 }
 
 group = "com.majestic.studio"
@@ -29,6 +30,22 @@ java {
     toolchain {
         languageVersion.set(JavaLanguageVersion.of(17))
     }
+}
+
+application {
+    mainClass.set("com.majestic.studio.Boot")
+    // Mirrors dist/Laucher.bat so `run` behaves like the shipped launcher.
+    applicationDefaultJvmArgs = listOf(
+        "-splash:images/splash.png",
+        "-Dfile.encoding=UTF-8",
+        "-Xms1G",
+        "-Xmx4G"
+    )
+}
+
+// The app resolves ./data/** relative to the working directory.
+tasks.named<JavaExec>("run") {
+    workingDir = layout.projectDirectory.dir("dist").asFile
 }
 
 tasks.test {
