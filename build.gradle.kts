@@ -17,7 +17,7 @@ dependencies {
     implementation("org.apache.commons:commons-lang3:3.18.0")
     implementation("org.fusesource.jansi:jansi:2.4.0")
     implementation("org.apache.logging.log4j:log4j-api:2.24.3")
-    implementation("org.apache.logging.log4j:log4j-core:2.25.3")
+    implementation("org.apache.logging.log4j:log4j-core:2.25.4")
     implementation("org.apache.logging.log4j:log4j-1.2-api:2.24.3")
     implementation(files("libs/ecj-4.9.jar"))
     implementation(files("libs/nproperty-1.0.jar"))
