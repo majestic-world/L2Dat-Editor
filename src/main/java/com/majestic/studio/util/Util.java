@@ -228,10 +228,15 @@ public class Util {
         paramString = paramString + "\t";
         LinkedHashMap<String, String> linkedHashMap = new LinkedHashMap<>();
 
-        String text;
-        for (Matcher m = TEXT_PATTERN.matcher(paramString); m.find(); paramString = paramString.replace(text, text.replace("=", "%_$eq$_%"))) {
-            text = m.group(0);
-            paramString = paramString.replace(text, text.replace("\t", "%_$tab$_%"));
+        for (Matcher m = TEXT_PATTERN.matcher(paramString); m.find();) {
+            String text = m.group(0);
+            // Skip no-op replacements without changing the legacy escaping order.
+            if (text.indexOf('\t') >= 0) {
+                paramString = paramString.replace(text, text.replace("\t", "%_$tab$_%"));
+            }
+            if (text.indexOf('=') >= 0) {
+                paramString = paramString.replace(text, text.replace("=", "%_$eq$_%"));
+            }
         }
 
         Matcher var6 = MAP_PATTERN.matcher(paramString);

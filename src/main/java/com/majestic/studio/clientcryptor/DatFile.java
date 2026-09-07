@@ -3,6 +3,7 @@ package com.majestic.studio.clientcryptor;
 import com.majestic.studio.clientcryptor.crypt.DatCrypter;
 import com.majestic.studio.config.ConfigDebug;
 
+import java.io.BufferedInputStream;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
@@ -45,7 +46,7 @@ public class DatFile extends File {
         this.loadInfo();
 
         try {
-            FileInputStream fis = new FileInputStream(this);
+            BufferedInputStream fis = new BufferedInputStream(new FileInputStream(this), 65536);
             Throwable var3 = null;
 
             try {
@@ -124,48 +125,45 @@ public class DatFile extends File {
     }
 
     private void loadInfo() throws IOException {
-        if (this.exists() && this.canRead()) {
-            FileInputStream fis = new FileInputStream(this);
+        if (!this.exists() || !this.canRead()) {
+            throw new IOException("Can not read the dat file");
+        }
+        try (FileInputStream fis = new FileInputStream(this)) {
             if (fis.available() < 28) {
                 throw new IOException("Can not read the dat file : too small");
-            } else {
-                byte[] head = new byte[28];
-                fis.read(head);
-                String header = new String(head, StandardCharsets.UTF_16LE);
-                if (!header.startsWith("Lineage2Ver")) {
-                    throw new IOException("Can not read the dat file : wrong header");
-                } else if (!header.endsWith("111") && !header.endsWith("120")) {
-                    if (!header.endsWith("211") && !header.endsWith("212")) {
-                        if (!header.endsWith("311")) {
-                            if (!header.endsWith("411") && !header.endsWith("412") && !header.endsWith("413") && !header.endsWith("414")) {
-                                throw new IOException("Can not read the dat file : unknown header : '" + header + "'");
-                            } else if (fis.available() < 20) {
-                                throw new IOException("Can not read the dat file : too small");
-                            } else {
-                                fis.skip((long) (fis.available() - 20));
-                                byte[] foot = new byte[20];
-                                fis.read(foot);
-                                int min = foot[4] & 255;
-                                min += foot[5] << 8 & '\uff00';
-                                min += foot[6] << 16 & 16711680;
-                                min += foot[7] << 24 & -16777216;
-                                int maj = foot[8] & 255;
-                                maj += foot[9] << 8 & '\uff00';
-                                maj += foot[10] << 16 & 16711680;
-                                maj += foot[11] << 24 & -16777216;
-                                long crc = (long) foot[12] & 255L;
-                                crc += (long) (foot[13] << 8) & 65280L;
-                                crc += (long) (foot[14] << 16) & 16711680L;
-                                crc += (long) (foot[15] << 24) & 4278190080L;
-                                this._foot = new Footer(crc, min, maj);
-                                fis.close();
-                            }
-                        }
-                    }
-                }
             }
-        } else {
-            throw new IOException("Can not read the dat file");
+            byte[] head = new byte[28];
+            fis.read(head);
+            String header = new String(head, StandardCharsets.UTF_16LE);
+            if (!header.startsWith("Lineage2Ver")) {
+                throw new IOException("Can not read the dat file : wrong header");
+            }
+            if (header.endsWith("111") || header.endsWith("120") || header.endsWith("211")
+                    || header.endsWith("212") || header.endsWith("311")) {
+                return;
+            }
+            if (!header.endsWith("411") && !header.endsWith("412") && !header.endsWith("413") && !header.endsWith("414")) {
+                throw new IOException("Can not read the dat file : unknown header : '" + header + "'");
+            }
+            if (fis.available() < 20) {
+                throw new IOException("Can not read the dat file : too small");
+            }
+            fis.skip((long) (fis.available() - 20));
+            byte[] foot = new byte[20];
+            fis.read(foot);
+            int min = foot[4] & 255;
+            min += foot[5] << 8 & '\uff00';
+            min += foot[6] << 16 & 16711680;
+            min += foot[7] << 24 & -16777216;
+            int maj = foot[8] & 255;
+            maj += foot[9] << 8 & '\uff00';
+            maj += foot[10] << 16 & 16711680;
+            maj += foot[11] << 24 & -16777216;
+            long crc = (long) foot[12] & 255L;
+            crc += (long) (foot[13] << 8) & 65280L;
+            crc += (long) (foot[14] << 16) & 16711680L;
+            crc += (long) (foot[15] << 24) & 4278190080L;
+            this._foot = new Footer(crc, min, maj);
         }
     }
 

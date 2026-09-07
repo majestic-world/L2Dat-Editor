@@ -1,5 +1,6 @@
 package com.majestic.studio.clientcryptor.crypt;
 
+import com.majestic.studio.config.ConfigDebug;
 import com.majestic.studio.util.DebugUtil;
 import com.majestic.studio.util.Util;
 
@@ -120,13 +121,17 @@ public class RSADatCrypter extends DatCrypter {
                     size += chunk[1] << 16 & 16711680;
                     size += chunk[0] << 24 & -16777216;
                     int pad = (-size & 1) + (-size & 2);
-                    DebugUtil.debug("Size:" + size + " pad:" + pad);
+                    if (ConfigDebug.DAT_DEBUG_MSG) {
+                        DebugUtil.debug("Size:" + size + " pad:" + pad);
+                    }
                     if (size > 128) {
                         return false;
                     }
 
                     this._result.write(chunk, 128 - size - pad, size);
-                    DebugUtil.debug("--- BLOCK:\n" + Util.printData(chunk) + "-----");
+                    if (ConfigDebug.DAT_DEBUG_MSG) {
+                        DebugUtil.debug("--- BLOCK:\n" + Util.printData(chunk) + "-----");
+                    }
                 } else {
                     try {
                         ByteArrayOutputStream s = new ByteArrayOutputStream(b.length);
@@ -135,12 +140,12 @@ public class RSADatCrypter extends DatCrypter {
                         dos.finish();
                         dos.close();
                         int l = b.length;
-                        this._result = new ByteArrayOutputStream(10 + s.toByteArray().length);
+                        this._result = new ByteArrayOutputStream(10 + s.size());
                         this._result.write(l & 255);
                         this._result.write((l & '\uff00') >> 8);
                         this._result.write((l & 16711680) >> 16);
                         this._result.write((l & -16777216) >> 24);
-                        this._result.write(s.toByteArray());
+                        s.writeTo(this._result);
                     } catch (IOException e) {
                         exception = e;
                     }

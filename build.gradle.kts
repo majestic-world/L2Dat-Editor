@@ -21,12 +21,18 @@ dependencies {
     implementation("org.apache.logging.log4j:log4j-1.2-api:2.24.3")
     implementation(files("libs/ecj-4.9.jar"))
     implementation(files("libs/nproperty-1.0.jar"))
+    testImplementation("org.junit.jupiter:junit-jupiter:5.11.4")
+    testRuntimeOnly("org.junit.platform:junit-platform-launcher:1.11.4")
 }
 
 java {
     toolchain {
         languageVersion.set(JavaLanguageVersion.of(17))
     }
+}
+
+tasks.test {
+    useJUnitPlatform()
 }
 
 tasks.jar {

@@ -17,8 +17,6 @@ import org.apache.log4j.Logger;
 
 import java.io.ByteArrayOutputStream;
 import java.io.File;
-import java.io.IOException;
-import java.nio.ByteBuffer;
 import java.util.*;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
@@ -62,13 +60,12 @@ public class DescriptorWriter {
             progress = actionTask.addProgress(progress, 30.0F, weight);
             double progressWeight = actionTask.getWeightValue(40.0F, weight);
             double progressDiff = (double) 100.0F / (double) writeData.size();
-            ByteBuffer buffer = ByteBuffer.allocateDirect(Math.max(8, data.length() * 2));
 
             for (WriteData wr : writeData) {
                 if (wr.isIterator()) {
                     DebugUtil.getLogger().error("Found iterator without writed size: " + wr.getParamNode().getName());
                 } else {
-                    buffer.put(wr.getBytes());
+                    stream.writeBytes(wr.getBytes());
                     if (actionTask.isCancelled()) {
                         return null;
                     }
@@ -77,14 +74,8 @@ public class DescriptorWriter {
                 }
             }
 
-            try {
-                buffer.flip();
-                stream.write(ByteBuffer.allocate(buffer.limit()).put(buffer).array());
-                if (actionTask.isCancelled()) {
-                    return null;
-                }
-            } catch (IOException e) {
-                DebugUtil.getLogger().error(e.getMessage(), e);
+            if (actionTask.isCancelled()) {
+                return null;
             }
         }
 
