@@ -7,7 +7,7 @@ use std::thread;
 use std::time::Duration;
 
 use eframe::egui::{self, Color32, RichText, TextEdit};
-use l2dat_editor::editor::{BatchKind, Document, Editor, PLAIN_KEY, SOURCE_KEY};
+use l2dat_editor::editor::{BatchKind, Document, Editor, PLAIN_KEY, SOURCE_KEY, SaveStage};
 use l2dat_editor::settings::Settings;
 
 use crate::fonts;
@@ -31,7 +31,7 @@ pub struct EditorApp {
     job: Option<mpsc::Receiver<Event>>,
     cancel: Arc<AtomicBool>,
     batch_running: bool,
-    progress: f32,
+    progress: Option<f32>,
     activity: String,
     query: String,
     replacement: String,
@@ -54,6 +54,7 @@ enum Event {
     Opened(Document),
     Saved(Document),
     Exported(PathBuf),
+    Saving(SaveStage),
     Progress(usize, usize, String),
     Finished(String),
     Failed(String),
@@ -83,7 +84,7 @@ impl EditorApp {
             job: None,
             cancel: Arc::new(AtomicBool::new(false)),
             batch_running: false,
-            progress: 0.0,
+            progress: None,
             activity: "Pronto".into(),
             query: String::new(),
             replacement: String::new(),
@@ -147,7 +148,7 @@ impl EditorApp {
         self.cancel = Arc::new(AtomicBool::new(false));
         self.batch_running = false;
         self.activity = activity.to_owned();
-        self.progress = 0.0;
+        self.progress = None;
         let cancel = self.cancel.clone();
         let ctx = ctx.clone();
         thread::spawn(move || {
@@ -221,17 +222,24 @@ impl EditorApp {
         let document = document.clone();
         let encryption = self.settings.encryption.clone();
         let editor = self.editor.clone();
+        let repaint = ctx.clone();
         self.start(ctx, "Salvando arquivo", move |sender, _| {
-            let result = editor.save(&document, &output, &encryption).and_then(|()| {
-                editor.open(&output, &document.options).map_err(|error| {
-                    anyhow::anyhow!("Arquivo gravado, mas a reabertura falhou: {error:#}")
+            let result = editor
+                .save(&document, &output, &encryption, |stage| {
+                    let _ = sender.send(Event::Saving(stage));
+                    repaint.request_repaint();
                 })
-            });
+                .and_then(|()| {
+                    editor.open(&output, &document.options).map_err(|error| {
+                        anyhow::anyhow!("Arquivo gravado, mas a reabertura falhou: {error:#}")
+                    })
+                });
             let _ = sender.send(match result {
                 Ok(doc) => Event::Saved(doc),
                 Err(error) => Event::Failed(format!("{}: {error:#}", output.display())),
             });
         });
+        self.progress = Some(0.0);
     }
 
     fn export(&mut self, ctx: &egui::Context) {
@@ -313,8 +321,18 @@ impl EditorApp {
                     self.job = None;
                     self.activity = "Pronto".into();
                 }
+                Event::Saving(stage) => {
+                    let (progress, activity) = match stage {
+                        SaveStage::Encoding => (0.0, "Codificando arquivo"),
+                        SaveStage::Encrypting => (0.25, "Criptografando arquivo"),
+                        SaveStage::Writing => (0.5, "Gravando arquivo"),
+                        SaveStage::Written => (0.75, "Reabrindo arquivo"),
+                    };
+                    self.progress = Some(progress);
+                    self.activity = activity.into();
+                }
                 Event::Progress(done, total, text) => {
-                    self.progress = done as f32 / total.max(1) as f32;
+                    self.progress = Some(done as f32 / total.max(1) as f32);
                     self.log(text.starts_with("ERROR"), text);
                 }
                 Event::Finished(text) => {

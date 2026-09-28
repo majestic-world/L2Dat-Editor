@@ -19,6 +19,16 @@ fn frame(
     text: &mut String,
     events: Vec<Event>,
 ) -> (bool, egui::FullOutput) {
+    frame_enabled(ctx, editor, text, events, true)
+}
+
+fn frame_enabled(
+    ctx: &egui::Context,
+    editor: &mut TextEditor,
+    text: &mut String,
+    events: Vec<Event>,
+    enabled: bool,
+) -> (bool, egui::FullOutput) {
     let mut changed = false;
     let output = ctx.run(
         egui::RawInput {
@@ -31,7 +41,7 @@ fn frame(
         },
         |ctx| {
             egui::CentralPanel::default().show(ctx, |ui| {
-                changed = editor.show(ui, text, true).changed();
+                changed = editor.show(ui, text, enabled).changed();
             });
         },
     );
@@ -58,6 +68,131 @@ fn vertex_count(ctx: &egui::Context, output: egui::FullOutput) -> usize {
             egui::epaint::Primitive::Callback(_) => 0,
         })
         .sum()
+}
+
+#[test]
+fn duplicate_shortcut_keeps_unicode_column_and_restores_selection_on_undo_redo() {
+    let ctx = egui::Context::default();
+    let mut text = "first\nα猫z\nlast".to_owned();
+    let mut editor = TextEditor::default();
+    editor.reset(&text);
+    editor.select_range(8..8);
+    frame(&ctx, &mut editor, &mut text, vec![]);
+    let (changed, output) = frame(
+        &ctx,
+        &mut editor,
+        &mut text,
+        vec![key(Key::D, Modifiers::CTRL)],
+    );
+    assert!(changed);
+    assert_eq!(text, "first\nα猫z\nα猫z\nlast");
+    assert_eq!(
+        editor.state.selection,
+        Selection {
+            anchor: 15,
+            head: 15
+        }
+    );
+    assert!(
+        !output
+            .platform_output
+            .commands
+            .iter()
+            .any(|command| { matches!(command, egui::OutputCommand::CopyText(_)) })
+    );
+    frame(
+        &ctx,
+        &mut editor,
+        &mut text,
+        vec![key(Key::Z, Modifiers::CTRL)],
+    );
+    assert_eq!(text, "first\nα猫z\nlast");
+    assert_eq!(editor.state.selection, Selection { anchor: 8, head: 8 });
+    frame(
+        &ctx,
+        &mut editor,
+        &mut text,
+        vec![key(Key::Y, Modifiers::CTRL)],
+    );
+    assert_eq!(text, "first\nα猫z\nα猫z\nlast");
+    assert_eq!(
+        editor.state.selection,
+        Selection {
+            anchor: 15,
+            head: 15
+        }
+    );
+}
+
+#[test]
+fn duplicate_shortcut_does_not_edit_disabled_or_unfocused_document() {
+    let ctx = egui::Context::default();
+    let mut text = "line\nnext".to_owned();
+    let mut editor = TextEditor::default();
+    editor.reset(&text);
+    editor.select_range(2..2);
+    frame(&ctx, &mut editor, &mut text, vec![]);
+    let (changed, _) = frame_enabled(
+        &ctx,
+        &mut editor,
+        &mut text,
+        vec![key(Key::D, Modifiers::CTRL)],
+        false,
+    );
+    assert!(!changed);
+    assert_eq!(text, "line\nnext");
+    ctx.memory_mut(|memory| memory.surrender_focus(egui::Id::new("document_editor")));
+    let (changed, _) = frame(
+        &ctx,
+        &mut editor,
+        &mut text,
+        vec![key(Key::D, Modifiers::CTRL)],
+    );
+    assert!(!changed);
+    assert_eq!(text, "line\nnext");
+    assert_eq!(editor.state.selection, Selection { anchor: 2, head: 2 });
+}
+
+#[test]
+fn duplicate_shortcut_cancels_preedit_but_ignores_ime_key_repeats() {
+    let ctx = egui::Context::default();
+    let mut text = "old".to_owned();
+    let mut editor = TextEditor::default();
+    editor.reset(&text);
+    editor.select_range(1..1);
+    frame(&ctx, &mut editor, &mut text, vec![]);
+    frame(
+        &ctx,
+        &mut editor,
+        &mut text,
+        vec![
+            Event::Ime(egui::ImeEvent::Preedit("候補".into())),
+            key(Key::D, Modifiers::NONE),
+        ],
+    );
+    let (changed, _) = frame(
+        &ctx,
+        &mut editor,
+        &mut text,
+        vec![key(Key::D, Modifiers::CTRL)],
+    );
+    assert!(!changed);
+    assert_eq!(text, "old");
+    let mut released = key(Key::D, Modifiers::CTRL);
+    if let Event::Key { pressed, .. } = &mut released {
+        *pressed = false;
+    }
+    let (changed, _) = frame(
+        &ctx,
+        &mut editor,
+        &mut text,
+        vec![released, key(Key::D, Modifiers::CTRL)],
+    );
+    assert!(changed);
+    assert_eq!(text, "old\nold");
+    assert_eq!(editor.state.selection, Selection { anchor: 5, head: 5 });
+    assert!(editor.composition.is_none());
+    assert!(!editor.ime_enabled);
 }
 
 #[test]

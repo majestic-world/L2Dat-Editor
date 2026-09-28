@@ -167,14 +167,24 @@ impl TextState {
             return false;
         }
 
+        self.replace_with_selection(text, range, inserted.to_owned(), after)
+    }
+
+    fn replace_with_selection(
+        &mut self,
+        text: &mut String,
+        range: Range<usize>,
+        inserted: String,
+        after: Selection,
+    ) -> bool {
         let edit = Edit {
             start: range.start,
-            removed: removed.to_owned(),
-            inserted: inserted.to_owned(),
+            removed: text[range.clone()].to_owned(),
+            inserted,
             before: self.selection,
             after,
         };
-        self.apply_edit(text, range, inserted);
+        self.apply_edit(text, range, &edit.inserted);
         self.selection = after;
         self.history_bytes -= self.redo.iter().map(Edit::bytes).sum::<usize>();
         self.redo.clear();
@@ -186,6 +196,43 @@ impl TextState {
 
     pub fn replace_selection(&mut self, text: &mut String, inserted: &str) -> bool {
         self.replace(text, self.selection.range(), inserted)
+    }
+
+    pub fn duplicate_lines(&mut self, text: &mut String) -> bool {
+        self.assert_document(text);
+        let selected = self.selection.range();
+        let first = self.line_for_offset(selected.start);
+        let mut last = self.line_for_offset(selected.end);
+        // A selection ending at a line's start has not touched that line.
+        if !selected.is_empty() && selected.end == self.line_start(last) {
+            last -= 1;
+        }
+        let start = self.line_start(first);
+        let end = self
+            .lines
+            .get(last + 1)
+            .map_or(text.len(), |line| line.start);
+        let separator = if last + 1 < self.line_count() {
+            ""
+        } else {
+            // The final unterminated line needs a separator before its copy.
+            // Reuse the nearest preceding line ending, or LF in a single line.
+            let last_start = self.line_start(last);
+            if last_start >= 2 && &text.as_bytes()[last_start - 2..last_start] == b"\r\n" {
+                "\r\n"
+            } else {
+                "\n"
+            }
+        };
+        let mut inserted = String::with_capacity(separator.len() + end - start);
+        inserted.push_str(separator);
+        inserted.push_str(&text[start..end]);
+        let offset = inserted.len();
+        let after = Selection {
+            anchor: self.selection.anchor + offset,
+            head: self.selection.head + offset,
+        };
+        self.replace_with_selection(text, end..end, inserted, after)
     }
 
     pub fn undo(&mut self, text: &mut String) -> bool {
@@ -390,6 +437,48 @@ mod tests {
         }
         assert_eq!(state.max_line_columns(), max_columns);
         assert_eq!(state.line_for_offset(text.len()), contents.len() - 1);
+    }
+
+    #[test]
+    fn duplicate_lines_preserves_endings_boundaries_and_direction_through_history() {
+        for (original, anchor, head, duplicated, offset) in [
+            ("", 0, 0, "\n", 1),
+            ("tail", 2, 2, "tail\ntail", 5),
+            ("α猫", 5, 2, "α猫\nα猫", 6),
+            ("a\n", 2, 2, "a\n\n", 1),
+            ("a\r\n", 3, 3, "a\r\n\r\n", 2),
+            ("a\n\nb", 2, 2, "a\n\n\nb", 1),
+            ("head\r\n猫é", 9, 9, "head\r\n猫é\r\n猫é", 7),
+            ("α猫z\nrest", 2, 5, "α猫z\nα猫z\nrest", 7),
+            ("zero\nα\n猫\nlast", 11, 7, "zero\nα\n猫\nα\n猫\nlast", 7),
+            ("zero\nα\n猫\nlast", 12, 7, "zero\nα\n猫\nα\n猫\nlast", 7),
+            ("a\nb\nc", 0, 2, "a\na\nb\nc", 2),
+            ("a\r\nb\r\nc", 0, 6, "a\r\nb\r\na\r\nb\r\nc", 6),
+            ("a\r\nb\nc", 0, 6, "a\r\nb\nc\na\r\nb\nc", 7),
+        ] {
+            let mut text = original.to_owned();
+            let mut state = TextState::default();
+            state.reset(&text);
+            let before = Selection { anchor, head };
+            let after = Selection {
+                anchor: anchor + offset,
+                head: head + offset,
+            };
+            state.selection = before;
+            assert!(state.duplicate_lines(&mut text));
+            assert_eq!(text, duplicated, "original: {original:?}");
+            assert_eq!(state.selection, after);
+            assert_index(&state, &text);
+            assert!(state.undo(&mut text));
+            assert_eq!(text, original);
+            assert_eq!(state.selection, before);
+            assert_index(&state, &text);
+            assert!(!state.undo(&mut text), "duplication must be one edit");
+            assert!(state.redo(&mut text));
+            assert_eq!(text, duplicated);
+            assert_eq!(state.selection, after);
+            assert_index(&state, &text);
+        }
     }
 
     #[test]

@@ -90,6 +90,13 @@ For deployment, place that directory as `data` beside the executable, or specify
   previous/next matches, literal replacement and go-to-line. Save DAT or export
   UTF-8 TXT. `Ctrl+O`, `Ctrl+S`, `Ctrl+F` and `Ctrl+G` open, save, search and
   navigate; clipboard actions are also available from the editor context menu.
+- `Ctrl+D` duplicates the current line or complete selected lines below, keeping
+  the caret column or selection direction. Duplication is one undo/redo action
+  and preserves existing line endings without changing the clipboard.
+- Saving uses an 80-by-4-point progress bar with a compact activity spinner.
+  Progress advances at real encoding, encryption, persistence and reopening
+  boundaries, not by elapsed time or estimated byte percentages. Operations
+  without measurable progress show only the activity spinner.
 - The text viewport lays out and highlights visible physical lines plus a small
   overscan, rather than building glyph geometry for the entire document.
   Text and the line index remain in memory; an individual very long line is

@@ -32,6 +32,15 @@ pub enum TextEncoding {
     Utf16Be,
 }
 
+/// Save phase boundaries. `Written` is emitted only after the output is persisted.
+#[derive(Clone, Copy, Debug, PartialEq, Eq)]
+pub enum SaveStage {
+    Encoding,
+    Encrypting,
+    Writing,
+    Written,
+}
+
 #[derive(Clone)]
 pub struct Document {
     pub path: PathBuf,
@@ -119,7 +128,14 @@ impl Editor {
         })
     }
 
-    pub fn save(&self, document: &Document, output: &Path, encryption: &str) -> Result<()> {
+    pub fn save(
+        &self,
+        document: &Document,
+        output: &Path,
+        encryption: &str,
+        mut progress: impl FnMut(SaveStage),
+    ) -> Result<()> {
+        progress(SaveStage::Encoding);
         let key = self.resolve_key(encryption, document.source_key.as_deref())?;
         let parent = output
             .parent()
@@ -171,20 +187,26 @@ impl Editor {
                 && !file_name(output)?.eq_ignore_ascii_case(NAME_FILE)
                 && (names.is_dirty() || names_dir != parent && names_dir.join(NAME_FILE).exists())
             {
-                let name_bytes = names.to_bytes()?;
-                name_output = Some(self.encrypt_payload(name_bytes, NAME_FILE, key.as_deref())?);
+                name_output = Some(names.to_bytes()?);
             }
             payload
         } else {
             encode_text(&document.text, document.encoding, document.crlf)
         };
+        progress(SaveStage::Encrypting);
+        let name_output = name_output
+            .map(|bytes| self.encrypt_payload(bytes, NAME_FILE, key.as_deref()))
+            .transpose()?;
         let bytes = self.encrypt_payload(payload, file_name(output)?, key.as_deref())?;
+        progress(SaveStage::Writing);
         // Install the dictionary first: extra unused names are harmless if the DAT write fails,
         // while a DAT referencing names not installed yet is not readable.
         if let Some(names) = name_output {
             atomic_write(&parent.join(NAME_FILE), &names)?;
         }
-        atomic_write(output, &bytes)
+        atomic_write(output, &bytes)?;
+        progress(SaveStage::Written);
+        Ok(())
     }
 
     pub fn export(&self, document: &Document, output: &Path) -> Result<()> {
@@ -297,7 +319,7 @@ impl Editor {
                         } else {
                             self.open(path, options)?
                         };
-                        self.save(&doc, &target, &options.encryption)
+                        self.save(&doc, &target, &options.encryption, |_| {})
                     }
                     BatchKind::Recrypt => {
                         ensure!(

@@ -141,6 +141,7 @@ fn run() -> Result<()> {
                         &editor.open(&input, &options)?,
                         &output,
                         &options.encryption,
+                        |_| {},
                     )?;
                 }
                 BatchKind::Recrypt => editor.recrypt(&input, &output, &options.encryption)?,

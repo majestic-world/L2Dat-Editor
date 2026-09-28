@@ -28,7 +28,7 @@ fn is_editor_event(event: &Event) -> bool {
             | Key::Enter
             | Key::Tab
             | Key::Escape => true,
-            Key::A | Key::Z | Key::Y => modifiers.command || modifiers.ctrl,
+            Key::A | Key::D | Key::Z | Key::Y => modifiers.command || modifiers.ctrl,
             _ => false,
         },
         _ => false,
@@ -181,6 +181,10 @@ impl TextEditor {
             } else {
                 self.state.undo(text)
             };
+        }
+        if command && key == Key::D {
+            self.cancel_composition();
+            return self.state.duplicate_lines(text);
         }
         let head = self.state.selection.head;
         let row = self.state.line_for_offset(head);

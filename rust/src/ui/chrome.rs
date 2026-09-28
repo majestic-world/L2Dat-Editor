@@ -298,12 +298,24 @@ impl EditorApp {
 
     pub(super) fn status_bar(&mut self, ctx: &egui::Context) {
         egui::TopBottomPanel::bottom("status")
-            .frame(panel_frame())
+            .frame(panel_frame().inner_margin(egui::Margin::symmetric(16, 4)))
             .show(ctx, |ui| {
                 ui.horizontal(|ui| {
                     if self.job.is_some() {
-                        ui.spinner();
-                        ui.add(egui::ProgressBar::new(self.progress).desired_width(100.0));
+                        ui.add(egui::Spinner::new().size(12.0));
+                        if let Some(progress) = self.progress {
+                            ui.add(
+                                egui::ProgressBar::new(progress)
+                                    .desired_width(80.0)
+                                    .desired_height(4.0)
+                                    .fill(theme::ACCENT),
+                            )
+                            .on_hover_text(if self.batch_running {
+                                "Progresso por arquivos concluídos"
+                            } else {
+                                "Etapas concluídas: codificação, criptografia, gravação e reabertura"
+                            });
+                        }
                         if self.batch_running && ui.button("Cancelar lote").clicked() {
                             self.cancel.store(true, Ordering::Relaxed);
                             self.activity =
