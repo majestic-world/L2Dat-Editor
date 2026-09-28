@@ -223,23 +223,17 @@ impl EditorApp {
             self.log(true, "Selecione uma criptografia explícita para empacotar TXT (por exemplo, v413_encdec).".into());
             return;
         }
-        let document = document.clone();
+        let mut document = document.clone();
         let encryption = self.settings.encryption.clone();
         let editor = self.editor.clone();
         let repaint = ctx.clone();
         self.start(ctx, "Salvando arquivo", move |sender, _| {
-            let result = editor
-                .save(&document, &output, &encryption, |stage| {
-                    let _ = sender.send(Event::Saving(stage));
-                    repaint.request_repaint();
-                })
-                .and_then(|()| {
-                    editor.open(&output, &document.options).map_err(|error| {
-                        anyhow::anyhow!("Arquivo gravado, mas a reabertura falhou: {error:#}")
-                    })
-                });
+            let result = editor.save(&mut document, &output, &encryption, |stage| {
+                let _ = sender.send(Event::Saving(stage));
+                repaint.request_repaint();
+            });
             let _ = sender.send(match result {
-                Ok(doc) => Event::Saved(doc),
+                Ok(()) => Event::Saved(document),
                 Err(error) => Event::Failed(format!("{}: {error:#}", output.display())),
             });
         });
@@ -298,8 +292,7 @@ impl EditorApp {
                         .document
                         .as_mut()
                         .expect("Save completion requires an open document");
-                    // Reopening validates the saved file, not the session's text layout.
-                    // Keep the original buffer and its selection, scroll and undo offsets.
+                    // Keep the session buffer and its selection, scroll and undo offsets.
                     std::mem::swap(&mut doc.text, &mut current.text);
                 }
                 _ => {}
@@ -332,9 +325,9 @@ impl EditorApp {
                 Event::Saving(stage) => {
                     let (progress, activity) = match stage {
                         SaveStage::Encoding => (0.0, "Codificando arquivo"),
-                        SaveStage::Encrypting => (0.25, "Criptografando arquivo"),
-                        SaveStage::Writing => (0.5, "Gravando arquivo"),
-                        SaveStage::Written => (0.75, "Reabrindo arquivo"),
+                        SaveStage::Encrypting => (1.0 / 3.0, "Criptografando arquivo"),
+                        SaveStage::Writing => (2.0 / 3.0, "Gravando arquivo"),
+                        SaveStage::Written => (1.0, "Arquivo gravado"),
                     };
                     self.progress = Some(progress);
                     self.activity = activity.into();

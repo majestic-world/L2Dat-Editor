@@ -140,7 +140,7 @@ fn run() -> Result<()> {
                         "Choose --encryption, for example v413_encdec or Plaintext"
                     );
                     editor.save(
-                        &editor.open(&input, &options)?,
+                        &mut editor.open(&input, &options)?,
                         &output,
                         &options.encryption,
                         |_| {},

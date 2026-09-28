@@ -128,9 +128,11 @@ impl Editor {
         })
     }
 
+    /// Updates the document's saved metadata only after successful persistence.
+    /// The session text is kept verbatim; saving never reopens the output.
     pub fn save(
         &self,
-        document: &Document,
+        document: &mut Document,
         output: &Path,
         encryption: &str,
         mut progress: impl FnMut(SaveStage),
@@ -205,6 +207,12 @@ impl Editor {
             atomic_write(&parent.join(NAME_FILE), &names)?;
         }
         atomic_write(output, &bytes)?;
+        output.clone_into(&mut document.path);
+        document.source_key = key;
+        document.structured = structured;
+        if structured {
+            document.encoding = TextEncoding::Utf8;
+        }
         progress(SaveStage::Written);
         Ok(())
     }
@@ -302,7 +310,7 @@ impl Editor {
                             "Output already exists: {}",
                             target.display()
                         );
-                        let doc = if extension(path) == "dat"
+                        let mut doc = if extension(path) == "dat"
                             && options.encryption != PLAIN_KEY
                             && !self.crypto.encryption_uses_structure(&options.encryption)?
                         {
@@ -319,7 +327,7 @@ impl Editor {
                         } else {
                             self.open(path, options)?
                         };
-                        self.save(&doc, &target, &options.encryption, |_| {})
+                        self.save(&mut doc, &target, &options.encryption, |_| {})
                     }
                     BatchKind::Recrypt => {
                         ensure!(

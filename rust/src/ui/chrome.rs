@@ -310,7 +310,7 @@ impl EditorApp {
                             .on_hover_text(if self.batch_running {
                                 "Progresso por arquivos concluídos"
                             } else {
-                                "Etapas concluídas: codificação, criptografia, gravação e reabertura"
+                                "Etapas concluídas: codificação, criptografia e gravação"
                             });
                         }
                         if self.batch_running && ui.button("Cancelar lote").clicked() {

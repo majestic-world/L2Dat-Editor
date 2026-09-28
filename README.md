@@ -112,21 +112,23 @@ For deployment, place that directory as `data` beside the executable, or specify
   the caret column or selection direction. Duplication is one undo/redo action
   and preserves existing line endings without changing the clipboard.
 - Saving uses an 80-by-4-point progress bar with a compact activity spinner.
-  Progress advances at real encoding, encryption, persistence and reopening
-  boundaries, not by elapsed time or estimated byte percentages. Operations
+  Progress advances at real encoding, encryption and persistence boundaries,
+  reaching completion after the output is persisted, not by elapsed time. Operations
   without measurable progress show only the activity spinner.
 - Saving and Save As preserve the open session's exact text, blank lines,
   spacing, selection, horizontal/vertical scroll, search state and undo/redo.
   Structured DAT encoding still excludes layout-only blank lines; they remain
-  in the editor for debugging, not in the DAT. The saved file is fully reopened
-  for validation, but only its metadata replaces the session metadata.
+  in the editor for debugging, not in the DAT. Saving does not reopen, decrypt
+  or decode the output. After successful persistence, the session's path,
+  encryption key and format metadata are updated directly; failures leave its
+  metadata and unsaved edits unchanged.
 - Large RSA payloads encrypt independent blocks in parallel, bounded by the
   available parallelism and eight workers. Small payloads stay sequential.
   Workers share read-only keys and write disjoint output slices in file order.
   Compression, keys, envelope bytes and decryption checks are unchanged.
   This trades temporary CPU parallelism for shorter saves; no dependencies
   or persistent worker pool are added. Same-directory temporary files,
-  `sync_all`, atomic replacement and the UI's full reopen remain in place.
+  `sync_all` and atomic replacement remain in place.
 - The text viewport lays out and highlights visible physical lines plus a small
   overscan, rather than building glyph geometry for the entire document.
   Text and the line index remain in memory; an individual very long line is
@@ -225,8 +227,9 @@ change, and the dictionary remained unchanged. The original client DAT and
 dictionary were not modified. Reopen DAT files in the corrected build to
 regenerate valid text; already-open older instances retain the old decoding.
 
-Save optimization was measured on isolated copies of the NPC sample, with five
-release-mode saves per implementation on the same Windows machine. Median
+Earlier RSA optimization measurements, before automatic save-time reopening
+was removed, used isolated copies of the NPC sample with five release-mode
+saves per implementation on the same Windows machine. Median
 save time fell from 2.11 s to 0.80 s; including the document snapshot and full
 reopen, the median fell from 2.66 s to 1.34 s. This is a local measurement,
 not a cross-machine performance guarantee. Sequential and parallel saves
