@@ -165,9 +165,11 @@ fn run() -> Result<()> {
     }
     let native = eframe::NativeOptions {
         viewport: eframe::egui::ViewportBuilder::default()
-            .with_icon(eframe::icon_data::from_png_bytes(include_bytes!(
-                "../assets/app-icon.png"
-            ))?)
+            .with_icon(icons::window_icon(if cfg!(target_os = "windows") {
+                16
+            } else {
+                256
+            }))
             .with_inner_size([
                 settings.width.clamp(900.0, 3840.0),
                 settings.height.clamp(600.0, 2160.0),

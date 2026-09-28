@@ -53,7 +53,7 @@ impl EditorApp {
             .show(ctx, |ui| {
                 ui.horizontal(|ui| {
                     ui.set_height(28.0);
-                    ui.add(icons::image(Icon::Layers, 26.0).tint(theme::ACCENT));
+                    ui.add(icons::image(ui.ctx(), Icon::Layers, 26.0).tint(theme::ACCENT));
                     ui.add_space(6.0);
                     ui.label(RichText::new("L2 DAT STUDIO").strong().size(19.0));
                     ui.add_space(16.0);
@@ -195,11 +195,13 @@ impl EditorApp {
                                         .add_sized(
                                             [ui.available_width(), 32.0],
                                             egui::Button::image_and_text(
-                                                icons::image(Icon::File, 17.0).tint(if active {
-                                                    theme::ACCENT
-                                                } else {
-                                                    theme::MUTED
-                                                }),
+                                                icons::image(ui.ctx(), Icon::File, 20.0).tint(
+                                                    if active {
+                                                        theme::ACCENT
+                                                    } else {
+                                                        theme::MUTED
+                                                    },
+                                                ),
                                                 name.as_ref(),
                                             )
                                             .frame(active)
@@ -407,7 +409,7 @@ impl EditorApp {
     pub(super) fn empty_editor(&mut self, ui: &mut egui::Ui, ctx: &egui::Context) {
         ui.vertical_centered(|ui| {
             ui.add_space((ui.available_height() * 0.22).max(24.0));
-            ui.add(icons::image(Icon::Layers, 48.0).tint(theme::ACCENT));
+            ui.add(icons::image(ui.ctx(), Icon::Layers, 48.0).tint(theme::ACCENT));
             ui.add_space(18.0);
             ui.label(
                 RichText::new("Seu próximo arquivo começa aqui.")
@@ -424,7 +426,7 @@ impl EditorApp {
                 if ui
                     .add(
                         egui::Button::image_and_text(
-                            icons::image(Icon::Folder, 18.0).tint(theme::BG),
+                            icons::image(ui.ctx(), Icon::Folder, 20.0).tint(theme::BG),
                             RichText::new("Abrir arquivo").color(theme::BG).strong(),
                         )
                         .fill(theme::ACCENT)

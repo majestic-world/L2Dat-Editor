@@ -29,8 +29,14 @@ The active document keeps its original read options; sidebar changes apply to
 the next open, except encryption, which controls the next save.
 
 The [design reference](rust/design/reference.png) was generated with Higgsfield
-GPT Image 2.5. The outline SVG icons in `rust/assets/icons` are embedded in the
-executable; no network or external icon files are needed at runtime.
+GPT Image 2.5. The 13 outline SVG icons in `rust/assets/icons` use a 20 px grid
+and 2 px strokes. They are embedded in the executable; no network or external
+icon files are needed at runtime. Each icon is rasterized and cached by physical
+pixel size, so simultaneous sizes and DPI/zoom changes never stretch a smaller
+cached texture. Antialiased SVG pixels are sampled 1:1 without bilinear blur.
+Native captures: [100%, 150% and 200% comparison](rust/design/icons-comparison.png)
+and [complete workspace](rust/design/icons-workspace.png). DPI transitions were
+simulated per window with `WM_DPICHANGED`, without changing desktop settings.
 
 The application icon is a custom copper L2 monogram with stacked DAT-record
 strokes, generated through Higgsfield Recraft V4.1. Its original vector is
@@ -38,8 +44,12 @@ preserved in [`rust/design/app-icon-source.svg`](rust/design/app-icon-source.svg
 [`rust/assets/app-icon.ico`](rust/assets/app-icon.ico) contains independently
 rasterized 16, 20, 24, 32, 40, 48, 64, 96, 128 and 256 px images with transparent
 corners. `rust/build.rs` embeds it in Windows executables using `winresource`;
-the build reruns when the ICO changes. The matching embedded `app-icon.png`
-sets the native window icon. Neither requires external files at runtime.
+the build reruns when the ICO changes. The normalized display vector is embedded
+from `rust/assets/app-icon.svg`; `app-icon.png` remains a 256 px preview.
+On Windows the title-bar icon is rasterized directly at 16 logical pixels times
+the native display scale, and updated when the window's DPI changes. Native icon
+handles were verified at 16, 24 and 32 px and on returning to 16 px. Other
+platforms receive a 256 px raster. No external icon files are required at runtime.
 The executable's ten icon resources were checked against the source ICO, and
 the [running window icon](rust/design/app-icon-window.png) was verified.
 

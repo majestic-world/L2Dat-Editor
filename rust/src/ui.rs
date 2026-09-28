@@ -51,6 +51,8 @@ pub struct EditorApp {
     batch_output: String,
     startup_open: Option<PathBuf>,
     highlighter: Highlighter,
+    #[cfg(target_os = "windows")]
+    native_icon_size: u32,
 }
 
 enum Event {
@@ -71,7 +73,6 @@ impl EditorApp {
         warning: Option<String>,
     ) -> Self {
         fonts::install(&cc.egui_ctx);
-        egui_extras::install_image_loaders(&cc.egui_ctx);
         theme::install(&cc.egui_ctx);
         let chronicles = editor.catalog.chronicles();
         let mut encryptions = vec![SOURCE_KEY.to_owned(), PLAIN_KEY.to_owned()];
@@ -106,6 +107,8 @@ impl EditorApp {
             batch_output: String::new(),
             startup_open,
             highlighter: Highlighter::default(),
+            #[cfg(target_os = "windows")]
+            native_icon_size: 16,
         };
         app.log(
             false,
@@ -602,6 +605,18 @@ impl EditorApp {
 
 impl eframe::App for EditorApp {
     fn update(&mut self, ctx: &egui::Context, _frame: &mut eframe::Frame) {
+        #[cfg(target_os = "windows")]
+        {
+            // winit uses the viewport icon for Windows' small title-bar icon.
+            // Rasterize at its native DPI instead of shrinking a 256 px PNG.
+            let pixels = (16.0 * ctx.native_pixels_per_point().unwrap_or(1.0)).round() as u32;
+            if pixels != self.native_icon_size {
+                ctx.send_viewport_cmd(egui::ViewportCommand::Icon(Some(Arc::new(
+                    icons::window_icon(pixels),
+                ))));
+                self.native_icon_size = pixels;
+            }
+        }
         self.receive(ctx);
         if let Some(path) = self.startup_open.take() {
             self.open(ctx, path);
@@ -673,7 +688,7 @@ impl eframe::App for EditorApp {
                             .inner_margin(egui::Margin::symmetric(16, 10))
                             .show(ui, |ui| {
                                 ui.horizontal(|ui| {
-                                    ui.add(icons::image(Icon::File, 16.0).tint(ACCENT));
+                                    ui.add(icons::image(ui.ctx(), Icon::File, 20.0).tint(ACCENT));
                                     ui.label(
                                         doc.path.file_name().unwrap_or_default().to_string_lossy(),
                                     );
