@@ -32,6 +32,17 @@ The [design reference](rust/design/reference.png) was generated with Higgsfield
 GPT Image 2.5. The outline SVG icons in `rust/assets/icons` are embedded in the
 executable; no network or external icon files are needed at runtime.
 
+The application icon is a custom copper L2 monogram with stacked DAT-record
+strokes, generated through Higgsfield Recraft V4.1. Its original vector is
+preserved in [`rust/design/app-icon-source.svg`](rust/design/app-icon-source.svg).
+[`rust/assets/app-icon.ico`](rust/assets/app-icon.ico) contains independently
+rasterized 16, 20, 24, 32, 40, 48, 64, 96, 128 and 256 px images with transparent
+corners. `rust/build.rs` embeds it in Windows executables using `winresource`;
+the build reruns when the ICO changes. The matching embedded `app-icon.png`
+sets the native window icon. Neither requires external files at runtime.
+The executable's ten icon resources were checked against the source ICO, and
+the [running window icon](rust/design/app-icon-window.png) was verified.
+
 Actual Windows captures: [open DAT](rust/design/editor.png) and
 [empty workspace](rust/design/empty-state.png). These use synthetic data and
 isolated preferences. The redesign was exercised with a 200-record encrypted
@@ -41,7 +52,8 @@ and compact-window rendering with horizontal scrolling instead of soft wraps.
 ### Run
 
 Install Rust and a native linker (Visual Studio Build Tools with the C++ desktop
-workload on Windows), then run from the repository root:
+workload and Windows SDK, including `rc.exe`, on Windows), then run from the
+repository root:
 
 ```powershell
 cargo run --manifest-path rust/Cargo.toml --release
