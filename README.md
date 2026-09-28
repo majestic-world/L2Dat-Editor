@@ -14,8 +14,112 @@ and understanding the data used by Lineage 2.
 - Advanced text formatting and editing
 - Multiple encryption/decryption algorithms support
 
+## Native Rust application
 
-## Requirements
+The native application lives in `rust/`. Its desktop UI uses `egui`; DAT
+cryptography, XML interpretation, text formatting and batch operations run in
+Rust without a JVM. The original Java project remains available.
+
+### Run
+
+Install Rust and a native linker (Visual Studio Build Tools with the C++ desktop
+workload on Windows), then run from the repository root:
+
+```powershell
+cargo run --manifest-path rust/Cargo.toml --release
+```
+
+To build the Windows executable:
+
+```powershell
+cargo build --manifest-path rust/Cargo.toml --release
+.\rust\target\release\l2dat-editor.exe
+```
+
+The application reads the existing `dist/data` directory directly. It does not
+duplicate or modify the XML structures, enums or encryption-key configuration.
+For deployment, place that directory as `data` beside the executable, or specify
+`--data-dir <path>` / `L2DAT_DATA_DIR`. The directory must contain `structure`,
+`enums`, `definitions.xml` and `config`.
+
+### Editor
+
+- Open DAT, INI, HTM and UTF-8/UTF-16 text; drag-and-drop and recent files are
+  supported. Saving unstructured text preserves its BOM and CRLF convention.
+- Edit with aligned line numbers, undo/redo, Unicode case-insensitive search,
+  previous/next matches, literal replacement and go-to-line. Save DAT or export
+  UTF-8 TXT. `Ctrl+O`, `Ctrl+S`, `Ctrl+F` and `Ctrl+G` open, save, search and
+  navigate; clipboard actions are also available from the editor context menu.
+- Select the chronicle before opening. Chronicle, formatter and enum settings
+  stay attached to the open document; changed settings apply to the next open.
+- `Source` preserves the original encryption key when an encryption key with
+  that name exists. Original RSA decode-only keys require an explicit choice,
+  such as `v413_encdec` or `v413_encdec_bonux`; there is no silent key fallback.
+- Save-as filenames must match a descriptor in the selected chronicle.
+  Structured DAT output requires a structure-enabled key or `Plaintext`.
+- Recursive unpack, pack and re-encryption use separate, non-nested output
+  directories and refuse to overwrite existing outputs. Cancellation takes
+  effect between files.
+- Keep `L2GameDataName.dat` beside files that use shared names. Unpack carries
+  the dictionary into the output directory; save installs appended names before
+  the referencing DAT. Without a dictionary, numeric IDs remain editable, but
+  adding new named entries is rejected.
+- Settings are stored per user in `%APPDATA%\L2DatEditorRust\settings.json`
+  (or the XDG configuration directory on other platforms).
+- On Windows, installed Segoe UI, Malgun Gothic and Microsoft YaHei fonts are
+  used when available, including fallback for Korean and Chinese text.
+
+### Command line
+
+Omitting a subcommand opens the desktop application. File and directory paths
+are accepted by `unpack`, `pack` and `recrypt`; existing output files are rejected.
+
+```powershell
+cargo run --manifest-path rust/Cargo.toml --release -- catalog
+cargo run --manifest-path rust/Cargo.toml --release -- --chronicle "Samurai (542)" unpack .\input\sysstring-e.dat .\text\sysstring-e.txt
+cargo run --manifest-path rust/Cargo.toml --release -- --chronicle "Samurai (542)" --encryption v413_encdec pack .\text\sysstring-e.txt .\output\sysstring-e.dat
+cargo run --manifest-path rust/Cargo.toml --release -- --encryption v413_encdec_bonux recrypt .\input .\reencrypted
+```
+
+Use `--no-formatter` and `--no-enums` for unjoined records and numeric enum
+values. Use the same settings when unpacking and packing text.
+
+### Compatibility and verification
+
+The port implements the six bundled formatters and the configured XOR,
+Blowfish, DES and RSA/zlib algorithms. RSA and XOR were compared against Java
+in both directions; Blowfish blocks against the bundled Java engine; DES
+decryption against Java. The original Java Blowfish wrapper and DES encryption
+path are incomplete, so they cannot serve as full-file encryption oracles.
+XOR 121 follows the configured fixed key, not external filename-derived variants.
+Legacy Blowfish/DES preserve incomplete final blocks.
+
+Recognized legacy footers are removed for XOR/ECB as well as RSA, avoiding the
+extra bytes returned by the Java XOR/ECB wrappers. Legacy unauthenticated
+formats cannot reliably distinguish every wrong key or a payload ending in the
+same footer sentinel.
+
+Existing XML defects are reported at startup and by `catalog`: six missing
+chronicle-parent references and a missing counter in `hairgrp.xml` / `interlude`.
+The port does not guess replacements. Valid own/inherited descriptors remain
+usable; affected lookups fail explicitly. Malformed counts, missing
+`SafePackage`, trailing binary data and malformed formatter records are rejected
+rather than silently discarded.
+
+```powershell
+cargo test --manifest-path rust/Cargo.toml
+```
+
+Verification uses synthetic records, the real bundled XML and differential
+checks against the Java implementation. It is not a claim that every DAT from
+every client build has been validated.
+
+The native modules are `schema` (XML and binary/text codec), `crypto` (DAT
+envelopes), `format` (record transformations), `editor` (file operations),
+`settings`, and the desktop `ui`.
+
+
+## Java requirements
 
 - **Java 17** or higher
 - **IntelliJ IDEA**

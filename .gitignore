@@ -5,3 +5,4 @@ build
 wrapper/obj
 wrapper/bin
 *.pdb
+rust/target/

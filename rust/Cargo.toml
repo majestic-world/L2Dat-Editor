@@ -1,0 +1,28 @@
+[package]
+name = "l2dat-editor"
+version = "0.1.0"
+edition = "2024"
+description = "Native Lineage 2 DAT editor using the existing XML structures"
+
+[dependencies]
+anyhow = "1"
+blowfish = "0.9"
+byteorder = "1"
+cipher = "0.4"
+clap = { version = "4", features = ["derive"] }
+crc32fast = "1"
+des = "0.8"
+eframe = { version = "0.31", default-features = false, features = ["default_fonts", "glow", "x11", "wayland"] }
+encoding_rs = "0.8"
+flate2 = "1"
+num-bigint = "0.4"
+regex = "1"
+rfd = "0.15"
+roxmltree = "0.20"
+serde = { version = "1", features = ["derive"] }
+serde_json = "1"
+tempfile = "3"
+
+[profile.release]
+lto = "thin"
+strip = true
