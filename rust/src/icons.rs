@@ -17,7 +17,6 @@ pub enum Icon {
     Pack,
     Recrypt,
     Trash,
-    Close,
     Layers,
 }
 
@@ -50,7 +49,6 @@ pub fn image(ctx: &egui::Context, icon: Icon, size: f32) -> egui::Image<'static>
             Icon::Pack => include_bytes!("../assets/icons/pack.svg"),
             Icon::Recrypt => include_bytes!("../assets/icons/recrypt.svg"),
             Icon::Trash => include_bytes!("../assets/icons/trash.svg"),
-            Icon::Close => include_bytes!("../assets/icons/close.svg"),
             Icon::Layers => include_bytes!("../assets/icons/layers.svg"),
         };
         let raster = egui_extras::image::load_svg_bytes_with_size(

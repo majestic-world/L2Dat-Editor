@@ -362,6 +362,7 @@ impl EditorApp {
     }
 
     fn refresh_search(&mut self) {
+        self.search_feedback = None;
         if let Some(doc) = &self.document {
             if let Err(error) = self.search.refresh(&doc.text, &self.query) {
                 self.log(true, format!("Busca: {error}"));
@@ -401,12 +402,18 @@ impl EditorApp {
         self.search_feedback = None;
     }
 
-    fn search_modal(&mut self, ctx: &egui::Context) {
+    fn search_window(&mut self, ctx: &egui::Context) {
         if !self.search_visible {
             return;
         }
         let mut close = false;
-        let modal = egui::Modal::new(egui::Id::new("search_modal"))
+        let mut open = true;
+        egui::Window::new("Buscar e substituir")
+            .id(egui::Id::new("search_window"))
+            .open(&mut open)
+            .collapsible(false)
+            .resizable(false)
+            .default_pos(ctx.screen_rect().center() - egui::vec2(270.0, 175.0))
             .frame(
                 egui::Frame::popup(&ctx.style())
                     .fill(theme::SURFACE)
@@ -415,16 +422,7 @@ impl EditorApp {
             )
             .show(ctx, |ui| {
                 ui.set_width(500.0_f32.min((ctx.screen_rect().width() - 80.0).max(200.0)));
-                ui.horizontal(|ui| {
-                    ui.add(icons::image(ui.ctx(), Icon::Search, 20.0).tint(ACCENT));
-                    ui.label(RichText::new("Buscar e substituir").size(18.0).strong());
-                    ui.with_layout(egui::Layout::right_to_left(egui::Align::Center), |ui| {
-                        close = icons::button(ui, Icon::Close, "")
-                            .on_hover_text("Fechar busca (Esc)")
-                            .clicked();
-                    });
-                });
-                ui.add_space(16.0);
+                ui.add_space(8.0);
                 ui.add_enabled_ui(self.document.is_some() && self.job.is_none(), |ui| {
                     ui.label("Buscar");
                     let query = ui.add(
@@ -437,7 +435,6 @@ impl EditorApp {
                         self.search_focus_requested = false;
                     }
                     if query.changed() {
-                        self.search_feedback = None;
                         self.refresh_search();
                     }
                     let enter = (query.has_focus() || query.lost_focus())
@@ -511,8 +508,8 @@ impl EditorApp {
                     });
                 });
             });
-        let dismiss = modal.should_close();
-        if close || dismiss {
+        let escape = ctx.input_mut(|i| i.consume_key(egui::Modifiers::NONE, egui::Key::Escape));
+        if close || !open || escape {
             self.search_visible = false;
             self.text_editor
                 .select_range(self.text_editor.state.selection.range(), true);
@@ -526,30 +523,27 @@ impl EditorApp {
         egui::TopBottomPanel::top("goto")
             .frame(egui::Frame::new().fill(theme::SURFACE).inner_margin(10.0))
             .show(ctx, |ui| {
-                ui.add_enabled_ui(
-                    self.document.is_some() && self.job.is_none() && !self.search_visible,
-                    |ui| {
-                        ui.horizontal(|ui| {
-                            ui.label("Linha");
-                            let response = ui.add(
-                                TextEdit::singleline(&mut self.goto_line)
-                                    .id(egui::Id::new("goto_line"))
-                                    .desired_width(70.0),
-                            );
-                            if ui.button("Ir").clicked()
-                                || response.lost_focus()
-                                    && ui.input_mut(|i| {
-                                        i.consume_key(egui::Modifiers::NONE, egui::Key::Enter)
-                                    })
-                            {
-                                self.go_to_line();
-                            }
-                            if ui.small_button("Fechar").clicked() {
-                                self.goto_visible = false;
-                            }
-                        });
-                    },
-                );
+                ui.add_enabled_ui(self.document.is_some() && self.job.is_none(), |ui| {
+                    ui.horizontal(|ui| {
+                        ui.label("Linha");
+                        let response = ui.add(
+                            TextEdit::singleline(&mut self.goto_line)
+                                .id(egui::Id::new("goto_line"))
+                                .desired_width(70.0),
+                        );
+                        if ui.button("Ir").clicked()
+                            || response.lost_focus()
+                                && ui.input_mut(|i| {
+                                    i.consume_key(egui::Modifiers::NONE, egui::Key::Enter)
+                                })
+                        {
+                            self.go_to_line();
+                        }
+                        if ui.small_button("Fechar").clicked() {
+                            self.goto_visible = false;
+                        }
+                    });
+                });
             });
     }
 
@@ -696,7 +690,7 @@ impl eframe::App for EditorApp {
         {
             self.open_search();
         }
-        if self.job.is_none() && !self.search_visible {
+        if self.job.is_none() {
             if ctx.input_mut(|i| i.consume_key(egui::Modifiers::CTRL, egui::Key::O)) {
                 self.choose_open(ctx);
             }
@@ -782,14 +776,10 @@ impl eframe::App for EditorApp {
                     .fill(EDITOR)
                     .inner_margin(10.0)
                     .show(ui, |ui| {
-                        let response = self.text_editor.show(
-                            ui,
-                            &mut doc.text,
-                            self.job.is_none() && !self.search_visible,
-                        );
+                        let response = self.text_editor.show(ui, &mut doc.text, self.job.is_none());
                         let changed = response.changed();
                         response.context_menu(|ui| {
-                            ui.add_enabled_ui(self.job.is_none() && !self.search_visible, |ui| {
+                            ui.add_enabled_ui(self.job.is_none(), |ui| {
                                 for (label, event) in [
                                     ("Copiar  Ctrl+C", egui::Event::Copy),
                                     ("Recortar  Ctrl+X", egui::Event::Cut),
@@ -844,7 +834,7 @@ impl eframe::App for EditorApp {
         if search_requested {
             self.open_search();
         }
-        self.search_modal(ctx);
+        self.search_window(ctx);
         self.batch_window(ctx);
     }
 }

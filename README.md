@@ -91,14 +91,17 @@ For deployment, place that directory as `data` beside the executable, or specify
   UTF-8 TXT. `Ctrl+O`, `Ctrl+S`, `Ctrl+F` and `Ctrl+G` open, save, search and
   navigate; clipboard actions are also available from the editor context menu.
 - The Search toolbar button, Edit menu, editor context menu and `Ctrl+F` open
-  a centered search-and-replace modal with previous/next navigation, match
-  counts and literal replace-all feedback. Query and replacement text survive
-  closing and reopening the modal.
-- Enter in the search field advances through matches while keeping keyboard
-  focus in the query. The document and background shortcuts are blocked while
-  the modal is open. Escape, Close or the backdrop dismiss it and return
-  focus to the editor selection. Replace-all can be undone in one action.
+  a movable, non-modal search-and-replace window with previous/next navigation,
+  match counts and literal replace-all feedback. Query and replacement text
+  survive closing and reopening the window.
+- Click the editor to edit, undo, duplicate lines or save while search stays
+  open. Matches refresh after document edits. Enter in the search field
+  navigates matches without editing the document; keyboard input follows focus.
+  Escape or Close dismisses search and returns focus to the editor selection.
+  Replace-all can be undone in one action.
 - Log messages wrap to the panel width and scroll vertically only.
+- The native application window and startup error dialog use the title
+  `L2DAT Studio By Mk`.
 - The header badge displays `L2DAT Studio v{version} - By Mk`, using the
   package version from `rust/Cargo.toml` at compile time.
 - `Ctrl+D` duplicates the current line or complete selected lines below, keeping

@@ -55,7 +55,7 @@ fn main() {
         eprintln!("{error:#}");
         if std::env::args_os().len() == 1 {
             rfd::MessageDialog::new()
-                .set_title("L2 DAT Editor")
+                .set_title("L2DAT Studio By Mk")
                 .set_description(format!("{error:#}"))
                 .set_level(rfd::MessageLevel::Error)
                 .show();
@@ -181,7 +181,7 @@ fn run() -> Result<()> {
         ..Default::default()
     };
     eframe::run_native(
-        "L2 DAT Editor — Rust",
+        "L2DAT Studio By Mk",
         native,
         Box::new(move |cc| {
             Ok(Box::new(ui::EditorApp::new(
