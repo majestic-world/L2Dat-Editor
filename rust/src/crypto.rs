@@ -6,6 +6,7 @@
 use std::fs;
 use std::io::Write;
 use std::path::Path;
+use std::thread;
 
 use anyhow::{Context, Result, anyhow, bail, ensure};
 use blowfish::BlowfishLE;
@@ -19,6 +20,8 @@ const HEADER_LEN: usize = 28;
 const FOOTER_LEN: usize = 20;
 const RSA_BLOCK: usize = 128;
 const RSA_PAYLOAD: usize = 124;
+const RSA_MIN_BLOCKS_PER_WORKER: usize = 128;
+const RSA_MAX_WORKERS: usize = 8;
 
 pub struct Decoded {
     pub bytes: Vec<u8>,
@@ -374,15 +377,78 @@ fn rsa_encrypt(bytes: &[u8], modulus: &BigUint, exponent: &BigUint) -> Result<Ve
         .write_all(bytes)
         .context("Compressing DAT payload")?;
     let compressed = encoder.finish().context("Finishing DAT compression")?;
-    let mut result = Vec::with_capacity(compressed.len().div_ceil(RSA_PAYLOAD) * RSA_BLOCK);
-    for chunk in compressed.chunks(RSA_PAYLOAD) {
+    let blocks = compressed.len().div_ceil(RSA_PAYLOAD);
+    let workers = (blocks / RSA_MIN_BLOCKS_PER_WORKER).clamp(1, RSA_MAX_WORKERS);
+    let workers = if workers > 1 {
+        workers.min(thread::available_parallelism().map_or(1, |count| count.get()))
+    } else {
+        1
+    };
+    rsa_encrypt_blocks(&compressed, modulus, exponent, workers)
+}
+
+fn rsa_encrypt_blocks(
+    compressed: &[u8],
+    modulus: &BigUint,
+    exponent: &BigUint,
+    workers: usize,
+) -> Result<Vec<u8>> {
+    let blocks = compressed.len().div_ceil(RSA_PAYLOAD);
+    let mut output = vec![0u8; blocks * RSA_BLOCK];
+    if workers == 1 || blocks <= 1 {
+        rsa_encrypt_into(compressed, &mut output, modulus, exponent)?;
+        return Ok(output);
+    }
+    let blocks_per_worker = blocks.div_ceil(workers);
+    // Workers borrow disjoint output slices. No shared append, key copies or
+    // reordering; a failed worker prevents the entire payload from being saved.
+    thread::scope(|scope| -> Result<()> {
+        let mut chunks = output
+            .chunks_mut(blocks_per_worker * RSA_BLOCK)
+            .zip(compressed.chunks(blocks_per_worker * RSA_PAYLOAD));
+        let (first_output, first_input) = chunks.next().expect("nonempty RSA payload");
+        let mut handles = Vec::with_capacity(workers - 1);
+        for (output, input) in chunks {
+            handles.push(
+                thread::Builder::new()
+                    .spawn_scoped(scope, move || {
+                        rsa_encrypt_into(input, output, modulus, exponent)
+                    })
+                    .context("Starting RSA encryption worker")?,
+            );
+        }
+        let mut result = rsa_encrypt_into(first_input, first_output, modulus, exponent);
+        for handle in handles {
+            let worker_result = handle
+                .join()
+                .map_err(|_| anyhow!("RSA encryption worker panicked"))
+                .and_then(|result| result);
+            if result.is_ok() {
+                result = worker_result;
+            }
+        }
+        result
+    })?;
+    Ok(output)
+}
+
+fn rsa_encrypt_into(
+    compressed: &[u8],
+    output: &mut [u8],
+    modulus: &BigUint,
+    exponent: &BigUint,
+) -> Result<()> {
+    for (chunk, output) in compressed
+        .chunks(RSA_PAYLOAD)
+        .zip(output.chunks_exact_mut(RSA_BLOCK))
+    {
         let mut block = [0u8; RSA_BLOCK];
         block[..4].copy_from_slice(&(chunk.len() as u32).to_be_bytes());
         let start = RSA_BLOCK - chunk.len() - (RSA_PAYLOAD - chunk.len()) % 4;
         block[start..start + chunk.len()].copy_from_slice(chunk);
-        result.extend_from_slice(&rsa_block(&block, modulus, exponent)?);
+        output.copy_from_slice(&rsa_block(&block, modulus, exponent)?);
     }
-    Ok(result)
+    Ok(())
 }
 
 fn rsa_decrypt(bytes: &[u8], modulus: &BigUint, exponent: &BigUint) -> Result<Vec<u8>> {
@@ -521,6 +587,65 @@ mod tests {
                 assert_eq!(decoded.bytes, input, "{name}, length {length}");
                 assert_eq!(decoded.key_name.as_deref(), Some(name.as_str()));
             }
+        }
+    }
+
+    #[test]
+    fn parallel_rsa_preserves_block_order_and_partial_tails() {
+        let catalog = catalog();
+        let key = catalog
+            .keys
+            .iter()
+            .find(|key| !key.decrypt && key.name == "v413_encdec")
+            .unwrap();
+        let Algorithm::Rsa { modulus, exponent } = &key.algorithm else {
+            panic!("Expected RSA key");
+        };
+        for length in [
+            RSA_PAYLOAD - 1,
+            RSA_PAYLOAD,
+            RSA_PAYLOAD + 1,
+            RSA_PAYLOAD * 7 + 1,
+        ] {
+            let input: Vec<u8> = (0..length).map(|index| (index * 37) as u8).collect();
+            let serial = rsa_encrypt_blocks(&input, modulus, exponent, 1).unwrap();
+            for workers in [2, 4] {
+                assert_eq!(
+                    rsa_encrypt_blocks(&input, modulus, exponent, workers).unwrap(),
+                    serial
+                );
+            }
+        }
+        assert!(
+            rsa_encrypt_blocks(
+                &vec![1; RSA_PAYLOAD * 7],
+                &BigUint::from(3233u32),
+                &BigUint::from(17u32),
+                4
+            )
+            .is_err(),
+            "Worker errors must prevent returning a partial encrypted payload"
+        );
+    }
+
+    #[test]
+    fn large_rsa_payload_roundtrips_with_both_keys() {
+        let catalog = catalog();
+        let mut state = 0x9e3779b9u32;
+        let input: Vec<u8> = (0..32769)
+            .map(|_| {
+                state ^= state << 13;
+                state ^= state >> 17;
+                state ^= state << 5;
+                state as u8
+            })
+            .collect();
+        for name in ["v413_encdec", "v413_encdec_bonux"] {
+            let encrypted = catalog.encrypt(&input, "sample.dat", name).unwrap();
+            assert!(encrypted.len() > RSA_BLOCK * RSA_MIN_BLOCKS_PER_WORKER * 2);
+            let decoded = catalog.decrypt(&encrypted, "sample.dat").unwrap();
+            assert_eq!(decoded.bytes, input, "{name}");
+            assert_eq!(decoded.key_name.as_deref(), Some(name));
         }
     }
 

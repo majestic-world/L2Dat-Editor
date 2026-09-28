@@ -103,6 +103,13 @@ For deployment, place that directory as `data` beside the executable, or specify
   Progress advances at real encoding, encryption, persistence and reopening
   boundaries, not by elapsed time or estimated byte percentages. Operations
   without measurable progress show only the activity spinner.
+- Large RSA payloads encrypt independent blocks in parallel, bounded by the
+  available parallelism and eight workers. Small payloads stay sequential.
+  Workers share read-only keys and write disjoint output slices in file order.
+  Compression, keys, envelope bytes and decryption checks are unchanged.
+  This trades temporary CPU parallelism for shorter saves; no dependencies
+  or persistent worker pool are added. Same-directory temporary files,
+  `sync_all`, atomic replacement and the UI's full reopen remain in place.
 - The text viewport lays out and highlights visible physical lines plus a small
   overscan, rather than building glyph geometry for the entire document.
   Text and the line index remain in memory; an individual very long line is
@@ -200,6 +207,16 @@ the decoded result preserved all 16,120 records with only the intended field
 change, and the dictionary remained unchanged. The original client DAT and
 dictionary were not modified. Reopen DAT files in the corrected build to
 regenerate valid text; already-open older instances retain the old decoding.
+
+Save optimization was measured on isolated copies of the NPC sample, with five
+release-mode saves per implementation on the same Windows machine. Median
+save time fell from 2.11 s to 0.80 s; including the document snapshot and full
+reopen, the median fell from 2.66 s to 1.34 s. This is a local measurement,
+not a cross-machine performance guarantee. Sequential and parallel saves
+produced identical 363,952-byte encrypted DAT files and identical dictionaries.
+Native UI verification covered an NPC ID edit, save/reopen, rejection of a
+missing required field without changing the previous DAT or dictionary,
+retention of unsaved edits after failure, and recovery through undo/save.
 
 The native modules are `schema` (XML and binary/text codec), `crypto` (DAT
 envelopes), `format` (record transformations), `editor` (file operations),
