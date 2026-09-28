@@ -244,6 +244,11 @@ fn supplied_catalog_resolves_modern_and_inherited_file_patterns() {
     let data = Path::new(env!("CARGO_MANIFEST_DIR")).join("../dist/data");
     let catalog = Catalog::load(&data).unwrap();
     assert!(
+        catalog.diagnostics().is_empty(),
+        "Bundled catalog must load without XML diagnostics: {:?}",
+        catalog.diagnostics()
+    );
+    assert!(
         catalog
             .chronicles()
             .iter()
@@ -257,17 +262,4 @@ fn supplied_catalog_resolves_modern_and_inherited_file_patterns() {
     let mut names = NameTable::default();
     let bytes = encode(&desc, text, &options, &mut names).unwrap();
     assert_eq!(decode(&desc, &bytes, &options, &mut names).unwrap(), text);
-    assert!(
-        catalog
-            .diagnostics()
-            .iter()
-            .any(|message| message.contains("hairgrp") && message.contains("counter"))
-    );
-    assert!(
-        catalog
-            .descriptor("Kamael", "missing.dat")
-            .unwrap_err()
-            .to_string()
-            .contains("missing parent ID 70")
-    );
 }

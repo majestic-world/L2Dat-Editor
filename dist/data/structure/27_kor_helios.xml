@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <list>
-	<links id="270" parent_id="261" name="Helios (KOR P1)">
+	<links id="270" parent_id="260" name="Helios (KOR P1)">
 		<link pattern="24hzschema.dat" file="24hzschema" version="kor_lindvior"/>
 		<link pattern="Credit-[\w]+\.dat" file="credit" version="kor_lindvior"/>
 		<link pattern="AbnormalEdgeEffectData\.dat" file="abnormaledgeeffectdata" version="kor_ertheia"/>

@@ -192,20 +192,28 @@ Kamael, restoring the parent chain C4 → C5 → Interlude → Hellbound → Kam
 → Gracia Part 1. Encrypted `sysstring-e.dat` pack/unpack was verified for
 these six profiles with synthetic records, including Unicode strings; this
 does not establish compatibility for every DAT in those clients.
-Two catalog warnings remain unresolved: Helios KOR P1 references missing
-parent `261`, and the inactive `hairgrp` schema has no cycle counter.
+Helios (KOR P1) inherits from Will of the Ancients (KOR), ID `260`; the
+previous reference to nonexistent ID `261` broke its ancestor chain.
+The unused, incomplete `hairgrp` descriptor and its commented-out links were
+removed. The [reference Interlude catalog](https://github.com/majestic-world/L2ClientDat/blob/main/dist/data/structure/06_interlude.xml)
+also disables this format with `cant write data`; its
+[reader](https://github.com/majestic-world/L2ClientDat/blob/main/java/com/majestic/xml/DescriptorReader.java)
+requires an existing cycle counter, not an implicit count or an EOF loop.
+`hairgrp.dat` remains unsupported; no binary layout was guessed.
+The release executable's `catalog` command loads all 82 chronicles without
+XML warnings. Encrypted `sysstring-e.dat` pack/unpack was also verified for
+Helios (KOR P1) and Interlude with a complete synthetic Unicode record.
 
 Recognized legacy footers are removed for XOR/ECB as well as RSA, avoiding the
 extra bytes returned by the Java XOR/ECB wrappers. Legacy unauthenticated
 formats cannot reliably distinguish every wrong key or a payload ending in the
 same footer sentinel.
 
-Existing XML defects are reported at startup and by `catalog`: six missing
-chronicle-parent references and a missing counter in `hairgrp.xml` / `interlude`.
-The port does not guess replacements. Valid own/inherited descriptors remain
-usable; affected lookups fail explicitly. Malformed counts, missing
-`SafePackage`, trailing binary data and malformed formatter records are rejected
-rather than silently discarded.
+XML defects are still reported at startup and by `catalog`; the bundled catalog
+has a regression check requiring no diagnostics. Valid own/inherited descriptors
+remain usable when a custom catalog has broken references, and affected lookups
+fail explicitly. Malformed counts, missing `SafePackage`, trailing binary data
+and malformed formatter records are rejected rather than silently discarded.
 
 ```powershell
 cargo test --manifest-path rust/Cargo.toml

@@ -15,7 +15,6 @@
 		<link pattern="gametip-[\w]+\.dat" file="gametip" version="high_five_p4"/> <!-- unk0 ?? -->
 	<!-- 	<link pattern="hairaccessarygrp.dat" file="hairaccessarygrp" version=""/> no struct -->
 		<link pattern="hairaccessorylocgrp\.dat" file="hairaccessorylocgrp" version="kor_lindvior"/>
-	<!-- 	<link pattern="hairgrp\.dat" file="hairgrp" version="interlude"/> cant write data -->
 	<!-- 	<link pattern="helmetgrp\.dat" file="helmetgrp" version="interlude"/> no struct -->
 		<link pattern="hennagrp-[\w]+\.dat" file="hennagrp" version="kor_lindvior"/>
 		<link pattern="huntingzone-[\w]+\.dat" file="huntingzone" version="kor_lindvior"/>
