@@ -182,6 +182,64 @@ fn raw_string_and_modern_map_ids_preserve_their_contracts() {
 }
 
 #[test]
+fn mapped_names_with_delimiters_preserve_ids_and_dictionary_on_save() {
+    let desc = descriptor(
+        r##"<file isSafePackage="true">
+        <node name="count" reader="UINT"/>
+        <for name="npc" size="#count" hidden="false">
+            <node name="npc_id" reader="USHORT"/>
+            <node name="sounds" reader="UINT"/>
+            <for name="dialog_sound" size="#sounds">
+                <node name="sound" reader="MAP_INT"/>
+            </for>
+        </for>
+        </file>"##,
+    );
+    let deep_name = format!(
+        "{}x{}",
+        "[".repeat(super::MAX_DEPTH),
+        "]".repeat(super::MAX_DEPTH)
+    );
+    let values = [
+        "Npcdialog.guard_03;[Npcdialog.guard_05",
+        "unexpected]suffix",
+        "];[other",
+        "<StrID:0>",
+        deep_name.as_str(),
+        "normal.Sound",
+        "balanced [한국] ; {label}=value",
+    ];
+    let mut dictionary = (values.len() as i32).to_le_bytes().to_vec();
+    for value in values {
+        binary::unicode(&mut dictionary, value, false).unwrap();
+    }
+    binary::string(&mut dictionary, "SafePackage", true).unwrap();
+    let mut names = NameTable::from_bytes(&dictionary).unwrap();
+    let mut original = 1u32.to_le_bytes().to_vec();
+    original.extend_from_slice(&42u16.to_le_bytes());
+    original.extend_from_slice(&(values.len() as u32).to_le_bytes());
+    for index in 0..values.len() as i32 {
+        original.extend_from_slice(&index.to_le_bytes());
+    }
+    binary::string(&mut original, "SafePackage", true).unwrap();
+    let options = CodecOptions::default();
+    let decoded = decode(&desc, &original, &options, &mut names).unwrap();
+    let saved = encode(&desc, &decoded, &options, &mut names).unwrap();
+    assert_eq!(saved, original, "Saving must preserve every name-table ID");
+    assert_eq!(names.to_bytes().unwrap(), dictionary);
+    assert!(!names.is_dirty());
+    assert!(decoded.contains("[normal.Sound]"));
+    assert!(decoded.contains("[balanced [한국] ; {label}=value]"));
+    let edited = decoded.replace("npc_id=42", "npc_id=43");
+    let saved = encode(&desc, &edited, &options, &mut names).unwrap();
+    original[4..6].copy_from_slice(&43u16.to_le_bytes());
+    assert_eq!(
+        saved, original,
+        "Editing another field must leave names intact"
+    );
+}
+
+#[test]
 fn supplied_catalog_resolves_modern_and_inherited_file_patterns() {
     let data = Path::new(env!("CARGO_MANIFEST_DIR")).join("../dist/data");
     let catalog = Catalog::load(&data).unwrap();

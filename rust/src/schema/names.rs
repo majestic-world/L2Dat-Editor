@@ -3,7 +3,7 @@ use std::collections::HashMap;
 use anyhow::{Context, Result, anyhow, ensure};
 
 use super::binary::{self, Reader};
-use super::{MAX_COUNT, MAX_OUTPUT};
+use super::{MAX_COUNT, MAX_DEPTH, MAX_OUTPUT};
 
 #[derive(Default, Clone, Debug)]
 pub struct NameTable {
@@ -98,8 +98,11 @@ impl NameTable {
             .ok()
             .and_then(|index| self.names.get(index))
         {
-            // Duplicate spelling must keep its original index when saving, not collapse to the first name.
-            if self.indices.get(&name.to_lowercase()) == Some(&index) && !name.is_empty() {
+            // Preserve IDs when spelling is duplicated or cannot be represented as a text value.
+            if self.indices.get(&name.to_lowercase()) == Some(&index)
+                && !name.is_empty()
+                && can_display_name(name)
+            {
                 return format!("[{name}]");
             }
         }
@@ -135,6 +138,32 @@ impl NameTable {
         self.dirty = true;
         Ok(index)
     }
+}
+
+fn can_display_name(name: &str) -> bool {
+    if name.starts_with("<StrID:") && name.ends_with('>') {
+        return false;
+    }
+    // The surrounding brackets must stay open throughout the literal name.
+    let mut depth = 1usize;
+    for byte in name.bytes() {
+        match byte {
+            b'[' => {
+                depth += 1;
+                if depth > MAX_DEPTH {
+                    return false;
+                }
+            }
+            b']' => {
+                depth -= 1;
+                if depth == 0 {
+                    return false;
+                }
+            }
+            _ => {}
+        }
+    }
+    depth == 1
 }
 
 #[cfg(test)]

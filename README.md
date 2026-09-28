@@ -115,6 +115,9 @@ For deployment, place that directory as `data` beside the executable, or specify
   the dictionary into the output directory; save installs appended names before
   the referencing DAT. Without a dictionary, numeric IDs remain editable, but
   adding new named entries is rejected.
+  Names with unbalanced brackets, excessive nesting or reserved `<StrID:...>`
+  syntax are shown using their original `[<StrID:N>]` reference instead of
+  emitting ambiguous text. Saving preserves those IDs and dictionary entries.
 - Settings are stored per user in `%APPDATA%\L2DatEditorRust\settings.json`
   (or the XDG configuration directory on other platforms).
 - On Windows, installed Segoe UI, Malgun Gothic and Microsoft YaHei fonts are
@@ -176,11 +179,14 @@ exercised in the native UI. A separate valid 20,000-record Unicode DAT
 (14.9 MiB decoded text) was edited, saved, reopened and decoded for a complete
 content comparison.
 
-The real NPC sample also exposed a pre-existing text-codec limitation:
-`dialog_sound` contains an unmatched `[` in a string value. Both the old and
-new releases reject packing its decoded text with `Unclosed value at text
-offset 6898620`. The viewport change does not alter that codec behavior or
-repair the input; the original client file was left untouched.
+The NPC sample's dictionary contains a name with an unmatched `[` used by
+`dialog_sound`. The editor now represents such mapped names by their original
+string IDs. A real-file unpack/pack/reopen check preserved all 2,542,921
+decrypted payload bytes. Native UI editing and `Ctrl+S` were also exercised;
+the decoded result preserved all 16,120 records with only the intended field
+change, and the dictionary remained unchanged. The original client DAT and
+dictionary were not modified. Reopen DAT files in the corrected build to
+regenerate valid text; already-open older instances retain the old decoding.
 
 The native modules are `schema` (XML and binary/text codec), `crypto` (DAT
 envelopes), `format` (record transformations), `editor` (file operations),
