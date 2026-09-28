@@ -130,6 +130,10 @@ impl TextEditor {
         if std::mem::take(&mut self.reset_scroll) {
             egui::scroll_area::State::default().store(ui.ctx(), scroll_id);
         }
+        let scroll_style = &mut ui.spacing_mut().scroll;
+        scroll_style.handle_min_length = 32.0;
+        scroll_style.floating = false;
+        scroll_style.bar_inner_margin = 8.0;
         let mut drag_scroll = Vec2::ZERO;
         let output = egui::ScrollArea::both()
             .id_salt("document_editor_scroll")

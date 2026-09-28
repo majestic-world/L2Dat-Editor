@@ -95,6 +95,9 @@ For deployment, place that directory as `data` beside the executable, or specify
   Text and the line index remain in memory; an individual very long line is
   still laid out in full. Selection, search and editing use whole-document
   UTF-8 offsets, including lines outside the viewport.
+- Editor scrollbars reserve their own space instead of covering text, with an
+  8-point gap from the content and a 32-point minimum handle length. Dimensions
+  scale with display DPI.
 - Undo/redo stores changed ranges instead of whole-document snapshots. History
   retains at most 100 edits with a 128 MiB payload budget; the newest edit stays
   undoable even when a single paste exceeds that budget.
