@@ -289,16 +289,18 @@ impl EditorApp {
                 }
             }
         }
-        for event in events {
-            match &event {
+        for mut event in events {
+            let opened = matches!(event, Event::Opened(_));
+            match &mut event {
                 Event::Opened(doc) => self.text_editor.reset(&doc.text),
-                Event::Saved(doc)
-                    if self
+                Event::Saved(doc) => {
+                    let current = self
                         .document
-                        .as_ref()
-                        .is_none_or(|current| current.text != doc.text) =>
-                {
-                    self.text_editor.reset(&doc.text);
+                        .as_mut()
+                        .expect("Save completion requires an open document");
+                    // Reopening validates the saved file, not the session's text layout.
+                    // Keep the original buffer and its selection, scroll and undo offsets.
+                    std::mem::swap(&mut doc.text, &mut current.text);
                 }
                 _ => {}
             }
@@ -315,7 +317,9 @@ impl EditorApp {
                     self.settings.remember(&doc.path);
                     self.document = Some(doc);
                     self.dirty = false;
-                    self.refresh_search();
+                    if opened {
+                        self.refresh_search();
+                    }
                     self.job = None;
                     self.activity = "Pronto".into();
                     self.save_settings();

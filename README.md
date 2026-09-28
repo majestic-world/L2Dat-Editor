@@ -115,6 +115,11 @@ For deployment, place that directory as `data` beside the executable, or specify
   Progress advances at real encoding, encryption, persistence and reopening
   boundaries, not by elapsed time or estimated byte percentages. Operations
   without measurable progress show only the activity spinner.
+- Saving and Save As preserve the open session's exact text, blank lines,
+  spacing, selection, horizontal/vertical scroll, search state and undo/redo.
+  Structured DAT encoding still excludes layout-only blank lines; they remain
+  in the editor for debugging, not in the DAT. The saved file is fully reopened
+  for validation, but only its metadata replaces the session metadata.
 - Large RSA payloads encrypt independent blocks in parallel, bounded by the
   available parallelism and eight workers. Small payloads stay sequential.
   Workers share read-only keys and write disjoint output slices in file order.
