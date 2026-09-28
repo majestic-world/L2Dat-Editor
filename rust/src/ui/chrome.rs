@@ -20,13 +20,6 @@ fn panel_frame() -> egui::Frame {
 }
 
 impl EditorApp {
-    fn toggle_search(&mut self, ctx: &egui::Context) {
-        self.search_visible = !self.search_visible;
-        if self.search_visible {
-            ctx.memory_mut(|m| m.request_focus(egui::Id::new("search_query")));
-        }
-    }
-
     fn toggle_goto(&mut self, ctx: &egui::Context) {
         self.goto_visible = !self.goto_visible;
         if self.goto_visible {
@@ -86,7 +79,7 @@ impl EditorApp {
                                     .clicked()
                                 {
                                     ui.close_menu();
-                                    self.toggle_search(ctx);
+                                    self.open_search();
                                 }
                                 if icons::button(ui, Icon::GoTo, "Ir à linha    Ctrl+G").clicked()
                                 {
@@ -156,7 +149,7 @@ impl EditorApp {
                                         .on_hover_text("Buscar / substituir (Ctrl+F)")
                                         .clicked()
                                     {
-                                        self.toggle_search(ctx);
+                                        self.open_search();
                                     }
                                 },
                             );

@@ -36,6 +36,8 @@ pub struct EditorApp {
     query: String,
     replacement: String,
     search_visible: bool,
+    search_focus_requested: bool,
+    search_feedback: Option<String>,
     search: Search,
     goto_visible: bool,
     goto_line: String,
@@ -89,6 +91,8 @@ impl EditorApp {
             query: String::new(),
             replacement: String::new(),
             search_visible: false,
+            search_focus_requested: false,
+            search_feedback: None,
             search: Search::default(),
             goto_visible: false,
             goto_line: "1".into(),
@@ -391,75 +395,140 @@ impl EditorApp {
         }
     }
 
-    fn search_bar(&mut self, ctx: &egui::Context) {
-        if !self.search_visible && !self.goto_visible {
+    fn open_search(&mut self) {
+        self.search_visible = true;
+        self.search_focus_requested = true;
+        self.search_feedback = None;
+    }
+
+    fn search_modal(&mut self, ctx: &egui::Context) {
+        if !self.search_visible {
             return;
         }
-        egui::TopBottomPanel::top("search")
-            .frame(egui::Frame::new().fill(theme::SURFACE).inner_margin(10.0))
+        let mut close = false;
+        let modal = egui::Modal::new(egui::Id::new("search_modal"))
+            .frame(
+                egui::Frame::popup(&ctx.style())
+                    .fill(theme::SURFACE)
+                    .stroke(egui::Stroke::new(1.0_f32, theme::BORDER))
+                    .inner_margin(20.0),
+            )
             .show(ctx, |ui| {
-                if self.search_visible {
-                    ui.add_enabled_ui(self.document.is_some() && self.job.is_none(), |ui| {
-                        ui.horizontal_wrapped(|ui| {
-                            ui.label("Buscar");
-                            let response = ui.add(
-                                TextEdit::singleline(&mut self.query)
-                                    .id(egui::Id::new("search_query"))
-                                    .desired_width(150.0),
-                            );
-                            if response.changed() {
-                                self.refresh_search();
-                            }
-                            if ui.button("Anterior").clicked() {
-                                self.find(false);
-                                response.request_focus();
-                            }
-                            if ui.button("Próxima").clicked()
-                                || response.lost_focus()
-                                    && ui.input_mut(|i| {
-                                        i.consume_key(egui::Modifiers::NONE, egui::Key::Enter)
-                                    })
-                            {
-                                self.find(true);
-                                response.request_focus();
-                            }
-                            ui.label(self.search.summary());
-                            if icons::button(ui, Icon::Close, "")
-                                .on_hover_text("Fechar busca")
-                                .clicked()
-                            {
-                                self.search_visible = false;
-                            }
-                            ui.label("Substituir por");
-                            ui.add(
-                                TextEdit::singleline(&mut self.replacement).desired_width(150.0),
-                            );
-                            if ui.button("Substituir todas").clicked() {
-                                if let Some(doc) = &mut self.document {
-                                    if let Some((text, count)) =
-                                        self.search.replace_all(&doc.text, &self.replacement)
-                                    {
-                                        let length = doc.text.len();
-                                        if self.text_editor.state.replace(
-                                            &mut doc.text,
-                                            0..length,
-                                            &text,
-                                        ) {
-                                            self.dirty = true;
-                                        }
-                                        self.refresh_search();
-                                        self.log(
-                                            false,
-                                            format!("{count} ocorrência(s) substituída(s)."),
-                                        );
-                                    }
-                                }
-                            }
+                ui.set_width(500.0_f32.min((ctx.screen_rect().width() - 80.0).max(200.0)));
+                ui.horizontal(|ui| {
+                    ui.add(icons::image(ui.ctx(), Icon::Search, 20.0).tint(ACCENT));
+                    ui.label(RichText::new("Buscar e substituir").size(18.0).strong());
+                    ui.with_layout(egui::Layout::right_to_left(egui::Align::Center), |ui| {
+                        close = icons::button(ui, Icon::Close, "")
+                            .on_hover_text("Fechar busca (Esc)")
+                            .clicked();
+                    });
+                });
+                ui.add_space(16.0);
+                ui.add_enabled_ui(self.document.is_some() && self.job.is_none(), |ui| {
+                    ui.label("Buscar");
+                    let query = ui.add(
+                        TextEdit::singleline(&mut self.query)
+                            .id(egui::Id::new("search_query"))
+                            .desired_width(f32::INFINITY),
+                    );
+                    if self.search_focus_requested {
+                        query.request_focus();
+                        self.search_focus_requested = false;
+                    }
+                    if query.changed() {
+                        self.search_feedback = None;
+                        self.refresh_search();
+                    }
+                    let enter = (query.has_focus() || query.lost_focus())
+                        && ui.input_mut(|i| i.consume_key(egui::Modifiers::NONE, egui::Key::Enter));
+                    ui.add_space(8.0);
+                    ui.horizontal(|ui| {
+                        if ui.button("Anterior").clicked() {
+                            self.find(false);
+                            query.request_focus();
+                        }
+                        if ui.button("Próxima").clicked() || enter {
+                            self.find(true);
+                            query.request_focus();
+                        }
+                        ui.with_layout(egui::Layout::right_to_left(egui::Align::Center), |ui| {
+                            ui.label(RichText::new(self.search.summary()).color(theme::MUTED));
                         });
                     });
-                }
-                if self.goto_visible {
-                    ui.add_enabled_ui(self.document.is_some() && self.job.is_none(), |ui| {
+                    ui.add_space(12.0);
+                    ui.separator();
+                    ui.add_space(8.0);
+                    ui.label("Substituir por");
+                    if ui
+                        .add(
+                            TextEdit::singleline(&mut self.replacement)
+                                .desired_width(f32::INFINITY),
+                        )
+                        .changed()
+                    {
+                        self.search_feedback = None;
+                    }
+                    ui.add_space(8.0);
+                    if ui.button("Substituir todas").clicked() {
+                        if let Some(doc) = &mut self.document {
+                            if let Some((text, count)) =
+                                self.search.replace_all(&doc.text, &self.replacement)
+                            {
+                                let length = doc.text.len();
+                                if self
+                                    .text_editor
+                                    .state
+                                    .replace(&mut doc.text, 0..length, &text)
+                                {
+                                    self.dirty = true;
+                                }
+                                self.refresh_search();
+                                let message = format!("{count} ocorrência(s) substituída(s).");
+                                self.log(false, message.clone());
+                                self.search_feedback = Some(message);
+                            } else {
+                                self.search_feedback =
+                                    Some("Nenhuma ocorrência para substituir.".into());
+                            }
+                        }
+                    }
+                    if let Some(message) = &self.search_feedback {
+                        ui.add(
+                            egui::Label::new(RichText::new(message).color(theme::ACCENT)).wrap(),
+                        );
+                    }
+                });
+                ui.add_space(16.0);
+                ui.horizontal(|ui| {
+                    ui.label(
+                        RichText::new("Enter: próxima ocorrência · Esc: fechar")
+                            .size(11.0)
+                            .color(theme::MUTED),
+                    );
+                    ui.with_layout(egui::Layout::right_to_left(egui::Align::Center), |ui| {
+                        close |= ui.button("Fechar").clicked();
+                    });
+                });
+            });
+        let dismiss = modal.should_close();
+        if close || dismiss {
+            self.search_visible = false;
+            self.text_editor
+                .select_range(self.text_editor.state.selection.range(), true);
+        }
+    }
+
+    fn goto_bar(&mut self, ctx: &egui::Context) {
+        if !self.goto_visible {
+            return;
+        }
+        egui::TopBottomPanel::top("goto")
+            .frame(egui::Frame::new().fill(theme::SURFACE).inner_margin(10.0))
+            .show(ctx, |ui| {
+                ui.add_enabled_ui(
+                    self.document.is_some() && self.job.is_none() && !self.search_visible,
+                    |ui| {
                         ui.horizontal(|ui| {
                             ui.label("Linha");
                             let response = ui.add(
@@ -479,8 +548,8 @@ impl EditorApp {
                                 self.goto_visible = false;
                             }
                         });
-                    });
-                }
+                    },
+                );
             });
     }
 
@@ -621,16 +690,18 @@ impl eframe::App for EditorApp {
                 self.save_settings();
             }
         }
-        if self.job.is_none() {
+        if self.job.is_none()
+            && self.document.is_some()
+            && ctx.input_mut(|i| i.consume_key(egui::Modifiers::CTRL, egui::Key::F))
+        {
+            self.open_search();
+        }
+        if self.job.is_none() && !self.search_visible {
             if ctx.input_mut(|i| i.consume_key(egui::Modifiers::CTRL, egui::Key::O)) {
                 self.choose_open(ctx);
             }
             if ctx.input_mut(|i| i.consume_key(egui::Modifiers::CTRL, egui::Key::S)) {
                 self.save_document(ctx, false);
-            }
-            if ctx.input_mut(|i| i.consume_key(egui::Modifiers::CTRL, egui::Key::F)) {
-                self.search_visible = true;
-                ctx.memory_mut(|m| m.request_focus(egui::Id::new("search_query")));
             }
             if ctx.input_mut(|i| i.consume_key(egui::Modifiers::CTRL, egui::Key::G)) {
                 self.goto_visible = true;
@@ -644,8 +715,9 @@ impl eframe::App for EditorApp {
         self.toolbar(ctx);
         self.status_bar(ctx);
         self.sidebar(ctx);
-        self.search_bar(ctx);
+        self.goto_bar(ctx);
         self.output_panel(ctx);
+        let mut search_requested = false;
         egui::CentralPanel::default()
             .frame(egui::Frame::new().fill(EDITOR))
             .show(ctx, |ui| {
@@ -710,10 +782,14 @@ impl eframe::App for EditorApp {
                     .fill(EDITOR)
                     .inner_margin(10.0)
                     .show(ui, |ui| {
-                        let response = self.text_editor.show(ui, &mut doc.text, self.job.is_none());
+                        let response = self.text_editor.show(
+                            ui,
+                            &mut doc.text,
+                            self.job.is_none() && !self.search_visible,
+                        );
                         let changed = response.changed();
                         response.context_menu(|ui| {
-                            ui.add_enabled_ui(self.job.is_none(), |ui| {
+                            ui.add_enabled_ui(self.job.is_none() && !self.search_visible, |ui| {
                                 for (label, event) in [
                                     ("Copiar  Ctrl+C", egui::Event::Copy),
                                     ("Recortar  Ctrl+X", egui::Event::Cut),
@@ -745,10 +821,7 @@ impl eframe::App for EditorApp {
                                     ui.close_menu();
                                 }
                                 if ui.button("Buscar  Ctrl+F").clicked() {
-                                    self.search_visible = true;
-                                    ctx.memory_mut(|memory| {
-                                        memory.request_focus(egui::Id::new("search_query"))
-                                    });
+                                    search_requested = true;
                                     ui.close_menu();
                                 }
                                 if ui.button("Ir à linha  Ctrl+G").clicked() {
@@ -768,6 +841,10 @@ impl eframe::App for EditorApp {
                     self.refresh_search();
                 }
             });
+        if search_requested {
+            self.open_search();
+        }
+        self.search_modal(ctx);
         self.batch_window(ctx);
     }
 }
