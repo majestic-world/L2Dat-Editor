@@ -187,6 +187,14 @@ path are incomplete, so they cannot serve as full-file encryption oracles.
 XOR 121 follows the configured fixed key, not external filename-derived variants.
 Legacy Blowfish/DES preserve incomplete final blocks.
 
+The shared XML catalog uses IDs `50`, `70` and `80` for C5, Hellbound and
+Kamael, restoring the parent chain C4 → C5 → Interlude → Hellbound → Kamael
+→ Gracia Part 1. Encrypted `sysstring-e.dat` pack/unpack was verified for
+these six profiles with synthetic records, including Unicode strings; this
+does not establish compatibility for every DAT in those clients.
+Two catalog warnings remain unresolved: Helios KOR P1 references missing
+parent `261`, and the inactive `hairgrp` schema has no cycle counter.
+
 Recognized legacy footers are removed for XOR/ECB as well as RSA, avoiding the
 extra bytes returned by the Java XOR/ECB wrappers. Legacy unauthenticated
 formats cannot reliably distinguish every wrong key or a payload ending in the
