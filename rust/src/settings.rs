@@ -26,8 +26,8 @@ impl Default for Settings {
             formatter: true,
             enums: true,
             recent: Vec::new(),
-            width: 1200.0,
-            height: 780.0,
+            width: 1100.0,
+            height: 700.0,
         }
     }
 }

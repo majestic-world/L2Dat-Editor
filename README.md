@@ -84,6 +84,10 @@ For deployment, place that directory as `data` beside the executable, or specify
 
 ### Editor
 
+- Startup uses at most a 1100-by-700-point client area, including when older
+  preferences contain a larger size. On Windows, the outer window is centered
+  in the primary monitor's work area and limited to 85% of it, accounting for
+  display DPI, taskbar space and window decorations. Manual resizing remains available.
 - Open DAT, INI, HTM and UTF-8/UTF-16 text; drag-and-drop and recent files are
   supported. Saving unstructured text preserves its BOM and CRLF convention.
 - Edit with aligned line numbers, undo/redo, Unicode case-insensitive search,

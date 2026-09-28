@@ -2,6 +2,8 @@ mod fonts;
 mod highlight;
 mod icons;
 mod search;
+#[cfg(target_os = "windows")]
+mod startup_window;
 mod text_state;
 mod text_view;
 mod theme;
@@ -174,10 +176,13 @@ fn run() -> Result<()> {
                 256
             }))
             .with_inner_size([
-                settings.width.clamp(900.0, 3840.0),
-                settings.height.clamp(600.0, 2160.0),
+                settings.width.clamp(900.0, 1100.0),
+                settings.height.clamp(600.0, 700.0),
             ])
             .with_min_inner_size([900.0, 600.0]),
+        centered: true,
+        #[cfg(target_os = "windows")]
+        window_builder: Some(Box::new(startup_window::fit_to_work_area)),
         ..Default::default()
     };
     eframe::run_native(
