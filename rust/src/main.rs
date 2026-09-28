@@ -1,5 +1,8 @@
 mod fonts;
+mod highlight;
+mod icons;
 mod search;
+mod theme;
 mod ui;
 
 use std::path::PathBuf;

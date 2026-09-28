@@ -1,5 +1,7 @@
+mod chrome;
+
 use std::path::PathBuf;
-use std::sync::atomic::{AtomicBool, Ordering};
+use std::sync::atomic::AtomicBool;
 use std::sync::{Arc, mpsc};
 use std::thread;
 use std::time::Duration;
@@ -9,13 +11,15 @@ use l2dat_editor::editor::{BatchKind, Document, Editor, PLAIN_KEY, SOURCE_KEY};
 use l2dat_editor::settings::Settings;
 
 use crate::fonts;
+use crate::highlight::Highlighter;
+use crate::icons::{self, Icon};
 use crate::search::Search;
+use crate::theme;
 
-const INK: Color32 = Color32::from_rgb(38, 55, 70);
-const EDITOR: Color32 = Color32::from_rgb(24, 35, 45);
-const PAPER: Color32 = Color32::from_rgb(232, 237, 242);
-const ACCENT: Color32 = Color32::from_rgb(47, 111, 138);
-const ERROR: Color32 = Color32::from_rgb(183, 68, 68);
+const INK: Color32 = theme::TEXT;
+const EDITOR: Color32 = theme::BG;
+const ACCENT: Color32 = theme::ACCENT;
+const ERROR: Color32 = theme::ERROR;
 
 pub struct EditorApp {
     editor: Arc<Editor>,
@@ -46,6 +50,7 @@ pub struct EditorApp {
     batch_input: String,
     batch_output: String,
     startup_open: Option<PathBuf>,
+    highlighter: Highlighter,
 }
 
 enum Event {
@@ -66,16 +71,8 @@ impl EditorApp {
         warning: Option<String>,
     ) -> Self {
         fonts::install(&cc.egui_ctx);
-        let mut visuals = egui::Visuals::light();
-        visuals.panel_fill = PAPER;
-        visuals.override_text_color = Some(INK);
-        visuals.selection.bg_fill = ACCENT;
-        visuals.selection.stroke.color = Color32::WHITE;
-        cc.egui_ctx.set_visuals(visuals);
-        let mut style = (*cc.egui_ctx.style()).clone();
-        style.spacing.item_spacing = egui::vec2(10.0, 8.0);
-        style.spacing.button_padding = egui::vec2(12.0, 7.0);
-        cc.egui_ctx.set_style(style);
+        egui_extras::install_image_loaders(&cc.egui_ctx);
+        theme::install(&cc.egui_ctx);
         let chronicles = editor.catalog.chronicles();
         let mut encryptions = vec![SOURCE_KEY.to_owned(), PLAIN_KEY.to_owned()];
         encryptions.extend(editor.crypto.encrypt_names());
@@ -108,6 +105,7 @@ impl EditorApp {
             batch_input: String::new(),
             batch_output: String::new(),
             startup_open,
+            highlighter: Highlighter::default(),
         };
         app.log(
             false,
@@ -417,179 +415,90 @@ impl EditorApp {
         }
     }
 
-    fn toolbar(&mut self, ctx: &egui::Context) {
-        egui::TopBottomPanel::top("toolbar").show(ctx, |ui| {
-            ui.horizontal(|ui| {
-                ui.label(RichText::new("L2 DAT").size(23.0).strong());
-                ui.label(RichText::new("Editor de estruturas").color(ACCENT));
-                ui.with_layout(egui::Layout::right_to_left(egui::Align::Center), |ui| {
-                    ui.label("Rust • desktop nativo");
-                });
-            });
-            ui.add_enabled_ui(self.job.is_none(), |ui| {
-                ui.horizontal_wrapped(|ui| {
-                    if ui.button("Abrir…").clicked() {
-                        self.choose_open(ctx);
-                    }
-                    ui.menu_button("Recentes", |ui| {
-                        let mut selected = None;
-                        for path in &self.settings.recent {
-                            if ui.button(path.display().to_string()).clicked() {
-                                selected = Some(path.clone());
+    fn search_bar(&mut self, ctx: &egui::Context) {
+        if !self.search_visible && !self.goto_visible {
+            return;
+        }
+        egui::TopBottomPanel::top("search")
+            .frame(egui::Frame::new().fill(theme::SURFACE).inner_margin(10.0))
+            .show(ctx, |ui| {
+                if self.search_visible {
+                    ui.add_enabled_ui(self.document.is_some() && self.job.is_none(), |ui| {
+                        ui.horizontal_wrapped(|ui| {
+                            ui.label("Buscar");
+                            let response = ui.add(
+                                TextEdit::singleline(&mut self.query)
+                                    .id(egui::Id::new("search_query"))
+                                    .desired_width(150.0),
+                            );
+                            if response.changed() {
+                                self.refresh_search();
                             }
-                        }
-                        if self.settings.recent.is_empty() {
-                            ui.label("Nenhum arquivo recente");
-                        }
-                        if let Some(path) = selected {
-                            ui.close_menu();
-                            self.open(ctx, path);
-                        }
-                    });
-                    ui.add_enabled_ui(self.document.is_some(), |ui| {
-                        if ui.button("Salvar").clicked() {
-                            self.save_document(ctx, false);
-                        }
-                        if ui.button("Salvar como…").clicked() {
-                            self.save_document(ctx, true);
-                        }
-                        if ui.button("Exportar TXT…").clicked() {
-                            self.export(ctx);
-                        }
-                        if ui.button("Buscar / substituir").clicked() {
-                            self.search_visible = !self.search_visible;
-                            if self.search_visible {
-                                ctx.memory_mut(|m| m.request_focus(egui::Id::new("search_query")));
+                            if ui.button("Anterior").clicked() {
+                                self.find(ctx, false);
                             }
-                        }
-                        if ui.button("Ir à linha").clicked() {
-                            self.goto_visible = !self.goto_visible;
-                            if self.goto_visible {
-                                ctx.memory_mut(|m| m.request_focus(egui::Id::new("goto_line")));
+                            if ui.button("Próxima").clicked()
+                                || response.lost_focus()
+                                    && ui.input_mut(|i| {
+                                        i.consume_key(egui::Modifiers::NONE, egui::Key::Enter)
+                                    })
+                            {
+                                self.find(ctx, true);
                             }
-                        }
-                    });
-                    ui.separator();
-                    if ui.button("Extrair lote…").clicked() {
-                        self.batch_dialog = Some(BatchKind::Unpack);
-                    }
-                    if ui.button("Empacotar lote…").clicked() {
-                        self.batch_dialog = Some(BatchKind::Pack);
-                    }
-                    if ui.button("Trocar criptografia…").clicked() {
-                        self.batch_dialog = Some(BatchKind::Recrypt);
-                    }
-                });
-                ui.horizontal_wrapped(|ui| {
-                    let mut changed = false;
-                    ui.label("Crônica");
-                    egui::ComboBox::from_id_salt("chronicle")
-                        .selected_text(&self.settings.chronicle)
-                        .width(275.0)
-                        .show_ui(ui, |ui| {
-                            for name in &self.chronicles {
-                                changed |= ui
-                                    .selectable_value(
-                                        &mut self.settings.chronicle,
-                                        name.clone(),
-                                        name,
-                                    )
-                                    .changed();
+                            ui.label(self.search.summary());
+                            if icons::button(ui, Icon::Close, "")
+                                .on_hover_text("Fechar busca")
+                                .clicked()
+                            {
+                                self.search_visible = false;
                             }
-                        });
-                    ui.label("Gravação");
-                    egui::ComboBox::from_id_salt("encryption")
-                        .selected_text(&self.settings.encryption)
-                        .width(160.0)
-                        .show_ui(ui, |ui| {
-                            for name in &self.encryptions {
-                                changed |= ui
-                                    .selectable_value(
-                                        &mut self.settings.encryption,
-                                        name.clone(),
-                                        name,
-                                    )
-                                    .changed();
-                            }
-                        });
-                    changed |= ui
-                        .checkbox(&mut self.settings.formatter, "Formatadores")
-                        .changed();
-                    changed |= ui.checkbox(&mut self.settings.enums, "Enums").changed();
-                    if changed {
-                        self.save_settings();
-                    }
-                });
-            });
-            if self.search_visible {
-                ui.add_enabled_ui(self.document.is_some() && self.job.is_none(), |ui| {
-                    ui.horizontal_wrapped(|ui| {
-                        ui.label("Buscar");
-                        let response = ui.add(
-                            TextEdit::singleline(&mut self.query)
-                                .id(egui::Id::new("search_query"))
-                                .desired_width(150.0),
-                        );
-                        if response.changed() {
-                            self.refresh_search();
-                        }
-                        if ui.button("Anterior").clicked() {
-                            self.find(ctx, false);
-                        }
-                        if ui.button("Próxima").clicked()
-                            || response.lost_focus()
-                                && ui.input_mut(|i| {
-                                    i.consume_key(egui::Modifiers::NONE, egui::Key::Enter)
-                                })
-                        {
-                            self.find(ctx, true);
-                        }
-                        ui.label(self.search.summary());
-                        ui.label("Substituir por");
-                        ui.add(TextEdit::singleline(&mut self.replacement).desired_width(150.0));
-                        if ui.button("Substituir todas").clicked() {
-                            if let Some(doc) = &mut self.document {
-                                if let Some((text, count)) =
-                                    self.search.replace_all(&doc.text, &self.replacement)
-                                {
-                                    doc.text = text;
-                                    self.dirty = true;
-                                    self.refresh_search();
-                                    self.rebuild_lines();
-                                    self.log(
-                                        false,
-                                        format!("{count} ocorrência(s) substituída(s)."),
-                                    );
+                            ui.label("Substituir por");
+                            ui.add(
+                                TextEdit::singleline(&mut self.replacement).desired_width(150.0),
+                            );
+                            if ui.button("Substituir todas").clicked() {
+                                if let Some(doc) = &mut self.document {
+                                    if let Some((text, count)) =
+                                        self.search.replace_all(&doc.text, &self.replacement)
+                                    {
+                                        doc.text = text;
+                                        self.dirty = true;
+                                        self.refresh_search();
+                                        self.rebuild_lines();
+                                        self.log(
+                                            false,
+                                            format!("{count} ocorrência(s) substituída(s)."),
+                                        );
+                                    }
                                 }
                             }
-                        }
+                        });
                     });
-                });
-            }
-            if self.goto_visible {
-                ui.add_enabled_ui(self.document.is_some() && self.job.is_none(), |ui| {
-                    ui.horizontal(|ui| {
-                        ui.label("Linha");
-                        let response = ui.add(
-                            TextEdit::singleline(&mut self.goto_line)
-                                .id(egui::Id::new("goto_line"))
-                                .desired_width(70.0),
-                        );
-                        if ui.button("Ir").clicked()
-                            || response.lost_focus()
-                                && ui.input_mut(|i| {
-                                    i.consume_key(egui::Modifiers::NONE, egui::Key::Enter)
-                                })
-                        {
-                            self.go_to_line();
-                        }
-                        if ui.small_button("Fechar").clicked() {
-                            self.goto_visible = false;
-                        }
+                }
+                if self.goto_visible {
+                    ui.add_enabled_ui(self.document.is_some() && self.job.is_none(), |ui| {
+                        ui.horizontal(|ui| {
+                            ui.label("Linha");
+                            let response = ui.add(
+                                TextEdit::singleline(&mut self.goto_line)
+                                    .id(egui::Id::new("goto_line"))
+                                    .desired_width(70.0),
+                            );
+                            if ui.button("Ir").clicked()
+                                || response.lost_focus()
+                                    && ui.input_mut(|i| {
+                                        i.consume_key(egui::Modifiers::NONE, egui::Key::Enter)
+                                    })
+                            {
+                                self.go_to_line();
+                            }
+                            if ui.small_button("Fechar").clicked() {
+                                self.goto_visible = false;
+                            }
+                        });
                     });
-                });
-            }
-        });
+                }
+            });
     }
 
     fn batch_window(&mut self, ctx: &egui::Context) {
@@ -635,7 +544,7 @@ impl EditorApp {
                     if self.settings.encryption == SOURCE_KEY {
                         ui.colored_label(
                             ERROR,
-                            "Selecione uma chave explícita na barra principal.",
+                            "Selecione uma chave explícita na configuração lateral.",
                         );
                     }
                 }
@@ -738,166 +647,233 @@ impl eframe::App for EditorApp {
             }
         }
         self.toolbar(ctx);
-        egui::TopBottomPanel::bottom("status").show(ctx, |ui| {
-            ui.horizontal(|ui| {
-                if self.job.is_some() {
-                    ui.spinner();
-                    ui.add(egui::ProgressBar::new(self.progress).desired_width(180.0));
-                    if self.batch_running && ui.button("Cancelar lote").clicked() {
-                        self.cancel.store(true, Ordering::Relaxed);
-                        self.activity =
-                            "Cancelamento solicitado; aguardando o arquivo atual".into();
-                    }
-                }
-                ui.label(&self.activity);
-                ui.with_layout(egui::Layout::right_to_left(egui::Align::Center), |ui| {
-                    ui.label(format!("{} linhas", self.line_count));
-                    if self.dirty {
-                        ui.label(
-                            RichText::new("Alterações não salvas")
-                                .color(Color32::from_rgb(140, 95, 36)),
-                        );
-                    }
-                });
-            });
-        });
-        egui::TopBottomPanel::bottom("log")
-            .resizable(true)
-            .default_height(135.0)
-            .min_height(65.0)
+        self.status_bar(ctx);
+        self.sidebar(ctx);
+        self.search_bar(ctx);
+        self.output_panel(ctx);
+        egui::CentralPanel::default()
+            .frame(egui::Frame::new().fill(EDITOR))
             .show(ctx, |ui| {
-                ui.horizontal(|ui| {
-                    ui.label(RichText::new("Registro de operações").strong());
-                    if ui.small_button("Limpar").clicked() {
-                        self.messages.clear();
-                    }
-                });
-                egui::ScrollArea::vertical()
-                    .stick_to_bottom(true)
-                    .show(ui, |ui| {
-                        for (error, message) in &self.messages {
-                            ui.label(
-                                RichText::new(message)
-                                    .color(if *error { ERROR } else { INK })
-                                    .font(FontId::monospace(12.0)),
-                            );
-                        }
-                    });
-            });
-        egui::CentralPanel::default().show(ctx, |ui| {
-            if let Some(event) = self.editor_event.take() { ui.input_mut(|input| input.events.push(event)); }
-            if self.request_paste {
-                ctx.send_viewport_cmd(egui::ViewportCommand::RequestPaste);
-                self.request_paste = false;
-            }
-            let Some(doc) = &mut self.document else {
-                ui.vertical_centered(|ui| {
-                    ui.add_space(60.0);
-                    ui.heading("Arquivos do cliente, estruturas preservadas");
-                    ui.label("Selecione a crônica e abra um DAT, INI, HTM ou TXT.");
-                    ui.add_space(16.0);
-                    if ui.add_enabled(self.job.is_none(), egui::Button::new("Abrir arquivo…")).clicked() { self.choose_open(ctx); }
-                    ui.add_space(12.0);
-                    ui.label("Também é possível arrastar um arquivo para esta janela.");
-                });
-                return;
-            };
-            ui.horizontal(|ui| {
-                ui.label(RichText::new(doc.path.file_name().unwrap_or_default().to_string_lossy()).strong());
-                ui.label(doc.path.parent().unwrap_or(std::path::Path::new(".")).display().to_string());
-            });
-            ui.label(RichText::new(format!("Leitura: {}  |  {}  |  opções de crônica/formatação aplicam-se na próxima abertura", doc.options.chronicle, doc.source_key.as_deref().unwrap_or(PLAIN_KEY))).size(11.0));
-            let id = egui::Id::new("document_editor");
-            let scroll_to_selection = self.pending_selection.is_some();
-            if let Some((start, end)) = self.pending_selection.take() {
-                let mut state = egui::text_edit::TextEditState::load(ctx, id).unwrap_or_default();
-                state.cursor.set_char_range(Some(egui::text::CCursorRange::two(egui::text::CCursor::new(start), egui::text::CCursor::new(end))));
-                state.store(ctx, id);
-                ctx.memory_mut(|m| m.request_focus(id));
-            }
-            let mut changed = false;
-            egui::Frame::new().fill(EDITOR).inner_margin(10.0).show(ui, |ui| {
-                ui.visuals_mut().override_text_color = Some(Color32::from_rgb(222, 231, 236));
-                ui.visuals_mut().extreme_bg_color = EDITOR;
-                egui::ScrollArea::both().auto_shrink([false, false]).show(ui, |ui| {
-                    ui.horizontal_top(|ui| {
-                        let font = FontId::monospace(14.0);
-                        let gutter_width = ui.fonts(|fonts| fonts.glyph_width(&font, '0')) * self.line_count.max(1).ilog10().saturating_add(1) as f32 + 10.0;
-                        let (gutter, _) = ui.allocate_exact_size(egui::vec2(gutter_width, 0.0), egui::Sense::hover());
-                        let prior_selection = egui::text_edit::TextEditState::load(ctx, id)
-                            .and_then(|state| state.cursor.char_range())
-                            .map(|range| (range.primary.index, range.secondary.index));
-                        let output = ui.add_enabled_ui(self.job.is_none(), |ui| {
-                            TextEdit::multiline(&mut doc.text).id(id).font(font.clone()).code_editor().frame(false)
-                                .desired_width(f32::INFINITY).desired_rows(25).show(ui)
-                        }).inner;
-                        if output.response.hovered() && ui.input(|input| input.pointer.button_pressed(egui::PointerButton::Secondary)) {
-                            self.context_selection = prior_selection;
-                        }
-                        changed = output.response.changed();
-                        for (label, row) in self.line_numbers.lines().zip(&output.galley.rows) {
-                            let y = output.galley_pos.y + row.rect.top();
-                            if y + row.height() >= ui.clip_rect().top() && y <= ui.clip_rect().bottom() {
-                                ui.painter().text(egui::pos2(gutter.right() - 4.0, y), egui::Align2::RIGHT_TOP, label, font.clone(), Color32::from_rgb(117, 144, 159));
-                            }
-                        }
-                        if scroll_to_selection {
-                            if let Some(cursor) = output.cursor_range {
-                                let rect = output.galley.pos_from_cursor(&cursor.primary).translate(output.galley_pos.to_vec2());
-                                ui.scroll_to_rect(rect, Some(egui::Align::Center));
-                            }
-                        }
-                        let response = output.response;
-                        response.context_menu(|ui| {
-                            ui.add_enabled_ui(self.job.is_none(), |ui| {
-                                for (label, event) in [
-                                    ("Copiar  Ctrl+C", egui::Event::Copy),
-                                    ("Recortar  Ctrl+X", egui::Event::Cut),
-                                ] {
-                                    if ui.button(label).clicked() {
-                                        ctx.memory_mut(|memory| memory.request_focus(id));
-                                        self.pending_selection = self.context_selection;
-                                        self.editor_event = Some(event);
-                                        ui.close_menu();
+                if let Some(event) = self.editor_event.take() {
+                    ui.input_mut(|input| input.events.push(event));
+                }
+                if self.request_paste {
+                    ctx.send_viewport_cmd(egui::ViewportCommand::RequestPaste);
+                    self.request_paste = false;
+                }
+                let Some(doc) = &mut self.document else {
+                    self.empty_editor(ui, ctx);
+                    return;
+                };
+                egui::Frame::new().fill(theme::SURFACE).show(ui, |ui| {
+                    ui.set_width(ui.available_width());
+                    ui.horizontal(|ui| {
+                        let tab = egui::Frame::new()
+                            .fill(theme::RAISED)
+                            .inner_margin(egui::Margin::symmetric(16, 10))
+                            .show(ui, |ui| {
+                                ui.horizontal(|ui| {
+                                    ui.add(icons::image(Icon::File, 16.0).tint(ACCENT));
+                                    ui.label(
+                                        doc.path.file_name().unwrap_or_default().to_string_lossy(),
+                                    );
+                                    if self.dirty {
+                                        ui.colored_label(ACCENT, "•")
+                                            .on_hover_text("Alterações não salvas");
                                     }
-                                }
-                                if ui.button("Colar  Ctrl+V").clicked() {
-                                    self.pending_selection = self.context_selection;
-                                    self.request_paste = true;
-                                    ctx.memory_mut(|memory| memory.request_focus(id));
-                                    ui.close_menu();
-                                }
-                                if ui.button("Excluir").clicked() {
-                                    self.pending_selection = self.context_selection;
-                                    self.editor_event = Some(egui::Event::Key { key: egui::Key::Backspace, physical_key: None, pressed: true, repeat: false, modifiers: egui::Modifiers::NONE });
-                                    ctx.memory_mut(|memory| memory.request_focus(id));
-                                    ui.close_menu();
-                                }
-                                if ui.button("Selecionar tudo  Ctrl+A").clicked() {
-                                    self.pending_selection = Some((0, doc.text.chars().count()));
-                                    ui.close_menu();
-                                }
-                                if ui.button("Buscar  Ctrl+F").clicked() {
-                                    self.search_visible = true;
-                                    ctx.memory_mut(|memory| memory.request_focus(egui::Id::new("search_query")));
-                                    ui.close_menu();
-                                }
-                                if ui.button("Ir à linha  Ctrl+G").clicked() {
-                                    self.goto_visible = true;
-                                    ctx.memory_mut(|memory| memory.request_focus(egui::Id::new("goto_line")));
-                                    ui.close_menu();
-                                }
-                            });
-                        });
+                                });
+                            })
+                            .response;
+                        ui.painter().line_segment(
+                            [tab.rect.left_top(), tab.rect.right_top()],
+                            egui::Stroke::new(2.0_f32, ACCENT),
+                        );
                     });
                 });
+                egui::Frame::new()
+                    .fill(theme::RAISED)
+                    .inner_margin(egui::Margin::symmetric(16, 7))
+                    .show(ui, |ui| {
+                        ui.set_width(ui.available_width());
+                        ui.add(
+                            egui::Label::new(
+                                RichText::new(doc.path.display().to_string())
+                                    .size(12.0)
+                                    .color(theme::MUTED),
+                            )
+                            .truncate(),
+                        )
+                        .on_hover_text(format!(
+                            "{}\nLeitura: {} / {}",
+                            doc.path.display(),
+                            doc.options.chronicle,
+                            doc.source_key.as_deref().unwrap_or(PLAIN_KEY)
+                        ));
+                    });
+                let id = egui::Id::new("document_editor");
+                let scroll_to_selection = self.pending_selection.is_some();
+                if let Some((start, end)) = self.pending_selection.take() {
+                    let mut state =
+                        egui::text_edit::TextEditState::load(ctx, id).unwrap_or_default();
+                    state
+                        .cursor
+                        .set_char_range(Some(egui::text::CCursorRange::two(
+                            egui::text::CCursor::new(start),
+                            egui::text::CCursor::new(end),
+                        )));
+                    state.store(ctx, id);
+                    ctx.memory_mut(|m| m.request_focus(id));
+                }
+                let mut changed = false;
+                egui::Frame::new()
+                    .fill(EDITOR)
+                    .inner_margin(10.0)
+                    .show(ui, |ui| {
+                        ui.visuals_mut().override_text_color = Some(INK);
+                        ui.visuals_mut().extreme_bg_color = EDITOR;
+                        egui::ScrollArea::both()
+                            .auto_shrink([false, false])
+                            .show(ui, |ui| {
+                                ui.horizontal_top(|ui| {
+                                    let font = FontId::monospace(14.0);
+                                    let gutter_width = (ui
+                                        .fonts(|fonts| fonts.glyph_width(&font, '0'))
+                                        * self.line_count.max(1).ilog10().saturating_add(1) as f32
+                                        + 24.0)
+                                        .max(44.0);
+                                    let (gutter, _) = ui.allocate_exact_size(
+                                        egui::vec2(gutter_width, 0.0),
+                                        egui::Sense::hover(),
+                                    );
+                                    ui.painter().vline(
+                                        gutter.right() - 4.0,
+                                        ui.clip_rect().y_range(),
+                                        egui::Stroke::new(1.0_f32, theme::BORDER),
+                                    );
+                                    let prior_selection =
+                                        egui::text_edit::TextEditState::load(ctx, id)
+                                            .and_then(|state| state.cursor.char_range())
+                                            .map(|range| {
+                                                (range.primary.index, range.secondary.index)
+                                            });
+                                    let mut layouter = |ui: &egui::Ui, text: &str, _width: f32| {
+                                        // Gutter labels track physical DAT lines, never soft wraps.
+                                        self.highlighter.layout(ui, text, f32::INFINITY)
+                                    };
+                                    let output = ui
+                                        .add_enabled_ui(self.job.is_none(), |ui| {
+                                            TextEdit::multiline(&mut doc.text)
+                                                .id(id)
+                                                .font(font.clone())
+                                                .code_editor()
+                                                .frame(false)
+                                                .layouter(&mut layouter)
+                                                .desired_width(f32::INFINITY)
+                                                .desired_rows(25)
+                                                .show(ui)
+                                        })
+                                        .inner;
+                                    if output.response.hovered()
+                                        && ui.input(|input| {
+                                            input
+                                                .pointer
+                                                .button_pressed(egui::PointerButton::Secondary)
+                                        })
+                                    {
+                                        self.context_selection = prior_selection;
+                                    }
+                                    changed = output.response.changed();
+                                    for (label, row) in
+                                        self.line_numbers.lines().zip(&output.galley.rows)
+                                    {
+                                        let y = output.galley_pos.y + row.rect.top();
+                                        if y + row.height() >= ui.clip_rect().top()
+                                            && y <= ui.clip_rect().bottom()
+                                        {
+                                            ui.painter().text(
+                                                egui::pos2(gutter.right() - 12.0, y),
+                                                egui::Align2::RIGHT_TOP,
+                                                label,
+                                                font.clone(),
+                                                theme::MUTED,
+                                            );
+                                        }
+                                    }
+                                    if scroll_to_selection {
+                                        if let Some(cursor) = output.cursor_range {
+                                            let rect = output
+                                                .galley
+                                                .pos_from_cursor(&cursor.primary)
+                                                .translate(output.galley_pos.to_vec2());
+                                            ui.scroll_to_rect(rect, Some(egui::Align::Center));
+                                        }
+                                    }
+                                    let response = output.response;
+                                    response.context_menu(|ui| {
+                                        ui.add_enabled_ui(self.job.is_none(), |ui| {
+                                            for (label, event) in [
+                                                ("Copiar  Ctrl+C", egui::Event::Copy),
+                                                ("Recortar  Ctrl+X", egui::Event::Cut),
+                                            ] {
+                                                if ui.button(label).clicked() {
+                                                    ctx.memory_mut(|memory| {
+                                                        memory.request_focus(id)
+                                                    });
+                                                    self.pending_selection = self.context_selection;
+                                                    self.editor_event = Some(event);
+                                                    ui.close_menu();
+                                                }
+                                            }
+                                            if ui.button("Colar  Ctrl+V").clicked() {
+                                                self.pending_selection = self.context_selection;
+                                                self.request_paste = true;
+                                                ctx.memory_mut(|memory| memory.request_focus(id));
+                                                ui.close_menu();
+                                            }
+                                            if ui.button("Excluir").clicked() {
+                                                self.pending_selection = self.context_selection;
+                                                self.editor_event = Some(egui::Event::Key {
+                                                    key: egui::Key::Backspace,
+                                                    physical_key: None,
+                                                    pressed: true,
+                                                    repeat: false,
+                                                    modifiers: egui::Modifiers::NONE,
+                                                });
+                                                ctx.memory_mut(|memory| memory.request_focus(id));
+                                                ui.close_menu();
+                                            }
+                                            if ui.button("Selecionar tudo  Ctrl+A").clicked() {
+                                                self.pending_selection =
+                                                    Some((0, doc.text.chars().count()));
+                                                ui.close_menu();
+                                            }
+                                            if ui.button("Buscar  Ctrl+F").clicked() {
+                                                self.search_visible = true;
+                                                ctx.memory_mut(|memory| {
+                                                    memory.request_focus(egui::Id::new(
+                                                        "search_query",
+                                                    ))
+                                                });
+                                                ui.close_menu();
+                                            }
+                                            if ui.button("Ir à linha  Ctrl+G").clicked() {
+                                                self.goto_visible = true;
+                                                ctx.memory_mut(|memory| {
+                                                    memory.request_focus(egui::Id::new("goto_line"))
+                                                });
+                                                ui.close_menu();
+                                            }
+                                        });
+                                    });
+                                });
+                            });
+                    });
+                if changed {
+                    self.dirty = true;
+                    self.refresh_search();
+                    self.rebuild_lines();
+                }
             });
-            if changed {
-                self.dirty = true;
-                self.refresh_search();
-                self.rebuild_lines();
-            }
-        });
         self.batch_window(ctx);
     }
 }

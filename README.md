@@ -20,6 +20,24 @@ The native application lives in `rust/`. Its desktop UI uses `egui`; DAT
 cryptography, XML interpretation, text formatting and batch operations run in
 Rust without a JVM. The original Java project remains available.
 
+The desktop follows a graphite-and-copper editor layout: a workspace sidebar
+for recent files, chronicle and encryption settings; a compact action toolbar;
+a document tab and path; and a resizable output dock. The sidebar scrolls on
+smaller windows. DAT markers, keys, numbers and bracketed strings have subtle
+syntax highlighting without changing the underlying text or its line layout.
+The active document keeps its original read options; sidebar changes apply to
+the next open, except encryption, which controls the next save.
+
+The [design reference](rust/design/reference.png) was generated with Higgsfield
+GPT Image 2.5. The outline SVG icons in `rust/assets/icons` are embedded in the
+executable; no network or external icon files are needed at runtime.
+
+Actual Windows captures: [open DAT](rust/design/editor.png) and
+[empty workspace](rust/design/empty-state.png). These use synthetic data and
+isolated preferences. The redesign was exercised with a 200-record encrypted
+DAT: search, go-to-line, Unicode editing, save and reopen, batch extraction,
+and compact-window rendering with horizontal scrolling instead of soft wraps.
+
 ### Run
 
 Install Rust and a native linker (Visual Studio Build Tools with the C++ desktop
@@ -116,7 +134,9 @@ every client build has been validated.
 
 The native modules are `schema` (XML and binary/text codec), `crypto` (DAT
 envelopes), `format` (record transformations), `editor` (file operations),
-`settings`, and the desktop `ui`.
+`settings`, and the desktop `ui`. The visual layer is separated into `theme`
+(shared colors and widget styling), `icons` (embedded SVGs), `highlight`
+(cached text layout) and `ui/chrome` (toolbar, sidebar, status and output).
 
 
 ## Java requirements
