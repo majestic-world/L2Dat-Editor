@@ -6,17 +6,16 @@ use std::sync::{Arc, mpsc};
 use std::thread;
 use std::time::Duration;
 
-use eframe::egui::{self, Color32, FontId, RichText, TextEdit};
+use eframe::egui::{self, Color32, RichText, TextEdit};
 use l2dat_editor::editor::{BatchKind, Document, Editor, PLAIN_KEY, SOURCE_KEY};
 use l2dat_editor::settings::Settings;
 
 use crate::fonts;
-use crate::highlight::Highlighter;
 use crate::icons::{self, Icon};
 use crate::search::Search;
+use crate::text_view::TextEditor;
 use crate::theme;
 
-const INK: Color32 = theme::TEXT;
 const EDITOR: Color32 = theme::BG;
 const ACCENT: Color32 = theme::ACCENT;
 const ERROR: Color32 = theme::ERROR;
@@ -28,8 +27,6 @@ pub struct EditorApp {
     encryptions: Vec<String>,
     document: Option<Document>,
     dirty: bool,
-    line_numbers: String,
-    line_count: usize,
     messages: Vec<(bool, String)>,
     job: Option<mpsc::Receiver<Event>>,
     cancel: Arc<AtomicBool>,
@@ -44,13 +41,11 @@ pub struct EditorApp {
     goto_line: String,
     editor_event: Option<egui::Event>,
     request_paste: bool,
-    context_selection: Option<(usize, usize)>,
-    pending_selection: Option<(usize, usize)>,
     batch_dialog: Option<BatchKind>,
     batch_input: String,
     batch_output: String,
     startup_open: Option<PathBuf>,
-    highlighter: Highlighter,
+    text_editor: TextEditor,
     #[cfg(target_os = "windows")]
     native_icon_size: u32,
 }
@@ -84,8 +79,6 @@ impl EditorApp {
             encryptions,
             document: None,
             dirty: false,
-            line_numbers: String::new(),
-            line_count: 0,
             messages: Vec::new(),
             job: None,
             cancel: Arc::new(AtomicBool::new(false)),
@@ -100,13 +93,11 @@ impl EditorApp {
             goto_line: "1".into(),
             editor_event: None,
             request_paste: false,
-            context_selection: None,
-            pending_selection: None,
             batch_dialog: None,
             batch_input: String::new(),
             batch_output: String::new(),
             startup_open,
-            highlighter: Highlighter::default(),
+            text_editor: TextEditor::default(),
             #[cfg(target_os = "windows")]
             native_icon_size: 16,
         };
@@ -271,7 +262,7 @@ impl EditorApp {
         });
     }
 
-    fn receive(&mut self, ctx: &egui::Context) {
+    fn receive(&mut self) {
         let mut events = Vec::new();
         let mut disconnected = false;
         if let Some(receiver) = &self.job {
@@ -287,10 +278,17 @@ impl EditorApp {
             }
         }
         for event in events {
-            if matches!(&event, Event::Opened(_)) {
-                egui::text_edit::TextEditState::default()
-                    .store(ctx, egui::Id::new("document_editor"));
-                self.pending_selection = None;
+            match &event {
+                Event::Opened(doc) => self.text_editor.reset(&doc.text),
+                Event::Saved(doc)
+                    if self
+                        .document
+                        .as_ref()
+                        .is_none_or(|current| current.text != doc.text) =>
+                {
+                    self.text_editor.reset(&doc.text);
+                }
+                _ => {}
             }
             match event {
                 Event::Opened(doc) | Event::Saved(doc) => {
@@ -306,7 +304,6 @@ impl EditorApp {
                     self.document = Some(doc);
                     self.dirty = false;
                     self.refresh_search();
-                    self.rebuild_lines();
                     self.job = None;
                     self.activity = "Pronto".into();
                     self.save_settings();
@@ -342,22 +339,6 @@ impl EditorApp {
         }
     }
 
-    fn rebuild_lines(&mut self) {
-        let count = self
-            .document
-            .as_ref()
-            .map(|d| d.text.bytes().filter(|b| *b == b'\n').count() + 1)
-            .unwrap_or(0);
-        if count == self.line_count {
-            return;
-        }
-        self.line_count = count;
-        self.line_numbers = (1..=count)
-            .map(|line| line.to_string())
-            .collect::<Vec<_>>()
-            .join("\n");
-    }
-
     fn refresh_search(&mut self) {
         if let Some(doc) = &self.document {
             if let Err(error) = self.search.refresh(&doc.text, &self.query) {
@@ -366,55 +347,29 @@ impl EditorApp {
         }
     }
 
-    fn find(&mut self, ctx: &egui::Context, forward: bool) {
-        let Some(doc) = &self.document else {
+    fn find(&mut self, forward: bool) {
+        if self.document.is_none() {
             return;
-        };
-        let state = egui::text_edit::TextEditState::load(ctx, egui::Id::new("document_editor"));
-        let (start, end) = state
-            .and_then(|state| state.cursor.char_range())
-            .map(|range| {
-                (
-                    range.primary.index.min(range.secondary.index),
-                    range.primary.index.max(range.secondary.index),
-                )
-            })
-            .unwrap_or((0, 0));
-        let byte_index = |index| {
-            doc.text
-                .char_indices()
-                .nth(index)
-                .map_or(doc.text.len(), |(offset, _)| offset)
-        };
+        }
         if let Some(found) = self
             .search
-            .navigate(forward, byte_index(start)..byte_index(end))
+            .navigate(forward, self.text_editor.state.selection.range())
         {
-            self.pending_selection = Some((
-                doc.text[..found.start].chars().count(),
-                doc.text[..found.end].chars().count(),
-            ));
+            self.text_editor.select_range(found);
         }
     }
 
     fn go_to_line(&mut self) {
-        let Some(doc) = &self.document else {
+        if self.document.is_none() {
             return;
-        };
+        }
+        let line_count = self.text_editor.state.line_count();
         match self.goto_line.parse::<usize>() {
-            Ok(line) if line > 0 && line <= self.line_count => {
-                let position = doc
-                    .text
-                    .split_inclusive('\n')
-                    .take(line - 1)
-                    .map(|part| part.chars().count())
-                    .sum();
-                self.pending_selection = Some((position, position));
+            Ok(line) if line > 0 && line <= line_count => {
+                let position = self.text_editor.state.line_start(line - 1);
+                self.text_editor.select_range(position..position);
             }
-            _ => self.log(
-                true,
-                format!("Informe uma linha entre 1 e {}.", self.line_count),
-            ),
+            _ => self.log(true, format!("Informe uma linha entre 1 e {line_count}.")),
         }
     }
 
@@ -438,7 +393,7 @@ impl EditorApp {
                                 self.refresh_search();
                             }
                             if ui.button("Anterior").clicked() {
-                                self.find(ctx, false);
+                                self.find(false);
                             }
                             if ui.button("Próxima").clicked()
                                 || response.lost_focus()
@@ -446,7 +401,7 @@ impl EditorApp {
                                         i.consume_key(egui::Modifiers::NONE, egui::Key::Enter)
                                     })
                             {
-                                self.find(ctx, true);
+                                self.find(true);
                             }
                             ui.label(self.search.summary());
                             if icons::button(ui, Icon::Close, "")
@@ -464,10 +419,15 @@ impl EditorApp {
                                     if let Some((text, count)) =
                                         self.search.replace_all(&doc.text, &self.replacement)
                                     {
-                                        doc.text = text;
-                                        self.dirty = true;
+                                        let length = doc.text.len();
+                                        if self.text_editor.state.replace(
+                                            &mut doc.text,
+                                            0..length,
+                                            &text,
+                                        ) {
+                                            self.dirty = true;
+                                        }
                                         self.refresh_search();
-                                        self.rebuild_lines();
                                         self.log(
                                             false,
                                             format!("{count} ocorrência(s) substituída(s)."),
@@ -617,7 +577,7 @@ impl eframe::App for EditorApp {
                 self.native_icon_size = pixels;
             }
         }
-        self.receive(ctx);
+        self.receive();
         if let Some(path) = self.startup_open.take() {
             self.open(ctx, path);
         }
@@ -726,167 +686,66 @@ impl eframe::App for EditorApp {
                         ));
                     });
                 let id = egui::Id::new("document_editor");
-                let scroll_to_selection = self.pending_selection.is_some();
-                if let Some((start, end)) = self.pending_selection.take() {
-                    let mut state =
-                        egui::text_edit::TextEditState::load(ctx, id).unwrap_or_default();
-                    state
-                        .cursor
-                        .set_char_range(Some(egui::text::CCursorRange::two(
-                            egui::text::CCursor::new(start),
-                            egui::text::CCursor::new(end),
-                        )));
-                    state.store(ctx, id);
-                    ctx.memory_mut(|m| m.request_focus(id));
-                }
-                let mut changed = false;
-                egui::Frame::new()
+                let changed = egui::Frame::new()
                     .fill(EDITOR)
                     .inner_margin(10.0)
                     .show(ui, |ui| {
-                        ui.visuals_mut().override_text_color = Some(INK);
-                        ui.visuals_mut().extreme_bg_color = EDITOR;
-                        egui::ScrollArea::both()
-                            .auto_shrink([false, false])
-                            .show(ui, |ui| {
-                                ui.horizontal_top(|ui| {
-                                    let font = FontId::monospace(14.0);
-                                    let gutter_width = (ui
-                                        .fonts(|fonts| fonts.glyph_width(&font, '0'))
-                                        * self.line_count.max(1).ilog10().saturating_add(1) as f32
-                                        + 24.0)
-                                        .max(44.0);
-                                    let (gutter, _) = ui.allocate_exact_size(
-                                        egui::vec2(gutter_width, 0.0),
-                                        egui::Sense::hover(),
-                                    );
-                                    ui.painter().vline(
-                                        gutter.right() - 4.0,
-                                        ui.clip_rect().y_range(),
-                                        egui::Stroke::new(1.0_f32, theme::BORDER),
-                                    );
-                                    let prior_selection =
-                                        egui::text_edit::TextEditState::load(ctx, id)
-                                            .and_then(|state| state.cursor.char_range())
-                                            .map(|range| {
-                                                (range.primary.index, range.secondary.index)
-                                            });
-                                    let mut layouter = |ui: &egui::Ui, text: &str, _width: f32| {
-                                        // Gutter labels track physical DAT lines, never soft wraps.
-                                        self.highlighter.layout(ui, text, f32::INFINITY)
-                                    };
-                                    let output = ui
-                                        .add_enabled_ui(self.job.is_none(), |ui| {
-                                            TextEdit::multiline(&mut doc.text)
-                                                .id(id)
-                                                .font(font.clone())
-                                                .code_editor()
-                                                .frame(false)
-                                                .layouter(&mut layouter)
-                                                .desired_width(f32::INFINITY)
-                                                .desired_rows(25)
-                                                .show(ui)
-                                        })
-                                        .inner;
-                                    if output.response.hovered()
-                                        && ui.input(|input| {
-                                            input
-                                                .pointer
-                                                .button_pressed(egui::PointerButton::Secondary)
-                                        })
-                                    {
-                                        self.context_selection = prior_selection;
+                        let response = self.text_editor.show(ui, &mut doc.text, self.job.is_none());
+                        let changed = response.changed();
+                        response.context_menu(|ui| {
+                            ui.add_enabled_ui(self.job.is_none(), |ui| {
+                                for (label, event) in [
+                                    ("Copiar  Ctrl+C", egui::Event::Copy),
+                                    ("Recortar  Ctrl+X", egui::Event::Cut),
+                                ] {
+                                    if ui.button(label).clicked() {
+                                        ctx.memory_mut(|memory| memory.request_focus(id));
+                                        self.editor_event = Some(event);
+                                        ui.close_menu();
                                     }
-                                    changed = output.response.changed();
-                                    for (label, row) in
-                                        self.line_numbers.lines().zip(&output.galley.rows)
-                                    {
-                                        let y = output.galley_pos.y + row.rect.top();
-                                        if y + row.height() >= ui.clip_rect().top()
-                                            && y <= ui.clip_rect().bottom()
-                                        {
-                                            ui.painter().text(
-                                                egui::pos2(gutter.right() - 12.0, y),
-                                                egui::Align2::RIGHT_TOP,
-                                                label,
-                                                font.clone(),
-                                                theme::MUTED,
-                                            );
-                                        }
-                                    }
-                                    if scroll_to_selection {
-                                        if let Some(cursor) = output.cursor_range {
-                                            let rect = output
-                                                .galley
-                                                .pos_from_cursor(&cursor.primary)
-                                                .translate(output.galley_pos.to_vec2());
-                                            ui.scroll_to_rect(rect, Some(egui::Align::Center));
-                                        }
-                                    }
-                                    let response = output.response;
-                                    response.context_menu(|ui| {
-                                        ui.add_enabled_ui(self.job.is_none(), |ui| {
-                                            for (label, event) in [
-                                                ("Copiar  Ctrl+C", egui::Event::Copy),
-                                                ("Recortar  Ctrl+X", egui::Event::Cut),
-                                            ] {
-                                                if ui.button(label).clicked() {
-                                                    ctx.memory_mut(|memory| {
-                                                        memory.request_focus(id)
-                                                    });
-                                                    self.pending_selection = self.context_selection;
-                                                    self.editor_event = Some(event);
-                                                    ui.close_menu();
-                                                }
-                                            }
-                                            if ui.button("Colar  Ctrl+V").clicked() {
-                                                self.pending_selection = self.context_selection;
-                                                self.request_paste = true;
-                                                ctx.memory_mut(|memory| memory.request_focus(id));
-                                                ui.close_menu();
-                                            }
-                                            if ui.button("Excluir").clicked() {
-                                                self.pending_selection = self.context_selection;
-                                                self.editor_event = Some(egui::Event::Key {
-                                                    key: egui::Key::Backspace,
-                                                    physical_key: None,
-                                                    pressed: true,
-                                                    repeat: false,
-                                                    modifiers: egui::Modifiers::NONE,
-                                                });
-                                                ctx.memory_mut(|memory| memory.request_focus(id));
-                                                ui.close_menu();
-                                            }
-                                            if ui.button("Selecionar tudo  Ctrl+A").clicked() {
-                                                self.pending_selection =
-                                                    Some((0, doc.text.chars().count()));
-                                                ui.close_menu();
-                                            }
-                                            if ui.button("Buscar  Ctrl+F").clicked() {
-                                                self.search_visible = true;
-                                                ctx.memory_mut(|memory| {
-                                                    memory.request_focus(egui::Id::new(
-                                                        "search_query",
-                                                    ))
-                                                });
-                                                ui.close_menu();
-                                            }
-                                            if ui.button("Ir à linha  Ctrl+G").clicked() {
-                                                self.goto_visible = true;
-                                                ctx.memory_mut(|memory| {
-                                                    memory.request_focus(egui::Id::new("goto_line"))
-                                                });
-                                                ui.close_menu();
-                                            }
-                                        });
+                                }
+                                if ui.button("Colar  Ctrl+V").clicked() {
+                                    self.request_paste = true;
+                                    ctx.memory_mut(|memory| memory.request_focus(id));
+                                    ui.close_menu();
+                                }
+                                if ui.button("Excluir").clicked() {
+                                    self.editor_event = Some(egui::Event::Key {
+                                        key: egui::Key::Backspace,
+                                        physical_key: None,
+                                        pressed: true,
+                                        repeat: false,
+                                        modifiers: egui::Modifiers::NONE,
                                     });
-                                });
+                                    ctx.memory_mut(|memory| memory.request_focus(id));
+                                    ui.close_menu();
+                                }
+                                if ui.button("Selecionar tudo  Ctrl+A").clicked() {
+                                    self.text_editor.select_range(0..doc.text.len());
+                                    ui.close_menu();
+                                }
+                                if ui.button("Buscar  Ctrl+F").clicked() {
+                                    self.search_visible = true;
+                                    ctx.memory_mut(|memory| {
+                                        memory.request_focus(egui::Id::new("search_query"))
+                                    });
+                                    ui.close_menu();
+                                }
+                                if ui.button("Ir à linha  Ctrl+G").clicked() {
+                                    self.goto_visible = true;
+                                    ctx.memory_mut(|memory| {
+                                        memory.request_focus(egui::Id::new("goto_line"))
+                                    });
+                                    ui.close_menu();
+                                }
                             });
-                    });
+                        });
+                        changed
+                    })
+                    .inner;
                 if changed {
                     self.dirty = true;
                     self.refresh_search();
-                    self.rebuild_lines();
                 }
             });
         self.batch_window(ctx);

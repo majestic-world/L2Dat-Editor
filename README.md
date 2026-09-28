@@ -90,6 +90,14 @@ For deployment, place that directory as `data` beside the executable, or specify
   previous/next matches, literal replacement and go-to-line. Save DAT or export
   UTF-8 TXT. `Ctrl+O`, `Ctrl+S`, `Ctrl+F` and `Ctrl+G` open, save, search and
   navigate; clipboard actions are also available from the editor context menu.
+- The text viewport lays out and highlights visible physical lines plus a small
+  overscan, rather than building glyph geometry for the entire document.
+  Text and the line index remain in memory; an individual very long line is
+  still laid out in full. Selection, search and editing use whole-document
+  UTF-8 offsets, including lines outside the viewport.
+- Undo/redo stores changed ranges instead of whole-document snapshots. History
+  retains at most 100 edits with a 128 MiB payload budget; the newest edit stays
+  undoable even when a single paste exceeds that budget.
 - Select the chronicle before opening. Chronicle, formatter and enum settings
   stay attached to the open document; changed settings apply to the next open.
 - `Source` preserves the original encryption key when an encryption key with
@@ -154,11 +162,30 @@ Verification uses synthetic records, the real bundled XML and differential
 checks against the Java implementation. It is not a claim that every DAT from
 every client build has been validated.
 
+Large-file UI verification used `Npcgrp_Classic.dat` (356 KiB compressed,
+16.6 MiB decoded, 16,120 lines). The old release exceeded 1,715 MiB of private
+memory within 3.1 seconds and was stopped at the measurement's safety limit.
+The final virtualized release peaked at 330 MiB during a 15-second opening
+probe, with no window-response timeouts. These are measurements on one Windows
+machine, not memory limits or cross-machine performance guarantees.
+Navigation to line 15,000, editing, undo/redo and full-document copying were
+exercised in the native UI. A separate valid 20,000-record Unicode DAT
+(14.9 MiB decoded text) was edited, saved, reopened and decoded for a complete
+content comparison.
+
+The real NPC sample also exposed a pre-existing text-codec limitation:
+`dialog_sound` contains an unmatched `[` in a string value. Both the old and
+new releases reject packing its decoded text with `Unclosed value at text
+offset 6898620`. The viewport change does not alter that codec behavior or
+repair the input; the original client file was left untouched.
+
 The native modules are `schema` (XML and binary/text codec), `crypto` (DAT
 envelopes), `format` (record transformations), `editor` (file operations),
 `settings`, and the desktop `ui`. The visual layer is separated into `theme`
-(shared colors and widget styling), `icons` (embedded SVGs), `highlight`
-(cached text layout) and `ui/chrome` (toolbar, sidebar, status and output).
+(shared colors and widget styling), `icons` (embedded SVGs), `text_state`
+(line index, UTF-8 selection and delta history), `text_view` (virtualized
+editing and input), `highlight` (visible-line text layout) and `ui/chrome`
+(toolbar, sidebar, status and output).
 
 
 ## Java requirements

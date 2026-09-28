@@ -2,6 +2,8 @@ mod fonts;
 mod highlight;
 mod icons;
 mod search;
+mod text_state;
+mod text_view;
 mod theme;
 mod ui;
 

@@ -332,9 +332,12 @@ impl EditorApp {
                             );
                             ui.separator();
                             ui.label(
-                                RichText::new(format!("{} linhas", self.line_count))
-                                    .size(11.0)
-                                    .color(theme::MUTED),
+                                RichText::new(format!(
+                                    "{} linhas",
+                                    self.text_editor.state.line_count()
+                                ))
+                                .size(11.0)
+                                .color(theme::MUTED),
                             );
                             ui.separator();
                             let encoding = match doc.encoding {
