@@ -54,12 +54,12 @@ impl TextEditor {
         self.reset_scroll = true;
     }
 
-    pub fn select_range(&mut self, range: Range<usize>) {
+    pub fn select_range(&mut self, range: Range<usize>, request_focus: bool) {
         self.state.selection = Selection {
             anchor: range.start,
             head: range.end,
         };
-        self.request_focus = true;
+        self.request_focus = request_focus;
         self.reveal = true;
         self.preferred_column = None;
         self.composition = None;

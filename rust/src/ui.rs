@@ -373,7 +373,7 @@ impl EditorApp {
             .search
             .navigate(forward, self.text_editor.state.selection.range())
         {
-            self.text_editor.select_range(found);
+            self.text_editor.select_range(found, false);
         }
     }
 
@@ -385,7 +385,7 @@ impl EditorApp {
         match self.goto_line.parse::<usize>() {
             Ok(line) if line > 0 && line <= line_count => {
                 let position = self.text_editor.state.line_start(line - 1);
-                self.text_editor.select_range(position..position);
+                self.text_editor.select_range(position..position, true);
             }
             _ => self.log(true, format!("Informe uma linha entre 1 e {line_count}.")),
         }
@@ -412,6 +412,7 @@ impl EditorApp {
                             }
                             if ui.button("Anterior").clicked() {
                                 self.find(false);
+                                response.request_focus();
                             }
                             if ui.button("Próxima").clicked()
                                 || response.lost_focus()
@@ -420,6 +421,7 @@ impl EditorApp {
                                     })
                             {
                                 self.find(true);
+                                response.request_focus();
                             }
                             ui.label(self.search.summary());
                             if icons::button(ui, Icon::Close, "")
@@ -739,7 +741,7 @@ impl eframe::App for EditorApp {
                                     ui.close_menu();
                                 }
                                 if ui.button("Selecionar tudo  Ctrl+A").clicked() {
-                                    self.text_editor.select_range(0..doc.text.len());
+                                    self.text_editor.select_range(0..doc.text.len(), true);
                                     ui.close_menu();
                                 }
                                 if ui.button("Buscar  Ctrl+F").clicked() {

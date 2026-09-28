@@ -90,6 +90,12 @@ For deployment, place that directory as `data` beside the executable, or specify
   previous/next matches, literal replacement and go-to-line. Save DAT or export
   UTF-8 TXT. `Ctrl+O`, `Ctrl+S`, `Ctrl+F` and `Ctrl+G` open, save, search and
   navigate; clipboard actions are also available from the editor context menu.
+- Enter in the search field advances through matches while keeping keyboard
+  focus in the query. Search navigation reveals the selected match without
+  directing subsequent Enter presses into the document.
+- Log messages wrap to the panel width and scroll vertically only.
+- The header badge displays `L2DAT Studio v{version} - By Mk`, using the
+  package version from `rust/Cargo.toml` at compile time.
 - `Ctrl+D` duplicates the current line or complete selected lines below, keeping
   the caret column or selection direction. Duplication is one undo/redo action
   and preserves existing line endings without changing the clipboard.

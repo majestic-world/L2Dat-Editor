@@ -104,9 +104,13 @@ impl EditorApp {
                             .inner_margin(egui::Margin::symmetric(8, 3))
                             .show(ui, |ui| {
                                 ui.label(
-                                    RichText::new("Editor nativo")
-                                        .size(11.0)
-                                        .color(theme::ACCENT),
+                                    RichText::new(concat!(
+                                        "L2DAT Studio v",
+                                        env!("CARGO_PKG_VERSION"),
+                                        " - By Mk"
+                                    ))
+                                    .size(11.0)
+                                    .color(theme::ACCENT),
                                 );
                             });
                     });
@@ -396,7 +400,7 @@ impl EditorApp {
                     });
                 });
                 ui.separator();
-                egui::ScrollArea::both()
+                egui::ScrollArea::vertical()
                     .stick_to_bottom(true)
                     .auto_shrink([false, false])
                     .show(ui, |ui| {
@@ -413,7 +417,7 @@ impl EditorApp {
                                             if *error { theme::ERROR } else { theme::MUTED },
                                         ),
                                     )
-                                    .wrap_mode(egui::TextWrapMode::Extend),
+                                    .wrap(),
                                 );
                             });
                         }

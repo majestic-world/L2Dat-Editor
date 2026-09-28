@@ -76,7 +76,7 @@ fn duplicate_shortcut_keeps_unicode_column_and_restores_selection_on_undo_redo()
     let mut text = "first\nα猫z\nlast".to_owned();
     let mut editor = TextEditor::default();
     editor.reset(&text);
-    editor.select_range(8..8);
+    editor.select_range(8..8, true);
     frame(&ctx, &mut editor, &mut text, vec![]);
     let (changed, output) = frame(
         &ctx,
@@ -130,7 +130,7 @@ fn duplicate_shortcut_does_not_edit_disabled_or_unfocused_document() {
     let mut text = "line\nnext".to_owned();
     let mut editor = TextEditor::default();
     editor.reset(&text);
-    editor.select_range(2..2);
+    editor.select_range(2..2, true);
     frame(&ctx, &mut editor, &mut text, vec![]);
     let (changed, _) = frame_enabled(
         &ctx,
@@ -159,7 +159,7 @@ fn duplicate_shortcut_cancels_preedit_but_ignores_ime_key_repeats() {
     let mut text = "old".to_owned();
     let mut editor = TextEditor::default();
     editor.reset(&text);
-    editor.select_range(1..1);
+    editor.select_range(1..1, true);
     frame(&ctx, &mut editor, &mut text, vec![]);
     frame(
         &ctx,
@@ -206,7 +206,7 @@ fn offscreen_selection_paints_target_and_edits_global_document_with_undo() {
     let mut editor = TextEditor::default();
     editor.reset(&text);
     frame(&ctx, &mut editor, &mut text, vec![]);
-    editor.select_range(target..target + "far_target_한글_猫".len());
+    editor.select_range(target..target + "far_target_한글_猫".len(), true);
     frame(&ctx, &mut editor, &mut text, vec![]);
     let (_, output) = frame(&ctx, &mut editor, &mut text, vec![]);
     assert!(paints_text(&output, "far_target_한글_猫"));
@@ -254,12 +254,12 @@ fn search_selection_is_fully_visible_after_horizontal_scrolling() {
     let mut text = format!("name=[ação 猫 한글] {}", "abcdef ".repeat(100));
     let mut editor = TextEditor::default();
     editor.reset(&text);
-    editor.select_range(text.len()..text.len());
+    editor.select_range(text.len()..text.len(), true);
     frame(&ctx, &mut editor, &mut text, vec![]);
     frame(&ctx, &mut editor, &mut text, vec![]);
     let start = text.find("ação").unwrap();
     let end = start + "ação 猫 한글".len();
-    editor.select_range(start..end);
+    editor.select_range(start..end, true);
     frame(&ctx, &mut editor, &mut text, vec![]);
     let (_, output) = frame(&ctx, &mut editor, &mut text, vec![]);
     let (clip, shape) = output
@@ -293,7 +293,7 @@ fn geometry_stays_bounded_when_scrolling_between_distant_lines() {
     editor.reset(&text);
     frame(&ctx, &mut editor, &mut text, vec![]);
     for line in [100, 19_500, 4_000, 19_999, 0] {
-        editor.select_range(line * row.len()..line * row.len());
+        editor.select_range(line * row.len()..line * row.len(), true);
         frame(&ctx, &mut editor, &mut text, vec![]);
         let (_, output) = frame(&ctx, &mut editor, &mut text, vec![]);
         assert!(editor.rendered_rows.contains(&line));
@@ -311,7 +311,7 @@ fn clipboard_and_focus_loss_preserve_selection_across_thousands_of_lines() {
     editor.reset(&text);
     let start = editor.state.line_start(11);
     let end = editor.state.line_start(9_000);
-    editor.select_range(start..end);
+    editor.select_range(start..end, true);
     frame(&ctx, &mut editor, &mut text, vec![]);
     ctx.memory_mut(|memory| memory.surrender_focus(egui::Id::new("document_editor")));
     frame(&ctx, &mut editor, &mut text, vec![]);
@@ -342,7 +342,7 @@ fn keyboard_navigation_and_selection_cross_viewports_at_utf8_boundaries() {
     let mut editor = TextEditor::default();
     editor.reset(&text);
     let start = editor.state.line_start(300) + "αβ\t".len();
-    editor.select_range(start..start);
+    editor.select_range(start..start, true);
     frame(&ctx, &mut editor, &mut text, vec![]);
     frame(
         &ctx,
@@ -396,7 +396,7 @@ fn horizontal_navigation_reveals_the_end_of_an_unwrapped_line() {
     let mut text = format!("{}far_right_target", "\tα".repeat(400));
     let mut editor = TextEditor::default();
     editor.reset(&text);
-    editor.select_range(text.len()..text.len());
+    editor.select_range(text.len()..text.len(), true);
     frame(&ctx, &mut editor, &mut text, vec![]);
     let (_, output) = frame(&ctx, &mut editor, &mut text, vec![]);
     assert!(editor.scroll.x > 1_000.0);
@@ -418,7 +418,7 @@ fn ime_preedit_is_transient_and_commit_is_one_undoable_edit() {
     let mut text = "first old last".to_owned();
     let mut editor = TextEditor::default();
     editor.reset(&text);
-    editor.select_range(6..9);
+    editor.select_range(6..9, true);
     frame(&ctx, &mut editor, &mut text, vec![]);
     let (changed, output) = frame(
         &ctx,
@@ -522,7 +522,7 @@ fn reset_discards_old_history_scroll_and_composition() {
     let mut text = "line\n".repeat(1_000);
     let mut editor = TextEditor::default();
     editor.reset(&text);
-    editor.select_range(text.len()..text.len());
+    editor.select_range(text.len()..text.len(), true);
     frame(
         &ctx,
         &mut editor,
@@ -532,7 +532,7 @@ fn reset_discards_old_history_scroll_and_composition() {
     assert!(editor.scroll.y > 0.0);
     text = "new document".into();
     editor.reset(&text);
-    editor.select_range(0..0);
+    editor.select_range(0..0, true);
     frame(
         &ctx,
         &mut editor,
